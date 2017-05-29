@@ -182,6 +182,502 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-HumenOrRobot2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/29/HumenOrRobot2/">使用机器学习识别出拍卖场中作弊的机器人用户(二)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/29/HumenOrRobot2/" class="archive-article-date">
+  	<time datetime="2017-05-29T12:52:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- 本文承接上一篇文章:[使用机器学习识别出拍卖场中作弊的机器人用户](../HumenOrRobot) -->
+<p>本文承接上一篇文章:<a href="/2017/05/29/HumenOrRobot/" title="使用机器学习识别出拍卖场中作弊的机器人用户">使用机器学习识别出拍卖场中作弊的机器人用户</a></p>
+<p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li>数据探索——Data_Exploration.ipynb</li>
+<li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
+<li>模型设计及评测——Model_Design.ipynb<h2 id="项目数据来源"><a href="#项目数据来源" class="headerlink" title="项目数据来源"></a>项目数据来源</h2></li>
+<li><a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">kaggle</a><h2 id="项目所需额外工具包"><a href="#项目所需额外工具包" class="headerlink" title="项目所需额外工具包"></a>项目所需额外工具包</h2></li>
+<li><a href="http://www.numpy.org/" target="_blank" rel="external">numpy</a></li>
+<li><a href="http://pandas.pydata.org/" target="_blank" rel="external">pandas</a></li>
+<li><a href="https://matplotlib.org/index.html" target="_blank" rel="external">matplotlib</a></li>
+<li><a href="http://scikit-learn.org/stable/" target="_blank" rel="external">sklearn</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">xgboost</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">lightgbm</a></li>
+<li><a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a>: 含有聚和算法Stacking<br>项目整体运行时间预估为60min左右，在Ubuntu系统，8G内存，运行结果见所提交的jupyter notebook文件</li>
+</ul>
+<hr>
+<p>由于文章内容过长，所以分为两篇文章，总共包含四个部分</p>
+<ul>
+<li>数据探索</li>
+<li>数据预处理及特征工程</li>
+<li>模型设计</li>
+<li>评估及总结</li>
+</ul>
+<hr>
+<h2 id="特征工程-续"><a href="#特征工程-续" class="headerlink" title="特征工程(续)"></a>特征工程(续)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> pickle</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># bids = pd.read_csv('bids.csv')</span></div><div class="line">bids = pickle.load(open(<span class="string">'bids.pkl'</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> bids.shape</div><div class="line">display(bids.head())</div></pre></td></tr></table></figure>
+<pre><code>(7656329, 9)
+</code></pre><table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3939ac3ef7d472a59a9c5f893dd3e39fh9ofi</td>
+<td>jefix</td>
+<td>jewelry</td>
+<td>phone4</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>18.99.175.133</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8393c48eaf4b8fa96886edc7cf27b372dsibi</td>
+<td>jefix</td>
+<td>jewelry</td>
+<td>phone5</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>145.138.5.37</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidders = bids.groupby(<span class="string">'bidder_id'</span>)</div></pre></td></tr></table></figure>
+<h3 id="针对国家、商品单一特征多类别转换为多个独立特征进行统计"><a href="#针对国家、商品单一特征多类别转换为多个独立特征进行统计" class="headerlink" title="针对国家、商品单一特征多类别转换为多个独立特征进行统计"></a>针对国家、商品单一特征多类别转换为多个独立特征进行统计</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cates = (bids[<span class="string">'merchandise'</span>].unique()).tolist()</div><div class="line">countries = (bids[<span class="string">'country'</span>].unique()).tolist()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dummy_coun_cate</span><span class="params">(group)</span>:</span></div><div class="line">    coun_cate = dict.fromkeys(cates, <span class="number">0</span>)</div><div class="line">    coun_cate.update(dict.fromkeys(countries, <span class="number">0</span>))</div><div class="line">    <span class="keyword">for</span> cat, value <span class="keyword">in</span> group[<span class="string">'merchandise'</span>].value_counts().iteritems():</div><div class="line">        coun_cate[cat] = value</div><div class="line"></div><div class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> group[<span class="string">'country'</span>].unique():</div><div class="line">        coun_cate[c] = <span class="number">1</span></div><div class="line"></div><div class="line">    coun_cate = pd.Series(coun_cate)</div><div class="line">    <span class="keyword">return</span> coun_cate</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_coun_cate = bidders.apply(dummy_coun_cate)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">display(bidder_coun_cate.describe())</div><div class="line">bidder_coun_cate.to_csv(<span class="string">'coun_cate.csv'</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>ad</th>
+<th>ae</th>
+<th>af</th>
+<th>ag</th>
+<th>al</th>
+<th>am</th>
+<th>an</th>
+<th>ao</th>
+<th>ar</th>
+<th>at</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>…</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>0.002724</td>
+<td>0.205629</td>
+<td>0.054774</td>
+<td>0.001059</td>
+<td>0.048570</td>
+<td>0.023907</td>
+<td>0.000303</td>
+<td>0.036314</td>
+<td>0.120442</td>
+<td>0.052655</td>
+<td>…</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.052121</td>
+<td>0.404191</td>
+<td>0.227555</td>
+<td>0.032530</td>
+<td>0.214984</td>
+<td>0.152770</td>
+<td>0.017395</td>
+<td>0.187085</td>
+<td>0.325502</td>
+<td>0.223362</td>
+<td>…</td>
+</tr>
+<tr>
+<td>min</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>同样的，对于每个用户需要统计他对于自己每次竞拍行为的时间间隔情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bidder_interval</span><span class="params">(group)</span>:</span></div><div class="line">    time_diff = np.ediff1d(group[<span class="string">'time'</span>])</div><div class="line">    bidder_interval = &#123;&#125;</div><div class="line">    <span class="keyword">if</span> len(time_diff) == <span class="number">0</span>:</div><div class="line">        diff_mean = <span class="number">0</span></div><div class="line">        diff_std = <span class="number">0</span></div><div class="line">        diff_median = <span class="number">0</span></div><div class="line">        diff_zeros = <span class="number">0</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        diff_mean = np.mean(time_diff)</div><div class="line">        diff_std = np.std(time_diff)</div><div class="line">        diff_median = np.median(time_diff)</div><div class="line">        diff_zeros = time_diff.shape[<span class="number">0</span>] - np.count_nonzero(time_diff)</div><div class="line">    bidder_interval[<span class="string">'tmean'</span>] = diff_mean</div><div class="line">    bidder_interval[<span class="string">'tstd'</span>] = diff_std</div><div class="line">    bidder_interval[<span class="string">'tmedian'</span>] = diff_median</div><div class="line">    bidder_interval[<span class="string">'tzeros'</span>] = diff_zeros</div><div class="line">    bidder_interval = pd.Series(bidder_interval)</div><div class="line">    <span class="keyword">return</span> bidder_interval</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_inv = bidders.apply(bidder_interval)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">display(bidder_inv.describe())</div><div class="line">bidder_inv.to_csv(<span class="string">'bidder_inv.csv'</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>tmean</th>
+<th>tmedian</th>
+<th>tstd</th>
+<th>tzeros</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>6.609000e+03</td>
+<td>6.609000e+03</td>
+<td>6.609000e+03</td>
+<td>6609.0</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>2.933038e+12</td>
+<td>1.860285e+12</td>
+<td>3.440901e+12</td>
+<td>122.986231</td>
+</tr>
+<tr>
+<td>std</td>
+<td>8.552343e+12</td>
+<td>7.993497e+12</td>
+<td>6.512992e+12</td>
+<td>3190.805229</td>
+</tr>
+<tr>
+<td>min</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.192853e+10</td>
+<td>2.578947e+09</td>
+<td>1.749995e+09</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>2.641139e+11</td>
+<td>5.726316e+10</td>
+<td>5.510107e+11</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.847456e+12</td>
+<td>6.339474e+11</td>
+<td>2.911282e+12</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>7.610295e+13</td>
+<td>7.610295e+13</td>
+<td>3.800092e+13</td>
+<td>231570.000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="按照用户-拍卖场分组进一步分析"><a href="#按照用户-拍卖场分组进一步分析" class="headerlink" title="按照用户-拍卖场分组进一步分析"></a>按照用户-拍卖场分组进一步分析</h3><p>之前的统计是按照用户进行分组，针对各个用户从整体上针对竞标行为统计其各项特征，下面根据拍卖场来对用户进一步细分，看一看每个用户在不同拍卖场的行为模式,类似上述按照用户分组来统计各个用户的各项特征，针对用户-拍卖场结对分组进行统计以下特征</p>
+<ul>
+<li>基本计数统计，针对各个用户在各个拍卖场统计设备、国家、ip、url、商品类别、竞标次数等特征的数目作为新的特征</li>
+<li>时间间隔统计：统计各个用户在各个拍卖场每次竞拍的时间间隔的 均值、方差、中位数和0值</li>
+<li>针对商品类别、国家进一步转化为多类别进行统计</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">auc_features_count</span><span class="params">(group)</span>:</span></div><div class="line">    time_diff = np.ediff1d(group[<span class="string">'time'</span>])</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> len(time_diff) == <span class="number">0</span>:</div><div class="line">        diff_mean = <span class="number">0</span></div><div class="line">        diff_std = <span class="number">0</span></div><div class="line">        diff_median = <span class="number">0</span></div><div class="line">        diff_zeros = <span class="number">0</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        diff_mean = np.mean(time_diff)</div><div class="line">        diff_std = np.std(time_diff)</div><div class="line">        diff_median = np.median(time_diff)</div><div class="line">        diff_zeros = time_diff.shape[<span class="number">0</span>] - np.count_nonzero(time_diff)</div><div class="line"></div><div class="line">    row = dict.fromkeys(cates, <span class="number">0</span>)</div><div class="line">    row.update(dict.fromkeys(countries, <span class="number">0</span>))</div><div class="line"></div><div class="line">    row[<span class="string">'devices_c'</span>] = group[<span class="string">'device'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'countries_c'</span>] = group[<span class="string">'country'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'ip_c'</span>] = group[<span class="string">'ip'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'url_c'</span>] = group[<span class="string">'url'</span>].unique().shape[<span class="number">0</span>]</div><div class="line"><span class="comment">#     row['merch_c'] = group['merchandise'].unique().shape[0]</span></div><div class="line">    row[<span class="string">'bids_c'</span>] = group.shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'tmean'</span>] = diff_mean</div><div class="line">    row[<span class="string">'tstd'</span>] = diff_std</div><div class="line">    row[<span class="string">'tmedian'</span>] = diff_median</div><div class="line">    row[<span class="string">'tzeros'</span>] = diff_zeros</div><div class="line"></div><div class="line">    <span class="keyword">for</span> cat, value <span class="keyword">in</span> group[<span class="string">'merchandise'</span>].value_counts().iteritems():</div><div class="line">        row[cat] = value</div><div class="line"></div><div class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> group[<span class="string">'country'</span>].unique():</div><div class="line">        row[c] = <span class="number">1</span></div><div class="line"></div><div class="line">    row = pd.Series(row)</div><div class="line">    <span class="keyword">return</span> row</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_auc = bids.groupby([<span class="string">'bidder_id'</span>, <span class="string">'auction'</span>]).apply(auc_features_count)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_auc.to_csv(<span class="string">'bids_auc.csv'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> bidder_auc.shape</div></pre></td></tr></table></figure>
+<pre><code>(382336, 218)
+</code></pre><h2 id="模型设计与参数评估"><a href="#模型设计与参数评估" class="headerlink" title="模型设计与参数评估"></a>模型设计与参数评估</h2><h3 id="合并特征"><a href="#合并特征" class="headerlink" title="合并特征"></a>合并特征</h3><p>对之前生成的各项特征进行合并产生最终的特征空间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<p>首先将之前根据用户分组的统计特征合并起来，然后将其与按照用户-拍卖场结对分组的特征合并起来，最后加上时间特征，分别于训练集、测试集连接生成后续进行训练和预测的特征数据文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_data</span><span class="params">()</span>:</span>    </div><div class="line">    train = pd.read_csv(<span class="string">'train.csv'</span>)</div><div class="line">    test = pd.read_csv(<span class="string">'test.csv'</span>)</div><div class="line"></div><div class="line">    time_differences = pd.read_csv(<span class="string">'tdiff.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    bids_auc = pd.read_csv(<span class="string">'bids_auc.csv'</span>)</div><div class="line"></div><div class="line">    bids_auc = bids_auc.groupby(<span class="string">'bidder_id'</span>).mean()</div><div class="line">    </div><div class="line">    bidders = pd.read_csv(<span class="string">'cnt_bidder.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    country_cate = pd.read_csv(<span class="string">'coun_cate.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    bidder_inv = pd.read_csv(<span class="string">'bidder_inv.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    bidders = bidders.merge(country_cate, right_index=<span class="keyword">True</span>, left_index=<span class="keyword">True</span>)</div><div class="line">    bidders = bidders.merge(bidder_inv, right_index=<span class="keyword">True</span>, left_index=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    bidders = bidders.merge(bids_auc, right_index=<span class="keyword">True</span>, left_index=<span class="keyword">True</span>)</div><div class="line">    bidders = bidders.merge(time_differences, right_index=<span class="keyword">True</span>,</div><div class="line">                            left_index=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    train = train.merge(bidders, left_on=<span class="string">'bidder_id'</span>, right_index=<span class="keyword">True</span>)</div><div class="line">    train.to_csv(<span class="string">'train_full.csv'</span>, index=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    test = test.merge(bidders, left_on=<span class="string">'bidder_id'</span>, right_index=<span class="keyword">True</span>)</div><div class="line">    test.to_csv(<span class="string">'test_full.csv'</span>, index=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">merge_data()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">train_full = pd.read_csv(<span class="string">'train_full.csv'</span>)</div><div class="line">test_full = pd.read_csv(<span class="string">'test_full.csv'</span>)</div><div class="line"><span class="keyword">print</span> train_full.shape</div><div class="line"><span class="keyword">print</span> test_full.shape</div></pre></td></tr></table></figure>
+<pre><code>(1983, 445)
+(4626, 444)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">train_full[<span class="string">'outcome'</span>] = train_full[<span class="string">'outcome'</span>].astype(int)</div><div class="line">ytrain = train_full[<span class="string">'outcome'</span>]</div><div class="line">train_full.drop(<span class="string">'outcome'</span>, <span class="number">1</span>, inplace=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">test_ids = test_full[<span class="string">'bidder_id'</span>]</div><div class="line"></div><div class="line">labels = [<span class="string">'payment_account'</span>, <span class="string">'address'</span>, <span class="string">'bidder_id'</span>]</div><div class="line">train_full.drop(labels=labels, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</div><div class="line">test_full.drop(labels=labels, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<h3 id="设计交叉验证"><a href="#设计交叉验证" class="headerlink" title="设计交叉验证"></a>设计交叉验证</h3><h3 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h3><p>根据之前的分析，由于当前的数据集中存在正负例不均衡的问题，所以考虑选取了RandomForestClassfier, GradientBoostingClassifier, xgboost, lightgbm等四种模型来针对数据及进行训练和预测，确定最终模型的基本思路如下：</p>
+<ul>
+<li>对四个模型分别使用评价函数roc_auc进行交叉验证并绘制auc曲线，对各个模型的多轮交叉验证得分取平均值并输出</li>
+<li>根据得分确定最终选用的一个或多个模型<ul>
+<li>若最后发现一个模型的表现大幅度优于其他所有模型，则选择该模型进一步调参</li>
+<li>若最后发现多个模型表现都不错，则进行模型的集成，得到聚合模型</li>
+<li>使用GridSearchCV来从人为设定的参数列表中选择最佳的参数组合确定最终的模型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> interp</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> cycle</div><div class="line"></div><div class="line"><span class="comment"># from sklearn.cross_validation import StratifiedKFold</span></div><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedKFold</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score, roc_curve, auc</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">kfold_plot</span><span class="params">(train, ytrain, model)</span>:</span></div><div class="line"><span class="comment">#     kf = StratifiedKFold(y=ytrain, n_folds=5)</span></div><div class="line">    kf = StratifiedKFold(n_splits=<span class="number">5</span>)</div><div class="line">    scores = []</div><div class="line">    mean_tpr = <span class="number">0.0</span></div><div class="line">    mean_fpr = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</div><div class="line">    exe_time = []</div><div class="line">    </div><div class="line">    colors = cycle([<span class="string">'cyan'</span>, <span class="string">'indigo'</span>, <span class="string">'seagreen'</span>, <span class="string">'yellow'</span>, <span class="string">'blue'</span>])</div><div class="line">    lw = <span class="number">2</span></div><div class="line">    </div><div class="line">    i=<span class="number">0</span></div><div class="line">    <span class="keyword">for</span> (train_index, test_index), color <span class="keyword">in</span> zip(kf.split(train, ytrain), colors):</div><div class="line">        X_train, X_test = train.iloc[train_index], train.iloc[test_index]</div><div class="line">        y_train, y_test = ytrain.iloc[train_index], ytrain.iloc[test_index]</div><div class="line">        begin_t = time.time()</div><div class="line">        predictions = model(X_train, X_test, y_train)</div><div class="line">        end_t = time.time()</div><div class="line">        exe_time.append(round(end_t-begin_t, <span class="number">3</span>))</div><div class="line"><span class="comment">#         model = model</span></div><div class="line"><span class="comment">#         model.fit(X_train, y_train)    </span></div><div class="line"><span class="comment">#         predictions = model.predict_proba(X_test)[:, 1]        </span></div><div class="line">        scores.append(roc_auc_score(y_test.astype(float), predictions))        </div><div class="line">        fpr, tpr, thresholds = roc_curve(y_test, predictions)</div><div class="line">        mean_tpr += interp(mean_fpr, fpr, tpr)</div><div class="line">        mean_tpr[<span class="number">0</span>] = <span class="number">0.0</span></div><div class="line">        roc_auc = auc(fpr, tpr)</div><div class="line">        plt.plot(fpr, tpr, lw=lw, color=color, label=<span class="string">'ROC fold %d (area = %0.2f)'</span> % (i, roc_auc))</div><div class="line">        i += <span class="number">1</span></div><div class="line">    plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], linestyle=<span class="string">'--'</span>, lw=lw, color=<span class="string">'k'</span>, label=<span class="string">'Luck'</span>)</div><div class="line">    </div><div class="line">    mean_tpr /= kf.get_n_splits(train, ytrain)</div><div class="line">    mean_tpr[<span class="number">-1</span>] = <span class="number">1.0</span></div><div class="line">    mean_auc = auc(mean_fpr, mean_tpr)</div><div class="line">    plt.plot(mean_fpr, mean_tpr, color=<span class="string">'g'</span>, linestyle=<span class="string">'--'</span>, label=<span class="string">'Mean ROC (area = %0.2f)'</span> % mean_auc, lw=lw)</div><div class="line">    </div><div class="line">    plt.xlim([<span class="number">-0.05</span>, <span class="number">1.05</span>])</div><div class="line">    plt.ylim([<span class="number">-0.05</span>, <span class="number">1.05</span>])</div><div class="line">    plt.xlabel(<span class="string">'False Positive Rate'</span>)</div><div class="line">    plt.ylabel(<span class="string">'True Positive Rate'</span>)</div><div class="line">    plt.title(<span class="string">'Receiver operating characteristic'</span>)</div><div class="line">    plt.legend(loc=<span class="string">'lower right'</span>)</div><div class="line">    plt.show()</div><div class="line">    </div><div class="line">    <span class="keyword">print</span> <span class="string">'mean scores: '</span>,np.mean(scores)</div><div class="line">    <span class="keyword">print</span> <span class="string">'mean model process time: '</span>,np.mean(exe_time), <span class="string">'s'</span></div></pre></td></tr></table></figure>
+<h4 id="RandomForestClassifier"><a href="#RandomForestClassifier" class="headerlink" title="RandomForestClassifier"></a>RandomForestClassifier</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</div><div class="line"><span class="keyword">import</span> time</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">forest_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    model = RandomForestClassifier(n_estimators=<span class="number">160</span>, max_features=<span class="number">35</span>, max_depth=<span class="number">8</span>, random_state=<span class="number">7</span>)</div><div class="line">    model.fit(X_train, y_train)    </div><div class="line">    predictions = model.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, forest_model)</div><div class="line"><span class="comment"># kfold_plot(train_full, ytrain, model_forest)</span></div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_forest.png" alt="forest_auc"></p>
+<pre><code>mean scores:  0.909571935157
+mean model process time:  0.6372 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    model = GradientBoostingClassifier(n_estimators=<span class="number">200</span>, random_state=<span class="number">7</span>, max_depth=<span class="number">5</span>, learning_rate=<span class="number">0.03</span>)</div><div class="line">    model.fit(X_train, y_train)</div><div class="line">    predictions = model.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, gradient_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_gbm.png" alt="gbm_auc"></p>
+<pre><code>mean scores:  0.911847771023
+mean model process time:  4.007 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">xgboost_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    X_train = xgb.DMatrix(X_train.values, label=y_train.values)</div><div class="line">    X_test = xgb.DMatrix(X_test.values)</div><div class="line">    params = &#123;<span class="string">'objective'</span>: <span class="string">'binary:logistic'</span>, <span class="string">'eval_metric'</span>: <span class="string">'auc'</span>, <span class="string">'silent'</span>: <span class="number">1</span>, <span class="string">'seed'</span>: <span class="number">7</span>,</div><div class="line">              <span class="string">'max_depth'</span>: <span class="number">6</span>, <span class="string">'eta'</span>: <span class="number">0.01</span>&#125;    </div><div class="line">    model = xgb.train(params, X_train, <span class="number">600</span>)</div><div class="line">    predictions = model.predict(X_test)</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, xgboost_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_xgb.png" alt="xgb_auc"></p>
+<pre><code>mean scores:  0.915372340426
+mean model process time:  4.855 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lightgbm_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    X_train = lgb.Dataset(X_train.values, y_train.values)</div><div class="line">    params = &#123;<span class="string">'objective'</span>: <span class="string">'binary'</span>, <span class="string">'metric'</span>: &#123;<span class="string">'auc'</span>&#125;, <span class="string">'learning_rate'</span>: <span class="number">0.01</span>, <span class="string">'max_depth'</span>: <span class="number">6</span>, <span class="string">'seed'</span>: <span class="number">7</span>&#125;</div><div class="line">    model = lgb.train(params, X_train, num_boost_round=<span class="number">600</span>)</div><div class="line">    predictions = model.predict(X_test)</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, lightgbm_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_lgbm.png" alt="lgbm_auc"></p>
+<pre><code>mean scores:  0.921512158055
+mean model process time:  0.4236 s
+</code></pre><h3 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h3><p>比较四个模型在交叉验证机上的roc_auc平均得分和模型训练的时间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data_source = [<span class="string">'forest'</span>, <span class="string">'gradient boosting'</span>, <span class="string">'xgboost'</span>, <span class="string">'lightgbm'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">model_auc = [<span class="number">0.910</span>, <span class="number">0.912</span>, <span class="number">0.915</span>, <span class="number">0.922</span>]</div><div class="line">barlist = plt.bar(y_pos, model_auc, align=<span class="string">'center'</span>, alpha=<span class="number">0.5</span>)</div><div class="line">barlist[<span class="number">3</span>].set_color(<span class="string">'r'</span>)</div><div class="line">plt.xticks(y_pos, data_source)</div><div class="line">plt.ylabel(<span class="string">'roc-auc score'</span>)</div><div class="line">plt.title(<span class="string">'Model Performance'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/model_performance.png" alt="model_performance"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data_source = [<span class="string">'forest'</span>, <span class="string">'gradient boosting'</span>, <span class="string">'xgboost'</span>, <span class="string">'lightgbm'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">model_auc = [<span class="number">0.6372</span>,<span class="number">4.007</span>, <span class="number">4.855</span>, <span class="number">0.4236</span>]</div><div class="line">barlist = plt.bar(y_pos, model_auc, align=<span class="string">'center'</span>, alpha=<span class="number">0.5</span>)</div><div class="line">barlist[<span class="number">3</span>].set_color(<span class="string">'r'</span>)</div><div class="line">plt.xticks(y_pos, data_source)</div><div class="line">plt.ylabel(<span class="string">'time(s)'</span>)</div><div class="line">plt.title(<span class="string">'Time of Building Model'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/time.png" alt="model_time"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">auc_forest = [<span class="number">0.87</span>, <span class="number">0.93</span>, <span class="number">0.94</span>, <span class="number">0.86</span>, <span class="number">0.96</span>]</div><div class="line">auc_gb = [<span class="number">0.89</span>, <span class="number">0.91</span>, <span class="number">0.93</span>, <span class="number">0.87</span>, <span class="number">0.95</span>]</div><div class="line">auc_xgb = [<span class="number">0.89</span>,<span class="number">0.92</span>, <span class="number">0.93</span>, <span class="number">0.89</span>, <span class="number">0.95</span>]</div><div class="line">auc_lgb = [<span class="number">0.90</span>, <span class="number">0.93</span>, <span class="number">0.94</span>, <span class="number">0.88</span>, <span class="number">0.96</span>]</div><div class="line"><span class="keyword">print</span> <span class="string">'std of forest auc score: '</span>,np.std(auc_forest)</div><div class="line"><span class="keyword">print</span> <span class="string">'std of gbm auc score: '</span>,np.std(auc_gb)</div><div class="line"><span class="keyword">print</span> <span class="string">'std of xgboost auc score: '</span>,np.std(auc_xgb)</div><div class="line"><span class="keyword">print</span> <span class="string">'std of lightgbm auc score: '</span>,np.std(auc_lgb)</div><div class="line">data_source = [<span class="string">'roc-fold-1'</span>, <span class="string">'roc-fold-2'</span>, <span class="string">'roc-fold-3'</span>, <span class="string">'roc-fold-4'</span>, <span class="string">'roc-fold-5'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">plt.plot(y_pos, auc_forest, <span class="string">'b-'</span>, label=<span class="string">'forest'</span>)</div><div class="line">plt.plot(y_pos, auc_gb, <span class="string">'r-'</span>, label=<span class="string">'gbm'</span>)</div><div class="line">plt.plot(y_pos, auc_xgb, <span class="string">'y-'</span>, label=<span class="string">'xgboost'</span>)</div><div class="line">plt.plot(y_pos, auc_lgb, <span class="string">'g-'</span>, label=<span class="string">'lightgbm'</span>)</div><div class="line">plt.title(<span class="string">'roc-auc score of each epoch'</span>)</div><div class="line">plt.xlabel(<span class="string">'epoch'</span>)</div><div class="line">plt.ylabel(<span class="string">'roc-auc score'</span>)</div><div class="line">plt.legend()</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<pre><code>std of forest auc score:  0.0396988664826
+std of gbm auc score:  0.0282842712475
+std of xgboost auc score:  0.0233238075794
+std of lightgbm auc score:  0.0285657137142
+</code></pre><p><img src="/materials/img/HumenOrRobot2/roc_epoch.png" alt="stability"></p>
+<p>单从5次交叉验证的各模型roc-auc得分来看，xgboost的得分相对比较稳定</p>
+<h3 id="聚合模型"><a href="#聚合模型" class="headerlink" title="聚合模型"></a>聚合模型</h3><p>由上面的模型比较可以发现，四个模型的经过交叉验证的表现都不错，但是综合而言，xgboost和lightgbm更胜一筹，而且两者的训练时间也相对更短一些，所以接下来考虑进行模型的聚合，思路如下：</p>
+<ul>
+<li>先通过GridSearchCV分别针对四个模型在整个训练集上进行调参获得最佳的子模型</li>
+<li>针对子模型使用<ul>
+<li>stacking: 第三方库<a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a>里的stacking方法对子模型进行聚合得到聚合模型，并采用之前相同的cv方法对该模型进行打分评价</li>
+<li>voting: 使用sklearn内置的VotingClassifier进行四个模型的聚合</li>
+</ul>
+</li>
+<li>最终对聚合模型在一次进行cv验证评分，根据结果确定最终的模型</li>
+</ul>
+<p>先通过交叉验证针对模型选择参数组合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_xgb_model</span><span class="params">(X_train, y_train)</span>:</span> </div><div class="line">    tuned_params = [&#123;<span class="string">'objective'</span>: [<span class="string">'binary:logistic'</span>], <span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.05</span>], </div><div class="line">                     <span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(xgb.XGBClassifier(seed=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters of xgboost: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_xgb = choose_xgb_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  86.216 s
+current best parameters of xgboost:  {&apos;n_estimators&apos;: 150, &apos;objective&apos;: &apos;binary:logistic&apos;, &apos;learning_rate&apos;: 0.05, &apos;max_depth&apos;: 4}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_lgb_model</span><span class="params">(X_train, y_train)</span>:</span> </div><div class="line">    tuned_params = [&#123;<span class="string">'objective'</span>: [<span class="string">'binary'</span>], <span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.05</span>], </div><div class="line">                     <span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(lgb.LGBMClassifier(seed=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters of lgb: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_lgb = choose_lgb_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  16.602 s
+current best parameters of lgb:  {&apos;n_estimators&apos;: 150, &apos;objective&apos;: &apos;binary&apos;, &apos;learning_rate&apos;: 0.05, &apos;max_depth&apos;: 4}
+</code></pre><p>先使用stacking聚合两个综合表现最佳的模型lgb和xgb</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> mlxtend.classifier <span class="keyword">import</span> StackingClassifier</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stacking_model</span><span class="params">(X_train, X_test, y_train)</span>:</span>    </div><div class="line">    sclf = StackingClassifier(classifiers=[bst_xgb], use_probas=<span class="keyword">True</span>, average_probas=<span class="keyword">False</span>, meta_classifier=bst_lgb)</div><div class="line">    sclf.fit(X_train, y_train)</div><div class="line">    predictions = sclf.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, stacking_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_stacking.png" alt="stack_2"></p>
+<pre><code>mean scores:  0.880479989868
+mean model process time:  0.8142 s
+</code></pre><p>然而两个单独表现最佳的模型经过stacking的聚合模型表现反而不如之前的任何一个单一模型，考虑对四个模型进行stacking聚和操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_forest_model</span><span class="params">(X_train, y_train)</span>:</span>    </div><div class="line">    tuned_params = [&#123;<span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'max_features'</span>: [<span class="number">8</span>, <span class="number">15</span>, <span class="number">30</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">8</span>, <span class="number">10</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(RandomForestClassifier(random_state=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_forest = choose_forest_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  42.852 s
+current best parameters:  {&apos;max_features&apos;: 15, &apos;n_estimators&apos;: 150, &apos;max_depth&apos;: 8}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_gradient_model</span><span class="params">(X_train, y_train)</span>:</span>    </div><div class="line">    tuned_params = [&#123;<span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'learning_rate'</span>: [<span class="number">0.03</span>, <span class="number">0.05</span>, <span class="number">0.07</span>], </div><div class="line">                     <span class="string">'min_samples_leaf'</span>: [<span class="number">8</span>, <span class="number">15</span>, <span class="number">30</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(GradientBoostingClassifier(random_state=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_gradient = choose_gradient_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  632.815 s
+current best parameters:  {&apos;n_estimators&apos;: 100, &apos;learning_rate&apos;: 0.03, &apos;max_depth&apos;: 8, &apos;min_samples_leaf&apos;: 30}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stacking_model2</span><span class="params">(X_train, X_test, y_train)</span>:</span>    </div><div class="line">    sclf = StackingClassifier(classifiers=[bst_xgb, bst_forest, bst_gradient], use_probas=<span class="keyword">True</span>, average_probas=<span class="keyword">False</span>, </div><div class="line">                              meta_classifier=bst_lgb)</div><div class="line">    sclf.fit(X_train, y_train)</div><div class="line">    predictions = sclf.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, stacking_model2)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_stacking2.png" alt="stack_4"></p>
+<pre><code>mean scores:  0.899170466059
+mean model process time:  4.1236 s
+</code></pre><p>可以看到四个模型的聚合效果比用两个模型的stacking聚合效果要好一点，但是相比较单一模型仍然效果不好，接下来考虑使用voting对四个模型进行聚合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> VotingClassifier</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">voting_model</span><span class="params">(X_train, X_test, y_train)</span>:</span>    </div><div class="line">    vclf = VotingClassifier(estimators=[(<span class="string">'xgb'</span>, bst_xgb), (<span class="string">'rf'</span>, bst_forest), (<span class="string">'gbm'</span>,bst_gradient),</div><div class="line">                                       (<span class="string">'lgb'</span>, bst_lgb)], voting=<span class="string">'soft'</span>, weights=[<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>])</div><div class="line">    vclf.fit(X_train, y_train)</div><div class="line">    predictions = vclf.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, voting_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_voting.png" alt="voting_4"></p>
+<pre><code>mean scores:  0.926889564336
+mean model process time:  4.2736 s
+</code></pre><p>由上可以看到最终通过voting将四个模型进行聚合可以得到得分最高的模型，确定为最终模型</p>
+<h3 id="综合模型，对测试文件进行最终预测"><a href="#综合模型，对测试文件进行最终预测" class="headerlink" title="综合模型，对测试文件进行最终预测"></a>综合模型，对测试文件进行最终预测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># predict(train_full, test_full, y_train)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">submit</span><span class="params">(X_train, X_test, y_train, test_ids)</span>:</span></div><div class="line">    predictions = voting_model(X_train, X_test, y_train)</div><div class="line"></div><div class="line">    sub = pd.read_csv(<span class="string">'sampleSubmission.csv'</span>)</div><div class="line">    result = pd.DataFrame()</div><div class="line">    result[<span class="string">'bidder_id'</span>] = test_ids</div><div class="line">    result[<span class="string">'outcome'</span>] = predictions</div><div class="line">    sub = sub.merge(result, on=<span class="string">'bidder_id'</span>, how=<span class="string">'left'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># Fill missing values with mean</span></div><div class="line">    mean_pred = np.mean(predictions)</div><div class="line">    sub.fillna(mean_pred, inplace=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    sub.drop(<span class="string">'prediction'</span>, <span class="number">1</span>, inplace=<span class="keyword">True</span>)</div><div class="line">    sub.to_csv(<span class="string">'result.csv'</span>, index=<span class="keyword">False</span>, header=[<span class="string">'bidder_id'</span>, <span class="string">'prediction'</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">submit(train_full, test_full, ytrain, test_ids)</div></pre></td></tr></table></figure>
+<p>最终结果提交到kaggle上进行评分，得分如下<br><img src="/materials/img/HumenOrRobot2/point.png" alt="point"></p>
+<p>以上就是整个完整的流程，当然还有很多模型可以尝试，很多聚合方法也可以使用，此外，特征工程部分还有很多空间可以挖掘，就留给大家去探索啦~</p>
+<p>参考资料<br><a href="/materials/img/HumenOrRobot2/roc_forest.png">1</a> Chen, K. T., Pao, H. K. K., &amp; Chang, H. C. (2008, October). Game bot identification based on manifold learning. In Proceedings of the 7th ACM SIGCOMM Workshop on Network and System Support for Games (pp. 21-26). ACM.<br><a href="/materials/img/HumenOrRobot2/roc_gbm.png">2</a> Alayed, H., Frangoudes, F., &amp; Neuman, C. (2013, August). Behavioral-based cheating detection in online first person shooters using machine learning techniques. In Computational Intelligence in Games (CIG), 2013 IEEE Conference on (pp. 1-8). IEEE.<br><a href="/materials/img/HumenOrRobot2/roc_xgb.png">3</a> <a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data</a><br><a href="/materials/img/HumenOrRobot2/roc_lgbm.png">4</a> <a href="http://stats.stackexchange.com/a/132832/152084" target="_blank" rel="external">http://stats.stackexchange.com/a/132832/152084</a><br><a href="/materials/img/HumenOrRobot2/model_performance.png">5</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/time.png">6</a> <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" rel="external">https://en.wikipedia.org/wiki/Random_forest</a><br><a href="/materials/img/HumenOrRobot2/roc_epoch.png">7</a> <a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="external">https://en.wikipedia.org/wiki/Gradient_boosting</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking.png">8</a> <a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking2.png">9</a> <a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a><br><a href="/materials/img/HumenOrRobot2/roc_voting.png">10</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/point.png">11</a> <a href="http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe" target="_blank" rel="external">http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe</a><br>[12] <a href="http://pandas.pydata.org/pandas-docs/stable/missing_data.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/missing_data.html</a><br>[13] <a href="http://stackoverflow.com/a/18272653/6653189" target="_blank" rel="external">http://stackoverflow.com/a/18272653/6653189</a><br>[14] <a href="http://www.cnblogs.com/jasonfreak/p/5720137.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5720137.html</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kaggle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/29/HumenOrRobot2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-HumenOrRobot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -637,18 +1133,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ML</a>
               </li>
              
@@ -658,6 +1142,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
             
             <div class="clearfix"></div>
