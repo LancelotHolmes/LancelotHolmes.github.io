@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Lancelot&#39;s Desert</title>
+  <title>使用机器学习识别出拍卖场中作弊的机器人用户 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Human or Robot本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ip">
+<meta name="keywords" content="ML,Kaggle,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用机器学习识别出拍卖场中作弊的机器人用户">
+<meta property="og:url" content="http://yoursite.com/2017/05/29/HumenOrRobot/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="Human or Robot本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ip">
+<meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/null.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/no_bidders.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/pos_neg.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/scatter_origin.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/scatter_new.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/hot_map.png">
+<meta property="og:updated_time" content="2017-05-29T12:29:20.591Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="使用机器学习识别出拍卖场中作弊的机器人用户">
+<meta name="twitter:description" content="Human or Robot本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ip">
+<meta name="twitter:image" content="http://yoursite.com/materials/img/HumenOrRobot/null.png">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -180,16 +188,14 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-HumenOrRobot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-HumenOrRobot" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/HumenOrRobot/">使用机器学习识别出拍卖场中作弊的机器人用户</a>
+    <h1 class="article-title" itemprop="name">
+      使用机器学习识别出拍卖场中作弊的机器人用户
     </h1>
   
 
@@ -208,9 +214,582 @@ ga('send', 'pageview');
 <li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
 <li>模型设计及评测——Model_Design.ipynb</li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/05/29/HumenOrRobot/#more">more >></a>
-        
+<a id="more"></a>
+<h2 id="项目数据来源"><a href="#项目数据来源" class="headerlink" title="项目数据来源"></a>项目数据来源</h2><ul>
+<li><a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">kaggle</a><h2 id="项目所需额外工具包"><a href="#项目所需额外工具包" class="headerlink" title="项目所需额外工具包"></a>项目所需额外工具包</h2></li>
+<li><a href="http://www.numpy.org/" target="_blank" rel="external">numpy</a></li>
+<li><a href="http://pandas.pydata.org/" target="_blank" rel="external">pandas</a></li>
+<li><a href="https://matplotlib.org/index.html" target="_blank" rel="external">matplotlib</a></li>
+<li><a href="http://scikit-learn.org/stable/" target="_blank" rel="external">sklearn</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">xgboost</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">lightgbm</a></li>
+<li><a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a>: 含有聚和算法Stacking<br>项目整体运行时间预估为60min左右，在Ubuntu系统，8G内存，运行结果见所提交的jupyter notebook文件</li>
+</ul>
+<hr>
+<p>由于文章内容过长，所以分为两篇文章，总共包含四个部分</p>
+<ul>
+<li>数据探索</li>
+<li>数据预处理及特征工程</li>
+<li>模型设计</li>
+<li>评估及总结</li>
+</ul>
+<h2 id="数据探索"><a href="#数据探索" class="headerlink" title="数据探索"></a>数据探索</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">df_bids = pd.read_csv(<span class="string">'bids.csv'</span>, low_memory=<span class="keyword">False</span>)</div><div class="line">df_train = pd.read_csv(<span class="string">'train.csv'</span>)</div><div class="line">df_test = pd.read_csv(<span class="string">'test.csv'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df_bids.head(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df_train.head(<span class="number">3</span>)</div><div class="line"><span class="comment"># df_train.dtypes</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bidder_id</th>
+<th>payment_account</th>
+<th>address</th>
+<th>outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>91a3c57b13234af24875c56fb7e2b2f4rb56a</td>
+<td>a3d2de7675556553a5f08e4c88d2c228754av</td>
+<td>a3d2de7675556553a5f08e4c88d2c228vt0u4</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>624f258b49e77713fc34034560f93fb3hu3jo</td>
+<td>a3d2de7675556553a5f08e4c88d2c228v1sga</td>
+<td>ae87054e5a97a8f840a3991d12611fdcrfbq3</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1c5f4fc669099bfbfac515cd26997bd12ruaj</td>
+<td>a3d2de7675556553a5f08e4c88d2c2280cybl</td>
+<td>92520288b50f03907041887884ba49c0cl0pd</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="异常数据检测"><a href="#异常数据检测" class="headerlink" title="异常数据检测"></a>异常数据检测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看各表格中是否存在空值</span></div><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in bids?'</span>,df_bids.isnull().any().any()</div><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in train?'</span>,df_train.isnull().any().any()</div><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in test?'</span>,df_test.isnull().any().any()</div></pre></td></tr></table></figure>
+<pre><code>Is there any missing value in bids? True
+Is there any missing value in train? False
+Is there any missing value in test? False
+</code></pre><p>整个对三个数据集进行空值判断，发现用户数据训练集和测试集均无缺失数据，而在竞标行为数据集中存在缺失值的情况，下面便针对bids数据进一步寻找缺失值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nan_rows = df_bids[df_bids.isnull().T.any().T]</span></div><div class="line"><span class="comment"># print nan_rows</span></div><div class="line">pd.isnull(df_bids).any()</div></pre></td></tr></table></figure>
+<pre><code>bid_id         False
+bidder_id      False
+auction        False
+merchandise    False
+device         False
+time           False
+country         True
+ip             False
+url            False
+dtype: bool
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">missing_country = df_bids[<span class="string">'country'</span>].isnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of missing country: '</span>, missing_country</div><div class="line">normal_country = df_bids[<span class="string">'country'</span>].notnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of normal country: '</span>, normal_country</div></pre></td></tr></table></figure>
+<pre><code>No. of missing country:  8859
+No. of normal country:  7647475
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">labels = [<span class="string">'unknown'</span>, <span class="string">'normal'</span>]</div><div class="line">sizes = [missing_country, normal_country]</div><div class="line">explode = (<span class="number">0.1</span>, <span class="number">0</span>)</div><div class="line">fig1, ax1 = plt.subplots()</div><div class="line">ax1.pie(sizes, explode=explode, labels=labels, autopct=<span class="string">'%1.1f%%'</span>, shadow=<span class="keyword">True</span>, startangle=<span class="number">90</span>)</div><div class="line">ax1.axis(<span class="string">'equal'</span>)</div><div class="line">plt.title(<span class="string">'Distribution of missing countries vs. normal countries'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/null.png" alt="empty value"></p>
+<p>综合上述的分析可以发现，在竞标行为用户的<code>country</code>一栏属性中存在很少一部分用户行为是没有<code>country</code>记录的，在预处理部分可以针对这部分缺失数据进行填充操作，有两种思路：</p>
+<ul>
+<li>针对原始行为数据按照用户分组后，看看每个对应的用户竞标时经常所位于的国家信息，对缺失值填充常驻国家</li>
+<li>针对原始行为数据按照用户分组后，按时间顺序对每组用户中的缺失值前向或后向填充相邻的国家信息</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看各个数据的记录数</span></div><div class="line"><span class="comment"># 看看数据的id是否是唯一标识</span></div><div class="line"><span class="keyword">print</span> df_bids.shape[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span> len(df_bids[<span class="string">'bid_id'</span>].unique())</div><div class="line"><span class="keyword">print</span> df_train.shape[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span> len(df_train[<span class="string">'bidder_id'</span>].unique())</div><div class="line"><span class="keyword">print</span> df_test.shape[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span> len(df_test[<span class="string">'bidder_id'</span>].unique())</div></pre></td></tr></table></figure>
+<pre><code>7656334
+7656334
+2013
+2013
+4700
+4700
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 简单统计各项基本特征（类别特征）的数目（除去时间）</span></div><div class="line"><span class="keyword">print</span> <span class="string">'total bidder in bids: '</span>, len(df_bids[<span class="string">'bidder_id'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total auction in bids: '</span>, len(df_bids[<span class="string">'auction'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total merchandise in bids: '</span>, len(df_bids[<span class="string">'merchandise'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total device in bids: '</span>, len(df_bids[<span class="string">'device'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total country in bids: '</span>, len(df_bids[<span class="string">'country'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total ip in bids: '</span>, len(df_bids[<span class="string">'ip'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total url in bids: '</span>, len(df_bids[<span class="string">'url'</span>].unique())</div></pre></td></tr></table></figure>
+<pre><code>total bidder in bids:  6614
+total auction in bids:  15051
+total merchandise in bids:  10
+total device in bids:  7351
+total country in bids:  200
+total ip in bids:  2303991
+total url in bids:  1786351
+</code></pre><p>由上述基本特征可以看到：</p>
+<ul>
+<li>竞标行为中的用户总数少于训练集+测试集的用户数，也就是说并不是一一对应的，接下来验证下竞标行为数据中的用户是否完全来自训练集和测试集</li>
+<li>商品类别和国家的种类相对其他特征较少，可以作为天然的类别特征提取出来进行处理，而其余的特征可能更多的进行计数统计</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">lst_all_users = (df_train[<span class="string">'bidder_id'</span>].unique()).tolist() + (df_test[<span class="string">'bidder_id'</span>].unique()).tolist()</div><div class="line"><span class="keyword">print</span> <span class="string">'total bidders of train and test set'</span>,len(lst_all_users)</div><div class="line">lst_bidder = (df_bids[<span class="string">'bidder_id'</span>].unique()).tolist()</div><div class="line"><span class="keyword">print</span> <span class="string">'total bidders in bids set'</span>,len(lst_bidder)</div><div class="line"><span class="keyword">print</span> <span class="string">'Is bidders in bids are all from train+test set? '</span>,set(lst_bidder).issubset(set(lst_all_users))</div></pre></td></tr></table></figure>
+<pre><code>total bidders of train and test set 6713
+total bidders in bids set 6614
+Is bidders in bids are all from train+test set?  True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lst_nobids = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst_all_users <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> lst_bidder]</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders never bid: '</span>,len(lst_nobids)</div><div class="line">lst_nobids_train = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst_nobids <span class="keyword">if</span> i <span class="keyword">in</span> (df_train[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line">lst_nobids_test = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst_nobids <span class="keyword">if</span> i <span class="keyword">in</span> (df_test[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders never bid in train set: '</span>,len(lst_nobids_train)</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders never bid in test set: '</span>,len(lst_nobids_test)</div></pre></td></tr></table></figure>
+<pre><code>No. of bidders never bid:  99
+No. of bidders never bid in train set:  29
+No. of bidders never bid in test set:  70
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data_source = [<span class="string">'train'</span>, <span class="string">'test'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">num_never_bids = [len(lst_nobids_train), len(lst_nobids_test)]</div><div class="line">plt.bar(y_pos, num_never_bids, align=<span class="string">'center'</span>, alpha=<span class="number">0.5</span>)</div><div class="line">plt.xticks(y_pos, data_source)</div><div class="line">plt.ylabel(<span class="string">'bidders no bids'</span>)</div><div class="line">plt.title(<span class="string">'Source of no bids bidders'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/no_bidders.png" alt="source of no bid bidders"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> df_train[(df_train[<span class="string">'bidder_id'</span>].isin(lst_nobids_train)) &amp; (df_train[<span class="string">'outcome'</span>]==<span class="number">1.0</span>)]</div></pre></td></tr></table></figure>
+<pre><code>Empty DataFrame
+Columns: [bidder_id, payment_account, address, outcome]
+Index: []
+</code></pre><p>由上述计算可知存在99个竞标者无竞标记录，其中29位来自训练集，70位来自测试集，而且这29位来自训练集的竞标者未被标记为机器人用户，所以可以针对测试集中的这70位用户后续标记为人类或者取平均值处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># check the partition of bots in train</span></div><div class="line"><span class="keyword">print</span> (df_train[df_train[<span class="string">'outcome'</span>] == <span class="number">1</span>].shape[<span class="number">0</span>]*<span class="number">1.0</span>) / df_train.shape[<span class="number">0</span>] * <span class="number">100</span>,<span class="string">'%'</span></div></pre></td></tr></table></figure>
+<pre><code>5.11674118231 %
+</code></pre><p>训练集中的标记为机器人的用户占所有用户数目约5%</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df_train.groupby(<span class="string">'outcome'</span>).size().plot(labels=[<span class="string">'Human'</span>, <span class="string">'Robot'</span>], kind=<span class="string">'pie'</span>, autopct=<span class="string">'%.2f'</span>, figsize=(<span class="number">4</span>, <span class="number">4</span>), </div><div class="line">                                        title=<span class="string">'Distribution of Human vs. Robots'</span>, legend=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f477135c5d0&gt;
+</code></pre><p><img src="/materials/img/HumenOrRobot/pos_neg.png" alt="正负例比较"></p>
+<p>由上述训练集中的正负例分布可以看到本数据集正负例比例失衡，所以后续考虑使用AUC（不受正负例比例影响）作为评价指标，此外尽量采用Gradient Boosting族模型来进行训练</p>
+<h2 id="数据预处理与特征工程"><a href="#数据预处理与特征工程" class="headerlink" title="数据预处理与特征工程"></a>数据预处理与特征工程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> pickle</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bids = pd.read_csv(<span class="string">'bids.csv'</span>)</div><div class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</div><div class="line">test = pd.read_csv(<span class="string">'test.csv'</span>)</div></pre></td></tr></table></figure>
+<h3 id="处理缺失数据"><a href="#处理缺失数据" class="headerlink" title="处理缺失数据"></a>处理缺失数据</h3><p>针对前面数据探索部分所发现的竞标行为数据中存在的国家属性缺失问题，考虑使用针对原始行为数据按照用户分组后，按时间顺序对每组用户中的缺失值前向或后向填充相邻的国家信息的方法来进行缺失值的填充处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">display(bids.head(<span class="number">3</span>))</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pd.algos.is_monotonic_int64(bids.time.values, True)[0]</span></div><div class="line"><span class="keyword">print</span> <span class="string">'Is the time monotonically non-decreasing? '</span>, pd.Index(bids[<span class="string">'time'</span>]).is_monotonic</div></pre></td></tr></table></figure>
+<pre><code>Is the time monotonically non-decreasing?  False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># bidder_group = bids.sort_values(['bidder_id', 'time']).groupby('bidder_id')</span></div><div class="line">bids[<span class="string">'country'</span>] = bids.sort_values([<span class="string">'bidder_id'</span>, <span class="string">'time'</span>]).groupby(<span class="string">'bidder_id'</span>)[<span class="string">'country'</span>].ffill()</div><div class="line">bids[<span class="string">'country'</span>] = bids.sort_values([<span class="string">'bidder_id'</span>, <span class="string">'time'</span>]).groupby(<span class="string">'bidder_id'</span>)[<span class="string">'country'</span>].bfill()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">display(bids.head(<span class="number">3</span>))</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in bids?'</span>,bids.isnull().any().any()</div><div class="line"><span class="comment"># pickle.dump(bids, open('bids.pkl', 'w'))</span></div></pre></td></tr></table></figure>
+<pre><code>Is there any missing value in bids? True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">missing_country = bids[<span class="string">'country'</span>].isnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of missing country: '</span>, missing_country</div><div class="line">normal_country = bids[<span class="string">'country'</span>].notnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of normal country: '</span>, normal_country</div></pre></td></tr></table></figure>
+<pre><code>No. of missing country:  5
+No. of normal country:  7656329
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nan_rows = bids[bids.isnull().T.any().T]</div><div class="line"><span class="keyword">print</span> nan_rows</div></pre></td></tr></table></figure>
+<pre><code>          bid_id                              bidder_id auction  \
+1351177  1351177  f3ab8c9ecc0d021ebc81e89f20c8267bn812w   jefix   
+2754184  2754184  88ef9cfdbec4c9e33f6c2e0b512e7a01dp2p2   cc5fs   
+2836631  2836631  29b8af2fea3881ef61911612372dac41vczqv   jqx39   
+3125892  3125892  df20f216cbb0b0df5a7b2e94b16a7853iyw9g   jqx39   
+5153748  5153748  5e05ec450e2dd64d7996a08bbbca4f126nzzk   jqx39   
+
+              merchandise    device              time country  \
+1351177  office equipment   phone84  9767200789473684     NaN   
+2754184            mobile  phone150  9633363947368421     NaN   
+2836631           jewelry   phone72  9634034894736842     NaN   
+3125892   books and music  phone106  9635755105263157     NaN   
+5153748            mobile  phone267  9645270210526315     NaN   
+
+                      ip              url  
+1351177   80.211.119.111  g9pgdfci3yseml5  
+2754184     20.67.240.88  ctivbfq55rktail  
+2836631  149.210.107.205  vasstdc27m7nks3  
+3125892      26.23.62.59  ac9xlqtfg0cx5c5  
+5153748     145.7.194.40  0em0vg1f0zuxonw  
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print bids[bids['bid_id']==1351177]</span></div><div class="line">nan_bidder = nan_rows[<span class="string">'bidder_id'</span>].values.tolist()</div><div class="line"><span class="comment"># print nan_bidder</span></div><div class="line"><span class="keyword">print</span> bids[bids[<span class="string">'bidder_id'</span>].isin(nan_bidder)]</div></pre></td></tr></table></figure>
+<pre><code>          bid_id                              bidder_id auction  \
+1351177  1351177  f3ab8c9ecc0d021ebc81e89f20c8267bn812w   jefix   
+2754184  2754184  88ef9cfdbec4c9e33f6c2e0b512e7a01dp2p2   cc5fs   
+2836631  2836631  29b8af2fea3881ef61911612372dac41vczqv   jqx39   
+3125892  3125892  df20f216cbb0b0df5a7b2e94b16a7853iyw9g   jqx39   
+5153748  5153748  5e05ec450e2dd64d7996a08bbbca4f126nzzk   jqx39   
+
+              merchandise    device              time country  \
+1351177  office equipment   phone84  9767200789473684     NaN   
+2754184            mobile  phone150  9633363947368421     NaN   
+2836631           jewelry   phone72  9634034894736842     NaN   
+3125892   books and music  phone106  9635755105263157     NaN   
+5153748            mobile  phone267  9645270210526315     NaN   
+
+                      ip              url  
+1351177   80.211.119.111  g9pgdfci3yseml5  
+2754184     20.67.240.88  ctivbfq55rktail  
+2836631  149.210.107.205  vasstdc27m7nks3  
+3125892      26.23.62.59  ac9xlqtfg0cx5c5  
+5153748     145.7.194.40  0em0vg1f0zuxonw  
+</code></pre><p>在对整体数据的部分用户缺失国家的按照各个用户分组后在时间上前向和后向填充后，仍然存在5个用户缺失了国家信息，结果发现这5个用户是仅有一次竞标行为，下面看看这5个用户还有什么特征</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lst_nan_train = [i <span class="keyword">for</span> i <span class="keyword">in</span> nan_bidder <span class="keyword">if</span> i <span class="keyword">in</span> (train[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line">lst_nan_test = [i <span class="keyword">for</span> i <span class="keyword">in</span> nan_bidder <span class="keyword">if</span> i <span class="keyword">in</span> (test[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders 1 bid in train set: '</span>,len(lst_nan_train)</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders 1 bid in test set: '</span>,len(lst_nan_test)</div></pre></td></tr></table></figure>
+<pre><code>No. of bidders 1 bid in train set:  1
+No. of bidders 1 bid in test set:  4
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> train[train[<span class="string">'bidder_id'</span>]==lst_nan_train[<span class="number">0</span>]][<span class="string">'outcome'</span>]</div></pre></td></tr></table></figure>
+<pre><code>546    0.0
+Name: outcome, dtype: float64
+</code></pre><p>由于这5个用户仅有一次竞标行为，而且其中1个用户来自训练集，4个来自测试集，由训练集用户的标记为人类，加上行为数太少，所以考虑对这5个用户的竞标行为数据予以舍弃，特别对测试集的4个用户后续操作类似之前对无竞标行为的用户，预测值填充最终模型的平均预测值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bid_to_drop = nan_rows.index.values.tolist()</div><div class="line"><span class="comment"># print bid_to_drop</span></div><div class="line">bids.drop(bids.index[bid_to_drop], inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in bids?'</span>,bids.isnull().any().any()</div><div class="line">pickle.dump(bids, open(<span class="string">'bids.pkl'</span>, <span class="string">'w'</span>))</div></pre></td></tr></table></figure>
+<pre><code>Is there any missing value in bids? False
+</code></pre><h3 id="统计基本的计数特征"><a href="#统计基本的计数特征" class="headerlink" title="统计基本的计数特征"></a>统计基本的计数特征</h3><p>根据前面的数据探索，由于数据集大部分由类别数据或者离散型数据构成，所以首先针对竞标行为数据按照竞标者分组统计其各项属性的数目，比如使用设备种类，参与竞标涉及国家，ip种类等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># group by bidder to do some statistics</span></div><div class="line">bidders = bids.groupby(<span class="string">'bidder_id'</span>)</div><div class="line"><span class="comment"># pickle.dump(bids, open('bidders.pkl', 'w'))</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print bidders['device'].count()</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">feature_count</span><span class="params">(group)</span>:</span></div><div class="line">    dct_cnt = &#123;&#125;</div><div class="line">    dct_cnt[<span class="string">'devices_c'</span>] = group[<span class="string">'device'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'countries_c'</span>] = group[<span class="string">'country'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'ip_c'</span>] = group[<span class="string">'ip'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'url_c'</span>] = group[<span class="string">'url'</span>].unique().shape[<span class="number">0</span>]    </div><div class="line">    dct_cnt[<span class="string">'auction_c'</span>] = group[<span class="string">'auction'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'auc_mean'</span>] = np.mean(group[<span class="string">'auction'</span>].value_counts())    <span class="comment"># bids_c/auction_c</span></div><div class="line"><span class="comment">#     dct_cnt['dev_mean'] = np.mean(group['device'].value_counts())    # bids_c/devices_c</span></div><div class="line">    dct_cnt[<span class="string">'merch_c'</span>] = group[<span class="string">'merchandise'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'bids_c'</span>] = group.shape[<span class="number">0</span>]</div><div class="line">    dct_cnt = pd.Series(dct_cnt)</div><div class="line">    <span class="keyword">return</span> dct_cnt</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder = bidders.apply(feature_count)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">display(cnt_bidder.describe())</div><div class="line"><span class="comment"># cnt_bidder.to_csv('cnt_bidder.csv')</span></div><div class="line"><span class="comment"># print cnt_bidder[cnt_bidder['merch_c']==2]</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>auc_mean</th>
+<th>auction_c</th>
+<th>bids_c</th>
+<th>countries_c</th>
+<th>devices_c</th>
+<th>ip_c</th>
+<th>merch_c</th>
+<th>url_c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>6.593493</td>
+<td>57.850810</td>
+<td>1158.470117</td>
+<td>12.733848</td>
+<td>73.492359</td>
+<td>544.507187</td>
+<td>1.000151</td>
+<td>290.964140</td>
+</tr>
+<tr>
+<td>std</td>
+<td>30.009242</td>
+<td>131.814053</td>
+<td>9596.595169</td>
+<td>22.556570</td>
+<td>172.171106</td>
+<td>3370.730666</td>
+<td>0.012301</td>
+<td>2225.912425</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.677419</td>
+<td>10.000000</td>
+<td>18.000000</td>
+<td>3.000000</td>
+<td>8.000000</td>
+<td>12.000000</td>
+<td>1.000000</td>
+<td>5.000000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>4.142857</td>
+<td>47.000000</td>
+<td>187.000000</td>
+<td>12.000000</td>
+<td>57.000000</td>
+<td>111.000000</td>
+<td>1.000000</td>
+<td>36.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1327.366667</td>
+<td>1726.000000</td>
+<td>515033.000000</td>
+<td>178.000000</td>
+<td>2618.000000</td>
+<td>111918.000000</td>
+<td>2.000000</td>
+<td>81376.000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="特征相关性"><a href="#特征相关性" class="headerlink" title="特征相关性"></a>特征相关性</h3><p>在对竞标行为数据按照用户分组后，对数据集中的每一个产品特征构建一个散布矩阵（scatter matrix），来看看各特征之间的相关性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 对于数据中的每一对特征构造一个散布矩阵</span></div><div class="line">pd.scatter_matrix(cnt_bidder, alpha = <span class="number">0.3</span>, figsize = (<span class="number">16</span>,<span class="number">10</span>), diagonal = <span class="string">'kde'</span>);</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/scatter_origin.png" alt="scatter matrix"></p>
+<p>在针对竞标行为数据按照竞标用户进行分组基本统计后由上表可以看出，此时并未考虑时间戳的情形下，有以下基本结论：</p>
+<ul>
+<li>由各项统计的最大值与中位值，75%值的比较可以看到除了商品类别一项，其他的几项多少都存在一些异常数值，或许可以作为异常行为进行观察</li>
+<li>各特征的倾斜度很大，考虑对特征进行取对数的操作，并再次输出散布矩阵看看相关性。</li>
+<li>商品类别计数这一特征的方差很小，而且从中位数乃至75%的统计来看，大多数用户仅对同一类别商品进行拍卖，而且因为前面数据探索部分发现商品类别本身适合作为类别数据，所以考虑分多个类别进行单独统计，而在计数特征中舍弃该特征。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder.drop(<span class="string">'merch_c'</span>, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder = np.log(cnt_bidder)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.scatter_matrix(cnt_bidder, alpha = <span class="number">0.3</span>, figsize = (<span class="number">16</span>,<span class="number">10</span>), diagonal = <span class="string">'kde'</span>);</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/scatter_new.png" alt="scatter matrix(log)"></p>
+<p>由上面的散布矩阵可以看到，个行为特征之间并没有表现出很强的相关性，虽然其中的ip计数和竞标计数，设备计数在进行对数操作处理之后表现出轻微的正相关性，但是由于是在做了对数操作之后才体现，而且从图中可以看到并非很强的相关性，所以保留这三个特征。</p>
+<p>针对前述的异常行为，先从原train数据集中的机器人、人类中分别挑选几个样本进行追踪观察他们在按照bidders分组后的统计结果，对比看看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder.to_csv(<span class="string">'cnt_bidder.csv'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># trace samples,first 2 bots, last 2 humen</span></div><div class="line">indices = [<span class="string">'9434778d2268f1fa2a8ede48c0cd05c097zey'</span>,<span class="string">'aabc211b4cf4d29e4ac7e7e361371622pockb'</span>,</div><div class="line">           <span class="string">'d878560888b11447e73324a6e263fbd5iydo1'</span>,<span class="string">'91a3c57b13234af24875c56fb7e2b2f4rb56a'</span>]</div><div class="line"></div><div class="line"><span class="comment"># build a DataFrame for the choosed indices</span></div><div class="line">samples = pd.DataFrame(cnt_bidder.loc[indices], columns = cnt_bidder.keys()).reset_index(drop = <span class="keyword">True</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"Chosen samples of training dataset:(first 2 bots, last 2 humen)"</span></div><div class="line">display(samples)</div></pre></td></tr></table></figure>
+<pre><code>Chosen samples of training dataset:(first 2 bots, last 2 humen)
+</code></pre><table>
+<thead>
+<tr>
+<th>auc_mean</th>
+<th>auction_c</th>
+<th>bids_c</th>
+<th>countries_c</th>
+<th>devices_c</th>
+<th>ip_c</th>
+<th>url_c</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.190981</td>
+<td>5.594711</td>
+<td>8.785692</td>
+<td>4.174387</td>
+<td>6.011267</td>
+<td>8.147578</td>
+<td>7.557995</td>
+</tr>
+<tr>
+<td>2.780432</td>
+<td>4.844187</td>
+<td>7.624619</td>
+<td>2.639057</td>
+<td>3.178054</td>
+<td>5.880533</td>
+<td>1.609438</td>
+</tr>
+<tr>
+<td>0.287682</td>
+<td>1.098612</td>
+<td>1.386294</td>
+<td>1.098612</td>
+<td>1.386294</td>
+<td>1.386294</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>0.287682</td>
+<td>2.890372</td>
+<td>3.178054</td>
+<td>1.791759</td>
+<td>2.639057</td>
+<td>2.995732</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table>
+<p>使用seaborn来对上面四个例子的热力图进行可视化，看看percentile的情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</div><div class="line"></div><div class="line"><span class="comment"># look at percentile ranks</span></div><div class="line">pcts = <span class="number">100.</span> * cnt_bidder.rank(axis=<span class="number">0</span>, pct=<span class="keyword">True</span>).loc[indices].round(decimals=<span class="number">3</span>)</div><div class="line"><span class="keyword">print</span> pcts</div><div class="line"></div><div class="line"><span class="comment"># visualize percentiles with heatmap</span></div><div class="line">sns.heatmap(pcts, yticklabels=[<span class="string">'robot 1'</span>, <span class="string">'robot 2'</span>, <span class="string">'human 1'</span>, <span class="string">'human 2'</span>], annot=<span class="keyword">True</span>, linewidth=<span class="number">.1</span>, vmax=<span class="number">99</span>, </div><div class="line">            fmt=<span class="string">'.1f'</span>, cmap=<span class="string">'YlGnBu'</span>)</div><div class="line">plt.title(<span class="string">'Percentile ranks of\nsamples\' feature statistics'</span>)</div><div class="line">plt.xticks(rotation=<span class="number">45</span>, ha=<span class="string">'center'</span>);</div></pre></td></tr></table></figure>
+<pre><code>                                       auc_mean  auction_c  bids_c  \
+bidder_id                                                            
+9434778d2268f1fa2a8ede48c0cd05c097zey      94.9       94.6    97.0   
+aabc211b4cf4d29e4ac7e7e361371622pockb      92.4       87.2    92.3   
+d878560888b11447e73324a6e263fbd5iydo1      39.8       30.4    30.2   
+91a3c57b13234af24875c56fb7e2b2f4rb56a      39.8       60.2    53.0   
+
+                                       countries_c  devices_c  ip_c  url_c  
+bidder_id                                                                   
+9434778d2268f1fa2a8ede48c0cd05c097zey         95.4       95.6  96.7   97.4  
+aabc211b4cf4d29e4ac7e7e361371622pockb         77.3       63.8  84.8   50.3  
+d878560888b11447e73324a6e263fbd5iydo1         48.8       38.7  34.2   13.4  
+91a3c57b13234af24875c56fb7e2b2f4rb56a         63.7       56.8  56.2   13.4  
+</code></pre><p><img src="/materials/img/HumenOrRobot/hot_map.png" alt="hot map"></p>
+<p>由上面的热力图对比可以看到，机器人的各项统计指标除去商品类别上的统计以外，均比人类用户要高，所以考虑据此设计基于基本统计指标规则的基准模型，其中最显著的特征差异应该是在<code>auc_mean</code>一项即用户在各个拍卖场的平均竞标次数，不妨先按照异常值处理的方法来找出上述基础统计中的异常情况</p>
+<h3 id="设计朴素分类器"><a href="#设计朴素分类器" class="headerlink" title="设计朴素分类器"></a>设计朴素分类器</h3><p>由于最终目的是从竞标者中寻找到机器人用户，而根据常识，机器人用户的各项竞标行为的操作应该比人类要频繁许多，所以可以从异常值检验的角度来设计朴素分类器，根据之前针对不同用户统计的基本特征计数情况，可以先针对每一个特征找出其中的疑似异常用户列表，最后整合各个特征生成的用户列表，认为超过多个特征异常的用户为机器人用户。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># find the outliers for each feature</span></div><div class="line">lst_outlier = []</div><div class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> cnt_bidder.keys():</div><div class="line">    <span class="comment"># percentile  25th</span></div><div class="line">    Q1 = np.percentile(cnt_bidder[feature], <span class="number">25</span>)</div><div class="line">    <span class="comment"># percentile  75th</span></div><div class="line">    Q3 = np.percentile(cnt_bidder[feature], <span class="number">75</span>)</div><div class="line">    step = <span class="number">1.5</span> * (Q3 - Q1)    </div><div class="line">    <span class="comment"># show outliers</span></div><div class="line">    <span class="comment"># print "Data points considered outliers for the feature '&#123;&#125;':".format(feature)</span></div><div class="line">    display(cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))])</div><div class="line">    lst_outlier += cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))].index.values.tolist()</div></pre></td></tr></table></figure>
+<p>再找到各种特征的所有可能作为‘异常值’的用户id之后，可以对其做一个基本统计，进一步找出其中超过某几个特征值均异常的用户，经过测试，考虑到原始train集合里bots用户不到5%，所以最终确定以不低于1个特征值均异常的用户作为异常用户的一个假设，由此与train集合里的用户进行交叉，可以得到一个用户子集，可以作为朴素分类器的一个操作方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print len(lst_outlier)</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</div><div class="line">freq_outlier = dict(Counter(lst_outlier))</div><div class="line">perhaps_outlier = [i <span class="keyword">for</span> i <span class="keyword">in</span> freq_outlier <span class="keyword">if</span> freq_outlier[i] &gt;= <span class="number">1</span>]</div><div class="line"><span class="keyword">print</span> len(perhaps_outlier)</div></pre></td></tr></table></figure>
+<pre><code>214
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># basic_pred = test[test['bidder_id'].isin(perhaps_outlier)]['bidder_id'].tolist()</span></div><div class="line">train_pred = train[train[<span class="string">'bidder_id'</span>].isin(perhaps_outlier)][<span class="string">'bidder_id'</span>].tolist()</div><div class="line"><span class="keyword">print</span> len(train_pred)</div></pre></td></tr></table></figure>
+<pre><code>76
+</code></pre><h3 id="设计评价指标"><a href="#设计评价指标" class="headerlink" title="设计评价指标"></a>设计评价指标</h3><p>根据前面数据探索知本实验中的数据集的正负例比例约为19:1，有些失衡，所以考虑使用auc这种不受正负例比例影响的评价指标作为衡量标准，现针对所涉及的朴素分类器在原始训练集上的表现得到一个基准得分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</div><div class="line">y_true = train[<span class="string">'outcome'</span>]</div><div class="line">naive_pred = pd.DataFrame(columns=[<span class="string">'bidder_id'</span>, <span class="string">'prediction'</span>])</div><div class="line">naive_pred[<span class="string">'bidder_id'</span>] = train[<span class="string">'bidder_id'</span>]</div><div class="line">naive_pred[<span class="string">'prediction'</span>] = np.where(naive_pred[<span class="string">'bidder_id'</span>].isin(train_pred), <span class="number">1.0</span>, <span class="number">0.0</span>)</div><div class="line">basic_pred = naive_pred[<span class="string">'prediction'</span>]</div><div class="line"><span class="keyword">print</span> roc_auc_score(y_true, basic_pred)</div></pre></td></tr></table></figure>
+<pre><code>0.54661464952
+</code></pre><p>在经过上述对基本计数特征的统计之后，目前尚未针对非类别特征：时间戳进行处理，而在之前的数据探索过程中，针对商品类别和国家这两个类别属性，可以将原始的单一特征转换为多个特征分别统计，此外，在上述分析过程中，我们发现针对用户分组可以进一步对于拍卖场进行分组统计。</p>
+<ul>
+<li>对时间戳进行处理</li>
+<li>针对商品类别、国家转换为多个类别分别进行统计</li>
+<li>按照用户-拍卖场进行分组进一步统计</li>
+</ul>
+<h3 id="对时间戳进行处理"><a href="#对时间戳进行处理" class="headerlink" title="对时间戳进行处理"></a>对时间戳进行处理</h3><p>主要是分析各个竞标行为的时间间隔，即统计竞标行为表中在同一拍卖场的各个用户之间的竞标行为间隔</p>
+<p>然后针对每个用户对其他用户的时间间隔计算</p>
+<ul>
+<li>时间间隔均值</li>
+<li>时间间隔最大值</li>
+<li>时间间隔最小值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_timediff</span><span class="params">()</span>:</span>    </div><div class="line">    bids_grouped = bids.groupby(<span class="string">'auction'</span>)</div><div class="line">    bds = defaultdict(list)</div><div class="line">    last_row = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> bids_auc <span class="keyword">in</span> bids_grouped:</div><div class="line">        <span class="keyword">for</span> i, row <span class="keyword">in</span> bids_auc[<span class="number">1</span>].iterrows():</div><div class="line">            <span class="keyword">if</span> last_row <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">                last_row = row</div><div class="line">                <span class="keyword">continue</span></div><div class="line"></div><div class="line">            time_difference = row[<span class="string">'time'</span>] - last_row[<span class="string">'time'</span>]</div><div class="line">            bds[row[<span class="string">'bidder_id'</span>]].append(time_difference)</div><div class="line">            last_row = row</div><div class="line"></div><div class="line">    df = []</div><div class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> bds.keys():</div><div class="line">        df.append(&#123;<span class="string">'bidder_id'</span>: key, <span class="string">'mean'</span>: np.mean(bds[key]),</div><div class="line">                   <span class="string">'min'</span>: np.min(bds[key]), <span class="string">'max'</span>: np.max(bds[key])&#125;)</div><div class="line"></div><div class="line">    pd.DataFrame(df).to_csv(<span class="string">'tdiff.csv'</span>, index=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">generate_timediff()</div></pre></td></tr></table></figure>
+<p>由于内容长度超过限制，后续内容请移步<a href="https://segmentfault.com/a/1190000009101577" target="_blank" rel="external">使用机器学习识别出拍卖场中作弊的机器人用户(二)</a></p>
+
       
 
       
@@ -240,290 +819,101 @@ ga('send', 'pageview');
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/HumenOrRobot/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/29/HumenOrRobot/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-世界是平的" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/世界是平的/">平坦世界</a>
-    </h1>
   
-
-        
-        <a href="/2017/05/29/世界是平的/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这次给大家推荐一本书——“The world is flat”（《世界是平的》），刚刚看完了一遍，感觉这本书的视角很广阔，让我看到自己受限于地理或者意识因素所看不到的一些其实就实实在在发生在身边的变化，私以为，作为即将毕业的大学生而言，是很有必要一读的。</p>
-<p>【这本书面世其实快10年了，但是书中所述的一些变化我们或经历过，或忽略掉了，所以即使放在现在读，也是很有前瞻性的。特别由于作者本身是记者，写作风格还是颇为轻松地，所以，读起来感觉像是跟着作者开着上帝视角实现了所谓“世界那么大，我想去看看”的成就一般。】</p>
-<p>此书整体大概是由世界变平坦的种种例证、现象到作者所认为使世界变平坦的一些因素再到各个“成员”大至国家公司、小至每一个个体在这平坦世界里的角色和相互影响，最后是平坦世界所带来的或即将造成的可能负面影响和威胁来逐层叙述的。我想先就宏观角度简单记叙下书中的一些观点，然后谈一下书中所说而我也感觉到的身边的一些变化，最后就自己而言随意谈一下想法。</p>
-        
-          <a class="article-more-a" href="/2017/05/29/世界是平的/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Economy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/世界是平的/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+    <a href="/2017/05/29/世界是平的/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">平坦世界</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
 
 
   
-    <article id="post-三体" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/三体/">面壁者，我是你的破壁人</a>
-    </h1>
   
 
-        
-        <a href="/2017/05/29/三体/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:28:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对一个人的评判若不结合他所处的时代都是不公允的。</p>
-<p>终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。</p>
-<p>情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。</p>
-        
-          <a class="article-more-a" href="/2017/05/29/三体/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/三体/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-平凡的世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/平凡的世界/">平凡的世界，不平凡的凡人</a>
-    </h1>
   
 
-        
-        <a href="/2017/05/29/平凡的世界/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:27:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直想读这套书，在临近毕业时还专门从朋友那收藏了一套，借着在MEB的机会终于是忙里偷闲的看完了，虽意犹未尽，却也感到一种平和和满足。</p>
-<p><strong>如果要用一句话概括，《平凡的世界》写的是爱情和面包。</strong></p>
-        
-          <a class="article-more-a" href="/2017/05/29/平凡的世界/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/平凡的世界/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
   
-    <article id="post-韶华倾负，难舍皮囊" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/韶华倾负，难舍皮囊/">韶华倾负，难舍皮囊</a>
-    </h1>
-  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
 
-        
-        <a href="/2017/05/29/韶华倾负，难舍皮囊/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:22:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>利用在动车上的四个小时看完了《皮囊》（除去中间15分钟和邻座美女搭讪的时间），感觉是很不错的一本书，不同的章节写的不同的故事，如果你有时间不妨通篇阅读一下，如果没有时间不妨听我说一说。</p>
-<p>个人觉得，前五章的主题关于生离，关于死别。</p>
-<p>第一章和书同名是为《皮囊》，讲述的是99岁的阿太。</p>
-<p><em>我们的生命本来多轻盈，都是被这肉体和各种欲望的污浊给拖住。阿太，我记住了。“肉体是拿来用的，不是拿来伺候的。”</em></p>
-        
-          <a class="article-more-a" href="/2017/05/29/韶华倾负，难舍皮囊/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/韶华倾负，难舍皮囊/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -546,8 +936,8 @@ ga('send', 'pageview');
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
