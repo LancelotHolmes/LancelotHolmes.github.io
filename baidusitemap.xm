@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
-    <lastmod>2017-05-30T12:09:00.504Z</lastmod>
+    <lastmod>2017-05-30T13:56:46.496Z</lastmod>
     <data>
         <display>
         <title>来来来，我教你搭个博客好不好哇</title>
