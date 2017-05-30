@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
+    <lastmod>2017-05-30T12:09:00.504Z</lastmod>
+    <data>
+        <display>
+        <title>来来来，我教你搭个博客好不好哇</title>
+        <pubTime>2017-05-30T10:40:58.000Z</pubTime>
+        
+        <tag>blog</tag>
+         
+        <tag>hexo</tag>
+         
+        <tag>yilia</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/30/computer-life/</loc>
+    <lastmod>2017-05-30T12:05:27.424Z</lastmod>
+    <data>
+        <display>
+        <title>计算机与生活</title>
+        <pubTime>2017-05-30T11:57:01.000Z</pubTime>
+        
+        <tag>Reading</tag>
+         
+        <tag>IT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
     <lastmod>2017-05-30T06:50:50.126Z</lastmod>
     <data>
