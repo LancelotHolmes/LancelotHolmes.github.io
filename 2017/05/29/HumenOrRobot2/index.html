@@ -228,6 +228,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
+
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据来源"><span class="toc-number">2.</span> <span class="toc-text">项目数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所需额外工具包"><span class="toc-number">3.</span> <span class="toc-text">项目所需额外工具包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特征工程-续"><span class="toc-number">4.</span> <span class="toc-text">特征工程(续)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#针对国家、商品单一特征多类别转换为多个独立特征进行统计"><span class="toc-number">4.1.</span> <span class="toc-text">针对国家、商品单一特征多类别转换为多个独立特征进行统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按照用户-拍卖场分组进一步分析"><span class="toc-number">4.2.</span> <span class="toc-text">按照用户-拍卖场分组进一步分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型设计与参数评估"><span class="toc-number">5.</span> <span class="toc-text">模型设计与参数评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#合并特征"><span class="toc-number">5.1.</span> <span class="toc-text">合并特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计交叉验证"><span class="toc-number">5.2.</span> <span class="toc-text">设计交叉验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型选择"><span class="toc-number">5.3.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RandomForestClassifier"><span class="toc-number">5.3.1.</span> <span class="toc-text">RandomForestClassifier</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型比较"><span class="toc-number">5.4.</span> <span class="toc-text">模型比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚合模型"><span class="toc-number">5.5.</span> <span class="toc-text">聚合模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#综合模型，对测试文件进行最终预测"><span class="toc-number">5.6.</span> <span class="toc-text">综合模型，对测试文件进行最终预测</span></a></li></ol></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
         <!-- 本文承接上一篇文章:[使用机器学习识别出拍卖场中作弊的机器人用户](../HumenOrRobot) -->
 <p>本文承接上一篇文章:<a href="/2017/05/29/HumenOrRobot/" title="使用机器学习识别出拍卖场中作弊的机器人用户">使用机器学习识别出拍卖场中作弊的机器人用户</a></p>
 <p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
@@ -783,6 +799,9 @@ mean model process time:  4.2736 s
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
+
+        $
+
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </section>

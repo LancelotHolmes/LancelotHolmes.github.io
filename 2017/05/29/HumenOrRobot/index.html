@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用机器学习识别出拍卖场中作弊的机器人用户 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Human or Robot本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ip">
+  <meta name="description" content="本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ipynb">
 <meta name="keywords" content="ML,Kaggle,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用机器学习识别出拍卖场中作弊的机器人用户">
 <meta property="og:url" content="http://yoursite.com/2017/05/29/HumenOrRobot/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="Human or Robot本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ip">
+<meta property="og:description" content="本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ipynb">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/null.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/no_bidders.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/pos_neg.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/scatter_origin.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/scatter_new.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/hot_map.png">
-<meta property="og:updated_time" content="2017-05-29T13:51:30.717Z">
+<meta property="og:updated_time" content="2017-05-30T06:50:50.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用机器学习识别出拍卖场中作弊的机器人用户">
-<meta name="twitter:description" content="Human or Robot本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ip">
+<meta name="twitter:description" content="本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_Design.ipynb">
 <meta name="twitter:image" content="http://yoursite.com/materials/img/HumenOrRobot/null.png">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
@@ -223,7 +223,23 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Human-or-Robot"><a href="#Human-or-Robot" class="headerlink" title="Human or Robot"></a>Human or Robot</h1><p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
+
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据来源"><span class="toc-number">2.</span> <span class="toc-text">项目数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所需额外工具包"><span class="toc-number">3.</span> <span class="toc-text">项目所需额外工具包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据探索"><span class="toc-number">4.</span> <span class="toc-text">数据探索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#异常数据检测"><span class="toc-number">4.1.</span> <span class="toc-text">异常数据检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据预处理与特征工程"><span class="toc-number">5.</span> <span class="toc-text">数据预处理与特征工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理缺失数据"><span class="toc-number">5.1.</span> <span class="toc-text">处理缺失数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计基本的计数特征"><span class="toc-number">5.2.</span> <span class="toc-text">统计基本的计数特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特征相关性"><span class="toc-number">5.3.</span> <span class="toc-text">特征相关性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计朴素分类器"><span class="toc-number">5.4.</span> <span class="toc-text">设计朴素分类器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计评价指标"><span class="toc-number">5.5.</span> <span class="toc-text">设计评价指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对时间戳进行处理"><span class="toc-number">5.6.</span> <span class="toc-text">对时间戳进行处理</span></a></li></ol></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
 <li>数据探索——Data_Exploration.ipynb</li>
 <li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
@@ -936,6 +952,9 @@ d878560888b11447e73324a6e263fbd5iydo1         48.8       38.7  34.2   13.4
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
+
+        $
+
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </section>

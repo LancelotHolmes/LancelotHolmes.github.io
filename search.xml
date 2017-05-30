@@ -456,7 +456,7 @@ mean model process time:  4.2736 s
     <entry>
       <title><![CDATA[使用机器学习识别出拍卖场中作弊的机器人用户]]></title>
       <url>/2017/05/29/HumenOrRobot/</url>
-      <content type="html"><![CDATA[<h1 id="Human-or-Robot"><a href="#Human-or-Robot" class="headerlink" title="Human or Robot"></a>Human or Robot</h1><p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
+      <content type="html"><![CDATA[<p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
 <li>数据探索——Data_Exploration.ipynb</li>
 <li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>

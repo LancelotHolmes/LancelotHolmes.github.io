@@ -3,14 +3,13 @@
 
 
     
-    
   <url>
-    <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
-    <lastmod>2017-05-30T02:59:47.183Z</lastmod>
+    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
+    <lastmod>2017-05-30T06:50:50.126Z</lastmod>
     <data>
         <display>
-        <title>使用机器学习识别出拍卖场中作弊的机器人用户(二)</title>
-        <pubTime>2017-05-29T12:52:19.000Z</pubTime>
+        <title>使用机器学习识别出拍卖场中作弊的机器人用户</title>
+        <pubTime>2017-05-29T11:27:51.000Z</pubTime>
         
         <tag>ML</tag>
          
@@ -25,13 +24,14 @@
     </url>
 
     
+    
   <url>
-    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
-    <lastmod>2017-05-29T13:51:30.717Z</lastmod>
+    <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
+    <lastmod>2017-05-30T02:59:47.183Z</lastmod>
     <data>
         <display>
-        <title>使用机器学习识别出拍卖场中作弊的机器人用户</title>
-        <pubTime>2017-05-29T11:27:51.000Z</pubTime>
+        <title>使用机器学习识别出拍卖场中作弊的机器人用户(二)</title>
+        <pubTime>2017-05-29T12:52:19.000Z</pubTime>
         
         <tag>ML</tag>
          

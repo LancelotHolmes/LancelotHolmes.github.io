@@ -484,9 +484,9 @@ mean model process time:  4.2736 s
     <link href="http://yoursite.com/2017/05/29/HumenOrRobot/"/>
     <id>http://yoursite.com/2017/05/29/HumenOrRobot/</id>
     <published>2017-05-29T11:27:51.000Z</published>
-    <updated>2017-05-29T13:51:30.717Z</updated>
+    <updated>2017-05-30T06:50:50.126Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Human-or-Robot"><a href="#Human-or-Robot" class="headerlink" title="Human or Robot"></a>Human or Robot</h1><p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
+    <content type="html"><![CDATA[<p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
 <li>数据探索——Data_Exploration.ipynb</li>
 <li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
@@ -1072,7 +1072,7 @@ d878560888b11447e73324a6e263fbd5iydo1         48.8       38.7  34.2   13.4
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Human-or-Robot&quot;&gt;&lt;a href=&quot;#Human-or-Robot&quot; class=&quot;headerlink&quot; title=&quot;Human or Robot&quot;&gt;&lt;/a&gt;Human or Robot&lt;/h1&gt;&lt;p&gt;本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的&lt;a href=&quot;https://github.com/LancelotHolmes/HumanOrRobot&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github&lt;/a&gt;,欢迎来玩~&lt;/p&gt;
+      &lt;p&gt;本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的&lt;a href=&quot;https://github.com/LancelotHolmes/HumanOrRobot&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;github&lt;/a&gt;,欢迎来玩~&lt;/p&gt;
 &lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;数据探索——Data_Exploration.ipynb&lt;/li&gt;
 &lt;li&gt;数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb&lt;/li&gt;
