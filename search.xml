@@ -1,0 +1,1195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[使用机器学习识别出拍卖场中作弊的机器人用户(二)]]></title>
+      <url>/2017/05/29/HumenOrRobot2/</url>
+      <content type="html"><![CDATA[<!-- 本文承接上一篇文章:[使用机器学习识别出拍卖场中作弊的机器人用户](../HumenOrRobot) -->
+<p>本文承接上一篇文章:<a href="/2017/05/29/HumenOrRobot/" title="使用机器学习识别出拍卖场中作弊的机器人用户">使用机器学习识别出拍卖场中作弊的机器人用户</a></p>
+<p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li>数据探索——Data_Exploration.ipynb</li>
+<li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
+<li>模型设计及评测——Model_Design.ipynb</li>
+</ul>
+<a id="more"></a>
+<h2 id="项目数据来源"><a href="#项目数据来源" class="headerlink" title="项目数据来源"></a>项目数据来源</h2><ul>
+<li><a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">kaggle</a><h2 id="项目所需额外工具包"><a href="#项目所需额外工具包" class="headerlink" title="项目所需额外工具包"></a>项目所需额外工具包</h2></li>
+<li><a href="http://www.numpy.org/" target="_blank" rel="external">numpy</a></li>
+<li><a href="http://pandas.pydata.org/" target="_blank" rel="external">pandas</a></li>
+<li><a href="https://matplotlib.org/index.html" target="_blank" rel="external">matplotlib</a></li>
+<li><a href="http://scikit-learn.org/stable/" target="_blank" rel="external">sklearn</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">xgboost</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">lightgbm</a></li>
+<li><a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a>: 含有聚和算法Stacking<br>项目整体运行时间预估为60min左右，在Ubuntu系统，8G内存，运行结果见所提交的jupyter notebook文件</li>
+</ul>
+<hr>
+<p>由于文章内容过长，所以分为两篇文章，总共包含四个部分</p>
+<ul>
+<li>数据探索</li>
+<li>数据预处理及特征工程</li>
+<li>模型设计</li>
+<li>评估及总结</li>
+</ul>
+<hr>
+<h2 id="特征工程-续"><a href="#特征工程-续" class="headerlink" title="特征工程(续)"></a>特征工程(续)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> pickle</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># bids = pd.read_csv('bids.csv')</span></div><div class="line">bids = pickle.load(open(<span class="string">'bids.pkl'</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> bids.shape</div><div class="line">display(bids.head())</div></pre></td></tr></table></figure>
+<pre><code>(7656329, 9)
+</code></pre><table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3939ac3ef7d472a59a9c5f893dd3e39fh9ofi</td>
+<td>jefix</td>
+<td>jewelry</td>
+<td>phone4</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>18.99.175.133</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8393c48eaf4b8fa96886edc7cf27b372dsibi</td>
+<td>jefix</td>
+<td>jewelry</td>
+<td>phone5</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>145.138.5.37</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidders = bids.groupby(<span class="string">'bidder_id'</span>)</div></pre></td></tr></table></figure>
+<h3 id="针对国家、商品单一特征多类别转换为多个独立特征进行统计"><a href="#针对国家、商品单一特征多类别转换为多个独立特征进行统计" class="headerlink" title="针对国家、商品单一特征多类别转换为多个独立特征进行统计"></a>针对国家、商品单一特征多类别转换为多个独立特征进行统计</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cates = (bids[<span class="string">'merchandise'</span>].unique()).tolist()</div><div class="line">countries = (bids[<span class="string">'country'</span>].unique()).tolist()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dummy_coun_cate</span><span class="params">(group)</span>:</span></div><div class="line">    coun_cate = dict.fromkeys(cates, <span class="number">0</span>)</div><div class="line">    coun_cate.update(dict.fromkeys(countries, <span class="number">0</span>))</div><div class="line">    <span class="keyword">for</span> cat, value <span class="keyword">in</span> group[<span class="string">'merchandise'</span>].value_counts().iteritems():</div><div class="line">        coun_cate[cat] = value</div><div class="line"></div><div class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> group[<span class="string">'country'</span>].unique():</div><div class="line">        coun_cate[c] = <span class="number">1</span></div><div class="line"></div><div class="line">    coun_cate = pd.Series(coun_cate)</div><div class="line">    <span class="keyword">return</span> coun_cate</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_coun_cate = bidders.apply(dummy_coun_cate)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">display(bidder_coun_cate.describe())</div><div class="line">bidder_coun_cate.to_csv(<span class="string">'coun_cate.csv'</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>ad</th>
+<th>ae</th>
+<th>af</th>
+<th>ag</th>
+<th>al</th>
+<th>am</th>
+<th>an</th>
+<th>ao</th>
+<th>ar</th>
+<th>at</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>6609.0</td>
+<td>…</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>0.002724</td>
+<td>0.205629</td>
+<td>0.054774</td>
+<td>0.001059</td>
+<td>0.048570</td>
+<td>0.023907</td>
+<td>0.000303</td>
+<td>0.036314</td>
+<td>0.120442</td>
+<td>0.052655</td>
+<td>…</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.052121</td>
+<td>0.404191</td>
+<td>0.227555</td>
+<td>0.032530</td>
+<td>0.214984</td>
+<td>0.152770</td>
+<td>0.017395</td>
+<td>0.187085</td>
+<td>0.325502</td>
+<td>0.223362</td>
+<td>…</td>
+</tr>
+<tr>
+<td>min</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>…</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>同样的，对于每个用户需要统计他对于自己每次竞拍行为的时间间隔情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bidder_interval</span><span class="params">(group)</span>:</span></div><div class="line">    time_diff = np.ediff1d(group[<span class="string">'time'</span>])</div><div class="line">    bidder_interval = &#123;&#125;</div><div class="line">    <span class="keyword">if</span> len(time_diff) == <span class="number">0</span>:</div><div class="line">        diff_mean = <span class="number">0</span></div><div class="line">        diff_std = <span class="number">0</span></div><div class="line">        diff_median = <span class="number">0</span></div><div class="line">        diff_zeros = <span class="number">0</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        diff_mean = np.mean(time_diff)</div><div class="line">        diff_std = np.std(time_diff)</div><div class="line">        diff_median = np.median(time_diff)</div><div class="line">        diff_zeros = time_diff.shape[<span class="number">0</span>] - np.count_nonzero(time_diff)</div><div class="line">    bidder_interval[<span class="string">'tmean'</span>] = diff_mean</div><div class="line">    bidder_interval[<span class="string">'tstd'</span>] = diff_std</div><div class="line">    bidder_interval[<span class="string">'tmedian'</span>] = diff_median</div><div class="line">    bidder_interval[<span class="string">'tzeros'</span>] = diff_zeros</div><div class="line">    bidder_interval = pd.Series(bidder_interval)</div><div class="line">    <span class="keyword">return</span> bidder_interval</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_inv = bidders.apply(bidder_interval)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">display(bidder_inv.describe())</div><div class="line">bidder_inv.to_csv(<span class="string">'bidder_inv.csv'</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>tmean</th>
+<th>tmedian</th>
+<th>tstd</th>
+<th>tzeros</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>6.609000e+03</td>
+<td>6.609000e+03</td>
+<td>6.609000e+03</td>
+<td>6609.0</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>2.933038e+12</td>
+<td>1.860285e+12</td>
+<td>3.440901e+12</td>
+<td>122.986231</td>
+</tr>
+<tr>
+<td>std</td>
+<td>8.552343e+12</td>
+<td>7.993497e+12</td>
+<td>6.512992e+12</td>
+<td>3190.805229</td>
+</tr>
+<tr>
+<td>min</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.192853e+10</td>
+<td>2.578947e+09</td>
+<td>1.749995e+09</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>2.641139e+11</td>
+<td>5.726316e+10</td>
+<td>5.510107e+11</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.847456e+12</td>
+<td>6.339474e+11</td>
+<td>2.911282e+12</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>7.610295e+13</td>
+<td>7.610295e+13</td>
+<td>3.800092e+13</td>
+<td>231570.000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="按照用户-拍卖场分组进一步分析"><a href="#按照用户-拍卖场分组进一步分析" class="headerlink" title="按照用户-拍卖场分组进一步分析"></a>按照用户-拍卖场分组进一步分析</h3><p>之前的统计是按照用户进行分组，针对各个用户从整体上针对竞标行为统计其各项特征，下面根据拍卖场来对用户进一步细分，看一看每个用户在不同拍卖场的行为模式,类似上述按照用户分组来统计各个用户的各项特征，针对用户-拍卖场结对分组进行统计以下特征</p>
+<ul>
+<li>基本计数统计，针对各个用户在各个拍卖场统计设备、国家、ip、url、商品类别、竞标次数等特征的数目作为新的特征</li>
+<li>时间间隔统计：统计各个用户在各个拍卖场每次竞拍的时间间隔的 均值、方差、中位数和0值</li>
+<li>针对商品类别、国家进一步转化为多类别进行统计</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">auc_features_count</span><span class="params">(group)</span>:</span></div><div class="line">    time_diff = np.ediff1d(group[<span class="string">'time'</span>])</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> len(time_diff) == <span class="number">0</span>:</div><div class="line">        diff_mean = <span class="number">0</span></div><div class="line">        diff_std = <span class="number">0</span></div><div class="line">        diff_median = <span class="number">0</span></div><div class="line">        diff_zeros = <span class="number">0</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        diff_mean = np.mean(time_diff)</div><div class="line">        diff_std = np.std(time_diff)</div><div class="line">        diff_median = np.median(time_diff)</div><div class="line">        diff_zeros = time_diff.shape[<span class="number">0</span>] - np.count_nonzero(time_diff)</div><div class="line"></div><div class="line">    row = dict.fromkeys(cates, <span class="number">0</span>)</div><div class="line">    row.update(dict.fromkeys(countries, <span class="number">0</span>))</div><div class="line"></div><div class="line">    row[<span class="string">'devices_c'</span>] = group[<span class="string">'device'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'countries_c'</span>] = group[<span class="string">'country'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'ip_c'</span>] = group[<span class="string">'ip'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'url_c'</span>] = group[<span class="string">'url'</span>].unique().shape[<span class="number">0</span>]</div><div class="line"><span class="comment">#     row['merch_c'] = group['merchandise'].unique().shape[0]</span></div><div class="line">    row[<span class="string">'bids_c'</span>] = group.shape[<span class="number">0</span>]</div><div class="line">    row[<span class="string">'tmean'</span>] = diff_mean</div><div class="line">    row[<span class="string">'tstd'</span>] = diff_std</div><div class="line">    row[<span class="string">'tmedian'</span>] = diff_median</div><div class="line">    row[<span class="string">'tzeros'</span>] = diff_zeros</div><div class="line"></div><div class="line">    <span class="keyword">for</span> cat, value <span class="keyword">in</span> group[<span class="string">'merchandise'</span>].value_counts().iteritems():</div><div class="line">        row[cat] = value</div><div class="line"></div><div class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> group[<span class="string">'country'</span>].unique():</div><div class="line">        row[c] = <span class="number">1</span></div><div class="line"></div><div class="line">    row = pd.Series(row)</div><div class="line">    <span class="keyword">return</span> row</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_auc = bids.groupby([<span class="string">'bidder_id'</span>, <span class="string">'auction'</span>]).apply(auc_features_count)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bidder_auc.to_csv(<span class="string">'bids_auc.csv'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> bidder_auc.shape</div></pre></td></tr></table></figure>
+<pre><code>(382336, 218)
+</code></pre><h2 id="模型设计与参数评估"><a href="#模型设计与参数评估" class="headerlink" title="模型设计与参数评估"></a>模型设计与参数评估</h2><h3 id="合并特征"><a href="#合并特征" class="headerlink" title="合并特征"></a>合并特征</h3><p>对之前生成的各项特征进行合并产生最终的特征空间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<p>首先将之前根据用户分组的统计特征合并起来，然后将其与按照用户-拍卖场结对分组的特征合并起来，最后加上时间特征，分别于训练集、测试集连接生成后续进行训练和预测的特征数据文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_data</span><span class="params">()</span>:</span>    </div><div class="line">    train = pd.read_csv(<span class="string">'train.csv'</span>)</div><div class="line">    test = pd.read_csv(<span class="string">'test.csv'</span>)</div><div class="line"></div><div class="line">    time_differences = pd.read_csv(<span class="string">'tdiff.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    bids_auc = pd.read_csv(<span class="string">'bids_auc.csv'</span>)</div><div class="line"></div><div class="line">    bids_auc = bids_auc.groupby(<span class="string">'bidder_id'</span>).mean()</div><div class="line">    </div><div class="line">    bidders = pd.read_csv(<span class="string">'cnt_bidder.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    country_cate = pd.read_csv(<span class="string">'coun_cate.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    bidder_inv = pd.read_csv(<span class="string">'bidder_inv.csv'</span>, index_col=<span class="number">0</span>)</div><div class="line">    bidders = bidders.merge(country_cate, right_index=<span class="keyword">True</span>, left_index=<span class="keyword">True</span>)</div><div class="line">    bidders = bidders.merge(bidder_inv, right_index=<span class="keyword">True</span>, left_index=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    bidders = bidders.merge(bids_auc, right_index=<span class="keyword">True</span>, left_index=<span class="keyword">True</span>)</div><div class="line">    bidders = bidders.merge(time_differences, right_index=<span class="keyword">True</span>,</div><div class="line">                            left_index=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    train = train.merge(bidders, left_on=<span class="string">'bidder_id'</span>, right_index=<span class="keyword">True</span>)</div><div class="line">    train.to_csv(<span class="string">'train_full.csv'</span>, index=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">    test = test.merge(bidders, left_on=<span class="string">'bidder_id'</span>, right_index=<span class="keyword">True</span>)</div><div class="line">    test.to_csv(<span class="string">'test_full.csv'</span>, index=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">merge_data()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">train_full = pd.read_csv(<span class="string">'train_full.csv'</span>)</div><div class="line">test_full = pd.read_csv(<span class="string">'test_full.csv'</span>)</div><div class="line"><span class="keyword">print</span> train_full.shape</div><div class="line"><span class="keyword">print</span> test_full.shape</div></pre></td></tr></table></figure>
+<pre><code>(1983, 445)
+(4626, 444)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">train_full[<span class="string">'outcome'</span>] = train_full[<span class="string">'outcome'</span>].astype(int)</div><div class="line">ytrain = train_full[<span class="string">'outcome'</span>]</div><div class="line">train_full.drop(<span class="string">'outcome'</span>, <span class="number">1</span>, inplace=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">test_ids = test_full[<span class="string">'bidder_id'</span>]</div><div class="line"></div><div class="line">labels = [<span class="string">'payment_account'</span>, <span class="string">'address'</span>, <span class="string">'bidder_id'</span>]</div><div class="line">train_full.drop(labels=labels, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</div><div class="line">test_full.drop(labels=labels, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<h3 id="设计交叉验证"><a href="#设计交叉验证" class="headerlink" title="设计交叉验证"></a>设计交叉验证</h3><h3 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h3><p>根据之前的分析，由于当前的数据集中存在正负例不均衡的问题，所以考虑选取了RandomForestClassfier, GradientBoostingClassifier, xgboost, lightgbm等四种模型来针对数据及进行训练和预测，确定最终模型的基本思路如下：</p>
+<ul>
+<li>对四个模型分别使用评价函数roc_auc进行交叉验证并绘制auc曲线，对各个模型的多轮交叉验证得分取平均值并输出</li>
+<li>根据得分确定最终选用的一个或多个模型<ul>
+<li>若最后发现一个模型的表现大幅度优于其他所有模型，则选择该模型进一步调参</li>
+<li>若最后发现多个模型表现都不错，则进行模型的集成，得到聚合模型</li>
+<li>使用GridSearchCV来从人为设定的参数列表中选择最佳的参数组合确定最终的模型</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> interp</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> cycle</div><div class="line"></div><div class="line"><span class="comment"># from sklearn.cross_validation import StratifiedKFold</span></div><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedKFold</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score, roc_curve, auc</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">kfold_plot</span><span class="params">(train, ytrain, model)</span>:</span></div><div class="line"><span class="comment">#     kf = StratifiedKFold(y=ytrain, n_folds=5)</span></div><div class="line">    kf = StratifiedKFold(n_splits=<span class="number">5</span>)</div><div class="line">    scores = []</div><div class="line">    mean_tpr = <span class="number">0.0</span></div><div class="line">    mean_fpr = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</div><div class="line">    exe_time = []</div><div class="line">    </div><div class="line">    colors = cycle([<span class="string">'cyan'</span>, <span class="string">'indigo'</span>, <span class="string">'seagreen'</span>, <span class="string">'yellow'</span>, <span class="string">'blue'</span>])</div><div class="line">    lw = <span class="number">2</span></div><div class="line">    </div><div class="line">    i=<span class="number">0</span></div><div class="line">    <span class="keyword">for</span> (train_index, test_index), color <span class="keyword">in</span> zip(kf.split(train, ytrain), colors):</div><div class="line">        X_train, X_test = train.iloc[train_index], train.iloc[test_index]</div><div class="line">        y_train, y_test = ytrain.iloc[train_index], ytrain.iloc[test_index]</div><div class="line">        begin_t = time.time()</div><div class="line">        predictions = model(X_train, X_test, y_train)</div><div class="line">        end_t = time.time()</div><div class="line">        exe_time.append(round(end_t-begin_t, <span class="number">3</span>))</div><div class="line"><span class="comment">#         model = model</span></div><div class="line"><span class="comment">#         model.fit(X_train, y_train)    </span></div><div class="line"><span class="comment">#         predictions = model.predict_proba(X_test)[:, 1]        </span></div><div class="line">        scores.append(roc_auc_score(y_test.astype(float), predictions))        </div><div class="line">        fpr, tpr, thresholds = roc_curve(y_test, predictions)</div><div class="line">        mean_tpr += interp(mean_fpr, fpr, tpr)</div><div class="line">        mean_tpr[<span class="number">0</span>] = <span class="number">0.0</span></div><div class="line">        roc_auc = auc(fpr, tpr)</div><div class="line">        plt.plot(fpr, tpr, lw=lw, color=color, label=<span class="string">'ROC fold %d (area = %0.2f)'</span> % (i, roc_auc))</div><div class="line">        i += <span class="number">1</span></div><div class="line">    plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], linestyle=<span class="string">'--'</span>, lw=lw, color=<span class="string">'k'</span>, label=<span class="string">'Luck'</span>)</div><div class="line">    </div><div class="line">    mean_tpr /= kf.get_n_splits(train, ytrain)</div><div class="line">    mean_tpr[<span class="number">-1</span>] = <span class="number">1.0</span></div><div class="line">    mean_auc = auc(mean_fpr, mean_tpr)</div><div class="line">    plt.plot(mean_fpr, mean_tpr, color=<span class="string">'g'</span>, linestyle=<span class="string">'--'</span>, label=<span class="string">'Mean ROC (area = %0.2f)'</span> % mean_auc, lw=lw)</div><div class="line">    </div><div class="line">    plt.xlim([<span class="number">-0.05</span>, <span class="number">1.05</span>])</div><div class="line">    plt.ylim([<span class="number">-0.05</span>, <span class="number">1.05</span>])</div><div class="line">    plt.xlabel(<span class="string">'False Positive Rate'</span>)</div><div class="line">    plt.ylabel(<span class="string">'True Positive Rate'</span>)</div><div class="line">    plt.title(<span class="string">'Receiver operating characteristic'</span>)</div><div class="line">    plt.legend(loc=<span class="string">'lower right'</span>)</div><div class="line">    plt.show()</div><div class="line">    </div><div class="line">    <span class="keyword">print</span> <span class="string">'mean scores: '</span>,np.mean(scores)</div><div class="line">    <span class="keyword">print</span> <span class="string">'mean model process time: '</span>,np.mean(exe_time), <span class="string">'s'</span></div></pre></td></tr></table></figure>
+<h4 id="RandomForestClassifier"><a href="#RandomForestClassifier" class="headerlink" title="RandomForestClassifier"></a>RandomForestClassifier</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</div><div class="line"><span class="keyword">import</span> time</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">forest_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    model = RandomForestClassifier(n_estimators=<span class="number">160</span>, max_features=<span class="number">35</span>, max_depth=<span class="number">8</span>, random_state=<span class="number">7</span>)</div><div class="line">    model.fit(X_train, y_train)    </div><div class="line">    predictions = model.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, forest_model)</div><div class="line"><span class="comment"># kfold_plot(train_full, ytrain, model_forest)</span></div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_forest.png" alt="forest_auc"></p>
+<pre><code>mean scores:  0.909571935157
+mean model process time:  0.6372 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingClassifier</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    model = GradientBoostingClassifier(n_estimators=<span class="number">200</span>, random_state=<span class="number">7</span>, max_depth=<span class="number">5</span>, learning_rate=<span class="number">0.03</span>)</div><div class="line">    model.fit(X_train, y_train)</div><div class="line">    predictions = model.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, gradient_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_gbm.png" alt="gbm_auc"></p>
+<pre><code>mean scores:  0.911847771023
+mean model process time:  4.007 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">xgboost_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    X_train = xgb.DMatrix(X_train.values, label=y_train.values)</div><div class="line">    X_test = xgb.DMatrix(X_test.values)</div><div class="line">    params = &#123;<span class="string">'objective'</span>: <span class="string">'binary:logistic'</span>, <span class="string">'eval_metric'</span>: <span class="string">'auc'</span>, <span class="string">'silent'</span>: <span class="number">1</span>, <span class="string">'seed'</span>: <span class="number">7</span>,</div><div class="line">              <span class="string">'max_depth'</span>: <span class="number">6</span>, <span class="string">'eta'</span>: <span class="number">0.01</span>&#125;    </div><div class="line">    model = xgb.train(params, X_train, <span class="number">600</span>)</div><div class="line">    predictions = model.predict(X_test)</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, xgboost_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_xgb.png" alt="xgb_auc"></p>
+<pre><code>mean scores:  0.915372340426
+mean model process time:  4.855 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">lightgbm_model</span><span class="params">(X_train, X_test, y_train)</span>:</span></div><div class="line">    X_train = lgb.Dataset(X_train.values, y_train.values)</div><div class="line">    params = &#123;<span class="string">'objective'</span>: <span class="string">'binary'</span>, <span class="string">'metric'</span>: &#123;<span class="string">'auc'</span>&#125;, <span class="string">'learning_rate'</span>: <span class="number">0.01</span>, <span class="string">'max_depth'</span>: <span class="number">6</span>, <span class="string">'seed'</span>: <span class="number">7</span>&#125;</div><div class="line">    model = lgb.train(params, X_train, num_boost_round=<span class="number">600</span>)</div><div class="line">    predictions = model.predict(X_test)</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, lightgbm_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_lgbm.png" alt="lgbm_auc"></p>
+<pre><code>mean scores:  0.921512158055
+mean model process time:  0.4236 s
+</code></pre><h3 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h3><p>比较四个模型在交叉验证机上的roc_auc平均得分和模型训练的时间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data_source = [<span class="string">'forest'</span>, <span class="string">'gradient boosting'</span>, <span class="string">'xgboost'</span>, <span class="string">'lightgbm'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">model_auc = [<span class="number">0.910</span>, <span class="number">0.912</span>, <span class="number">0.915</span>, <span class="number">0.922</span>]</div><div class="line">barlist = plt.bar(y_pos, model_auc, align=<span class="string">'center'</span>, alpha=<span class="number">0.5</span>)</div><div class="line">barlist[<span class="number">3</span>].set_color(<span class="string">'r'</span>)</div><div class="line">plt.xticks(y_pos, data_source)</div><div class="line">plt.ylabel(<span class="string">'roc-auc score'</span>)</div><div class="line">plt.title(<span class="string">'Model Performance'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/model_performance.png" alt="model_performance"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">data_source = [<span class="string">'forest'</span>, <span class="string">'gradient boosting'</span>, <span class="string">'xgboost'</span>, <span class="string">'lightgbm'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">model_auc = [<span class="number">0.6372</span>,<span class="number">4.007</span>, <span class="number">4.855</span>, <span class="number">0.4236</span>]</div><div class="line">barlist = plt.bar(y_pos, model_auc, align=<span class="string">'center'</span>, alpha=<span class="number">0.5</span>)</div><div class="line">barlist[<span class="number">3</span>].set_color(<span class="string">'r'</span>)</div><div class="line">plt.xticks(y_pos, data_source)</div><div class="line">plt.ylabel(<span class="string">'time(s)'</span>)</div><div class="line">plt.title(<span class="string">'Time of Building Model'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/time.png" alt="model_time"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">auc_forest = [<span class="number">0.87</span>, <span class="number">0.93</span>, <span class="number">0.94</span>, <span class="number">0.86</span>, <span class="number">0.96</span>]</div><div class="line">auc_gb = [<span class="number">0.89</span>, <span class="number">0.91</span>, <span class="number">0.93</span>, <span class="number">0.87</span>, <span class="number">0.95</span>]</div><div class="line">auc_xgb = [<span class="number">0.89</span>,<span class="number">0.92</span>, <span class="number">0.93</span>, <span class="number">0.89</span>, <span class="number">0.95</span>]</div><div class="line">auc_lgb = [<span class="number">0.90</span>, <span class="number">0.93</span>, <span class="number">0.94</span>, <span class="number">0.88</span>, <span class="number">0.96</span>]</div><div class="line"><span class="keyword">print</span> <span class="string">'std of forest auc score: '</span>,np.std(auc_forest)</div><div class="line"><span class="keyword">print</span> <span class="string">'std of gbm auc score: '</span>,np.std(auc_gb)</div><div class="line"><span class="keyword">print</span> <span class="string">'std of xgboost auc score: '</span>,np.std(auc_xgb)</div><div class="line"><span class="keyword">print</span> <span class="string">'std of lightgbm auc score: '</span>,np.std(auc_lgb)</div><div class="line">data_source = [<span class="string">'roc-fold-1'</span>, <span class="string">'roc-fold-2'</span>, <span class="string">'roc-fold-3'</span>, <span class="string">'roc-fold-4'</span>, <span class="string">'roc-fold-5'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">plt.plot(y_pos, auc_forest, <span class="string">'b-'</span>, label=<span class="string">'forest'</span>)</div><div class="line">plt.plot(y_pos, auc_gb, <span class="string">'r-'</span>, label=<span class="string">'gbm'</span>)</div><div class="line">plt.plot(y_pos, auc_xgb, <span class="string">'y-'</span>, label=<span class="string">'xgboost'</span>)</div><div class="line">plt.plot(y_pos, auc_lgb, <span class="string">'g-'</span>, label=<span class="string">'lightgbm'</span>)</div><div class="line">plt.title(<span class="string">'roc-auc score of each epoch'</span>)</div><div class="line">plt.xlabel(<span class="string">'epoch'</span>)</div><div class="line">plt.ylabel(<span class="string">'roc-auc score'</span>)</div><div class="line">plt.legend()</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<pre><code>std of forest auc score:  0.0396988664826
+std of gbm auc score:  0.0282842712475
+std of xgboost auc score:  0.0233238075794
+std of lightgbm auc score:  0.0285657137142
+</code></pre><p><img src="/materials/img/HumenOrRobot2/roc_epoch.png" alt="stability"></p>
+<p>单从5次交叉验证的各模型roc-auc得分来看，xgboost的得分相对比较稳定</p>
+<h3 id="聚合模型"><a href="#聚合模型" class="headerlink" title="聚合模型"></a>聚合模型</h3><p>由上面的模型比较可以发现，四个模型的经过交叉验证的表现都不错，但是综合而言，xgboost和lightgbm更胜一筹，而且两者的训练时间也相对更短一些，所以接下来考虑进行模型的聚合，思路如下：</p>
+<ul>
+<li>先通过GridSearchCV分别针对四个模型在整个训练集上进行调参获得最佳的子模型</li>
+<li>针对子模型使用<ul>
+<li>stacking: 第三方库<a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a>里的stacking方法对子模型进行聚合得到聚合模型，并采用之前相同的cv方法对该模型进行打分评价</li>
+<li>voting: 使用sklearn内置的VotingClassifier进行四个模型的聚合</li>
+</ul>
+</li>
+<li>最终对聚合模型在一次进行cv验证评分，根据结果确定最终的模型</li>
+</ul>
+<p>先通过交叉验证针对模型选择参数组合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_xgb_model</span><span class="params">(X_train, y_train)</span>:</span> </div><div class="line">    tuned_params = [&#123;<span class="string">'objective'</span>: [<span class="string">'binary:logistic'</span>], <span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.05</span>], </div><div class="line">                     <span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(xgb.XGBClassifier(seed=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters of xgboost: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_xgb = choose_xgb_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  86.216 s
+current best parameters of xgboost:  {&apos;n_estimators&apos;: 150, &apos;objective&apos;: &apos;binary:logistic&apos;, &apos;learning_rate&apos;: 0.05, &apos;max_depth&apos;: 4}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_lgb_model</span><span class="params">(X_train, y_train)</span>:</span> </div><div class="line">    tuned_params = [&#123;<span class="string">'objective'</span>: [<span class="string">'binary'</span>], <span class="string">'learning_rate'</span>: [<span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.05</span>], </div><div class="line">                     <span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(lgb.LGBMClassifier(seed=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters of lgb: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_lgb = choose_lgb_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  16.602 s
+current best parameters of lgb:  {&apos;n_estimators&apos;: 150, &apos;objective&apos;: &apos;binary&apos;, &apos;learning_rate&apos;: 0.05, &apos;max_depth&apos;: 4}
+</code></pre><p>先使用stacking聚合两个综合表现最佳的模型lgb和xgb</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> mlxtend.classifier <span class="keyword">import</span> StackingClassifier</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stacking_model</span><span class="params">(X_train, X_test, y_train)</span>:</span>    </div><div class="line">    sclf = StackingClassifier(classifiers=[bst_xgb], use_probas=<span class="keyword">True</span>, average_probas=<span class="keyword">False</span>, meta_classifier=bst_lgb)</div><div class="line">    sclf.fit(X_train, y_train)</div><div class="line">    predictions = sclf.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, stacking_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_stacking.png" alt="stack_2"></p>
+<pre><code>mean scores:  0.880479989868
+mean model process time:  0.8142 s
+</code></pre><p>然而两个单独表现最佳的模型经过stacking的聚合模型表现反而不如之前的任何一个单一模型，考虑对四个模型进行stacking聚和操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_forest_model</span><span class="params">(X_train, y_train)</span>:</span>    </div><div class="line">    tuned_params = [&#123;<span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'max_features'</span>: [<span class="number">8</span>, <span class="number">15</span>, <span class="number">30</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">8</span>, <span class="number">10</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(RandomForestClassifier(random_state=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_forest = choose_forest_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  42.852 s
+current best parameters:  {&apos;max_features&apos;: 15, &apos;n_estimators&apos;: 150, &apos;max_depth&apos;: 8}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_gradient_model</span><span class="params">(X_train, y_train)</span>:</span>    </div><div class="line">    tuned_params = [&#123;<span class="string">'n_estimators'</span>: [<span class="number">100</span>, <span class="number">150</span>, <span class="number">200</span>], <span class="string">'learning_rate'</span>: [<span class="number">0.03</span>, <span class="number">0.05</span>, <span class="number">0.07</span>], </div><div class="line">                     <span class="string">'min_samples_leaf'</span>: [<span class="number">8</span>, <span class="number">15</span>, <span class="number">30</span>], <span class="string">'max_depth'</span>:[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]&#125;]</div><div class="line">    begin_t = time.time()</div><div class="line">    clf = GridSearchCV(GradientBoostingClassifier(random_state=<span class="number">7</span>), tuned_params, scoring=<span class="string">'roc_auc'</span>)</div><div class="line">    clf.fit(X_train, y_train)</div><div class="line">    end_t = time.time()</div><div class="line">    <span class="keyword">print</span> <span class="string">'train time: '</span>,round(end_t-begin_t, <span class="number">3</span>), <span class="string">'s'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'current best parameters: '</span>,clf.best_params_</div><div class="line">    <span class="keyword">return</span> clf.best_estimator_</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bst_gradient = choose_gradient_model(train_full, ytrain)</div></pre></td></tr></table></figure>
+<pre><code>train time:  632.815 s
+current best parameters:  {&apos;n_estimators&apos;: 100, &apos;learning_rate&apos;: 0.03, &apos;max_depth&apos;: 8, &apos;min_samples_leaf&apos;: 30}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stacking_model2</span><span class="params">(X_train, X_test, y_train)</span>:</span>    </div><div class="line">    sclf = StackingClassifier(classifiers=[bst_xgb, bst_forest, bst_gradient], use_probas=<span class="keyword">True</span>, average_probas=<span class="keyword">False</span>, </div><div class="line">                              meta_classifier=bst_lgb)</div><div class="line">    sclf.fit(X_train, y_train)</div><div class="line">    predictions = sclf.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, stacking_model2)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_stacking2.png" alt="stack_4"></p>
+<pre><code>mean scores:  0.899170466059
+mean model process time:  4.1236 s
+</code></pre><p>可以看到四个模型的聚合效果比用两个模型的stacking聚合效果要好一点，但是相比较单一模型仍然效果不好，接下来考虑使用voting对四个模型进行聚合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> VotingClassifier</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">voting_model</span><span class="params">(X_train, X_test, y_train)</span>:</span>    </div><div class="line">    vclf = VotingClassifier(estimators=[(<span class="string">'xgb'</span>, bst_xgb), (<span class="string">'rf'</span>, bst_forest), (<span class="string">'gbm'</span>,bst_gradient),</div><div class="line">                                       (<span class="string">'lgb'</span>, bst_lgb)], voting=<span class="string">'soft'</span>, weights=[<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>])</div><div class="line">    vclf.fit(X_train, y_train)</div><div class="line">    predictions = vclf.predict_proba(X_test)[:, <span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> predictions</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kfold_plot(train_full, ytrain, voting_model)</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot2/roc_voting.png" alt="voting_4"></p>
+<pre><code>mean scores:  0.926889564336
+mean model process time:  4.2736 s
+</code></pre><p>由上可以看到最终通过voting将四个模型进行聚合可以得到得分最高的模型，确定为最终模型</p>
+<h3 id="综合模型，对测试文件进行最终预测"><a href="#综合模型，对测试文件进行最终预测" class="headerlink" title="综合模型，对测试文件进行最终预测"></a>综合模型，对测试文件进行最终预测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># predict(train_full, test_full, y_train)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">submit</span><span class="params">(X_train, X_test, y_train, test_ids)</span>:</span></div><div class="line">    predictions = voting_model(X_train, X_test, y_train)</div><div class="line"></div><div class="line">    sub = pd.read_csv(<span class="string">'sampleSubmission.csv'</span>)</div><div class="line">    result = pd.DataFrame()</div><div class="line">    result[<span class="string">'bidder_id'</span>] = test_ids</div><div class="line">    result[<span class="string">'outcome'</span>] = predictions</div><div class="line">    sub = sub.merge(result, on=<span class="string">'bidder_id'</span>, how=<span class="string">'left'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># Fill missing values with mean</span></div><div class="line">    mean_pred = np.mean(predictions)</div><div class="line">    sub.fillna(mean_pred, inplace=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    sub.drop(<span class="string">'prediction'</span>, <span class="number">1</span>, inplace=<span class="keyword">True</span>)</div><div class="line">    sub.to_csv(<span class="string">'result.csv'</span>, index=<span class="keyword">False</span>, header=[<span class="string">'bidder_id'</span>, <span class="string">'prediction'</span>])</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">submit(train_full, test_full, ytrain, test_ids)</div></pre></td></tr></table></figure>
+<p>最终结果提交到kaggle上进行评分，得分如下<br><img src="/materials/img/HumenOrRobot2/point.png" alt="point"></p>
+<p>以上就是整个完整的流程，当然还有很多模型可以尝试，很多聚合方法也可以使用，此外，特征工程部分还有很多空间可以挖掘，就留给大家去探索啦~</p>
+<p>参考资料<br><a href="/materials/img/HumenOrRobot2/roc_forest.png">1</a> Chen, K. T., Pao, H. K. K., &amp; Chang, H. C. (2008, October). Game bot identification based on manifold learning. In Proceedings of the 7th ACM SIGCOMM Workshop on Network and System Support for Games (pp. 21-26). ACM.<br><a href="/materials/img/HumenOrRobot2/roc_gbm.png">2</a> Alayed, H., Frangoudes, F., &amp; Neuman, C. (2013, August). Behavioral-based cheating detection in online first person shooters using machine learning techniques. In Computational Intelligence in Games (CIG), 2013 IEEE Conference on (pp. 1-8). IEEE.<br><a href="/materials/img/HumenOrRobot2/roc_xgb.png">3</a> <a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data</a><br><a href="/materials/img/HumenOrRobot2/roc_lgbm.png">4</a> <a href="http://stats.stackexchange.com/a/132832/152084" target="_blank" rel="external">http://stats.stackexchange.com/a/132832/152084</a><br><a href="/materials/img/HumenOrRobot2/model_performance.png">5</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/time.png">6</a> <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" rel="external">https://en.wikipedia.org/wiki/Random_forest</a><br><a href="/materials/img/HumenOrRobot2/roc_epoch.png">7</a> <a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="external">https://en.wikipedia.org/wiki/Gradient_boosting</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking.png">8</a> <a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking2.png">9</a> <a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a><br><a href="/materials/img/HumenOrRobot2/roc_voting.png">10</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/point.png">11</a> <a href="http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe" target="_blank" rel="external">http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe</a><br>[12] <a href="http://pandas.pydata.org/pandas-docs/stable/missing_data.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/missing_data.html</a><br>[13] <a href="http://stackoverflow.com/a/18272653/6653189" target="_blank" rel="external">http://stackoverflow.com/a/18272653/6653189</a><br>[14] <a href="http://www.cnblogs.com/jasonfreak/p/5720137.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5720137.html</a> </p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> Kaggle </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[使用机器学习识别出拍卖场中作弊的机器人用户]]></title>
+      <url>/2017/05/29/HumenOrRobot/</url>
+      <content type="html"><![CDATA[<h1 id="Human-or-Robot"><a href="#Human-or-Robot" class="headerlink" title="Human or Robot"></a>Human or Robot</h1><p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li>数据探索——Data_Exploration.ipynb</li>
+<li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
+<li>模型设计及评测——Model_Design.ipynb</li>
+</ul>
+<a id="more"></a>
+<h2 id="项目数据来源"><a href="#项目数据来源" class="headerlink" title="项目数据来源"></a>项目数据来源</h2><ul>
+<li><a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">kaggle</a><h2 id="项目所需额外工具包"><a href="#项目所需额外工具包" class="headerlink" title="项目所需额外工具包"></a>项目所需额外工具包</h2></li>
+<li><a href="http://www.numpy.org/" target="_blank" rel="external">numpy</a></li>
+<li><a href="http://pandas.pydata.org/" target="_blank" rel="external">pandas</a></li>
+<li><a href="https://matplotlib.org/index.html" target="_blank" rel="external">matplotlib</a></li>
+<li><a href="http://scikit-learn.org/stable/" target="_blank" rel="external">sklearn</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">xgboost</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">lightgbm</a></li>
+<li><a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a>: 含有聚和算法Stacking<br>项目整体运行时间预估为60min左右，在Ubuntu系统，8G内存，运行结果见所提交的jupyter notebook文件</li>
+</ul>
+<hr>
+<p>由于文章内容过长，所以分为两篇文章，总共包含四个部分</p>
+<ul>
+<li>数据探索</li>
+<li>数据预处理及特征工程</li>
+<li>模型设计</li>
+<li>评估及总结</li>
+</ul>
+<h2 id="数据探索"><a href="#数据探索" class="headerlink" title="数据探索"></a>数据探索</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">df_bids = pd.read_csv(<span class="string">'bids.csv'</span>, low_memory=<span class="keyword">False</span>)</div><div class="line">df_train = pd.read_csv(<span class="string">'train.csv'</span>)</div><div class="line">df_test = pd.read_csv(<span class="string">'test.csv'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df_bids.head(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df_train.head(<span class="number">3</span>)</div><div class="line"><span class="comment"># df_train.dtypes</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bidder_id</th>
+<th>payment_account</th>
+<th>address</th>
+<th>outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>91a3c57b13234af24875c56fb7e2b2f4rb56a</td>
+<td>a3d2de7675556553a5f08e4c88d2c228754av</td>
+<td>a3d2de7675556553a5f08e4c88d2c228vt0u4</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>624f258b49e77713fc34034560f93fb3hu3jo</td>
+<td>a3d2de7675556553a5f08e4c88d2c228v1sga</td>
+<td>ae87054e5a97a8f840a3991d12611fdcrfbq3</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1c5f4fc669099bfbfac515cd26997bd12ruaj</td>
+<td>a3d2de7675556553a5f08e4c88d2c2280cybl</td>
+<td>92520288b50f03907041887884ba49c0cl0pd</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="异常数据检测"><a href="#异常数据检测" class="headerlink" title="异常数据检测"></a>异常数据检测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看各表格中是否存在空值</span></div><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in bids?'</span>,df_bids.isnull().any().any()</div><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in train?'</span>,df_train.isnull().any().any()</div><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in test?'</span>,df_test.isnull().any().any()</div></pre></td></tr></table></figure>
+<pre><code>Is there any missing value in bids? True
+Is there any missing value in train? False
+Is there any missing value in test? False
+</code></pre><p>整个对三个数据集进行空值判断，发现用户数据训练集和测试集均无缺失数据，而在竞标行为数据集中存在缺失值的情况，下面便针对bids数据进一步寻找缺失值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># nan_rows = df_bids[df_bids.isnull().T.any().T]</span></div><div class="line"><span class="comment"># print nan_rows</span></div><div class="line">pd.isnull(df_bids).any()</div></pre></td></tr></table></figure>
+<pre><code>bid_id         False
+bidder_id      False
+auction        False
+merchandise    False
+device         False
+time           False
+country         True
+ip             False
+url            False
+dtype: bool
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">missing_country = df_bids[<span class="string">'country'</span>].isnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of missing country: '</span>, missing_country</div><div class="line">normal_country = df_bids[<span class="string">'country'</span>].notnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of normal country: '</span>, normal_country</div></pre></td></tr></table></figure>
+<pre><code>No. of missing country:  8859
+No. of normal country:  7647475
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">labels = [<span class="string">'unknown'</span>, <span class="string">'normal'</span>]</div><div class="line">sizes = [missing_country, normal_country]</div><div class="line">explode = (<span class="number">0.1</span>, <span class="number">0</span>)</div><div class="line">fig1, ax1 = plt.subplots()</div><div class="line">ax1.pie(sizes, explode=explode, labels=labels, autopct=<span class="string">'%1.1f%%'</span>, shadow=<span class="keyword">True</span>, startangle=<span class="number">90</span>)</div><div class="line">ax1.axis(<span class="string">'equal'</span>)</div><div class="line">plt.title(<span class="string">'Distribution of missing countries vs. normal countries'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/null.png" alt="empty value"></p>
+<p>综合上述的分析可以发现，在竞标行为用户的<code>country</code>一栏属性中存在很少一部分用户行为是没有<code>country</code>记录的，在预处理部分可以针对这部分缺失数据进行填充操作，有两种思路：</p>
+<ul>
+<li>针对原始行为数据按照用户分组后，看看每个对应的用户竞标时经常所位于的国家信息，对缺失值填充常驻国家</li>
+<li>针对原始行为数据按照用户分组后，按时间顺序对每组用户中的缺失值前向或后向填充相邻的国家信息</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看各个数据的记录数</span></div><div class="line"><span class="comment"># 看看数据的id是否是唯一标识</span></div><div class="line"><span class="keyword">print</span> df_bids.shape[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span> len(df_bids[<span class="string">'bid_id'</span>].unique())</div><div class="line"><span class="keyword">print</span> df_train.shape[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span> len(df_train[<span class="string">'bidder_id'</span>].unique())</div><div class="line"><span class="keyword">print</span> df_test.shape[<span class="number">0</span>]</div><div class="line"><span class="keyword">print</span> len(df_test[<span class="string">'bidder_id'</span>].unique())</div></pre></td></tr></table></figure>
+<pre><code>7656334
+7656334
+2013
+2013
+4700
+4700
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 简单统计各项基本特征（类别特征）的数目（除去时间）</span></div><div class="line"><span class="keyword">print</span> <span class="string">'total bidder in bids: '</span>, len(df_bids[<span class="string">'bidder_id'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total auction in bids: '</span>, len(df_bids[<span class="string">'auction'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total merchandise in bids: '</span>, len(df_bids[<span class="string">'merchandise'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total device in bids: '</span>, len(df_bids[<span class="string">'device'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total country in bids: '</span>, len(df_bids[<span class="string">'country'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total ip in bids: '</span>, len(df_bids[<span class="string">'ip'</span>].unique())</div><div class="line"><span class="keyword">print</span> <span class="string">'total url in bids: '</span>, len(df_bids[<span class="string">'url'</span>].unique())</div></pre></td></tr></table></figure>
+<pre><code>total bidder in bids:  6614
+total auction in bids:  15051
+total merchandise in bids:  10
+total device in bids:  7351
+total country in bids:  200
+total ip in bids:  2303991
+total url in bids:  1786351
+</code></pre><p>由上述基本特征可以看到：</p>
+<ul>
+<li>竞标行为中的用户总数少于训练集+测试集的用户数，也就是说并不是一一对应的，接下来验证下竞标行为数据中的用户是否完全来自训练集和测试集</li>
+<li>商品类别和国家的种类相对其他特征较少，可以作为天然的类别特征提取出来进行处理，而其余的特征可能更多的进行计数统计</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">lst_all_users = (df_train[<span class="string">'bidder_id'</span>].unique()).tolist() + (df_test[<span class="string">'bidder_id'</span>].unique()).tolist()</div><div class="line"><span class="keyword">print</span> <span class="string">'total bidders of train and test set'</span>,len(lst_all_users)</div><div class="line">lst_bidder = (df_bids[<span class="string">'bidder_id'</span>].unique()).tolist()</div><div class="line"><span class="keyword">print</span> <span class="string">'total bidders in bids set'</span>,len(lst_bidder)</div><div class="line"><span class="keyword">print</span> <span class="string">'Is bidders in bids are all from train+test set? '</span>,set(lst_bidder).issubset(set(lst_all_users))</div></pre></td></tr></table></figure>
+<pre><code>total bidders of train and test set 6713
+total bidders in bids set 6614
+Is bidders in bids are all from train+test set?  True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">lst_nobids = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst_all_users <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> lst_bidder]</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders never bid: '</span>,len(lst_nobids)</div><div class="line">lst_nobids_train = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst_nobids <span class="keyword">if</span> i <span class="keyword">in</span> (df_train[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line">lst_nobids_test = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst_nobids <span class="keyword">if</span> i <span class="keyword">in</span> (df_test[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders never bid in train set: '</span>,len(lst_nobids_train)</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders never bid in test set: '</span>,len(lst_nobids_test)</div></pre></td></tr></table></figure>
+<pre><code>No. of bidders never bid:  99
+No. of bidders never bid in train set:  29
+No. of bidders never bid in test set:  70
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data_source = [<span class="string">'train'</span>, <span class="string">'test'</span>]</div><div class="line">y_pos = np.arange(len(data_source))</div><div class="line">num_never_bids = [len(lst_nobids_train), len(lst_nobids_test)]</div><div class="line">plt.bar(y_pos, num_never_bids, align=<span class="string">'center'</span>, alpha=<span class="number">0.5</span>)</div><div class="line">plt.xticks(y_pos, data_source)</div><div class="line">plt.ylabel(<span class="string">'bidders no bids'</span>)</div><div class="line">plt.title(<span class="string">'Source of no bids bidders'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/no_bidders.png" alt="source of no bid bidders"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> df_train[(df_train[<span class="string">'bidder_id'</span>].isin(lst_nobids_train)) &amp; (df_train[<span class="string">'outcome'</span>]==<span class="number">1.0</span>)]</div></pre></td></tr></table></figure>
+<pre><code>Empty DataFrame
+Columns: [bidder_id, payment_account, address, outcome]
+Index: []
+</code></pre><p>由上述计算可知存在99个竞标者无竞标记录，其中29位来自训练集，70位来自测试集，而且这29位来自训练集的竞标者未被标记为机器人用户，所以可以针对测试集中的这70位用户后续标记为人类或者取平均值处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># check the partition of bots in train</span></div><div class="line"><span class="keyword">print</span> (df_train[df_train[<span class="string">'outcome'</span>] == <span class="number">1</span>].shape[<span class="number">0</span>]*<span class="number">1.0</span>) / df_train.shape[<span class="number">0</span>] * <span class="number">100</span>,<span class="string">'%'</span></div></pre></td></tr></table></figure>
+<pre><code>5.11674118231 %
+</code></pre><p>训练集中的标记为机器人的用户占所有用户数目约5%</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">df_train.groupby(<span class="string">'outcome'</span>).size().plot(labels=[<span class="string">'Human'</span>, <span class="string">'Robot'</span>], kind=<span class="string">'pie'</span>, autopct=<span class="string">'%.2f'</span>, figsize=(<span class="number">4</span>, <span class="number">4</span>), </div><div class="line">                                        title=<span class="string">'Distribution of Human vs. Robots'</span>, legend=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f477135c5d0&gt;
+</code></pre><p><img src="/materials/img/HumenOrRobot/pos_neg.png" alt="正负例比较"></p>
+<p>由上述训练集中的正负例分布可以看到本数据集正负例比例失衡，所以后续考虑使用AUC（不受正负例比例影响）作为评价指标，此外尽量采用Gradient Boosting族模型来进行训练</p>
+<h2 id="数据预处理与特征工程"><a href="#数据预处理与特征工程" class="headerlink" title="数据预处理与特征工程"></a>数据预处理与特征工程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> pickle</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bids = pd.read_csv(<span class="string">'bids.csv'</span>)</div><div class="line">train = pd.read_csv(<span class="string">'train.csv'</span>)</div><div class="line">test = pd.read_csv(<span class="string">'test.csv'</span>)</div></pre></td></tr></table></figure>
+<h3 id="处理缺失数据"><a href="#处理缺失数据" class="headerlink" title="处理缺失数据"></a>处理缺失数据</h3><p>针对前面数据探索部分所发现的竞标行为数据中存在的国家属性缺失问题，考虑使用针对原始行为数据按照用户分组后，按时间顺序对每组用户中的缺失值前向或后向填充相邻的国家信息的方法来进行缺失值的填充处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">display(bids.head(<span class="number">3</span>))</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pd.algos.is_monotonic_int64(bids.time.values, True)[0]</span></div><div class="line"><span class="keyword">print</span> <span class="string">'Is the time monotonically non-decreasing? '</span>, pd.Index(bids[<span class="string">'time'</span>]).is_monotonic</div></pre></td></tr></table></figure>
+<pre><code>Is the time monotonically non-decreasing?  False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># bidder_group = bids.sort_values(['bidder_id', 'time']).groupby('bidder_id')</span></div><div class="line">bids[<span class="string">'country'</span>] = bids.sort_values([<span class="string">'bidder_id'</span>, <span class="string">'time'</span>]).groupby(<span class="string">'bidder_id'</span>)[<span class="string">'country'</span>].ffill()</div><div class="line">bids[<span class="string">'country'</span>] = bids.sort_values([<span class="string">'bidder_id'</span>, <span class="string">'time'</span>]).groupby(<span class="string">'bidder_id'</span>)[<span class="string">'country'</span>].bfill()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">display(bids.head(<span class="number">3</span>))</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>bid_id</th>
+<th>bidder_id</th>
+<th>auction</th>
+<th>merchandise</th>
+<th>device</th>
+<th>time</th>
+<th>country</th>
+<th>ip</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
+<td>ewmzr</td>
+<td>jewelry</td>
+<td>phone0</td>
+<td>9759243157894736</td>
+<td>us</td>
+<td>69.166.231.58</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>668d393e858e8126275433046bbd35c6tywop</td>
+<td>aeqok</td>
+<td>furniture</td>
+<td>phone1</td>
+<td>9759243157894736</td>
+<td>in</td>
+<td>50.201.125.84</td>
+<td>jmqlhflrzwuay9c</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
+<td>wa00e</td>
+<td>home goods</td>
+<td>phone2</td>
+<td>9759243157894736</td>
+<td>py</td>
+<td>112.54.208.157</td>
+<td>vasstdc27m7nks3</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in bids?'</span>,bids.isnull().any().any()</div><div class="line"><span class="comment"># pickle.dump(bids, open('bids.pkl', 'w'))</span></div></pre></td></tr></table></figure>
+<pre><code>Is there any missing value in bids? True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">missing_country = bids[<span class="string">'country'</span>].isnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of missing country: '</span>, missing_country</div><div class="line">normal_country = bids[<span class="string">'country'</span>].notnull().sum().sum()</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of normal country: '</span>, normal_country</div></pre></td></tr></table></figure>
+<pre><code>No. of missing country:  5
+No. of normal country:  7656329
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nan_rows = bids[bids.isnull().T.any().T]</div><div class="line"><span class="keyword">print</span> nan_rows</div></pre></td></tr></table></figure>
+<pre><code>          bid_id                              bidder_id auction  \
+1351177  1351177  f3ab8c9ecc0d021ebc81e89f20c8267bn812w   jefix   
+2754184  2754184  88ef9cfdbec4c9e33f6c2e0b512e7a01dp2p2   cc5fs   
+2836631  2836631  29b8af2fea3881ef61911612372dac41vczqv   jqx39   
+3125892  3125892  df20f216cbb0b0df5a7b2e94b16a7853iyw9g   jqx39   
+5153748  5153748  5e05ec450e2dd64d7996a08bbbca4f126nzzk   jqx39   
+
+              merchandise    device              time country  \
+1351177  office equipment   phone84  9767200789473684     NaN   
+2754184            mobile  phone150  9633363947368421     NaN   
+2836631           jewelry   phone72  9634034894736842     NaN   
+3125892   books and music  phone106  9635755105263157     NaN   
+5153748            mobile  phone267  9645270210526315     NaN   
+
+                      ip              url  
+1351177   80.211.119.111  g9pgdfci3yseml5  
+2754184     20.67.240.88  ctivbfq55rktail  
+2836631  149.210.107.205  vasstdc27m7nks3  
+3125892      26.23.62.59  ac9xlqtfg0cx5c5  
+5153748     145.7.194.40  0em0vg1f0zuxonw  
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print bids[bids['bid_id']==1351177]</span></div><div class="line">nan_bidder = nan_rows[<span class="string">'bidder_id'</span>].values.tolist()</div><div class="line"><span class="comment"># print nan_bidder</span></div><div class="line"><span class="keyword">print</span> bids[bids[<span class="string">'bidder_id'</span>].isin(nan_bidder)]</div></pre></td></tr></table></figure>
+<pre><code>          bid_id                              bidder_id auction  \
+1351177  1351177  f3ab8c9ecc0d021ebc81e89f20c8267bn812w   jefix   
+2754184  2754184  88ef9cfdbec4c9e33f6c2e0b512e7a01dp2p2   cc5fs   
+2836631  2836631  29b8af2fea3881ef61911612372dac41vczqv   jqx39   
+3125892  3125892  df20f216cbb0b0df5a7b2e94b16a7853iyw9g   jqx39   
+5153748  5153748  5e05ec450e2dd64d7996a08bbbca4f126nzzk   jqx39   
+
+              merchandise    device              time country  \
+1351177  office equipment   phone84  9767200789473684     NaN   
+2754184            mobile  phone150  9633363947368421     NaN   
+2836631           jewelry   phone72  9634034894736842     NaN   
+3125892   books and music  phone106  9635755105263157     NaN   
+5153748            mobile  phone267  9645270210526315     NaN   
+
+                      ip              url  
+1351177   80.211.119.111  g9pgdfci3yseml5  
+2754184     20.67.240.88  ctivbfq55rktail  
+2836631  149.210.107.205  vasstdc27m7nks3  
+3125892      26.23.62.59  ac9xlqtfg0cx5c5  
+5153748     145.7.194.40  0em0vg1f0zuxonw  
+</code></pre><p>在对整体数据的部分用户缺失国家的按照各个用户分组后在时间上前向和后向填充后，仍然存在5个用户缺失了国家信息，结果发现这5个用户是仅有一次竞标行为，下面看看这5个用户还有什么特征</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lst_nan_train = [i <span class="keyword">for</span> i <span class="keyword">in</span> nan_bidder <span class="keyword">if</span> i <span class="keyword">in</span> (train[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line">lst_nan_test = [i <span class="keyword">for</span> i <span class="keyword">in</span> nan_bidder <span class="keyword">if</span> i <span class="keyword">in</span> (test[<span class="string">'bidder_id'</span>].unique()).tolist()]</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders 1 bid in train set: '</span>,len(lst_nan_train)</div><div class="line"><span class="keyword">print</span> <span class="string">'No. of bidders 1 bid in test set: '</span>,len(lst_nan_test)</div></pre></td></tr></table></figure>
+<pre><code>No. of bidders 1 bid in train set:  1
+No. of bidders 1 bid in test set:  4
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> train[train[<span class="string">'bidder_id'</span>]==lst_nan_train[<span class="number">0</span>]][<span class="string">'outcome'</span>]</div></pre></td></tr></table></figure>
+<pre><code>546    0.0
+Name: outcome, dtype: float64
+</code></pre><p>由于这5个用户仅有一次竞标行为，而且其中1个用户来自训练集，4个来自测试集，由训练集用户的标记为人类，加上行为数太少，所以考虑对这5个用户的竞标行为数据予以舍弃，特别对测试集的4个用户后续操作类似之前对无竞标行为的用户，预测值填充最终模型的平均预测值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bid_to_drop = nan_rows.index.values.tolist()</div><div class="line"><span class="comment"># print bid_to_drop</span></div><div class="line">bids.drop(bids.index[bid_to_drop], inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">'Is there any missing value in bids?'</span>,bids.isnull().any().any()</div><div class="line">pickle.dump(bids, open(<span class="string">'bids.pkl'</span>, <span class="string">'w'</span>))</div></pre></td></tr></table></figure>
+<pre><code>Is there any missing value in bids? False
+</code></pre><h3 id="统计基本的计数特征"><a href="#统计基本的计数特征" class="headerlink" title="统计基本的计数特征"></a>统计基本的计数特征</h3><p>根据前面的数据探索，由于数据集大部分由类别数据或者离散型数据构成，所以首先针对竞标行为数据按照竞标者分组统计其各项属性的数目，比如使用设备种类，参与竞标涉及国家，ip种类等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># group by bidder to do some statistics</span></div><div class="line">bidders = bids.groupby(<span class="string">'bidder_id'</span>)</div><div class="line"><span class="comment"># pickle.dump(bids, open('bidders.pkl', 'w'))</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print bidders['device'].count()</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">feature_count</span><span class="params">(group)</span>:</span></div><div class="line">    dct_cnt = &#123;&#125;</div><div class="line">    dct_cnt[<span class="string">'devices_c'</span>] = group[<span class="string">'device'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'countries_c'</span>] = group[<span class="string">'country'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'ip_c'</span>] = group[<span class="string">'ip'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'url_c'</span>] = group[<span class="string">'url'</span>].unique().shape[<span class="number">0</span>]    </div><div class="line">    dct_cnt[<span class="string">'auction_c'</span>] = group[<span class="string">'auction'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'auc_mean'</span>] = np.mean(group[<span class="string">'auction'</span>].value_counts())    <span class="comment"># bids_c/auction_c</span></div><div class="line"><span class="comment">#     dct_cnt['dev_mean'] = np.mean(group['device'].value_counts())    # bids_c/devices_c</span></div><div class="line">    dct_cnt[<span class="string">'merch_c'</span>] = group[<span class="string">'merchandise'</span>].unique().shape[<span class="number">0</span>]</div><div class="line">    dct_cnt[<span class="string">'bids_c'</span>] = group.shape[<span class="number">0</span>]</div><div class="line">    dct_cnt = pd.Series(dct_cnt)</div><div class="line">    <span class="keyword">return</span> dct_cnt</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder = bidders.apply(feature_count)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">display(cnt_bidder.describe())</div><div class="line"><span class="comment"># cnt_bidder.to_csv('cnt_bidder.csv')</span></div><div class="line"><span class="comment"># print cnt_bidder[cnt_bidder['merch_c']==2]</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>auc_mean</th>
+<th>auction_c</th>
+<th>bids_c</th>
+<th>countries_c</th>
+<th>devices_c</th>
+<th>ip_c</th>
+<th>merch_c</th>
+<th>url_c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+<td>6609.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>6.593493</td>
+<td>57.850810</td>
+<td>1158.470117</td>
+<td>12.733848</td>
+<td>73.492359</td>
+<td>544.507187</td>
+<td>1.000151</td>
+<td>290.964140</td>
+</tr>
+<tr>
+<td>std</td>
+<td>30.009242</td>
+<td>131.814053</td>
+<td>9596.595169</td>
+<td>22.556570</td>
+<td>172.171106</td>
+<td>3370.730666</td>
+<td>0.012301</td>
+<td>2225.912425</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>3.000000</td>
+<td>1.000000</td>
+<td>2.000000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.677419</td>
+<td>10.000000</td>
+<td>18.000000</td>
+<td>3.000000</td>
+<td>8.000000</td>
+<td>12.000000</td>
+<td>1.000000</td>
+<td>5.000000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>4.142857</td>
+<td>47.000000</td>
+<td>187.000000</td>
+<td>12.000000</td>
+<td>57.000000</td>
+<td>111.000000</td>
+<td>1.000000</td>
+<td>36.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1327.366667</td>
+<td>1726.000000</td>
+<td>515033.000000</td>
+<td>178.000000</td>
+<td>2618.000000</td>
+<td>111918.000000</td>
+<td>2.000000</td>
+<td>81376.000000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="特征相关性"><a href="#特征相关性" class="headerlink" title="特征相关性"></a>特征相关性</h3><p>在对竞标行为数据按照用户分组后，对数据集中的每一个产品特征构建一个散布矩阵（scatter matrix），来看看各特征之间的相关性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 对于数据中的每一对特征构造一个散布矩阵</span></div><div class="line">pd.scatter_matrix(cnt_bidder, alpha = <span class="number">0.3</span>, figsize = (<span class="number">16</span>,<span class="number">10</span>), diagonal = <span class="string">'kde'</span>);</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/scatter_origin.png" alt="scatter matrix"></p>
+<p>在针对竞标行为数据按照竞标用户进行分组基本统计后由上表可以看出，此时并未考虑时间戳的情形下，有以下基本结论：</p>
+<ul>
+<li>由各项统计的最大值与中位值，75%值的比较可以看到除了商品类别一项，其他的几项多少都存在一些异常数值，或许可以作为异常行为进行观察</li>
+<li>各特征的倾斜度很大，考虑对特征进行取对数的操作，并再次输出散布矩阵看看相关性。</li>
+<li>商品类别计数这一特征的方差很小，而且从中位数乃至75%的统计来看，大多数用户仅对同一类别商品进行拍卖，而且因为前面数据探索部分发现商品类别本身适合作为类别数据，所以考虑分多个类别进行单独统计，而在计数特征中舍弃该特征。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder.drop(<span class="string">'merch_c'</span>, axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder = np.log(cnt_bidder)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.scatter_matrix(cnt_bidder, alpha = <span class="number">0.3</span>, figsize = (<span class="number">16</span>,<span class="number">10</span>), diagonal = <span class="string">'kde'</span>);</div></pre></td></tr></table></figure>
+<p><img src="/materials/img/HumenOrRobot/scatter_new.png" alt="scatter matrix(log)"></p>
+<p>由上面的散布矩阵可以看到，个行为特征之间并没有表现出很强的相关性，虽然其中的ip计数和竞标计数，设备计数在进行对数操作处理之后表现出轻微的正相关性，但是由于是在做了对数操作之后才体现，而且从图中可以看到并非很强的相关性，所以保留这三个特征。</p>
+<p>针对前述的异常行为，先从原train数据集中的机器人、人类中分别挑选几个样本进行追踪观察他们在按照bidders分组后的统计结果，对比看看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnt_bidder.to_csv(<span class="string">'cnt_bidder.csv'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># trace samples,first 2 bots, last 2 humen</span></div><div class="line">indices = [<span class="string">'9434778d2268f1fa2a8ede48c0cd05c097zey'</span>,<span class="string">'aabc211b4cf4d29e4ac7e7e361371622pockb'</span>,</div><div class="line">           <span class="string">'d878560888b11447e73324a6e263fbd5iydo1'</span>,<span class="string">'91a3c57b13234af24875c56fb7e2b2f4rb56a'</span>]</div><div class="line"></div><div class="line"><span class="comment"># build a DataFrame for the choosed indices</span></div><div class="line">samples = pd.DataFrame(cnt_bidder.loc[indices], columns = cnt_bidder.keys()).reset_index(drop = <span class="keyword">True</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">"Chosen samples of training dataset:(first 2 bots, last 2 humen)"</span></div><div class="line">display(samples)</div></pre></td></tr></table></figure>
+<pre><code>Chosen samples of training dataset:(first 2 bots, last 2 humen)
+</code></pre><table>
+<thead>
+<tr>
+<th>auc_mean</th>
+<th>auction_c</th>
+<th>bids_c</th>
+<th>countries_c</th>
+<th>devices_c</th>
+<th>ip_c</th>
+<th>url_c</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.190981</td>
+<td>5.594711</td>
+<td>8.785692</td>
+<td>4.174387</td>
+<td>6.011267</td>
+<td>8.147578</td>
+<td>7.557995</td>
+</tr>
+<tr>
+<td>2.780432</td>
+<td>4.844187</td>
+<td>7.624619</td>
+<td>2.639057</td>
+<td>3.178054</td>
+<td>5.880533</td>
+<td>1.609438</td>
+</tr>
+<tr>
+<td>0.287682</td>
+<td>1.098612</td>
+<td>1.386294</td>
+<td>1.098612</td>
+<td>1.386294</td>
+<td>1.386294</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>0.287682</td>
+<td>2.890372</td>
+<td>3.178054</td>
+<td>1.791759</td>
+<td>2.639057</td>
+<td>2.995732</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table>
+<p>使用seaborn来对上面四个例子的热力图进行可视化，看看percentile的情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</div><div class="line"></div><div class="line"><span class="comment"># look at percentile ranks</span></div><div class="line">pcts = <span class="number">100.</span> * cnt_bidder.rank(axis=<span class="number">0</span>, pct=<span class="keyword">True</span>).loc[indices].round(decimals=<span class="number">3</span>)</div><div class="line"><span class="keyword">print</span> pcts</div><div class="line"></div><div class="line"><span class="comment"># visualize percentiles with heatmap</span></div><div class="line">sns.heatmap(pcts, yticklabels=[<span class="string">'robot 1'</span>, <span class="string">'robot 2'</span>, <span class="string">'human 1'</span>, <span class="string">'human 2'</span>], annot=<span class="keyword">True</span>, linewidth=<span class="number">.1</span>, vmax=<span class="number">99</span>, </div><div class="line">            fmt=<span class="string">'.1f'</span>, cmap=<span class="string">'YlGnBu'</span>)</div><div class="line">plt.title(<span class="string">'Percentile ranks of\nsamples\' feature statistics'</span>)</div><div class="line">plt.xticks(rotation=<span class="number">45</span>, ha=<span class="string">'center'</span>);</div></pre></td></tr></table></figure>
+<pre><code>                                       auc_mean  auction_c  bids_c  \
+bidder_id                                                            
+9434778d2268f1fa2a8ede48c0cd05c097zey      94.9       94.6    97.0   
+aabc211b4cf4d29e4ac7e7e361371622pockb      92.4       87.2    92.3   
+d878560888b11447e73324a6e263fbd5iydo1      39.8       30.4    30.2   
+91a3c57b13234af24875c56fb7e2b2f4rb56a      39.8       60.2    53.0   
+
+                                       countries_c  devices_c  ip_c  url_c  
+bidder_id                                                                   
+9434778d2268f1fa2a8ede48c0cd05c097zey         95.4       95.6  96.7   97.4  
+aabc211b4cf4d29e4ac7e7e361371622pockb         77.3       63.8  84.8   50.3  
+d878560888b11447e73324a6e263fbd5iydo1         48.8       38.7  34.2   13.4  
+91a3c57b13234af24875c56fb7e2b2f4rb56a         63.7       56.8  56.2   13.4  
+</code></pre><p><img src="/materials/img/HumenOrRobot/hot_map.png" alt="hot map"></p>
+<p>由上面的热力图对比可以看到，机器人的各项统计指标除去商品类别上的统计以外，均比人类用户要高，所以考虑据此设计基于基本统计指标规则的基准模型，其中最显著的特征差异应该是在<code>auc_mean</code>一项即用户在各个拍卖场的平均竞标次数，不妨先按照异常值处理的方法来找出上述基础统计中的异常情况</p>
+<h3 id="设计朴素分类器"><a href="#设计朴素分类器" class="headerlink" title="设计朴素分类器"></a>设计朴素分类器</h3><p>由于最终目的是从竞标者中寻找到机器人用户，而根据常识，机器人用户的各项竞标行为的操作应该比人类要频繁许多，所以可以从异常值检验的角度来设计朴素分类器，根据之前针对不同用户统计的基本特征计数情况，可以先针对每一个特征找出其中的疑似异常用户列表，最后整合各个特征生成的用户列表，认为超过多个特征异常的用户为机器人用户。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># find the outliers for each feature</span></div><div class="line">lst_outlier = []</div><div class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> cnt_bidder.keys():</div><div class="line">    <span class="comment"># percentile  25th</span></div><div class="line">    Q1 = np.percentile(cnt_bidder[feature], <span class="number">25</span>)</div><div class="line">    <span class="comment"># percentile  75th</span></div><div class="line">    Q3 = np.percentile(cnt_bidder[feature], <span class="number">75</span>)</div><div class="line">    step = <span class="number">1.5</span> * (Q3 - Q1)    </div><div class="line">    <span class="comment"># show outliers</span></div><div class="line">    <span class="comment"># print "Data points considered outliers for the feature '&#123;&#125;':".format(feature)</span></div><div class="line">    display(cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))])</div><div class="line">    lst_outlier += cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))].index.values.tolist()</div></pre></td></tr></table></figure>
+<p>再找到各种特征的所有可能作为‘异常值’的用户id之后，可以对其做一个基本统计，进一步找出其中超过某几个特征值均异常的用户，经过测试，考虑到原始train集合里bots用户不到5%，所以最终确定以不低于1个特征值均异常的用户作为异常用户的一个假设，由此与train集合里的用户进行交叉，可以得到一个用户子集，可以作为朴素分类器的一个操作方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print len(lst_outlier)</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</div><div class="line">freq_outlier = dict(Counter(lst_outlier))</div><div class="line">perhaps_outlier = [i <span class="keyword">for</span> i <span class="keyword">in</span> freq_outlier <span class="keyword">if</span> freq_outlier[i] &gt;= <span class="number">1</span>]</div><div class="line"><span class="keyword">print</span> len(perhaps_outlier)</div></pre></td></tr></table></figure>
+<pre><code>214
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># basic_pred = test[test['bidder_id'].isin(perhaps_outlier)]['bidder_id'].tolist()</span></div><div class="line">train_pred = train[train[<span class="string">'bidder_id'</span>].isin(perhaps_outlier)][<span class="string">'bidder_id'</span>].tolist()</div><div class="line"><span class="keyword">print</span> len(train_pred)</div></pre></td></tr></table></figure>
+<pre><code>76
+</code></pre><h3 id="设计评价指标"><a href="#设计评价指标" class="headerlink" title="设计评价指标"></a>设计评价指标</h3><p>根据前面数据探索知本实验中的数据集的正负例比例约为19:1，有些失衡，所以考虑使用auc这种不受正负例比例影响的评价指标作为衡量标准，现针对所涉及的朴素分类器在原始训练集上的表现得到一个基准得分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</div><div class="line">y_true = train[<span class="string">'outcome'</span>]</div><div class="line">naive_pred = pd.DataFrame(columns=[<span class="string">'bidder_id'</span>, <span class="string">'prediction'</span>])</div><div class="line">naive_pred[<span class="string">'bidder_id'</span>] = train[<span class="string">'bidder_id'</span>]</div><div class="line">naive_pred[<span class="string">'prediction'</span>] = np.where(naive_pred[<span class="string">'bidder_id'</span>].isin(train_pred), <span class="number">1.0</span>, <span class="number">0.0</span>)</div><div class="line">basic_pred = naive_pred[<span class="string">'prediction'</span>]</div><div class="line"><span class="keyword">print</span> roc_auc_score(y_true, basic_pred)</div></pre></td></tr></table></figure>
+<pre><code>0.54661464952
+</code></pre><p>在经过上述对基本计数特征的统计之后，目前尚未针对非类别特征：时间戳进行处理，而在之前的数据探索过程中，针对商品类别和国家这两个类别属性，可以将原始的单一特征转换为多个特征分别统计，此外，在上述分析过程中，我们发现针对用户分组可以进一步对于拍卖场进行分组统计。</p>
+<ul>
+<li>对时间戳进行处理</li>
+<li>针对商品类别、国家转换为多个类别分别进行统计</li>
+<li>按照用户-拍卖场进行分组进一步统计</li>
+</ul>
+<h3 id="对时间戳进行处理"><a href="#对时间戳进行处理" class="headerlink" title="对时间戳进行处理"></a>对时间戳进行处理</h3><p>主要是分析各个竞标行为的时间间隔，即统计竞标行为表中在同一拍卖场的各个用户之间的竞标行为间隔</p>
+<p>然后针对每个用户对其他用户的时间间隔计算</p>
+<ul>
+<li>时间间隔均值</li>
+<li>时间间隔最大值</li>
+<li>时间间隔最小值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_timediff</span><span class="params">()</span>:</span>    </div><div class="line">    bids_grouped = bids.groupby(<span class="string">'auction'</span>)</div><div class="line">    bds = defaultdict(list)</div><div class="line">    last_row = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> bids_auc <span class="keyword">in</span> bids_grouped:</div><div class="line">        <span class="keyword">for</span> i, row <span class="keyword">in</span> bids_auc[<span class="number">1</span>].iterrows():</div><div class="line">            <span class="keyword">if</span> last_row <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">                last_row = row</div><div class="line">                <span class="keyword">continue</span></div><div class="line"></div><div class="line">            time_difference = row[<span class="string">'time'</span>] - last_row[<span class="string">'time'</span>]</div><div class="line">            bds[row[<span class="string">'bidder_id'</span>]].append(time_difference)</div><div class="line">            last_row = row</div><div class="line"></div><div class="line">    df = []</div><div class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> bds.keys():</div><div class="line">        df.append(&#123;<span class="string">'bidder_id'</span>: key, <span class="string">'mean'</span>: np.mean(bds[key]),</div><div class="line">                   <span class="string">'min'</span>: np.min(bds[key]), <span class="string">'max'</span>: np.max(bds[key])&#125;)</div><div class="line"></div><div class="line">    pd.DataFrame(df).to_csv(<span class="string">'tdiff.csv'</span>, index=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">generate_timediff()</div></pre></td></tr></table></figure>
+<!-- 由于内容长度超过限制，后续内容请移步[使用机器学习识别出拍卖场中作弊的机器人用户(二)](../HumenOrRobot2) -->
+<p>后续内容请移步<a href="/2017/05/29/HumenOrRobot2/" title="使用机器学习识别出拍卖场中作弊的机器人用户(二)">使用机器学习识别出拍卖场中作弊的机器人用户(二)</a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> Kaggle </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[平坦世界]]></title>
+      <url>/2017/05/29/%E4%B8%96%E7%95%8C%E6%98%AF%E5%B9%B3%E7%9A%84/</url>
+      <content type="html"><![CDATA[<p>这次给大家推荐一本书——“The world is flat”（《世界是平的》），刚刚看完了一遍，感觉这本书的视角很广阔，让我看到自己受限于地理或者意识因素所看不到的一些其实就实实在在发生在身边的变化，私以为，作为即将毕业的大学生而言，是很有必要一读的。</p>
+<p>【这本书面世其实快10年了，但是书中所述的一些变化我们或经历过，或忽略掉了，所以即使放在现在读，也是很有前瞻性的。特别由于作者本身是记者，写作风格还是颇为轻松地，所以，读起来感觉像是跟着作者开着上帝视角实现了所谓“世界那么大，我想去看看”的成就一般。】</p>
+<p>此书整体大概是由世界变平坦的种种例证、现象到作者所认为使世界变平坦的一些因素再到各个“成员”大至国家公司、小至每一个个体在这平坦世界里的角色和相互影响，最后是平坦世界所带来的或即将造成的可能负面影响和威胁来逐层叙述的。我想先就宏观角度简单记叙下书中的一些观点，然后谈一下书中所说而我也感觉到的身边的一些变化，最后就自己而言随意谈一下想法。</p>
+<a id="more"></a>
+<p>就宏观而言，书中让我印象最深的是全球化的重中体现，首先是全球合作的一些案例，这个曾经在《互联网时代》里也看到过，比如现在的波音飞机的组装以及各零件的制造是分散到世界各个国家各个地区去做的，然后又井然有序的由各个地方汇聚到一个点组装成型，书中还举得一个例子是沃尔玛的生产线，和前者类似，也是一种像分布式的结构，这种做法极大地提高了效率并降低了成本，而其中最让我目眩神迷的是这么个巨大的整体居然能够这么一致的展开协同工作；另外一点是关于离岸外包，这里就不得不提到一个国家是印度，或者说印度的城市班加罗尔，看了这本书我感觉像亲身去看一下，所谓外包，就是将本国家的一些相对而言中低端而要耗费大量人力的基础工作交给其他国家去做，这里你也许会想到所谓的”Made in China”，诚然，中国也是外包的一个很好的例子，换做以前我会觉得嗤之以鼻，感觉我们国家就老是像给美国之类的国家打工一样，其实，分析一下，就目前而言，这个是双赢的，美国那边自不用说，花一分美国工人的钱在中国或者印度雇佣到6~8个同样水平的技术工人，极大地降低了成本，而且这里面不得不说有个很有意思的东西是——时差，因为有些工作在美国的白天又美国人做，晚上就交给印度人（印度正在白天）做，极大地提升了效率，这个我在电影《贫民窟的百万富翁》里看到过的一个场景就是印度人通过远程监控摄像头替美国人监控停车场让我印象深刻，那么对于印度和中国这些国家呢，好处在哪？其一就是增多了工作岗位，就印度而言的话，由于现在印度培养了大量的理工学生，而毕业后以前只能去国外谋出路，否则在国内一般只能成为出租车司机，而经过外包，他们可以在本土就进行软件开发的工作，虽然工资不如美国人，但是相对于自己本身而言，他们的生活已经得到不小的提升了，另外，通过这种形式，印度和中国还可以学习一些国外的技术，甚至是抢占国外的市场，书中后面有个例子是中国生产的埃及传统的灯几乎快要垄断埃及的市场，因为在技术上有所突破，而且价格也低廉。</p>
+<p>当然，以上只是从书中看到的知识，也许我以后还需要实地考察一番看看实际情况是否真如作者所述，不过，对于我们国家，我还是希望抱有乐观的态度去看他的发展，相信他会越变越好。</p>
+<p>就身边的所见所闻而言，我印象比较深的是一个 距离 的问题，和书中作者一次下飞机乘出租车的经历一般，在乘车那段时间里，司机一直在通过蓝牙耳机聊天，车上开着导航，播放着电影，而作者在自己的笔记本上整理文章以及收发e-mail，用作者的话说，在那一个小时里他们同时做了很多事，却几乎没有交流，作者甚至猜想，也许司机正和远在另一个国度的父母通话呢。这大概就是目前发生在我们身边的一个尴尬境地了，一方面，技术的发展拉近了我们的距离，而另一面却又使我们的距离变得遥远，它拉近了我们和处在不同空间的亲人之间的距离，却又在此时此地的就在你眼前的我面前树起了一道屏障。我想起了高中语文老师发的一篇文章里对动车、高铁上的年轻人乘客们的描述，确确实实的感受到这一真切的现象，大家一上车就戴上耳机，或插入ipad，或插入iphone，而彼此之间却没有交流，这和绿皮火车上的情景完全不同，也是值得我们反思的一件事。</p>
+<p>最后我想简单谈一下自己的一些想法。首先关于教育和竞争方面，这里还得扯下印度，书中说道，班加罗尔的接线员晚上为美国（白天）的乘客们进行咨询和失物找回工作，晚上还会自己学习一些知识，攻读一些学位什么的，顿时感到一种压迫感。从前经常听到政治老师说美国家长告诫自己的孩子说快吃饭，不然中国和印度的孩子就把你的饭给吃了或者快努力学习，中国或印度的孩子快把你的饭碗抢走了之类的。而现在是大家都站在几乎同一个平台上竞争，前面我们需要追赶美国，而同时，印度的青年们却也在旁虎视眈眈。而身处计算机专业这一日新月异，竞争更加残酷的环境下，我一面感到威胁，一面感到兴奋，兴奋的是，试想一下你即将站在一个大舞台上，和来自不同城市乃至不同国家的人角逐，而威胁在于，你们本身的水平是不一样的，就我而言，在我将要踏上这个舞台的那一天，我不仅会和同班同学竞争，稍远一点还有来自全国各大高校的强者，再远一点还有世界其他角落的高手出没，而要想不被碾成炮灰，或者说不被这一变平的趋势所冲倒的话，我就得不断地去吸收和学习新的技术、新的知识，还要进一步强化自己的全局意识，做到让自己所做的事无可替代，也就不会被”外包”掉。另外一点就是之前实习时听到负责人说现在的联系方式太多了，又是电话、又是微信、QQ的，反而造成了联系上的障碍，以前我们只有电话时一般就通过电话联系，而现在常常是不同人有不同的习惯，你得把这些一股脑全开着，否则搞不好会错过重要讯息，我常常在想，世界是多元化的，但本意是方便我们交流的工具最后却慢慢成了束缚我们的枷锁，从这个角度来看，人类到底是进步了，还是退化了？</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Reading </tag>
+            
+            <tag> Economy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[面壁者，我是你的破壁人]]></title>
+      <url>/2017/05/29/%E4%B8%89%E4%BD%93/</url>
+      <content type="html"><![CDATA[<p>对一个人的评判若不结合他所处的时代都是不公允的。</p>
+<p>终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。</p>
+<p>情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。</p>
+<a id="more"></a>
+<p>首先是罗辑，面壁者、执剑人、守墓人是他不同时期的身份，他是一个充满传奇色彩的人，用他自己的话是一个及时行乐的人，对其他的人、其他的事都不怎么上心的人。但是我看到的是他受人胁迫而终于接受面壁者身份时的无奈和挣扎；在冬眠复苏时被人当做笑话时的淡然、洒脱，再一次被推上历史转折点时的坚韧以及作为执剑人半个多世纪面壁时的狠厉。我得承认全书给我印象最深的是《黑暗森林》最高潮的部分，当罗辑站在自己挖掘的坟墓边对着虚空中的智子亮出最后底牌的那一刻；我真的有一种作为人类终于得救了、终于又有了希望的感觉。命运喜欢捉弄罗辑，在他吊儿郎当、无所事事时对他施以面壁者的诅咒，在他拯救了全人类时却让人类对他报以敌视；但罗辑不在乎这些，他只在乎自己所爱的那个女孩的幸福。</p>
+<p>然后是《死神永生》里的女主角程心。之前有看一个《x分钟读完三体》的短片，当时发现弹幕上对于程心大多数是一片骂声，随处可见诸如“程圣母毁灭世界”的字眼。不得不说在看《死神永生》的中后段我也一直对于程心是恨得咬牙切齿的，实话说，我讨厌她的不作为和自以为是爱与善的化身所做的所有决定，讨厌她毁灭了地球、害人类灭亡，但后来一想，我其实是开了上帝视角在看这个角色，其实回过头来看，程心是当前普通人类的典型，甚至，是大众中向善的群体的典型，她一直秉持着自己的责任，逆来顺受；她是勇敢的，敢于牺牲自己，但是，她的能力是不够的。整部小说看下来程心大部分时间处于冬眠状态，而经常是其他人帮她做足了准备，然后突然一下把她推到全人类命运决策的位置，可是却没有想过她准备好了没有，结果她只能依据自己当前的认识做出最佳选择，然后成了公众的替罪羊，其实换位思考，我们估计在那个节点做的更差；不信你把程心放到不同的时间段看公众对于她作为执剑人的那几分钟的态度的不停反复就可以看出来了，大众只是需要一个为自己顶包的人，然后好像自己就可以置身事外了。</p>
+<p>如果说程心更多的依靠感性来做判断，那么就不得不提到维德了，这个极端理性到冷酷的男人。最开始他对于程心的捉弄确实让我很不爽，从发射云天明的大脑一直到后面他不择手段的想要暗杀程心竞争执剑人。但读到后面你会发现维德其实是个表里如一的人，对于自己认定的事他能坚持到底，不择手段的坚持到底。</p>
+<p>所以不存在这么一个人，把他放到任何一个时空他的判断都是对的，或者说大众对于个体的判断其实也不能代表什么，一个人只需坚持自己所相信的，在乎自己所爱的，到最后一刻，就够了。</p>
+<p>各位面壁者们，准备好做自己的破壁人了么？</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Reading </tag>
+            
+            <tag> Novel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[平凡的世界，不平凡的凡人]]></title>
+      <url>/2017/05/29/%E5%B9%B3%E5%87%A1%E7%9A%84%E4%B8%96%E7%95%8C/</url>
+      <content type="html"><![CDATA[<p>一直想读这套书，在临近毕业时还专门从朋友那收藏了一套，借着在MEB的机会终于是忙里偷闲的看完了，虽意犹未尽，却也感到一种平和和满足。</p>
+<p><strong>如果要用一句话概括，《平凡的世界》写的是爱情和面包。</strong></p>
+<a id="more"></a>
+<p>书中描述的爱情种类比较多，我就简单挑给我印象最深的三个来说说吧。首先是润叶和少安的爱情，那句诗里写的“郎骑竹马来，绕床弄青梅”大抵描述的就是这么一种爱情。少安和润叶是两小无猜的一对童年玩伴，随着两家各自发展出的家庭背景的差异却也慢慢在双方之间产生了巨大的鸿沟，一个留校任教成了城里人，另一个却回家务农，给家里分担压力。诚然，你可以说是少安主观上的懦弱导致了最终两人的分离和三个家庭的阴影和痛苦，但是个人认为，在那么一种背景下，就一个男人而言是不得不考虑这些东西的。书中虽说如果两人身份对调也许就没什么问题，但我觉得即使两人身份对调而彼此相爱也还是要考虑双方的家庭背景，这里我倒不是在推崇门当户对的老观念，只是客观的分析一下，毕竟，我一直认为，爱情是建立在一定的物质基础之上，不是简单的彼此相爱，毕竟，爱情可能产生在一瞬间，但是维系这份感情却需要长期的努力，也就需要一定的物质作为基础，而若双方各自条件不对等，时间长了或多或少会产生并积累一些问题。由此看来，古人所推崇的门当户对确有一定道理。</p>
+<p>当然，我不否认灰姑娘和王子的童话故事，但是即使在灰姑娘的故事里，灰姑娘也是有仙子为她做后盾的而且她本身有相对应的素质作为支撑。</p>
+<p>扯远了，其实书中倒也有这么一对，就是少平和晓霞。我对这一对的定义是充满理想和浪漫主义色彩的情侣，两人由最初的共同爱好或说理想发展出深厚的友谊，继而在不同的人生道路上产生的共鸣引导出爱情，说实话，看到这里我已经觉得有点过于理想化了，到后来晓霞拒绝高富帅依然坚定地爱着少平时，我也深深被打动，从心理上我是希望看到这一对能有美好的结局的，我原希望会是少平从煤炭场最后走出来完成逆袭然后迎娶白富美的励志故事（原谅程序员的屌丝气息），不过感觉依作者的套路势必会再给这对有情人制作一些波折，可是，万万没想到，情节发展居然是晓霞的牺牲，当时感觉很难接受这一事实，毕竟这朴实的书中的一朵充满浪漫主义色彩的绚丽花朵竟以这种方式枯萎。</p>
+<p>最后一对就是润叶和向前，很难用爱情定义这一对，因为故事前段一直是向前的单恋，即使两人的结合也是润叶的自我牺牲和自我放逐，结果是长期的互相折磨到最后，然后转折点在向前的事故所带来的残疾，润叶因为内疚而突然回头，两人复合（个人觉得此处作者不够深入），然后两人开始真正的婚姻生活，不过也很难说是爱情，连文中也提及此时的润叶更像是一个虔诚的修女，给予向前的除了妻子的责任另外确是一种变相的母性关怀，姑且称之为——怜悯或者同情吧，其实我是很喜欢润叶这么个姑娘的，敢爱敢恨，在和少安的爱情中表现出勇敢，却又太懂事，这样矛盾的性格造成她最终的屈服，与其说她是嫁给了一个自己不爱的男人，倒不如说她是嫁给了生活。但我又不能怪罪向前，爱情这东西说不清道不明的，很多时候其实就是，我喜欢你然而我并不能理解你为何不喜欢我，其结果至少有一人受伤。</p>
+<p>以上是对书中描述的几种爱情的粗浅理解，当然，作为一个纯理论家，请相信，我说的每一句话都是谎话。</p>
+<p>还是来谈谈另一条线——面包吧。</p>
+<p>全书主要描述了双水村这么个平凡的小天地里一个又一个像你像他像那路边野花的平凡人的平凡而又不平凡的生活。总体来说，大的背景是变化莫测的，从文革末的动乱年代到改革开放的小康生活，立足在这么一个大环境下，每个人的命运都不能孤立的来看，刚开始看这本书的时候我常常随着故事的情节发展给故事中的人下定义是好是坏是对是错，后来随着作者时不时的客观分析才发现自己的浅薄，其实就像我们所生活中的生活，它不像我们做的卷子上的题目，没有什么绝对的对错，每个人只是在给他演出的那么一段镜头里或优雅谢幕或落荒而逃，导演却是生活。也许我仍不能从简单的评判一个人是好人坏人，他做的一件事是对的还是错的这么一种观念里走出来，但是从这本书里我看到了生活这辆无缰马车上的形形色色人物的身不由己，同时，我也看到他们的奋斗，一次一次被生活喊cut却又一次一次带着微笑或者含着泪水伤痕累累的跑龙套，在这场戏里，没有主角，或者说每个人都是主角，轮番上场。</p>
+<p>每一个人物都有其鲜明特色又有其局限性，之前有一朋友说他觉得书中把任务刻画得太脸谱化了，我觉得是有这么一点，但是大体而言路遥对人物的刻画还是很鲜明，很丰满而有血有肉的。我欣赏少安在物质生活追求上的不屈不挠精神，却又为他有时的偏执扼腕，对于他在爱情上的胆怯以及一意孤行而叹息；我喜欢少平这么一个脚踏实地的为生活战斗，为自己为他人着想的‘精神贵族’。他太可爱了，看这本书真的就是看着这个少年的成长，看着他咀嚼生活，消化生活，不过我希望他能更勇敢，有时能多为自己考虑一点，勇敢的追逐自己的幸福；至于晓霞，自不用说，感觉书中几乎刻画成女神一般的存在了，可惜也由于她的冒险精神和舍己为人的精神而香消玉殒；润叶，真是一个让人忍不住心疼却又忍不住尊敬的女性，她是那么为大家着想，甚至于可以牺牲自己；还有孙玉厚，这个伟大的老父亲，虽然书中没太多专门的笔墨，但是仍可以看见少安、少平甚至兰花从他身上传承的坚韧的基因，也许从早期发狠供玉亭念书也能窥见一二，另外，这位老人在儿子追求自己目标时默默支持，在孩子们遭受不幸时却总是挺身而出，实在令人感动；其他还有用情专一的向前，逛鬼王满银，懂事的兰香等等，像你我身边的每一个人一样在这个平凡的世界里献上了这精彩的演出，然后帷幕缓缓落下，他们又消失在人群中，从此你我看到的身边的每一个人都似曾相识。</p>
+<p>以上大概就是这粗略的第一次阅读《平凡的世界》的一点不吐不快的想法，虽然书有一点点小瑕疵比如各个主角的结局实在难以让我这么一个习惯了happy ending的人满意，比如中间外星人的情节有点乱入的感觉，不过还是强力推荐这本书，怎么说呢，在看这本书的过程中，我常常有一种踏实感，活着的踏实感，在我合上书页，回想起书中一些情节时情不自禁的感受到生活，从某种程度上，它减轻了我若有若无的虚无感。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Reading </tag>
+            
+            <tag> Novel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[韶华倾负，难舍皮囊]]></title>
+      <url>/2017/05/29/%E9%9F%B6%E5%8D%8E%E5%80%BE%E8%B4%9F%EF%BC%8C%E9%9A%BE%E8%88%8D%E7%9A%AE%E5%9B%8A/</url>
+      <content type="html"><![CDATA[<p>利用在动车上的四个小时看完了《皮囊》（除去中间15分钟和邻座美女搭讪的时间），感觉是很不错的一本书，不同的章节写的不同的故事，如果你有时间不妨通篇阅读一下，如果没有时间不妨听我说一说。</p>
+<p>个人觉得，前五章的主题关于生离，关于死别。</p>
+<p>第一章和书同名是为《皮囊》，讲述的是99岁的阿太。</p>
+<p><em>我们的生命本来多轻盈，都是被这肉体和各种欲望的污浊给拖住。阿太，我记住了。“肉体是拿来用的，不是拿来伺候的。”</em></p>
+<a id="more"></a>
+<p>没文化的神婆阿太穷极一生都在利用自己的那副皮囊，甚至要求周围的人也学会去利用好这幅皮囊，所以她把年幼的孩子扔进海里让他学游泳，所以她即使白发人送黑发人也保持一副让人不解的嘲弄表情，或许在她看来，失掉这皮囊，灵魂最终的归宿反而是自由吧。</p>
+<p>但这并不意味着阿太是那种不在乎生死的人，相反，我觉得她是站在更高的角度看待生死这个问题的人，而这也许隐隐约约影响着身边的人。所以作者后来写下这么一句话：</p>
+<p><em>从小我就喜欢闻泥土的味道，也因此其实从小我不怕死，一直觉得死是回家，是入土。我反而觉得生才是问题，人学会站立，是任性地想脱离这土地，因此不断向上攀爬，不断抓取任何理由——欲望、理想、追求。然而，我们终究需要脚踏着黄土。在我看来，生是更激烈的索取，或许太激烈的生活本身就是一种任性。</em></p>
+<p>然后是第二章——《母亲的房子》写的是母亲，房子还有爱情。</p>
+<p>每个人都会有自己的执着，而那种执着最后就物化成某种具体的事物，然后进一步，有的化成妥协后的一道疤痕，有的成为穷极一生的执念。而文中的母亲显然是后者，而她所执着的是那所房子，是年轻时的父亲曾允诺的房子，以一种执着的近乎任性的方式。从最开始的一修再修，这所母亲执意要修建的房子联系着一家人的生活和命运，从拮据的生活到后来周围人的不解最后甚至家人的埋怨，母亲一度支撑不下去却又不甘心，最难过的日子里甚至一家人想要一起求死，直到后来身为“不合格的一家之主”的我终于理解了母亲：</p>
+<p><em>事实上，知道母亲坚持要建好这房子的那一刻。我才明白过来，前两次建房，为的不是她或者我的脸面，而是父亲的脸面——她想让父亲发起的这个家庭看上去是那么健全和完整。</em></p>
+<p><em>这是母亲从老没表达过，也不可能说出口的爱情。</em></p>
+<p>另外，关于母亲的故事在《我的神明朋友》里会继续讲述，你会看到更多母亲身上的坚韧。</p>
+<p>然后《残疾》讲述的是父亲中风后的家里的种种艰辛和一家人和生活的抗争。</p>
+<p>不同于以前语文课本里父亲那种高大、沉默的形象，《皮囊》里的父亲首先是一个中风而偏瘫了的父亲，而后是一个曾经混黑社会呼风唤雨的混混头子，中风前后的心理落差造成了父亲接下来的一系列变化，他从假装坚强，希望靠对时间的严苛要求和每天的活动恢复到以前的健壮身体，于是一家人默契的相互演着戏，却也过了一段幸福的时间，直到被一场意料之中的台风摧毁。</p>
+<p><em>虽然知道根本不是台风的错。那结局是注定的，生活中很多事情，该来的会来，不以这个形式，就会以那样的形式。但把事情简单归咎于我们无能为力的某个点，会让我们的内心可以稍微自我安慰一下，所以，我至今仍愿意诅咒那次台风。</em></p>
+<p>那场台风刮倒的不仅仅是父亲，更打碎了父亲伪装的坚强和一家人匆忙写就的生活的剧本。自此，父亲进入了第二个状态，先是放弃了坚强，呈现出一副自暴自弃的样子期盼着死亡。而后又进入下一阶段，甚至于舍弃了父亲的身份，像个不懂事的孩子一样撒娇、任性，却不再期盼死亡。</p>
+<p>但是父亲的故事并没有完，在《重症病房里的圣诞节》，作者以在重症病房里的看护家属的视角半写实半轻描淡写地描述了退去浮华身份后的种种生离死别。</p>
+<p><em>疾病在不同的地方找到了他们，即使他们当时身处不同的生活，但疾病一眼看出他们共同的地方，统一把他们赶到这么一个地方圈养。</em></p>
+<p>在这一章里，作者刻画了几个不同的人物，有乐观的病人，有刻意显得刻薄的医护人员，有早熟的同龄孩子。在医院这么一个特殊的小世界里，赤裸的生长着。有几个事件的刻画让我印象深刻，比如‘我’对于医院里电梯的描写，对于走过一间间病房核查之前的病人是否还在；比如和同龄的孩子交流，发现相同点，大家拥有相同的眼睛，那是经历过生命消逝后才看得到的眼睛，所以会被一眼看透，而无法交到同龄的朋友，因为他们只有一次也只能有一次痛彻心扉的谈话；比如乐观的病友最后还是被夺走生命后‘我’心态上的变化，印象最深的是那个为父亲在圣诞节违禁燃放烟花的年轻人，只因他父亲要进行手术了，然后他被三个保安团团围住……</p>
+<p><em>比如，在帮父亲换输液瓶时，会发觉他手上密密麻麻的针孔，找不到哪一寸可以用来插针；比如医生会时常拿着两种药让我选择，这个是进口的贵点的，这个是国产的便宜的，你要哪种？我问了问进口的价钱，想了很久。“国产的会有副作用吗？”“会，吃完后会有疼痛，进口的就不会。”我算了算剩下的钱和可能要住院的时间，“还是国产的吧。” 然后看着父亲疼痛了一个晚上，怎么都睡不着。</em></p>
+<p><em>在这里，你一不小心留出空当，就会被悲伤占领——这是疾病最廉价、最恼人的雇佣兵。</em></p>
+<p>这种笔触没在重症病房待过的人是写不出来的，那种切实的压抑感和空闲下来被对未来的恐惧和迷茫逼到绝路的走投无路感。</p>
+<p>接下来的几章个人觉得是关于青春和梦想的。</p>
+<p>首先《张美丽》这一章从这么一个略显俗气的名字开始，从迷信的桃色传说开始记叙了传说中自杀的殉情张美丽，而后记叙了现实中被夹在理想和世俗之间压垮的张美丽，同样是一副让荷尔蒙萌动的青春期少年燥起来的皮囊，演绎了不同的故事。这故事一面让我想起了《搜索》这部电影里舆论的可怕，人们对于未知的事物的不理解演化成的嫉妒和驱逐和以讹传讹造成的悲剧上演。另一面看到的是被遗忘的先驱们，为了自己的理想而头破血流，然后若干年后在残次不齐的字里行间被遗忘或变成谈资。只是人们一同忘掉的，是现在所呈现在眼前的似曾相识。</p>
+<p>接下来《阿小和阿小》、《天才文展》记叙的算是童年和成长吧。</p>
+<p>关于城市，那是不在城市长大的孩子们小时候的天堂，是他们在电视屏幕上看到的模样，而两个阿小，一个土生土长在小城镇；另一个为即将开始的大城市生活过度而寄居在小城镇。同样的名字，也沉浸在同样的幻想里，只是他们误读了城市，他们以为的城市就真的是电视屏幕上的那样，数不过来的高楼，四六分的香港发饰，衬衫，洁白的牙齿……于是，他们开始注重外表上的模仿和行为上的接近，在我看来，这正是一种青春期的迷茫，对于寻找自我定位时的种种探索，追求那些很酷很与众不同的感觉。但是结局却不尽如意：</p>
+<p><em>大部分人都困倦到睡着了——他们都是一早七点准时在家门口等着这车到市区，他们出发前各自化妆、精心穿着，等着到这城市的各个角落，扮演起维修工、洗碗工、电器行销售、美发店小弟……时间一到，又仓皇地一路小跑赶这趟车，搭一两个小时回所谓的家，准备第二天的演出。</em></p>
+<p><em>他们都是这城市的组成部分。而这城市，曾经是我们在小镇以为的，最美的天堂。他们是我们曾经认为的，活在天堂里的人。</em></p>
+<p>而《天才文展》里的文展则代表着一种有远大抱负却囿于家庭环境的早熟的年轻人，也许我们都碰到过像这样的人，以一种居高临下的姿态看着你，对于自我有着严苛的要求，希望通过一项项计划通来向别人证明自己，来狠狠地扇曾经看不起自己的人一耳光。</p>
+<p><em>我才明白，那封信里，我向文展说的“小时候的玩伴真该一起聚聚了”，真是个天真的提议。每个人都已经过上不同的生活，不同的生活让许多人在这个时空里没法相处在共同的状态中，除非等彼此都老了，年迈再次抹去其他，构成我们每个人最重要的标志，或许那时候的聚会才能成真。</em></p>
+<p>然而结局却是悲剧的，‘我’最终过上了文展所希冀的生活而遭到文展的嫉妒和排斥，令人吃惊的是‘我’却也产生了一些负罪感。就像电视剧里经常碰到的桥段，“如果不是因为当初XXX，你现在所有的一切本该是我的。”其实这何尝不是自我欺骗呢，就算自我假设的前提条件不成立，结局却不见得会不一样，失败者把失败原因归结到自己以外的事物上注定还是会重蹈覆辙。</p>
+<p>然后是《厚朴》描述的这么一个可爱的男生，英文名又是hope，伴着激情和叛逆的形象出场，不得不说让我想起身边一些充满朝气和正能量的人，平时还是很羡慕他们的，不过厚朴是不同的，开始我也很希望看看他所谓的“务虚”能走出一片天地来，俗话说就是理想主义者，因为我感觉自己更类似于作者。不过可惜的是最后结局让人痛心，像作者所形容的</p>
+<p><em>不清楚真实的标准时，越用力就越让人觉得可笑。</em></p>
+<p><em>不合时宜的东西，如果自己虚弱，终究会成为人们嘲笑的对象，但有力量了，或坚持久了，或许反而能成为众人追捧的魅力和个性——让我修正自己想法，产生这个判断的，是厚朴。</em></p>
+<p><em>他以为自己做着摧毁一切规矩的事情，但其实一直活在规矩里。我以为自己战战兢兢地以活在规矩里为生活方式，但其实却对规矩有着将其彻底摧毁的欲望。</em></p>
+<p>所以厚朴所表现出来的其实是一种沉浸在自己构造的幻想世界里而最终难以回到现实，他不愿接受自己失败了的现实，只是表现的叛逆。但话说回来我是希望能看到一种理想主义者最终实现理想的故事，我相信如果有那么一定会是精彩的。</p>
+<p>说到这里我甚至有一种奇怪的感觉，是否厚朴其实就是作者的另一面，只是最终发现自己其实是在规则里画着圈而随着屈服而死掉的那部分。</p>
+<p>最后几章主要简单谈了些关于城市、理想之类的话题，印象较之之前的几章倒是没那么深了，截取一段如下</p>
+<p><em>只是我觉得城市不好。特别是中国的城市不好。厦门和中国大部分城市的建设都有个基础——人家国外的城市是怎么样的，以及人们该怎么被组织的，然后再依据这样的标准建设。中国近代的城市不是长出来的，不是培植出来的，不是催生出来的，而是一种安排。因为初期必然要混乱，所以中国的城市也表现出强大的秩序意识，人要干吗，路要怎么样。生长在这样环境里的人，除了维护秩序或者反抗秩序，似乎也难接受第二层次的思维了。</em></p>
+<p>回头来看，几篇文章倒确实很契合《皮囊》这么一个主题，就像开头所述的，灵魂离不开皮囊，无论你如何讨厌自己的这幅皮囊，你的灵魂也得附庸其下。皮囊往小的说就是阿太所谓的驱壳和父亲半瘫的残疾，往大了说是一个人所处的位置，他背后的故事，就像母亲的那所房子，阿小的香港梦，厚朴的架子鼓。过去我常常看不懂电视剧里有些人的无可奈何，一厢情愿的认为这么容易的事换做是我直接三下五除二就解决了，实际情况却是不要以好坏善恶对错来划分人群，你看到的只是他当前展现给你的，你看不到的是他这一举动后面的挣扎，人是不能孤立和剥离来看的，当他站在你面前时，你得看到他的背景。</p>
+<p><em>我常对朋友说，理解是对他人最大的善举。当你坐在一个人面前，听他开口说话，看得到各种复杂、精密的境况和命运，如何最终雕刻出这样的性格、思想、做法、长相，这才是理解。而有了这样的眼睛，你才算真正“看见”那个人，也才会发觉，这世界最美的风景，是一个个活出各自模样和体系的人。</em></p>
+<p>如果每个人都是一段程序的话，那么我们在和不同的人交往的过程中就有意无意的修改了他们的代码，从此也许他们身上就带着你的痕迹；而身边亲近的人，更像是写进你基因里的代码段，在某个特定的时间里被激活，让你似曾相识，让你视线模糊。</p>
+<p>无论如何，请带着这副皮囊好好生活。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Reading </tag>
+            
+            <tag> Novel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>

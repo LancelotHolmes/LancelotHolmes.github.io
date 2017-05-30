@@ -3,6 +3,7 @@
 
 
     
+    
   <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
     <lastmod>2017-05-30T02:59:47.183Z</lastmod>
@@ -23,7 +24,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
