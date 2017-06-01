@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Lancelot&#39;s Desert</title>
+  <title>关于交叉验证和模型选择的一点思考 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即正则化以及数据驱动的交叉验证方法。  CV是用于模型的(评估)挑选和超参数(关于超参数和参数的区别请见另一篇memo)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个线性回归模型，但是不会说用不">
+<meta name="keywords" content="ML,CV,model selection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于交叉验证和模型选择的一点思考">
+<meta property="og:url" content="http://yoursite.com/2017/06/01/cv/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即正则化以及数据驱动的交叉验证方法。  CV是用于模型的(评估)挑选和超参数(关于超参数和参数的区别请见另一篇memo)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个线性回归模型，但是不会说用不">
+<meta property="og:updated_time" content="2017-06-01T12:36:16.424Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="关于交叉验证和模型选择的一点思考">
+<meta name="twitter:description" content="首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即正则化以及数据驱动的交叉验证方法。  CV是用于模型的(评估)挑选和超参数(关于超参数和参数的区别请见另一篇memo)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个线性回归模型，但是不会说用不">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -196,22 +197,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-HumenOrRobot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-cv" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/HumenOrRobot/">使用机器学习识别出拍卖场中作弊的机器人用户</a>
+    <h1 class="article-title" itemprop="name">
+      关于交叉验证和模型选择的一点思考
     </h1>
   
 
         
-        <a href="/2017/05/29/HumenOrRobot/" class="archive-article-date">
-  	<time datetime="2017-05-29T11:27:51.000Z" itemprop="datePublished">2017-05-29</time>
+        <a href="/2017/06/01/cv/" class="archive-article-date">
+  	<time datetime="2017-06-01T12:28:36.000Z" itemprop="datePublished">2017-06-01</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
@@ -223,15 +222,28 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
-<li>数据探索——Data_Exploration.ipynb</li>
-<li>数据预处理&amp;特征工程——Feature_Engineering.ipynb &amp; Feature_Engineering2.ipynb</li>
-<li>模型设计及评测——Model_Design.ipynb</li>
+
+        
+           
+         
+
+        <p> 首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即<strong>正则化</strong>以及数据驱动的<strong>交叉验证方法</strong>。</p>
+<ul>
+<li>CV是用于模型的(评估)挑选和<strong>超参数</strong>(关于超参数和参数的区别请见另一篇<a href="/2017/06/01/parameter-hyperparameter/" title="memo">memo</a>)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个<strong>线性回归模型</strong>，但是不会说用不同数据拟合的<strong>线性回归器</strong>为不同的模型；<a id="more"></a></li>
+<li>为什么要用CV，这涉及到数据划分的问题，首先我们训练好一个模型后需要评估这个模型的效果，但是如果把全部数据都投入训练就没有数据来进行验证了，常规而言，可以将数据集划分为训练集和验证集比如80%训练、20%验证，但是这样会有一些问题，首先有可能你很不巧的将一些特殊数据划分到这20%的验证集里了(要么效果很好、要么效果很糟糕)，这样的话仅仅这么一组验证集的评估效果就很不稳定也不确切；此外我们划分训练集和验证集就减少了训练数据，而一般而言数据越多训练出的模型方差是越小的，从这个角度来看数据越多一般我们训练的效果更好；</li>
+<li>那么有没有方法既可以用上所有数据进行验证和评估、最后又可以用所有数据进行训练呢？所以我们就需要交叉验证，比如五折交叉验证，假设我们仍将数据集8-2划分（80%-20%），对于五折交叉验证，我们就是针对模型进行了五次训练，每次取80%训练数据、20%验证数据，并最终保证每个数据都曾在这五次训练验证中作为20%的验证集对模型进行过评估，这样我们就可以确保我们使用了所有数据对我们的模型进行评估</li>
+<li>为什么不用CV中得到的预测器进行预测？一般而言，在做交叉验证时确实可能出现某一组交叉验证的得分较高，我们会试图用这一组数据进行模型的拟合和最终预测，但是这种得分高只是一种表面现象，首先数据量少了，其次这一组验证集并非独立的，是在整个交叉验证中随机生成的，所以这个预测器的结果到底好不好还需要在对额外的数据进行测试，如果数据重组也许你可以用<a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">嵌套式的交叉验证</a>进行实验，即第一步用常规内层交叉验证确定最佳模型，然后采用数据驱动的方式(外层交叉验证)拟合最佳的一组预测器</li>
+<li>所以CV的作用是用来对不同模型（SVM和生成树等），不同参数的模型中评估各个模型的效果，而得到最佳参数组合的模型；接下来将所有训练集投入进去拟合预测得到拟合好的预测器最后对测试集进行预测</li>
+<li>那么把所有训练集放到模型中会不会导致过拟合呢？答案是不会，过拟合产生的原因是模型过于复杂（模型的参数），而不是数据增加导致，（而不是传入参数的值），增加数据一般而言更有利于训练集的训练</li>
+<li><p>补充：关于生成树模型中的early_stopping，按照《统计学习方法》一书的第12章总结部分P213所述</p>
+<blockquote>
+<p>提升方法没有现实的正则化项，通常通过早停止(early stopping)的方法达到正则化的效果</p>
+</blockquote>
+<p>所以early_stopping属于正则化的范畴，是另一种模型选择的具体方法。</p>
+<p>参考资料<br><a href="https://stats.stackexchange.com/a/52277/152084" target="_blank" rel="external">https://stats.stackexchange.com/a/52277/152084</a><br><a href="http://scikit-learn.org/stable/modules/cross_validation.html" target="_blank" rel="external">http://scikit-learn.org/stable/modules/cross_validation.html</a><br><a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">https://stats.stackexchange.com/a/52312/152084</a></p>
+</li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/05/29/HumenOrRobot/#more">more >></a>
-        
+
       
 
       
@@ -248,11 +260,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kaggle</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CV</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">model selection</a>
         		</li>
       		
 		</ul>
@@ -261,304 +273,74 @@ ga('send', 'pageview');
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/HumenOrRobot/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-世界是平的" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/世界是平的/">平坦世界</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/29/世界是平的/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:30:23.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
     </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这次给大家推荐一本书——“The world is flat”（《世界是平的》），刚刚看完了一遍，感觉这本书的视角很广阔，让我看到自己受限于地理或者意识因素所看不到的一些其实就实实在在发生在身边的变化，私以为，作为即将毕业的大学生而言，是很有必要一读的。</p>
-<p>【这本书面世其实快10年了，但是书中所述的一些变化我们或经历过，或忽略掉了，所以即使放在现在读，也是很有前瞻性的。特别由于作者本身是记者，写作风格还是颇为轻松地，所以，读起来感觉像是跟着作者开着上帝视角实现了所谓“世界那么大，我想去看看”的成就一般。】</p>
-<p>此书整体大概是由世界变平坦的种种例证、现象到作者所认为使世界变平坦的一些因素再到各个“成员”大至国家公司、小至每一个个体在这平坦世界里的角色和相互影响，最后是平坦世界所带来的或即将造成的可能负面影响和威胁来逐层叙述的。我想先就宏观角度简单记叙下书中的一些观点，然后谈一下书中所说而我也感觉到的身边的一些变化，最后就自己而言随意谈一下想法。</p>
-        
-          <a class="article-more-a" href="/2017/05/29/世界是平的/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Economy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/世界是平的/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-三体" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/三体/">面壁者，我是你的破壁人</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/29/三体/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:28:53.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
     </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对一个人的评判若不结合他所处的时代都是不公允的。</p>
-<p>终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。</p>
-<p>情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。</p>
-        
-          <a class="article-more-a" href="/2017/05/29/三体/#more">more >></a>
-        
-      
+  </div>
+</div>
 
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/01/cv/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
+</div>
 
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/三体/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-平凡的世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/平凡的世界/">平凡的世界，不平凡的凡人</a>
-    </h1>
   
-
-        
-        <a href="/2017/05/29/平凡的世界/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:27:42.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直想读这套书，在临近毕业时还专门从朋友那收藏了一套，借着在MEB的机会终于是忙里偷闲的看完了，虽意犹未尽，却也感到一种平和和满足。</p>
-<p><strong>如果要用一句话概括，《平凡的世界》写的是爱情和面包。</strong></p>
-        
-          <a class="article-more-a" href="/2017/05/29/平凡的世界/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/平凡的世界/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
+    <a href="/2017/06/01/parameter-hyperparameter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习中模型的参数和超参数</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
-    <article id="post-韶华倾负，难舍皮囊" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/29/韶华倾负，难舍皮囊/">韶华倾负，难舍皮囊</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/29/韶华倾负，难舍皮囊/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:22:21.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>利用在动车上的四个小时看完了《皮囊》（除去中间15分钟和邻座美女搭讪的时间），感觉是很不错的一本书，不同的章节写的不同的故事，如果你有时间不妨通篇阅读一下，如果没有时间不妨听我说一说。</p>
-<p>个人觉得，前五章的主题关于生离，关于死别。</p>
-<p>第一章和书同名是为《皮囊》，讲述的是99岁的阿太。</p>
-<p><em>我们的生命本来多轻盈，都是被这肉体和各种欲望的污浊给拖住。阿太，我记住了。“肉体是拿来用的，不是拿来伺候的。”</em></p>
-        
-          <a class="article-more-a" href="/2017/05/29/韶华倾负，难舍皮囊/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/29/韶华倾负，难舍皮囊/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+</nav>
 
 
 
@@ -566,9 +348,29 @@ ga('send', 'pageview');
 
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        $
+
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -591,8 +393,8 @@ ga('send', 'pageview');
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

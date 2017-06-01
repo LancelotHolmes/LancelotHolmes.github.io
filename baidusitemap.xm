@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/01/cv/</loc>
+    <lastmod>2017-06-01T12:36:16.424Z</lastmod>
+    <data>
+        <display>
+        <title>关于交叉验证和模型选择的一点思考</title>
+        <pubTime>2017-06-01T12:28:36.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>CV</tag>
+         
+        <tag>model selection</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/01/parameter-hyperparameter/</loc>
+    <lastmod>2017-06-01T12:27:02.876Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习中模型的参数和超参数</title>
+        <pubTime>2017-06-01T12:24:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>memo</tag>
+         
+        <tag>parameter</tag>
+         
+        <tag>hyperparameter</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
     <lastmod>2017-05-31T01:21:37.987Z</lastmod>
     <data>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-30T12:05:27.424Z</updated>
+  <updated>2017-06-01T12:36:16.424Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于交叉验证和模型选择的一点思考</title>
+    <link href="http://yoursite.com/2017/06/01/cv/"/>
+    <id>http://yoursite.com/2017/06/01/cv/</id>
+    <published>2017-06-01T12:28:36.000Z</published>
+    <updated>2017-06-01T12:36:16.424Z</updated>
+    
+    <content type="html"><![CDATA[<p> 首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即<strong>正则化</strong>以及数据驱动的<strong>交叉验证方法</strong>。</p>
+<ul>
+<li>CV是用于模型的(评估)挑选和<strong>超参数</strong>(关于超参数和参数的区别请见另一篇<a href="/2017/06/01/parameter-hyperparameter/" title="memo">memo</a>)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个<strong>线性回归模型</strong>，但是不会说用不同数据拟合的<strong>线性回归器</strong>为不同的模型；<a id="more"></a></li>
+<li>为什么要用CV，这涉及到数据划分的问题，首先我们训练好一个模型后需要评估这个模型的效果，但是如果把全部数据都投入训练就没有数据来进行验证了，常规而言，可以将数据集划分为训练集和验证集比如80%训练、20%验证，但是这样会有一些问题，首先有可能你很不巧的将一些特殊数据划分到这20%的验证集里了(要么效果很好、要么效果很糟糕)，这样的话仅仅这么一组验证集的评估效果就很不稳定也不确切；此外我们划分训练集和验证集就减少了训练数据，而一般而言数据越多训练出的模型方差是越小的，从这个角度来看数据越多一般我们训练的效果更好；</li>
+<li>那么有没有方法既可以用上所有数据进行验证和评估、最后又可以用所有数据进行训练呢？所以我们就需要交叉验证，比如五折交叉验证，假设我们仍将数据集8-2划分（80%-20%），对于五折交叉验证，我们就是针对模型进行了五次训练，每次取80%训练数据、20%验证数据，并最终保证每个数据都曾在这五次训练验证中作为20%的验证集对模型进行过评估，这样我们就可以确保我们使用了所有数据对我们的模型进行评估</li>
+<li>为什么不用CV中得到的预测器进行预测？一般而言，在做交叉验证时确实可能出现某一组交叉验证的得分较高，我们会试图用这一组数据进行模型的拟合和最终预测，但是这种得分高只是一种表面现象，首先数据量少了，其次这一组验证集并非独立的，是在整个交叉验证中随机生成的，所以这个预测器的结果到底好不好还需要在对额外的数据进行测试，如果数据重组也许你可以用<a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">嵌套式的交叉验证</a>进行实验，即第一步用常规内层交叉验证确定最佳模型，然后采用数据驱动的方式(外层交叉验证)拟合最佳的一组预测器</li>
+<li>所以CV的作用是用来对不同模型（SVM和生成树等），不同参数的模型中评估各个模型的效果，而得到最佳参数组合的模型；接下来将所有训练集投入进去拟合预测得到拟合好的预测器最后对测试集进行预测</li>
+<li>那么把所有训练集放到模型中会不会导致过拟合呢？答案是不会，过拟合产生的原因是模型过于复杂（模型的参数），而不是数据增加导致，（而不是传入参数的值），增加数据一般而言更有利于训练集的训练</li>
+<li><p>补充：关于生成树模型中的early_stopping，按照《统计学习方法》一书的第12章总结部分P213所述</p>
+<blockquote>
+<p>提升方法没有现实的正则化项，通常通过早停止(early stopping)的方法达到正则化的效果</p>
+</blockquote>
+<p>所以early_stopping属于正则化的范畴，是另一种模型选择的具体方法。</p>
+<p>参考资料<br><a href="https://stats.stackexchange.com/a/52277/152084" target="_blank" rel="external">https://stats.stackexchange.com/a/52277/152084</a><br><a href="http://scikit-learn.org/stable/modules/cross_validation.html" target="_blank" rel="external">http://scikit-learn.org/stable/modules/cross_validation.html</a><br><a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">https://stats.stackexchange.com/a/52312/152084</a></p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即&lt;strong&gt;正则化&lt;/strong&gt;以及数据驱动的&lt;strong&gt;交叉验证方法&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CV是用于模型的(评估)挑选和&lt;strong&gt;超参数&lt;/strong&gt;(关于超参数和参数的区别请见另一篇&lt;a href=&quot;/2017/06/01/parameter-hyperparameter/&quot; title=&quot;memo&quot;&gt;memo&lt;/a&gt;)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个&lt;strong&gt;线性回归模型&lt;/strong&gt;，但是不会说用不同数据拟合的&lt;strong&gt;线性回归器&lt;/strong&gt;为不同的模型；
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="CV" scheme="http://yoursite.com/tags/CV/"/>
+    
+      <category term="model selection" scheme="http://yoursite.com/tags/model-selection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习中模型的参数和超参数</title>
+    <link href="http://yoursite.com/2017/06/01/parameter-hyperparameter/"/>
+    <id>http://yoursite.com/2017/06/01/parameter-hyperparameter/</id>
+    <published>2017-06-01T12:24:11.000Z</published>
+    <updated>2017-06-01T12:27:02.876Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>一直以来对于机器学习中的模型训练和模型选择存在一个误区，首先机器学习力的模型通俗来说就是一个函数关系，表明输入数据到输出数据的映射，基本的假设前提是输入数据和输出数据符合某种联合概率分布，而模型训练的过程其实就是在确定函数式的具体参数值的过程，比如假设你要做一个多项式回归分析的模型，比如$f(x)=w_1x_1+w_2x_2+w_3x_3$，那么模型训练的过程中其实就是在学习对应的<code>w</code>的值，那么问题来了，实战中所谓的模型调参来选择模型又指的是什么呢？<a id="more"></a>既然训练已经把参数都确定下来了，那我们调整的参数又是什么？原来这里有个误区在于模型中的<code>parameter</code>和<code>hyperparameter</code>的区别，按照搜集到的资料来看，其实模型中可以分为两种参数，一种是在<strong>训练过程中学习到的参数，即<code>parameter</code></strong>也就是上面公式里的<code>w</code>，而另一种参数则是<code>hyperparameter</code>，这种参数是模型中学习不到的，是我们预先定义的，而模型的调参其实指的是调整<code>hyperparameter</code>，而且不同类型的模型的<code>hyperparameter</code>也不尽相同，比如SVM中的C,树模型中的深度、叶子数以及比较常规的学习率等等，这种参数是在模型训练之前预先定义的，所以关于模型的选择其实更多的指的是选择最佳的<code>hyperparameter</code>组合。</p>
+<p>参考资料<br><a href="https://datascience.stackexchange.com/a/14234/31117" target="_blank" rel="external">https://datascience.stackexchange.com/a/14234/31117</a><br><a href="https://www.quora.com/What-are-hyperparameters-in-machine-learning" target="_blank" rel="external">https://www.quora.com/What-are-hyperparameters-in-machine-learning</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;一直以来对于机器学习中的模型训练和模型选择存在一个误区，首先机器学习力的模型通俗来说就是一个函数关系，表明输入数据到输出数据的映射，基本的假设前提是输入数据和输出数据符合某种联合概率分布，而模型训练的过程其实就是在确定函数式的具体参数值的过程，比如假设你要做一个多项式回归分析的模型，比如$f(x)=w_1x_1+w_2x_2+w_3x_3$，那么模型训练的过程中其实就是在学习对应的&lt;code&gt;w&lt;/code&gt;的值，那么问题来了，实战中所谓的模型调参来选择模型又指的是什么呢？
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="memo" scheme="http://yoursite.com/tags/memo/"/>
+    
+      <category term="parameter" scheme="http://yoursite.com/tags/parameter/"/>
+    
+      <category term="hyperparameter" scheme="http://yoursite.com/tags/hyperparameter/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机与生活</title>
