@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-06-02T13:16:32.807Z</lastmod>
+    <lastmod>2017-06-02T13:43:42.567Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(一)</title>
