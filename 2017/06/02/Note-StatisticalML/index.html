@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>面壁者，我是你的破壁人 | Lancelot&#39;s Desert</title>
+  <title>统计学习方法笔记(一) | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对一个人的评判若不结合他所处的时代都是不公允的。 终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。 情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。">
-<meta name="keywords" content="Reading,Novel">
+  <meta name="description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
+<meta name="keywords" content="ML,Note,统计学习方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面壁者，我是你的破壁人">
-<meta property="og:url" content="http://yoursite.com/2017/05/29/三体/index.html">
+<meta property="og:title" content="统计学习方法笔记(一)">
+<meta property="og:url" content="http://yoursite.com/2017/06/02/Note-StatisticalML/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="对一个人的评判若不结合他所处的时代都是不公允的。 终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。 情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。">
-<meta property="og:updated_time" content="2017-05-29T12:30:03.383Z">
+<meta property="og:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
+<meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/overview.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/loss.jpg">
+<meta property="og:updated_time" content="2017-06-02T13:16:32.807Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面壁者，我是你的破壁人">
-<meta name="twitter:description" content="对一个人的评判若不结合他所处的时代都是不公允的。 终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。 情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。">
+<meta name="twitter:title" content="统计学习方法笔记(一)">
+<meta name="twitter:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
+<meta name="twitter:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/overview.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -197,20 +200,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-三体" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Note-StatisticalML" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      面壁者，我是你的破壁人
+      统计学习方法笔记(一)
     </h1>
   
 
         
-        <a href="/2017/05/29/三体/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:28:53.000Z" itemprop="datePublished">2017-05-29</time>
+        <a href="/2017/06/02/Note-StatisticalML/" class="archive-article-date">
+  	<time datetime="2017-06-02T06:42:52.000Z" itemprop="datePublished">2017-06-02</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
@@ -224,18 +227,191 @@ ga('send', 'pageview');
       
 
         
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习相关概念"><span class="toc-number">1.</span> <span class="toc-text">统计学习相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究对象"><span class="toc-number">1.2.</span> <span class="toc-text">研究对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究目的"><span class="toc-number">1.3.</span> <span class="toc-text">研究目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究方法"><span class="toc-number">1.4.</span> <span class="toc-text">研究方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.5.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-number">2.</span> <span class="toc-text">监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概览"><span class="toc-number">2.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合概率分布"><span class="toc-number">2.2.</span> <span class="toc-text">联合概率分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习分类"><span class="toc-number">2.3.</span> <span class="toc-text">监督学习分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题形式化"><span class="toc-number">2.4.</span> <span class="toc-text">问题形式化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习方法三要素-针对监督学习"><span class="toc-number">3.</span> <span class="toc-text">统计学习方法三要素(针对监督学习)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">3.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略（评价标准）"><span class="toc-number">3.2.</span> <span class="toc-text">策略（评价标准）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法（求解-amp-优化）"><span class="toc-number">3.3.</span> <span class="toc-text">算法（求解&优化）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型选择"><span class="toc-number">4.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型评估"><span class="toc-number">4.1.</span> <span class="toc-text">模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练误差-测试误差"><span class="toc-number">4.1.1.</span> <span class="toc-text">训练误差*测试误差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则化"><span class="toc-number">4.2.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交叉验证"><span class="toc-number">4.3.</span> <span class="toc-text">交叉验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据集划分"><span class="toc-number">4.3.1.</span> <span class="toc-text">数据集划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">4.3.2.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的泛化能力"><span class="toc-number">4.4.</span> <span class="toc-text">学习的泛化能力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。"><span class="toc-number">4.4.1.</span> <span class="toc-text">定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评价方法"><span class="toc-number">4.4.2.</span> <span class="toc-text">评价方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛化误差上界"><span class="toc-number">4.4.3.</span> <span class="toc-text">泛化误差上界</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成模型与判别模型"><span class="toc-number">5.</span> <span class="toc-text">生成模型与判别模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习模型的一般形式"><span class="toc-number">5.1.</span> <span class="toc-text">监督学习模型的一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习方法"><span class="toc-number">5.2.</span> <span class="toc-text">监督学习方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习方法的应用"><span class="toc-number">6.</span> <span class="toc-text">监督学习方法的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">6.1.</span> <span class="toc-text">分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标注问题"><span class="toc-number">6.2.</span> <span class="toc-text">标注问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回归问题"><span class="toc-number">6.3.</span> <span class="toc-text">回归问题</span></a></li></ol></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
            
          
 
-        <p>对一个人的评判若不结合他所处的时代都是不公允的。</p>
-<p>终于看完了《三体》全集，这部科幻小说给人的感觉真像作者自己命名的“地球往事”，像一本历史书，以宇宙为坐标，以光年为刻度，读罢，借用一句话“科幻小说虽然尽是对于未来的想象，但我们探索的一直是人的内心”。</p>
-<p>情节上我就不剧透太多了，我想谈谈《三体》里的几个角色。</p>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p><em>本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、<a href="http://scikit-learn.org/" target="_blank" rel="external">scikit-learn官方文档</a>等材料整理出来的笔记。</em></p>
+<h2 id="统计学习相关概念"><a href="#统计学习相关概念" class="headerlink" title="统计学习相关概念"></a>统计学习相关概念</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科</p>
+</blockquote>
 <a id="more"></a>
-<p>首先是罗辑，面壁者、执剑人、守墓人是他不同时期的身份，他是一个充满传奇色彩的人，用他自己的话是一个及时行乐的人，对其他的人、其他的事都不怎么上心的人。但是我看到的是他受人胁迫而终于接受面壁者身份时的无奈和挣扎；在冬眠复苏时被人当做笑话时的淡然、洒脱，再一次被推上历史转折点时的坚韧以及作为执剑人半个多世纪面壁时的狠厉。我得承认全书给我印象最深的是《黑暗森林》最高潮的部分，当罗辑站在自己挖掘的坟墓边对着虚空中的智子亮出最后底牌的那一刻；我真的有一种作为人类终于得救了、终于又有了希望的感觉。命运喜欢捉弄罗辑，在他吊儿郎当、无所事事时对他施以面壁者的诅咒，在他拯救了全人类时却让人类对他报以敌视；但罗辑不在乎这些，他只在乎自己所爱的那个女孩的幸福。</p>
-<p>然后是《死神永生》里的女主角程心。之前有看一个《x分钟读完三体》的短片，当时发现弹幕上对于程心大多数是一片骂声，随处可见诸如“程圣母毁灭世界”的字眼。不得不说在看《死神永生》的中后段我也一直对于程心是恨得咬牙切齿的，实话说，我讨厌她的不作为和自以为是爱与善的化身所做的所有决定，讨厌她毁灭了地球、害人类灭亡，但后来一想，我其实是开了上帝视角在看这个角色，其实回过头来看，程心是当前普通人类的典型，甚至，是大众中向善的群体的典型，她一直秉持着自己的责任，逆来顺受；她是勇敢的，敢于牺牲自己，但是，她的能力是不够的。整部小说看下来程心大部分时间处于冬眠状态，而经常是其他人帮她做足了准备，然后突然一下把她推到全人类命运决策的位置，可是却没有想过她准备好了没有，结果她只能依据自己当前的认识做出最佳选择，然后成了公众的替罪羊，其实换位思考，我们估计在那个节点做的更差；不信你把程心放到不同的时间段看公众对于她作为执剑人的那几分钟的态度的不停反复就可以看出来了，大众只是需要一个为自己顶包的人，然后好像自己就可以置身事外了。</p>
-<p>如果说程心更多的依靠感性来做判断，那么就不得不提到维德了，这个极端理性到冷酷的男人。最开始他对于程心的捉弄确实让我很不爽，从发射云天明的大脑一直到后面他不择手段的想要暗杀程心竞争执剑人。但读到后面你会发现维德其实是个表里如一的人，对于自己认定的事他能坚持到底，不择手段的坚持到底。</p>
-<p>所以不存在这么一个人，把他放到任何一个时空他的判断都是对的，或者说大众对于个体的判断其实也不能代表什么，一个人只需坚持自己所相信的，在乎自己所爱的，到最后一刻，就够了。</p>
-<p>各位面壁者们，准备好做自己的破壁人了么？</p>
+<h3 id="研究对象"><a href="#研究对象" class="headerlink" title="研究对象"></a>研究对象</h3><p>数据</p>
+<h3 id="研究目的"><a href="#研究目的" class="headerlink" title="研究目的"></a>研究目的</h3><p>对数据进行预测和分析：学习什么样的模型和如何学习模型（准确、效率）</p>
+<h3 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h3><p>构建模型并应用模型进行预测和分析（统计学习方法三要素）</p>
+<ul>
+<li>模型：模型的假设空间，即学习模型的集合</li>
+<li>策略：模型选择的准则</li>
+<li>算法：模型学习的算法，求解最优模型的算法</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>监督学习</li>
+<li>非监督学习</li>
+<li>半监督学习</li>
+<li>强化学习</li>
+</ul>
+<h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><p><img src="/materials/img/Note_StatisticalML_1/overview.jpg" alt="overview"></p>
+<ul>
+<li>输入空间：输入所有可能取值的集合</li>
+<li>输出空间：输出所有可能取值的集合</li>
+<li>特征空间：<ul>
+<li>每个具体的输入是一个实例，通常由特征向量表示，所有特征向量存在的空间称为特征空间</li>
+<li>有时输入空间与特征空间为相同的空间，不予区分，有时为不同的空间，需要将实例从输入空间映射到特征空间，<strong>模型实际上都是定义在特征空间上</strong></li>
+</ul>
+</li>
+<li>假设空间：学习模型的集合（假设要学习的模型属于某个函数集合），模型属于由输入空间到输出空间的映射的集合，这个集合即假设空间，假设空间的确定意味着学习范围的确定。<ul>
+<li>监督学习的模型<ul>
+<li>概率模型：条件概率分布$P(Y|X)$</li>
+<li>非概率模型：决策函数$Y=f(X)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="联合概率分布"><a href="#联合概率分布" class="headerlink" title="联合概率分布"></a>联合概率分布</h3><p>监督学习假设输入与输出的随机变量X和Y遵循联合概率分布$P(X, Y)$(<strong>监督学习关于数据的基本假设</strong>)</p>
+<h3 id="监督学习分类"><a href="#监督学习分类" class="headerlink" title="监督学习分类"></a>监督学习分类</h3><ul>
+<li>回归问题：输入变量与输出变量均为连续变量的预测问题。</li>
+<li>分类问题：输出变量为有限个离散变量的预测问题。</li>
+<li>标注问题：输入变量和输出变量均为变量序列的预测问题。</li>
+</ul>
+<h3 id="问题形式化"><a href="#问题形式化" class="headerlink" title="问题形式化"></a>问题形式化</h3><p>学习与预测——训练与测试</p>
+<ul>
+<li>学习：利用给定的训练数据集，通过学习（训练）得到一个模型；</li>
+<li>预测：对于给定的测试样本中的输入，由所得到的模型给出相应的输出。</li>
+</ul>
+<h2 id="统计学习方法三要素-针对监督学习"><a href="#统计学习方法三要素-针对监督学习" class="headerlink" title="统计学习方法三要素(针对监督学习)"></a>统计学习方法三要素(针对监督学习)</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>学习什么样的模型，在监督学习过程中，模型指的就是所要学习的条件概率分布或决策函数。</p>
+<h3 id="策略（评价标准）"><a href="#策略（评价标准）" class="headerlink" title="策略（评价标准）"></a>策略（评价标准）</h3><p>模型选择的准则：按照什么样的准则学习或选择最优的模型</p>
+<ul>
+<li>损失函数（代价函数）：一次预测的好坏的度量，常用的包括0-1损失函数、平方损失函数、绝对损失函数、对数(似然)损失函数</li>
+<li>风险函数（期望损失）：度量平均意义下模型预测的好坏<ul>
+<li>经验风险</li>
+<li>结构风险</li>
+</ul>
+</li>
+</ul>
+<p><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></p>
+<p><em>Note:在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</em></p>
+<h3 id="算法（求解-amp-优化）"><a href="#算法（求解-amp-优化）" class="headerlink" title="算法（求解&amp;优化）"></a>算法（求解&amp;优化）</h3><p>模型学习的算法，即学习模型的具体计算方法</p>
+<ul>
+<li>用什么样的计算方法求解最优模型（寻找全局最优解）</li>
+<li>如何高效实现</li>
+</ul>
+<h2 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h2><h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><h4 id="训练误差-测试误差"><a href="#训练误差-测试误差" class="headerlink" title="训练误差*测试误差"></a>训练误差*测试误差</h4><ul>
+<li>训练误差：对判断给定的问题是不是一个容易学习的问题是有意义的，但若一味追求减小训练误差，会出现过拟合的情况（所选模型的复杂度比真模型高）</li>
+<li>测试误差：反映了学习方法对未知的测试数据集的预测能力，<strong>测试误差小的方法具有更好的预测能力</strong><br><img src="/materials/img/Note_StatisticalML_1/loss.jpg" alt="loss"><br>所以需要选择复杂度适当的模型，而模型选择常用的两种方法分别是<strong>正则化</strong>和<strong>交叉验证</strong>。</li>
+</ul>
+<h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><p>结构风险最小化策略的实现，在经验风险的基础上加一个正则化项/罚项</p>
+<p>$$ R_{srm}(f)=\frac{1}{N}\sum L(y_i,f(x_i))+\lambda J(f) $$</p>
+<p>作用是为了选择经验风险和模型复杂度同时较小的模型(在所有可能选择的模型中，能够很好地解释已知数据并且十分简单的，才是最好的模型)</p>
+<h3 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h3><p>重复的使用数据</p>
+<h4 id="数据集划分"><a href="#数据集划分" class="headerlink" title="数据集划分"></a>数据集划分</h4><ul>
+<li>训练集：训练模型，通过输入数据学习函数中的参数值，得到拟合了数据的“分类器/回归器”等</li>
+<li>验证集：模型选择，从不同的模型中选择最佳模型<ul>
+<li>从不同类的模型中选择（比如从SVM,GBM,决策树里选择模型）</li>
+<li>从同类模型不同超参数(hyperparameter)组合里选择最优超参数组合。</li>
+</ul>
+</li>
+<li>测试集：最终对学习方法的评估<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4></li>
+<li>简单交叉验证</li>
+<li>S折交叉验证</li>
+<li>留一交叉验证</li>
+</ul>
+<p><em>Note:关于数据集划分的一点理解理解可以参看<a href="/2017/06/01/cv/" title="交叉验证">交叉验证</a>，而关于模型选择可以进一步了解<a href="/2017/06/01/parameter-hyperparameter/" title="参数与超参数">参数与超参数</a></em></p>
+<h3 id="学习的泛化能力"><a href="#学习的泛化能力" class="headerlink" title="学习的泛化能力"></a>学习的泛化能力</h3><h4 id="定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。"><a href="#定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。" class="headerlink" title="定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。"></a>定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</h4><h4 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h4><ul>
+<li>理论上：泛化误差即期望风险<br>$$ R_{exp}(f)=E_p[L(Y, f(X))]=\int L(y,f(x))P(x,y)dxdy $$</li>
+<li>实际应用中：常常用测试误差衡量</li>
+</ul>
+<h4 id="泛化误差上界"><a href="#泛化误差上界" class="headerlink" title="泛化误差上界"></a>泛化误差上界</h4><p>通过比较两种学习方法的泛化误差上界来比较其优劣（越小越好）</p>
+<ul>
+<li>样本容量越大，泛化误差上界越小</li>
+<li>假设空间越大，泛化误差上界越大</li>
+</ul>
+<p><strong>训练误差小的模型，其泛化误差也会小</strong></p>
+<h2 id="生成模型与判别模型"><a href="#生成模型与判别模型" class="headerlink" title="生成模型与判别模型"></a>生成模型与判别模型</h2><h3 id="监督学习模型的一般形式"><a href="#监督学习模型的一般形式" class="headerlink" title="监督学习模型的一般形式"></a>监督学习模型的一般形式</h3><ul>
+<li>概率模型：条件概率分布$P(Y|X)$</li>
+<li>非概率模型：决策函数$Y=f(X)$</li>
+</ul>
+<h3 id="监督学习方法"><a href="#监督学习方法" class="headerlink" title="监督学习方法"></a>监督学习方法</h3><table>
+<thead>
+<tr>
+<th>-</th>
+<th>生成方法</th>
+<th>判别方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定义</td>
+<td>由数据学习联合概率分布$P(X, Y)$,然后求出$P(Y&#124;X)$作为预测的模型,$P(Y&#124;X)=\frac{P(X,Y)}{P(X)}$</td>
+<td>由数据直接学习决策函数$f(x)$或条件概率分布$P(Y&#124;X)$作为预测模型</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>1.可还原出$P(X, Y)$；<br>2.学习收敛速度更快；<br>3.存在隐变量时仍可用</td>
+<td>1.直接面对预测，准确率更高；<br>2.便于数据抽象，特征定义和使用，可简化学习问题</td>
+</tr>
+<tr>
+<td>典型模型</td>
+<td>朴素贝叶斯法、隐马尔可夫模型</td>
+<td>k-近邻、感知机、决策树、逻辑斯谛回归模型、最大熵模型、SVM、提升方法、条件随机场等</td>
+</tr>
+<tr>
+<td>Note</td>
+<td>模型表示了给定输入X产生输出Y的生成关系</td>
+<td>判别方法关心的是对给定的输入X，应该预测什么样的输出Y</td>
+</tr>
+</tbody>
+</table>
+<h2 id="监督学习方法的应用"><a href="#监督学习方法的应用" class="headerlink" title="监督学习方法的应用"></a>监督学习方法的应用</h2><h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>在监督学习中，当输入变量Y取有限个离散值时，预测问题便成为分类问题</p>
+<ul>
+<li>多类分类问题，包括二分类</li>
+<li>评价指标<ul>
+<li>分类准确率</li>
+<li>精确率&amp;召回率（二分类）——正类、负类、F1值</li>
+</ul>
+</li>
+</ul>
+<h3 id="标注问题"><a href="#标注问题" class="headerlink" title="标注问题"></a>标注问题</h3><p>可以认为是分类问题的一种推广，输入观测序列，输出标记序列(状态序列)</p>
+<ul>
+<li>学习&amp;标注——条件概率分布</li>
+<li>评价指标<ul>
+<li>标注准确率</li>
+<li>精确率、召回率</li>
+</ul>
+</li>
+<li>常用统计学习方法<ul>
+<li>隐马尔可夫模型</li>
+<li>条件随机场</li>
+</ul>
+</li>
+<li>应用领域<ul>
+<li>信息抽取</li>
+<li>自然语言处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="回归问题"><a href="#回归问题" class="headerlink" title="回归问题"></a>回归问题</h3><p>回归用于预测输入变量（自变量）和输出变量（因变量）之间的关系——函数拟合</p>
+<ul>
+<li>学习&amp;预测<ul>
+<li>一元回归 vs 多元回归</li>
+<li>线性回归 vs 非线性回归</li>
+<li>损失函数：常用平方损失函数—— <a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95" target="_blank" rel="external">最小二乘法</a></li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -249,11 +425,15 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		
 		</ul>
@@ -309,7 +489,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/29/三体/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/02/Note-StatisticalML/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -323,18 +503,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2017/05/29/世界是平的/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          平坦世界
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/29/平凡的世界/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">平凡的世界，不平凡的凡人</div>
+    <a href="/2017/06/01/cv/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于交叉验证和模型选择的一点思考</div>
       <i class="icon-circle-right"></i>
     </a>
   
