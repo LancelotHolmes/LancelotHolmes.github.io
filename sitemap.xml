@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
+    
+    <lastmod>2017-06-05T13:25:36.759Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
     
     <lastmod>2017-06-02T13:43:42.567Z</lastmod>
