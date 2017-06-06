@@ -39,6 +39,7 @@
 <li>感知机的学习策略是在假设空间中选取是损失函数最小的模型参数$w, b$，即感知机模型。</li>
 <li><a href="http://www.cnblogs.com/graphics/archive/2010/07/10/1774809.html" target="_blank" rel="external">点到平面的距离推导</a></li>
 <li><a href="https://www.zhihu.com/question/20473040" target="_blank" rel="external">范数的通俗解释</a></li>
+<li>另外关于范数、规范化的理解，这篇<a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">博文</a>写的深入浅出</li>
 </ul>
 <h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
 <p>输入：训练集$T={(x_1, y_1), (x_2, y_2),…,(x_N, y_N)}$，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>

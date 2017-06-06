@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    <lastmod>2017-06-05T13:25:36.759Z</lastmod>
+    <lastmod>2017-06-06T07:48:18.628Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(二) —— 感知机</title>
