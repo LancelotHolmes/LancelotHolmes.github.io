@@ -9,7 +9,7 @@
   <title>统计学习方法笔记(二) —— 感知机 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="概述 感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。">
-<meta name="keywords" content="ML,Perceptron">
+<meta name="keywords" content="ML,Note,统计学习方法,Perceptron">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(二) —— 感知机">
 <meta property="og:url" content="http://yoursite.com/2017/06/03/Perceptron/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/Perceptron/Convergence_2.JPG">
 <meta property="og:image" content="http://yoursite.com/materials/img/Perceptron/Convergence_3.JPG">
 <meta property="og:image" content="http://yoursite.com/materials/img/Perceptron/Convergence_4.JPG">
-<meta property="og:updated_time" content="2017-06-06T07:48:18.628Z">
+<meta property="og:updated_time" content="2017-06-07T08:45:09.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(二) —— 感知机">
 <meta name="twitter:description" content="概述 感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。">
@@ -280,7 +280,7 @@ ga('send', 'pageview');
 <li>另外关于范数、规范化的理解，这篇<a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">博文</a>写的深入浅出</li>
 </ul>
 <h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
-<p>输入：训练集$T={(x_1, y_1), (x_2, y_2),…,(x_N, y_N)}$，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
+<p>输入：训练集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
 </blockquote>
 <h4 id="几何解释-1"><a href="#几何解释-1" class="headerlink" title="几何解释"></a>几何解释</h4><p>当一个实例点被误分类，即位于分离超平面的错误的一侧时，则调整$w, b$的值，是分离超平面向该误分类点的一侧移动，以减少该误分类点与超平面间的距离，直至超平面越过该误分类点使其被正确分类。</p>
 <h4 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h4><ul>
@@ -322,7 +322,7 @@ ga('send', 'pageview');
 <li>实例点更新次数越多，意味着它距离分离超平面越接近，也就越难以正确分类，换言之，这种实例对学习结果影响最大（有点支持向量机中的支持向量的意思）。</li>
 </ul>
 <h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><blockquote>
-<p>输入：线性可分的数据集$T={(x_1, y_1), (x_2, y_2),…,(x_N, y_N)}$，其中$x_i \in R^n$,$y_i \in \lbrace +1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$</p>
+<p>输入：线性可分的数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace +1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$</p>
 <p>输出：$\alpha, b$；感知机模型$f(x) = sign(\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x + b)$,其中$\alpha=(alpla_1, alpla_2,…,alpla_N)^T$<br>(1): $\alpha \leftarrow 0$, $b \leftarrow 0$<br>(2): 计算所有样本内积形成的Gram矩阵$G$，</p>
 <p>$G=[x_i \cdot x_j ]_{N \times N}$</p>
 <p>(3): 在训练集中选取数据$(x_i, y_i)$，若</p>
@@ -359,6 +359,14 @@ ga('send', 'pageview');
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -431,6 +439,15 @@ ga('send', 'pageview');
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/06/06/knn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          统计学习方法笔记(三) —— K近邻
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/02/Note-StatisticalML/" id="article-nav-older" class="article-nav-link-wrap">
@@ -606,14 +623,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
@@ -622,19 +631,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memo</a>
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,6 +656,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">memo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">

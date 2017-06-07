@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Economy | Lancelot&#39;s Desert</title>
+  <title>统计学习方法笔记(三) —— K近邻 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/tags/Economy/index.html">
+  <meta name="description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
+<meta name="keywords" content="ML,Note,统计学习方法,k-NN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习方法笔记(三) —— K近邻">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/knn/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
+<meta property="og:image" content="http://yoursite.com/materials/img/knn/kd_tree.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/knn/kd_tree2.png">
+<meta property="og:updated_time" content="2017-06-07T10:22:58.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="统计学习方法笔记(三) —— K近邻">
+<meta name="twitter:description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
+<meta name="twitter:image" content="http://yoursite.com/materials/img/knn/kd_tree.png">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -196,69 +200,306 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-knn" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      统计学习方法笔记(三) —— K近邻
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/世界是平的/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:30:23.000Z" itemprop="datePublished">2017-05-29</time>
+
+        
+        <a href="/2017/06/06/knn/" class="archive-article-date">
+  	<time datetime="2017-06-06T12:12:28.000Z" itemprop="datePublished">2017-06-06</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
 </a>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/世界是平的/">平坦世界</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
 
-        <div class="article-info info-on-right">
-          
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻算法"><span class="toc-number">1.</span> <span class="toc-text">k近邻算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻模型——对特征空间的划分"><span class="toc-number">2.</span> <span class="toc-text">k近邻模型——对特征空间的划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻法的三个基本要素"><span class="toc-number">3.</span> <span class="toc-text">k近邻法的三个基本要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#k值的选择"><span class="toc-number">3.1.</span> <span class="toc-text">k值的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#距离度量——实例点相似程度的反应"><span class="toc-number">3.2.</span> <span class="toc-text">距离度量——实例点相似程度的反应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类决策规则"><span class="toc-number">3.3.</span> <span class="toc-text">分类决策规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方法——kd树-k维树"><span class="toc-number">4.</span> <span class="toc-text">实现方法——kd树(k维树)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造kd树"><span class="toc-number">4.1.</span> <span class="toc-text">构造kd树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述-1"><span class="toc-number">4.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-1"><span class="toc-number">4.1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索kd树"><span class="toc-number">4.2.</span> <span class="toc-text">搜索kd树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-2"><span class="toc-number">4.2.1.</span> <span class="toc-text">算法</span></a></li></ol></li></ol></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="k近邻算法"><a href="#k近邻算法" class="headerlink" title="k近邻算法"></a>k近邻算法</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<p>给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类<br><a id="more"></a></p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li>输入：训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$为实例的<strong>特征向量</strong>,$y_i \in \lbrace c_1, c_2,…, c_K \rbrace$ 为实例的<strong>类别</strong>,$i=1, 2, 3…, N$；<ul>
+<li>输出：实例$x$所属的类$y$</li>
+<li>根据所给的<strong>距离度量</strong>，在训练集中找到与$x$最近的k个点，涵盖这k个点的$x$的邻域记作$N_k(x)$；</li>
+<li>$N_k(x)$中根据<strong>分类决策规则</strong>（常用多数表决）决定$x$的类别$y$</li>
+</ul>
+</li>
+</ul>
+<p>$$y = argmax_{c_j} \sum_{x_i \in N_k(x)} I(y_i = c_j), i=1, 2,…, N; j=1, 2,…, K$$</p>
+<p> 其中$I$为指示函数，当$y_i = c_j$时$I$为1，否则为0</p>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>k近邻法实际上利用训练数据集<strong>对特征向量空间进行划分</strong>，并作为其分类的“模型”</li>
+<li>k=1时称为最近邻算法</li>
+<li>k近邻法没有显式的学习过程</li>
+</ul>
+<h2 id="k近邻模型——对特征空间的划分"><a href="#k近邻模型——对特征空间的划分" class="headerlink" title="k近邻模型——对特征空间的划分"></a>k近邻模型——对特征空间的划分</h2><blockquote>
+<p>k近邻法中，当训练集、<strong>距离度量、k值以及分类决策规则</strong>确定后，对于任何一个新的输入实例，它所属的类唯一地确定，这相当于根据上述要素将特征空间划分为一些子空间，确定子空间里的每个点所属的类。</p>
+</blockquote>
+<h2 id="k近邻法的三个基本要素"><a href="#k近邻法的三个基本要素" class="headerlink" title="k近邻法的三个基本要素"></a>k近邻法的三个基本要素</h2><h3 id="k值的选择"><a href="#k值的选择" class="headerlink" title="k值的选择"></a>k值的选择</h3><table>
+<thead>
+<tr>
+<th>k值</th>
+<th>学习的近似误差</th>
+<th>估计误差</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>较小</td>
+<td>下降</td>
+<td>上升</td>
+<td>整体模型变得复杂，对紧邻的实例点变得非常敏感，容易发生过拟合</td>
+</tr>
+<tr>
+<td>较大</td>
+<td>上升</td>
+<td>下降</td>
+<td>模型变得简单，但与输入实例较远的点也会对输入实例点产生影响</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: 实际应用中，k值一般取一个比较小的数值，通常采用交叉验证法来选取最优的k值。</em></p>
+<p>另外关于近似误差和估计误差，网上没有找到让我满意的答案，目前的一点理解如下：</p>
+<blockquote>
+<p>k值越小，学习的近似误差(approximation error)越小，估计误差(estimation error)越大，反之则相反</p>
+</blockquote>
+<p>个人感觉这里有点像偏差和方差的区别，是否可以理解为近似误差即偏差，在k值较小时，选择的邻域范围较小，所以在空间内切割的“比较细”，但与此同时导致模型更加复杂，对于近邻的实例点非常敏感，而估计误差理解为方差，也就是说划分的邻域范围较大，所以平均下来根据分类决策规则可以减小邻域内的噪音点的影响，但是范围大的同时也会产生较远的点对于实例点也产生影响</p>
+<p>搜索到的一些结果比如<a href="http://blog.csdn.net/linian8123654/article/details/53301207" target="_blank" rel="external">linian2763的博客</a></p>
+<blockquote>
+<p>估计误差（estimation error）:度量预测结果与最优结果的相近程度<br>近似误差（approximation error）:度量与最优误差之间的相近程度</p>
+</blockquote>
+<p>此外还有<a href="https://stats.stackexchange.com/a/149922/152084" target="_blank" rel="external">stackexchange</a>上的讨论，但是看得更加迷糊。</p>
+<h3 id="距离度量——实例点相似程度的反应"><a href="#距离度量——实例点相似程度的反应" class="headerlink" title="距离度量——实例点相似程度的反应"></a>距离度量——实例点相似程度的反应</h3><p>常用距离度量</p>
+<ul>
+<li>欧氏距离</li>
+<li>$L_p$距离</li>
+<li>Minkowski距离</li>
+</ul>
+<p>其中对于$L_p$距离，设特征空间为n维实数向量空间$R^n$，$x_i, x_j \in R^n$，$x_i = (x_i^{(1)}, x_i^{(2)},…, x_i^{(n)})^T, x_j = (x_j^{(1)}, x_j^{(2)},…, x_j^{(n)})^T$，则$x_i, x_j$的$L_p$距离定义为</p>
+<p>$$L_p(x_i,x_j)=(\sum_{l=1}^{n}|x_i^{(l)}-x_j^{(l)}|^p)^{\frac{1}{p}}$$</p>
+<p>其中$p \geq 1$，且当$p=2$时转化为欧氏距离，$p=1$时转化为曼哈顿距离</p>
+<p><em>Note: 不同的距离度量所确定的最近邻点是不同的</em></p>
+<h3 id="分类决策规则"><a href="#分类决策规则" class="headerlink" title="分类决策规则"></a>分类决策规则</h3><p>常用多数表决，即由输入实例的k个邻近的训练实例中的多数类决定输入实例的类，<strong>多数表决规则等价于经验风险最小化</strong></p>
+<h2 id="实现方法——kd树-k维树"><a href="#实现方法——kd树-k维树" class="headerlink" title="实现方法——kd树(k维树)"></a>实现方法——kd树(k维树)</h2><ul>
+<li>特征空间维数大</li>
+<li>训练数据容量大<br>如何对训练数据进行快速k近邻搜索</li>
+<li><del>线性扫描：耗时，不可行</del></li>
+<li>使用特殊的结构存储训练数据，以减少计算距离的次数——kd树</li>
+</ul>
+<h3 id="构造kd树"><a href="#构造kd树" class="headerlink" title="构造kd树"></a>构造kd树</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>kd树是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构</p>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>kd树是二叉树</li>
+<li>kd树的每个结点对应于一个k维超矩形区域，而各实例点存在于不同的超矩形区域内，即在kd树的不同结点里</li>
+<li>一般这个k维就是数据实例点的维度，即特征数，每次选定一个特征，然后根据范围内的实例点（记录）的该特征的值来进行二分，过程有点像快排里的分割</li>
+</ul>
+<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<ul>
+<li>输入：k维空间数据集$T= \lbrace x_1, x_2,…, x_N \rbrace $，其中$x_i=(x_i^{(1)},x_i^{(2)},…,x_i^{(k)})^T, i=1,2,…,N$；</li>
+<li>输出：kd树</li>
+<li>（1）开始：构造根结点，根结点对应于包含T的k维空间的超矩形区域。 选择$x^{(1)}$为坐标轴，以T中所有实例的$x^{(1)}$坐标的<strong>中位数</strong>为切分点，将根结点对应的超矩形区域切分为两个子区域。切分由通过切分点并与坐标轴$x^{(1)}$垂直的超平面实现。由根结点生成深度为1的左、右结点，左子结点区域的$x^{(1)}$坐标对应的值小于切分点的子区域；右子结点区域的$x^{(1)}$坐标对应的值大于切分点的子区域。将落在切分超平面上的实例点保存在根结点。</li>
+<li>（2）重复：对于深度为j的结点，选择$x^{(1)}$为切分的坐标轴，$l=(j \mod k) + 1$，以该结点区域中所有实例的$x^{(1)}$坐标的中位数为切分点，将根结点对应的超矩形区域切分为两个子区域。切分由通过切分点并与坐标轴$x^{(1)}$垂直的超平面实现。由该结点生成深度为j+1的左、右结点，左子结点区域的$x^{(1)}$坐标对应的值小于切分点的子区域；右子结点区域的$x^{(1)}$坐标对应的值大于切分点的子区域。将落在切分超平面上的实例点保存在该结点。</li>
+<li>（3）直到两个区域没有实例存在时停止。</li>
+</ul>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>书中的方法是轮流按每个维度对某结点进行切分，各个维度（特征）可能会被重复利用来进行切分，当然此时的实例点范围不同，切分点也不同（中位数发生变化）</li>
+</ul>
+<p>对于kd构造的实例，其一书中的例子比较直观，如下<br><img src="/materials/img/knn/kd_tree.png" alt="kd_tree"><br>此外，在<a href="https://zh.wikipedia.org/wiki/K-d%E6%A0%91" target="_blank" rel="external">wiki</a>里的一幅三维空间的配图也是非常直观<br><img src="/materials/img/knn/kd_tree2.png" alt="kd_tree2"></p>
+<blockquote>
+<p>一个三维k-d树。第一次划分（红色）把根节点（白色）划分成两个节点，然后它们分别再次被划分（绿色）为两个子节点。最后这四个子节点的每一个都被划分（蓝色）为两个子节点。因为没有更进一步的划分，最后得到的八个节点称为叶子节点。</p>
+</blockquote>
+<h3 id="搜索kd树"><a href="#搜索kd树" class="headerlink" title="搜索kd树"></a>搜索kd树</h3><blockquote>
+<p>利用kd树可以省去对大部分的数据点的搜索，从而减少搜索的计算量</p>
+</blockquote>
+<h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<ul>
+<li>输入：已构造的kd树；目标点x；</li>
+<li>输出：x的最近邻</li>
+<li>（1）在kd树中找到包含目标点x的叶结点：思想有点像<strong>二分查找</strong>，从根节点出发，递归地向下访问kd树，若目标点x当前维的坐标小于切分点的坐标，则移动到左子节点，否则移动到右子节点，直到子节点为叶节点为止</li>
+<li>（2）以此叶节点为“当前最近点”</li>
+<li>（3）递归地向上回退，在每个节点执行以下操作：<ul>
+<li>（a）如果该结点保存的实例点比当前最近点距离目标点更近，则以该实例点为“当前最近点”</li>
+<li>（b）当前最近点一定存在于该结点一个子结点对应的区域。检查该子结点的父结点的另一子结点对应的区域是否有更近的点。即以目标点为球心，以目标点与当前最近点间的距离为半径的球体是否与另一子结点对应的区域相交。如果相交，可能在另一个子结点对应的区域中存在更近的点。移动到另一个子结点，接着递归地进行最邻近搜索。如果不相交，则向上回退。</li>
+</ul>
+</li>
+<li>（4）当回退到根结点，搜索结束，此时的当前最近结点即为x的最邻近点。</li>
+</ul>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>若实例点随机分布，kd树搜索的平均计算复杂度是<em>O(log N)</em>，<em>N</em>为训练实例数</li>
+<li>kd树更适用于训练实例数远大于空间维数时的k近邻搜索</li>
+</ul>
+<p>关于这个算法的理解最好还是看书上的例子3.3，基本思路是一个重复二分查找和回溯的过程，另外关于kd树的搜索，有一篇很不错的文章，详见<a href="https://zhuanlan.zhihu.com/p/23966698" target="_blank" rel="external">kd树的细致图文讲解</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Economy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">k-NN</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/06/knn/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/06/03/Perceptron/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">统计学习方法笔记(二) —— 感知机</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        $
+
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -281,9 +522,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

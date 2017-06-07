@@ -4,14 +4,41 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/06/knn/</loc>
+    <lastmod>2017-06-07T10:22:58.776Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(三) —— K近邻</title>
+        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    <lastmod>2017-06-06T07:48:18.628Z</lastmod>
+    <lastmod>2017-06-07T08:45:09.062Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(二) —— 感知机</title>
         <pubTime>2017-06-03T08:53:02.000Z</pubTime>
         
         <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>Perceptron</tag>
          

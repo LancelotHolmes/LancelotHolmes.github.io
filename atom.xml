@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-06T07:48:18.628Z</updated>
+  <updated>2017-06-07T10:22:58.776Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,167 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>统计学习方法笔记(三) —— K近邻</title>
+    <link href="http://yoursite.com/2017/06/06/knn/"/>
+    <id>http://yoursite.com/2017/06/06/knn/</id>
+    <published>2017-06-06T12:12:28.000Z</published>
+    <updated>2017-06-07T10:22:58.776Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="k近邻算法"><a href="#k近邻算法" class="headerlink" title="k近邻算法"></a>k近邻算法</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<p>给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类<br><a id="more"></a></p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li>输入：训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$为实例的<strong>特征向量</strong>,$y_i \in \lbrace c_1, c_2,…, c_K \rbrace$ 为实例的<strong>类别</strong>,$i=1, 2, 3…, N$；<ul>
+<li>输出：实例$x$所属的类$y$</li>
+<li>根据所给的<strong>距离度量</strong>，在训练集中找到与$x$最近的k个点，涵盖这k个点的$x$的邻域记作$N_k(x)$；</li>
+<li>$N_k(x)$中根据<strong>分类决策规则</strong>（常用多数表决）决定$x$的类别$y$</li>
+</ul>
+</li>
+</ul>
+<p>$$y = argmax_{c_j} \sum_{x_i \in N_k(x)} I(y_i = c_j), i=1, 2,…, N; j=1, 2,…, K$$</p>
+<p> 其中$I$为指示函数，当$y_i = c_j$时$I$为1，否则为0</p>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>k近邻法实际上利用训练数据集<strong>对特征向量空间进行划分</strong>，并作为其分类的“模型”</li>
+<li>k=1时称为最近邻算法</li>
+<li>k近邻法没有显式的学习过程</li>
+</ul>
+<h2 id="k近邻模型——对特征空间的划分"><a href="#k近邻模型——对特征空间的划分" class="headerlink" title="k近邻模型——对特征空间的划分"></a>k近邻模型——对特征空间的划分</h2><blockquote>
+<p>k近邻法中，当训练集、<strong>距离度量、k值以及分类决策规则</strong>确定后，对于任何一个新的输入实例，它所属的类唯一地确定，这相当于根据上述要素将特征空间划分为一些子空间，确定子空间里的每个点所属的类。</p>
+</blockquote>
+<h2 id="k近邻法的三个基本要素"><a href="#k近邻法的三个基本要素" class="headerlink" title="k近邻法的三个基本要素"></a>k近邻法的三个基本要素</h2><h3 id="k值的选择"><a href="#k值的选择" class="headerlink" title="k值的选择"></a>k值的选择</h3><table>
+<thead>
+<tr>
+<th>k值</th>
+<th>学习的近似误差</th>
+<th>估计误差</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>较小</td>
+<td>下降</td>
+<td>上升</td>
+<td>整体模型变得复杂，对紧邻的实例点变得非常敏感，容易发生过拟合</td>
+</tr>
+<tr>
+<td>较大</td>
+<td>上升</td>
+<td>下降</td>
+<td>模型变得简单，但与输入实例较远的点也会对输入实例点产生影响</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: 实际应用中，k值一般取一个比较小的数值，通常采用交叉验证法来选取最优的k值。</em></p>
+<p>另外关于近似误差和估计误差，网上没有找到让我满意的答案，目前的一点理解如下：</p>
+<blockquote>
+<p>k值越小，学习的近似误差(approximation error)越小，估计误差(estimation error)越大，反之则相反</p>
+</blockquote>
+<p>个人感觉这里有点像偏差和方差的区别，是否可以理解为近似误差即偏差，在k值较小时，选择的邻域范围较小，所以在空间内切割的“比较细”，但与此同时导致模型更加复杂，对于近邻的实例点非常敏感，而估计误差理解为方差，也就是说划分的邻域范围较大，所以平均下来根据分类决策规则可以减小邻域内的噪音点的影响，但是范围大的同时也会产生较远的点对于实例点也产生影响</p>
+<p>搜索到的一些结果比如<a href="http://blog.csdn.net/linian8123654/article/details/53301207" target="_blank" rel="external">linian2763的博客</a></p>
+<blockquote>
+<p>估计误差（estimation error）:度量预测结果与最优结果的相近程度<br>近似误差（approximation error）:度量与最优误差之间的相近程度</p>
+</blockquote>
+<p>此外还有<a href="https://stats.stackexchange.com/a/149922/152084" target="_blank" rel="external">stackexchange</a>上的讨论，但是看得更加迷糊。</p>
+<h3 id="距离度量——实例点相似程度的反应"><a href="#距离度量——实例点相似程度的反应" class="headerlink" title="距离度量——实例点相似程度的反应"></a>距离度量——实例点相似程度的反应</h3><p>常用距离度量</p>
+<ul>
+<li>欧氏距离</li>
+<li>$L_p$距离</li>
+<li>Minkowski距离</li>
+</ul>
+<p>其中对于$L_p$距离，设特征空间为n维实数向量空间$R^n$，$x_i, x_j \in R^n$，$x_i = (x_i^{(1)}, x_i^{(2)},…, x_i^{(n)})^T, x_j = (x_j^{(1)}, x_j^{(2)},…, x_j^{(n)})^T$，则$x_i, x_j$的$L_p$距离定义为</p>
+<p>$$L_p(x_i,x_j)=(\sum_{l=1}^{n}|x_i^{(l)}-x_j^{(l)}|^p)^{\frac{1}{p}}$$</p>
+<p>其中$p \geq 1$，且当$p=2$时转化为欧氏距离，$p=1$时转化为曼哈顿距离</p>
+<p><em>Note: 不同的距离度量所确定的最近邻点是不同的</em></p>
+<h3 id="分类决策规则"><a href="#分类决策规则" class="headerlink" title="分类决策规则"></a>分类决策规则</h3><p>常用多数表决，即由输入实例的k个邻近的训练实例中的多数类决定输入实例的类，<strong>多数表决规则等价于经验风险最小化</strong></p>
+<h2 id="实现方法——kd树-k维树"><a href="#实现方法——kd树-k维树" class="headerlink" title="实现方法——kd树(k维树)"></a>实现方法——kd树(k维树)</h2><ul>
+<li>特征空间维数大</li>
+<li>训练数据容量大<br>如何对训练数据进行快速k近邻搜索</li>
+<li><del>线性扫描：耗时，不可行</del></li>
+<li>使用特殊的结构存储训练数据，以减少计算距离的次数——kd树</li>
+</ul>
+<h3 id="构造kd树"><a href="#构造kd树" class="headerlink" title="构造kd树"></a>构造kd树</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>kd树是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构</p>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>kd树是二叉树</li>
+<li>kd树的每个结点对应于一个k维超矩形区域，而各实例点存在于不同的超矩形区域内，即在kd树的不同结点里</li>
+<li>一般这个k维就是数据实例点的维度，即特征数，每次选定一个特征，然后根据范围内的实例点（记录）的该特征的值来进行二分，过程有点像快排里的分割</li>
+</ul>
+<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<ul>
+<li>输入：k维空间数据集$T= \lbrace x_1, x_2,…, x_N \rbrace $，其中$x_i=(x_i^{(1)},x_i^{(2)},…,x_i^{(k)})^T, i=1,2,…,N$；</li>
+<li>输出：kd树</li>
+<li>（1）开始：构造根结点，根结点对应于包含T的k维空间的超矩形区域。 选择$x^{(1)}$为坐标轴，以T中所有实例的$x^{(1)}$坐标的<strong>中位数</strong>为切分点，将根结点对应的超矩形区域切分为两个子区域。切分由通过切分点并与坐标轴$x^{(1)}$垂直的超平面实现。由根结点生成深度为1的左、右结点，左子结点区域的$x^{(1)}$坐标对应的值小于切分点的子区域；右子结点区域的$x^{(1)}$坐标对应的值大于切分点的子区域。将落在切分超平面上的实例点保存在根结点。</li>
+<li>（2）重复：对于深度为j的结点，选择$x^{(1)}$为切分的坐标轴，$l=(j \mod k) + 1$，以该结点区域中所有实例的$x^{(1)}$坐标的中位数为切分点，将根结点对应的超矩形区域切分为两个子区域。切分由通过切分点并与坐标轴$x^{(1)}$垂直的超平面实现。由该结点生成深度为j+1的左、右结点，左子结点区域的$x^{(1)}$坐标对应的值小于切分点的子区域；右子结点区域的$x^{(1)}$坐标对应的值大于切分点的子区域。将落在切分超平面上的实例点保存在该结点。</li>
+<li>（3）直到两个区域没有实例存在时停止。</li>
+</ul>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>书中的方法是轮流按每个维度对某结点进行切分，各个维度（特征）可能会被重复利用来进行切分，当然此时的实例点范围不同，切分点也不同（中位数发生变化）</li>
+</ul>
+<p>对于kd构造的实例，其一书中的例子比较直观，如下<br><img src="/materials/img/knn/kd_tree.png" alt="kd_tree"><br>此外，在<a href="https://zh.wikipedia.org/wiki/K-d%E6%A0%91" target="_blank" rel="external">wiki</a>里的一幅三维空间的配图也是非常直观<br><img src="/materials/img/knn/kd_tree2.png" alt="kd_tree2"></p>
+<blockquote>
+<p>一个三维k-d树。第一次划分（红色）把根节点（白色）划分成两个节点，然后它们分别再次被划分（绿色）为两个子节点。最后这四个子节点的每一个都被划分（蓝色）为两个子节点。因为没有更进一步的划分，最后得到的八个节点称为叶子节点。</p>
+</blockquote>
+<h3 id="搜索kd树"><a href="#搜索kd树" class="headerlink" title="搜索kd树"></a>搜索kd树</h3><blockquote>
+<p>利用kd树可以省去对大部分的数据点的搜索，从而减少搜索的计算量</p>
+</blockquote>
+<h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<ul>
+<li>输入：已构造的kd树；目标点x；</li>
+<li>输出：x的最近邻</li>
+<li>（1）在kd树中找到包含目标点x的叶结点：思想有点像<strong>二分查找</strong>，从根节点出发，递归地向下访问kd树，若目标点x当前维的坐标小于切分点的坐标，则移动到左子节点，否则移动到右子节点，直到子节点为叶节点为止</li>
+<li>（2）以此叶节点为“当前最近点”</li>
+<li>（3）递归地向上回退，在每个节点执行以下操作：<ul>
+<li>（a）如果该结点保存的实例点比当前最近点距离目标点更近，则以该实例点为“当前最近点”</li>
+<li>（b）当前最近点一定存在于该结点一个子结点对应的区域。检查该子结点的父结点的另一子结点对应的区域是否有更近的点。即以目标点为球心，以目标点与当前最近点间的距离为半径的球体是否与另一子结点对应的区域相交。如果相交，可能在另一个子结点对应的区域中存在更近的点。移动到另一个子结点，接着递归地进行最邻近搜索。如果不相交，则向上回退。</li>
+</ul>
+</li>
+<li>（4）当回退到根结点，搜索结束，此时的当前最近结点即为x的最邻近点。</li>
+</ul>
+</blockquote>
+<p><em>Note:</em></p>
+<ul>
+<li>若实例点随机分布，kd树搜索的平均计算复杂度是<em>O(log N)</em>，<em>N</em>为训练实例数</li>
+<li>kd树更适用于训练实例数远大于空间维数时的k近邻搜索</li>
+</ul>
+<p>关于这个算法的理解最好还是看书上的例子3.3，基本思路是一个重复二分查找和回溯的过程，另外关于kd树的搜索，有一篇很不错的文章，详见<a href="https://zhuanlan.zhihu.com/p/23966698" target="_blank" rel="external">kd树的细致图文讲解</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;k近邻算法&quot;&gt;&lt;a href=&quot;#k近邻算法&quot; class=&quot;headerlink&quot; title=&quot;k近邻算法&quot;&gt;&lt;/a&gt;k近邻算法&lt;/h2&gt;&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
+    
+  </entry>
+  
+  <entry>
     <title>统计学习方法笔记(二) —— 感知机</title>
     <link href="http://yoursite.com/2017/06/03/Perceptron/"/>
     <id>http://yoursite.com/2017/06/03/Perceptron/</id>
     <published>2017-06-03T08:53:02.000Z</published>
-    <updated>2017-06-06T07:48:18.628Z</updated>
+    <updated>2017-06-07T08:45:09.062Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -59,7 +215,7 @@
 <li>另外关于范数、规范化的理解，这篇<a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">博文</a>写的深入浅出</li>
 </ul>
 <h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
-<p>输入：训练集$T={(x_1, y_1), (x_2, y_2),…,(x_N, y_N)}$，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
+<p>输入：训练集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
 </blockquote>
 <h4 id="几何解释-1"><a href="#几何解释-1" class="headerlink" title="几何解释"></a>几何解释</h4><p>当一个实例点被误分类，即位于分离超平面的错误的一侧时，则调整$w, b$的值，是分离超平面向该误分类点的一侧移动，以减少该误分类点与超平面间的距离，直至超平面越过该误分类点使其被正确分类。</p>
 <h4 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h4><ul>
@@ -101,7 +257,7 @@
 <li>实例点更新次数越多，意味着它距离分离超平面越接近，也就越难以正确分类，换言之，这种实例对学习结果影响最大（有点支持向量机中的支持向量的意思）。</li>
 </ul>
 <h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><blockquote>
-<p>输入：线性可分的数据集$T={(x_1, y_1), (x_2, y_2),…,(x_N, y_N)}$，其中$x_i \in R^n$,$y_i \in \lbrace +1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$</p>
+<p>输入：线性可分的数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace +1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$</p>
 <p>输出：$\alpha, b$；感知机模型$f(x) = sign(\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x + b)$,其中$\alpha=(alpla_1, alpla_2,…,alpla_N)^T$<br>(1): $\alpha \leftarrow 0$, $b \leftarrow 0$<br>(2): 计算所有样本内积形成的Gram矩阵$G$，</p>
 <p>$G=[x_i \cdot x_j ]_{N \times N}$</p>
 <p>(3): 在训练集中选取数据$(x_i, y_i)$，若</p>
@@ -138,6 +294,10 @@
     
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
