@@ -15,13 +15,13 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/06/knn/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
-<meta property="og:image" content="http://yoursite.com/materials/img/knn/kd_tree.png">
-<meta property="og:image" content="http://yoursite.com/materials/img/knn/kd_tree2.png">
-<meta property="og:updated_time" content="2017-06-07T10:22:58.776Z">
+<meta property="og:image" content="http://yoursite.com/materials/img/kNN/kd_tree.png">
+<meta property="og:image" content="http://yoursite.com/materials/img/kNN/kd_tree2.png">
+<meta property="og:updated_time" content="2017-06-07T10:27:30.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(三) —— K近邻">
 <meta name="twitter:description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
-<meta name="twitter:image" content="http://yoursite.com/materials/img/knn/kd_tree.png">
+<meta name="twitter:image" content="http://yoursite.com/materials/img/kNN/kd_tree.png">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -340,7 +340,7 @@ ga('send', 'pageview');
 <ul>
 <li>书中的方法是轮流按每个维度对某结点进行切分，各个维度（特征）可能会被重复利用来进行切分，当然此时的实例点范围不同，切分点也不同（中位数发生变化）</li>
 </ul>
-<p>对于kd构造的实例，其一书中的例子比较直观，如下<br><img src="/materials/img/knn/kd_tree.png" alt="kd_tree"><br>此外，在<a href="https://zh.wikipedia.org/wiki/K-d%E6%A0%91" target="_blank" rel="external">wiki</a>里的一幅三维空间的配图也是非常直观<br><img src="/materials/img/knn/kd_tree2.png" alt="kd_tree2"></p>
+<p>对于kd构造的实例，其一书中的例子比较直观，如下<br><img src="/materials/img/kNN/kd_tree.png" alt="kd_tree"><br>此外，在<a href="https://zh.wikipedia.org/wiki/K-d%E6%A0%91" target="_blank" rel="external">wiki</a>里的一幅三维空间的配图也是非常直观<br><img src="/materials/img/kNN/kd_tree2.png" alt="kd_tree2"></p>
 <blockquote>
 <p>一个三维k-d树。第一次划分（红色）把根节点（白色）划分成两个节点，然后它们分别再次被划分（绿色）为两个子节点。最后这四个子节点的每一个都被划分（蓝色）为两个子节点。因为没有更进一步的划分，最后得到的八个节点称为叶子节点。</p>
 </blockquote>
