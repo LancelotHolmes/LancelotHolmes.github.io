@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    <lastmod>2017-06-07T10:27:30.167Z</lastmod>
+    <lastmod>2017-06-08T08:32:56.996Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(三) —— K近邻</title>

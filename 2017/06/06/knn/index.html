@@ -17,7 +17,7 @@
 <meta property="og:description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
 <meta property="og:image" content="http://yoursite.com/materials/img/kNN/kd_tree.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/kNN/kd_tree2.png">
-<meta property="og:updated_time" content="2017-06-07T10:27:30.167Z">
+<meta property="og:updated_time" content="2017-06-08T08:32:56.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(三) —— K近邻">
 <meta name="twitter:description" content="k近邻算法概述 给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的k个实例，这k个实例的多数属于某个类，就把该输入实例分为这个类">
@@ -230,7 +230,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻算法"><span class="toc-number">1.</span> <span class="toc-text">k近邻算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻模型——对特征空间的划分"><span class="toc-number">2.</span> <span class="toc-text">k近邻模型——对特征空间的划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻法的三个基本要素"><span class="toc-number">3.</span> <span class="toc-text">k近邻法的三个基本要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#k值的选择"><span class="toc-number">3.1.</span> <span class="toc-text">k值的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#距离度量——实例点相似程度的反应"><span class="toc-number">3.2.</span> <span class="toc-text">距离度量——实例点相似程度的反应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类决策规则"><span class="toc-number">3.3.</span> <span class="toc-text">分类决策规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方法——kd树-k维树"><span class="toc-number">4.</span> <span class="toc-text">实现方法——kd树(k维树)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造kd树"><span class="toc-number">4.1.</span> <span class="toc-text">构造kd树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述-1"><span class="toc-number">4.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-1"><span class="toc-number">4.1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索kd树"><span class="toc-number">4.2.</span> <span class="toc-text">搜索kd树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-2"><span class="toc-number">4.2.1.</span> <span class="toc-text">算法</span></a></li></ol></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻算法"><span class="toc-number">1.</span> <span class="toc-text">k近邻算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻模型——对特征空间的划分"><span class="toc-number">2.</span> <span class="toc-text">k近邻模型——对特征空间的划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k近邻法的三个基本要素"><span class="toc-number">3.</span> <span class="toc-text">k近邻法的三个基本要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#k值的选择"><span class="toc-number">3.1.</span> <span class="toc-text">k值的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#距离度量——实例点相似程度的反应"><span class="toc-number">3.2.</span> <span class="toc-text">距离度量——实例点相似程度的反应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类决策规则"><span class="toc-number">3.3.</span> <span class="toc-text">分类决策规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方法——kd树-k维树"><span class="toc-number">4.</span> <span class="toc-text">实现方法——kd树(k维树)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造kd树"><span class="toc-number">4.1.</span> <span class="toc-text">构造kd树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述-1"><span class="toc-number">4.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-1"><span class="toc-number">4.1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索kd树"><span class="toc-number">4.2.</span> <span class="toc-text">搜索kd树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-2"><span class="toc-number">4.2.1.</span> <span class="toc-text">算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现——机器学习实战"><span class="toc-number">5.</span> <span class="toc-text">实现——机器学习实战</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -367,6 +367,19 @@ ga('send', 'pageview');
 <li>kd树更适用于训练实例数远大于空间维数时的k近邻搜索</li>
 </ul>
 <p>关于这个算法的理解最好还是看书上的例子3.3，基本思路是一个重复二分查找和回溯的过程，另外关于kd树的搜索，有一篇很不错的文章，详见<a href="https://zhuanlan.zhihu.com/p/23966698" target="_blank" rel="external">kd树的细致图文讲解</a></p>
+<h2 id="实现——机器学习实战"><a href="#实现——机器学习实战" class="headerlink" title="实现——机器学习实战"></a>实现——机器学习实战</h2><p>按照机器学习实战关于k-NN的章节实现了原始的k-NN分类器，并做了几个小实例：</p>
+<ul>
+<li>首先是一个基础的原理理解，对于二维空间的点按照坐标之间的距离进行分类，意图是理解k-NN的基本原理，即基于实例的学习算法，按照距离分类</li>
+<li>在实现了原始分类器的基础上构建小应用，使用约会网站的异性数据，针对三项特征来判断新输入的异性是否有魅力</li>
+<li>同样基于原始分类器，针对二进制点阵构成的数字图像文本文件进行识别和分类</li>
+<li>上述三个例子都是使用的同一个原始分类器，不同之处仅仅是输入的数据有所改变，此外为了使输入数据能够被原始分类器处理，针对不同数据的特征进行了不同的处理：<ul>
+<li>针对约会网站数据由于各项特征的取值范围不同可能对于距离计算产生影响所以进行了归一化操作</li>
+<li>对于图像文本文件将其由32*32的二进制点阵转换为1*1024的向量便于分类器处理</li>
+<li>此外还有一些基础的文件格式化为矩阵以及可视化操作</li>
+</ul>
+</li>
+</ul>
+<p>原始的Jupyter Notebook可以参考我的<a href="https://github.com/LancelotHolmes/MLinAction/blob/master/k-NN.ipynb" target="_blank" rel="external">github</a></p>
 
       
 
@@ -632,18 +645,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
@@ -652,7 +653,35 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">memo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,22 +698,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
