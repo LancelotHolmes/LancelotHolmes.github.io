@@ -36,9 +36,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -59,11 +59,11 @@
         
         <tag>ML</tag>
          
-        <tag>Perceptron</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>Perceptron</tag>
          
          
            
@@ -82,9 +82,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            

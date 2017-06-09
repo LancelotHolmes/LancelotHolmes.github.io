@@ -322,9 +322,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -454,11 +454,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
   </entry>
   
@@ -657,9 +657,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
