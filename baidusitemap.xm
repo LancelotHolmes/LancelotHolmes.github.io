@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/09/offer/</loc>
+    <lastmod>2017-06-09T03:07:56.633Z</lastmod>
+    <data>
+        <display>
+        <title>剑指offer阅读笔记</title>
+        <pubTime>2017-06-09T02:33:40.000Z</pubTime>
+        
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>校招</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/06/knn/</loc>
     <lastmod>2017-06-08T08:32:56.996Z</lastmod>
     <data>
@@ -13,9 +36,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -36,11 +59,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>Perceptron</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Perceptron</tag>
+        <tag>Note</tag>
          
          
            
@@ -59,9 +82,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            

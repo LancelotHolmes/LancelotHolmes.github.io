@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | Lancelot&#39;s Desert</title>
+  <title>剑指offer阅读笔记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="本文主要是个人针对《剑指offer》一书的一些笔记，并不涉及具体的题目或者方法，只是作为一个整体的知识点框架梳理，便于查缺补漏。 辅助网站 剑指offer第二版作者源代码（C++实现） 第一版面试题Java实现 牛客网上配套练习">
+<meta name="keywords" content="Coding,剑指offer,面试,校招">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指offer阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2017/06/09/offer/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="本文主要是个人针对《剑指offer》一书的一些笔记，并不涉及具体的题目或者方法，只是作为一个整体的知识点框架梳理，便于查缺补漏。 辅助网站 剑指offer第二版作者源代码（C++实现） 第一版面试题Java实现 牛客网上配套练习">
+<meta property="og:updated_time" content="2017-06-09T03:07:56.633Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="剑指offer阅读笔记">
+<meta name="twitter:description" content="本文主要是个人针对《剑指offer》一书的一些笔记，并不涉及具体的题目或者方法，只是作为一个整体的知识点框架梳理，便于查缺补漏。 辅助网站 剑指offer第二版作者源代码（C++实现） 第一版面试题Java实现 牛客网上配套练习">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -196,24 +197,19 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-offer" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      剑指offer阅读笔记
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/09/offer/" class="archive-article-date">
+
+        
+        <a href="/2017/06/09/offer/" class="archive-article-date">
   	<time datetime="2017-06-09T02:33:40.000Z" itemprop="datePublished">2017-06-09</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
@@ -221,16 +217,151 @@ ga('send', 'pageview');
 </a>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/09/offer/">剑指offer阅读笔记</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
 
-        <div class="article-info info-on-right">
-          
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#辅助网站"><span class="toc-number">1.</span> <span class="toc-text">辅助网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章"><span class="toc-number">2.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#面试形式-amp-流程"><span class="toc-number">2.1.</span> <span class="toc-text">面试形式&流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编程习惯-amp-调试能力"><span class="toc-number">2.2.</span> <span class="toc-text">编程习惯&调试能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目介绍"><span class="toc-number">2.3.</span> <span class="toc-text">项目介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术面"><span class="toc-number">2.4.</span> <span class="toc-text">技术面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5种素质"><span class="toc-number">2.4.1.</span> <span class="toc-text">5种素质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础"><span class="toc-number">2.4.2.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高质量代码"><span class="toc-number">2.4.3.</span> <span class="toc-text">高质量代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析-amp-思路——针对复杂问题"><span class="toc-number">2.4.4.</span> <span class="toc-text">分析&思路——针对复杂问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效率"><span class="toc-number">2.4.5.</span> <span class="toc-text">效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#软技能"><span class="toc-number">2.4.6.</span> <span class="toc-text">软技能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于提问（技术面）"><span class="toc-number">2.4.7.</span> <span class="toc-text">关于提问（技术面）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-——-基础知识"><span class="toc-number">3.</span> <span class="toc-text">第二章 —— 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#编程语言"><span class="toc-number">3.1.</span> <span class="toc-text">编程语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据结构"><span class="toc-number">3.2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法与数据操作"><span class="toc-number">3.3.</span> <span class="toc-text">算法与数据操作</span></a></li></ol></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <p><em>本文主要是个人针对《剑指offer》一书的一些笔记，并不涉及具体的题目或者方法，只是作为一个整体的知识点框架梳理，便于查缺补漏。</em></p>
+<h2 id="辅助网站"><a href="#辅助网站" class="headerlink" title="辅助网站"></a>辅助网站</h2><ul>
+<li><a href="https://github.com/zhedahht/CodingInterviewChinese2" target="_blank" rel="external">剑指offer第二版作者源代码（C++实现）</a></li>
+<li><a href="http://blog.csdn.net/derrantcm/article/details/46887821" target="_blank" rel="external">第一版面试题Java实现</a></li>
+<li><a href="https://www.nowcoder.com/ta/coding-interviews?page=1" target="_blank" rel="external">牛客网上配套练习</a><a id="more"></a>
+<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="面试形式-amp-流程"><a href="#面试形式-amp-流程" class="headerlink" title="面试形式&amp;流程"></a>面试形式&amp;流程</h3></li>
+<li>电面 ——&gt; 远程 ——&gt; 现场</li>
+<li>尽可能用形象化的语言把细节描述清楚</li>
+<li>不确定问题时，主动提问</li>
+</ul>
+<h3 id="编程习惯-amp-调试能力"><a href="#编程习惯-amp-调试能力" class="headerlink" title="编程习惯&amp;调试能力"></a>编程习惯&amp;调试能力</h3><ul>
+<li>编程前理清思路</li>
+<li>命名、缩进习惯</li>
+<li>测试在前、开发在后(编程前尽可能考虑多个测试用例)</li>
+</ul>
+<h3 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h3><ul>
+<li>STAR模型 —— 简短项目背景，突出自己所做的工作和成绩</li>
+</ul>
+<h3 id="技术面"><a href="#技术面" class="headerlink" title="技术面"></a>技术面</h3><h4 id="5种素质"><a href="#5种素质" class="headerlink" title="5种素质"></a>5种素质</h4><ul>
+<li>扎实的基础知识</li>
+<li>高质量代码</li>
+<li>分析问题时思路清晰</li>
+<li>能优化时间、空间效率</li>
+<li>学习、沟通能力</li>
+</ul>
+<h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><ul>
+<li>编程语言——熟悉程度</li>
+<li>数据结构：<strong>链表、树</strong>、栈、队列、哈希表</li>
+<li>算法：<ul>
+<li>查找、排序：<strong>二分查找、归并排序、快排</strong></li>
+<li>动态规划、贪心</li>
+</ul>
+</li>
+</ul>
+<h4 id="高质量代码"><a href="#高质量代码" class="headerlink" title="高质量代码"></a>高质量代码</h4><ul>
+<li>鲁棒性——<strong>检查空指针</strong></li>
+<li>特殊输入</li>
+<li>边界条件</li>
+<li>异常处理</li>
+</ul>
+<p><em>Note:</em></p>
+<ul>
+<li>考虑本身结构的取值范围</li>
+<li>输入变量的可能取值</li>
+<li>开发之前多想一些测试用例</li>
+</ul>
+<h4 id="分析-amp-思路——针对复杂问题"><a href="#分析-amp-思路——针对复杂问题" class="headerlink" title="分析&amp;思路——针对复杂问题"></a>分析&amp;思路——针对复杂问题</h4><ul>
+<li>画图使抽象问题形象化</li>
+<li>举例使抽象问题具体化</li>
+<li>分解使复杂问题简单化</li>
+</ul>
+<h4 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h4><ul>
+<li>首先要知道如何分析效率</li>
+<li>数值各种数据结构的优缺点、并能选择合适的数据结构解决问题</li>
+<li>熟练掌握常用的算法</li>
+</ul>
+<h4 id="软技能"><a href="#软技能" class="headerlink" title="软技能"></a>软技能</h4><ul>
+<li>沟通能力——思路、逻辑、合作</li>
+<li>学习能力：读书、新概念</li>
+<li>知识迁移能力</li>
+<li>抽象建模能力</li>
+<li>发散思维能力</li>
+</ul>
+<h4 id="关于提问（技术面）"><a href="#关于提问（技术面）" class="headerlink" title="关于提问（技术面）"></a>关于提问（技术面）</h4><ul>
+<li>忌<ul>
+<li>不要问与自己职位无关的问题</li>
+<li>不要问薪水（HR面再详谈）</li>
+<li>不要打听面试结果</li>
+</ul>
+</li>
+<li>荐<ul>
+<li>问与应聘职位或项目相关的问题</li>
+<li>事先搜集应聘职位、项目背景相关信息</li>
+<li>面试中留心面试官说过的话</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章-——-基础知识"><a href="#第二章-——-基础知识" class="headerlink" title="第二章 —— 基础知识"></a>第二章 —— 基础知识</h2><h3 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h3><p>语言面试的3种类型</p>
+<ul>
+<li>概念的理解：eg:关键字（特点及使用场合）</li>
+<li>分析代码运行结果</li>
+<li>写代码</li>
+</ul>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><ul>
+<li>数组&amp;字符串 —— 基本</li>
+<li><strong>链表&amp;树 —— 常考</strong>，代码鲁棒性</li>
+<li>栈 —— 递归</li>
+<li>队列 —— 广度优先搜索</li>
+</ul>
+<h3 id="算法与数据操作"><a href="#算法与数据操作" class="headerlink" title="算法与数据操作"></a>算法与数据操作</h3><ul>
+<li>实现方式：循环或递归</li>
+<li><strong>排序&amp;查找：重点（重中之重：二分查找、归并排序、快速排序）</strong></li>
+<li>回溯法 —— 递归、栈、二维数组（矩阵）、迷宫问题</li>
+<li>动态规划<ul>
+<li>分析：自上而下 ——&gt; 递归</li>
+<li>实现：自下而上 ——&gt; 循环</li>
+<li>涉及动态规划求解问题的四个特点<ul>
+<li>问题目标是求其<strong>最优解</strong></li>
+<li>整体问题的最优解<strong>依赖</strong>于各个<strong>子问题</strong>的最优解</li>
+<li>将大问题分解为若干小问题之后，小问题之间还存在相互重叠的更小的<strong>公共子问题</strong></li>
+<li>自上而下分析问题，自下而上求解问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>贪婪<ul>
+<li>分解子问题时存在特殊选择</li>
+<li>证明是最优解——需要较强的数学功底</li>
+</ul>
+</li>
+<li>位运算：与、或、异或、左移、右移<ul>
+<li>重要结论：将一个整数减去1后再与原来的整数做位与运算，得到的结果相当于把原整数的二进制表示中的最右边的1变成0</li>
+<li>常考点：涉及统计二进制表示中1的个数</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -254,678 +385,108 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/06/knn/" class="archive-article-date">
-  	<time datetime="2017-06-06T12:12:28.000Z" itemprop="datePublished">2017-06-06</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
     </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/06/knn/">统计学习方法笔记(三) —— K近邻</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">k-NN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/03/Perceptron/" class="archive-article-date">
-  	<time datetime="2017-06-03T08:53:02.000Z" itemprop="datePublished">2017-06-03</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
+      </div>
     </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/03/Perceptron/">统计学习方法笔记(二) —— 感知机</a>
-    </h1>
-  
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Perceptron</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/09/offer/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/02/Note-StatisticalML/" class="archive-article-date">
-  	<time datetime="2017-06-02T06:42:52.000Z" itemprop="datePublished">2017-06-02</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/Note-StatisticalML/">统计学习方法笔记(一)</a>
-    </h1>
+  
+    <a href="/2017/06/06/knn/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">统计学习方法笔记(三) —— K近邻</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/cv/" class="archive-article-date">
-  	<time datetime="2017-06-01T12:28:36.000Z" itemprop="datePublished">2017-06-01</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/cv/">关于交叉验证和模型选择的一点思考</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CV</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">model selection</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/parameter-hyperparameter/" class="archive-article-date">
-  	<time datetime="2017-06-01T12:24:11.000Z" itemprop="datePublished">2017-06-01</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/parameter-hyperparameter/">机器学习中模型的参数和超参数</a>
-    </h1>
-  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">memo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">parameter</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hyperparameter</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
 
-          
+        $
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/30/computer-life/" class="archive-article-date">
-  	<time datetime="2017-05-30T11:57:01.000Z" itemprop="datePublished">2017-05-30</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/30/computer-life/">计算机与生活</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IT</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/30/my-blog/" class="archive-article-date">
-  	<time datetime="2017-05-30T10:40:58.000Z" itemprop="datePublished">2017-05-30</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/30/my-blog/">来来来，我教你搭个博客好不好哇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/HumenOrRobot2/" class="archive-article-date">
-  	<time datetime="2017-05-29T12:52:19.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/HumenOrRobot2/">使用机器学习识别出拍卖场中作弊的机器人用户(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kaggle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/HumenOrRobot/" class="archive-article-date">
-  	<time datetime="2017-05-29T11:27:51.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/HumenOrRobot/">使用机器学习识别出拍卖场中作弊的机器人用户</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kaggle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/世界是平的/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:30:23.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/世界是平的/">平坦世界</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Economy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/三体/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:28:53.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/三体/">面壁者，我是你的破壁人</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/平凡的世界/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:27:42.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/平凡的世界/">平凡的世界，不平凡的凡人</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/韶华倾负，难舍皮囊/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:22:21.000Z" itemprop="datePublished">2017-05-29</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/韶华倾负，难舍皮囊/">韶华倾负，难舍皮囊</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Novel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -948,8 +509,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
