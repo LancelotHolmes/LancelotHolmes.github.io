@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-09T03:07:56.633Z</updated>
+  <updated>2017-06-11T07:37:32.522Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
+    <link href="http://yoursite.com/2017/06/09/naive-bayes/"/>
+    <id>http://yoursite.com/2017/06/09/naive-bayes/</id>
+    <published>2017-06-09T11:59:44.000Z</published>
+    <updated>2017-06-11T07:37:32.522Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<blockquote>
+<p>朴素贝叶斯法是基于<strong>贝叶斯定理</strong>和<strong>特征条件独立假设</strong>的分类方法。对于给定的训练数据集，首先基于特征条件独立假设学习输入/输出的<em>联合概率分布</em>，然后基于此模型，对给定的输入$x$，利用<em>贝叶斯定理</em>求出后验概率最大的输出$y$。</p>
+</blockquote>
+<p><em>关键词：贝叶斯定理、特征条件独立假设、实现简单、学习预测效率高、生成学习方法</em><br><a id="more"></a></p>
+<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><ul>
+<li>贝叶斯定理</li>
+<li>特征条件独立假设</li>
+</ul>
+<h3 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h3><p>若$X$是定义在输入空间$R^n$上的随机向量，$Y$是定义在输出空间$\lbrace c_1, c_2,…, c_K \rbrace$上的随机变量，$P(X, Y)$是$X$和$Y$的<strong>联合概率分布</strong>，训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $由$P(X, Y)$独立同分布产生。</p>
+<ul>
+<li>后验概率<br>现对于实例$x$需要判断其所属分类，即我们需要知道x属于哪个分类的概率最大，用公式表示就是求取<br>$$argmax_{c_k} P(Y=c_k | X=x)$$<br>即后验概率，其中$k=1, 2,…, K$表示所有可能分类，而对于求解$P(Y=c_k | X=x)$，根据贝叶斯定理，我们需要知道训练数据的：</li>
+<li>先验概率分布<br>$$P(Y=c_k),  k = 1,2,…,K$$</li>
+<li>条件概率分布，即每种分类下各个实例特征取不同值的概率<!-- $$P(X=x|Y=c_k) = P(X^1=x^1,...,X^n=x^n|Y=c_k)$$ -->
+$$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据贝叶斯定理进行计算求得后验概率</li>
+<li>贝叶斯定理<br>$$P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X|Y)P(Y)}{\sum P(Y)P(X|Y)}$$<br>即<br>$$P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum_k P(Y=c_k)P(X=x|Y=c_k)}$$<br>但是如果直接这么求解，由于条件概率分布涉及到大量的参数，所以其估计在实际中是不可行的，所以我们在这里进行了一个大胆的假设</li>
+</ul>
+<h3 id="条件独立性假设"><a href="#条件独立性假设" class="headerlink" title="条件独立性假设"></a>条件独立性假设</h3><p>假设用于分类的特征在类确定的条件下都是条件独立的，所以对于条件分布，我们有<br>$$P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)} | Y=c_k)=\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$$<br>这一假设使朴素贝叶斯法变得简单，但有时会牺牲一定的分类准确率</p>
+<p>如此一来我们就可以得到最终的朴素贝叶斯分类器<br>$$y=argmax_{c_k}P(Y=c_k) \prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$$</p>
+<h3 id="后验概率最大化"><a href="#后验概率最大化" class="headerlink" title="后验概率最大化"></a>后验概率最大化</h3><p>后验概率最大化等价于期望风险最小化，证明如下<br><img src="/materials/img/Naive_Bayes/post_prob.jpg" alt="post_prob"></p>
+<h2 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h2><h3 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h3><p>学习意味着估计先验概率和条件概率</p>
+<ul>
+<li>先验概率的极大似然估计<br>$$P(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)}{N}$$</li>
+<li>条件概率的极大似然估计<br>$$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^{N}I(x_i^{(j)}=a_{jl}, y_i=c_k)}{\sum_{i=1}^{N}I(y_i=c_k)}$$<br>其中假设第$j$个特征$x^{(j)}$可能取值的集合为$\lbrace a_{j1}, a_{j2},…,a_{jS_j}$，$j=1, 2,…,n;  l=1, 2,…,S_j;  k=1,2,…,K;   x_i^{(j)}$是第$i$个样本的第$j$个特征；$a_{jl}$为第$j$个特征可能取的第$l$个值，$I$为指示函数</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<ul>
+<li>输入：训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i=(x_i^{(1)}, x_i^{(2)},…,x_i^{(n)})^T,  x_i^{(j)}$是第$i$个样本的第$j$个特征，$x_i^{(j)} \in \lbrace a_{j1}, a_{j2},…,a_{jS_j}$，$a_{jl}$为第$j$个特征可能取的第$l$个值，$j=1, 2,…,n;  l=1, 2,…,S_j;  y_i \in \lbrace c_1, c_2,…, c_K \rbrace $; 实例$x$；</li>
+<li>输出：实例$x$的分类</li>
+<li>(1) 计算先验概率<br>$$P(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)}{N},  k = 1,2,…,K$$<br>计算条件概率<br>$$P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^{N}I(x_i^{(j)}=a_{jl}, y_i=c_k)}{\sum_{i=1}^{N}I(y_i=c_k)}$$</li>
+<li>(2) 对于给定的实例$x=(x^{(1)}, x^{(2)},…,x^{(n)})^T$，计算<br>$$P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$$</li>
+<li>(3) 确定实例$x$的类<br>$$y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$$</li>
+</ul>
+</blockquote>
+<h3 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h3><p>由于用极大似然估计可能会出现索要估计的概率值为0的情况(条件概率的某种取值的统计量为0)，会影响到后验概率的计算结果，使分类产生偏差，我们可以采取的做法是在随机变量各个取值的<strong>频数</strong>上赋予一个正数$\lambda$，即贝叶斯估计，此时</p>
+<ul>
+<li>条件概率的贝叶斯估计为<br>$$P_{\lambda}(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^{N}I(x_i^{(j)}=a_{jl}, y_i=c_k)+ \lambda}{\sum_{i=1}^{N}I(y_i=c_k)+S_j \lambda}$$</li>
+<li>先验概率的贝叶斯估计<br>$$P_{\lambda}(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)+\lambda}{N+K\lambda}$$<br>常取$\lambda=1$称为拉普拉斯平滑</li>
+</ul>
+<p><em>Note:朴素贝叶斯法中假设输入变量都是条件独立的，如果假设他们之间存在概率依存关系，模型就变成了<strong>贝叶斯网络</strong>。</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;朴素贝叶斯法是基于&lt;strong&gt;贝叶斯定理&lt;/strong&gt;和&lt;strong&gt;特征条件独立假设&lt;/strong&gt;的分类方法。对于给定的训练数据集，首先基于特征条件独立假设学习输入/输出的&lt;em&gt;联合概率分布&lt;/em&gt;，然后基于此模型，对给定的输入$x$，利用&lt;em&gt;贝叶斯定理&lt;/em&gt;求出后验概率最大的输出$y$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;关键词：贝叶斯定理、特征条件独立假设、实现简单、学习预测效率高、生成学习方法&lt;/em&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
+    
+  </entry>
   
   <entry>
     <title>剑指offer阅读笔记</title>
@@ -322,9 +396,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -454,11 +528,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -657,9 +731,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   

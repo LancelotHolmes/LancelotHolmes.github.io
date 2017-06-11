@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
+    <lastmod>2017-06-11T07:37:32.522Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
+        <pubTime>2017-06-09T11:59:44.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/09/offer/</loc>
     <lastmod>2017-06-09T03:07:56.633Z</lastmod>
     <data>
@@ -36,9 +59,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -59,11 +82,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>Perceptron</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Perceptron</tag>
+        <tag>Note</tag>
          
          
            
@@ -82,9 +105,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
