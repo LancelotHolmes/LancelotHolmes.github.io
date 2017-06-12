@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-11T07:37:32.522Z</updated>
+  <updated>2017-06-12T13:50:08.975Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/09/naive-bayes/"/>
     <id>http://yoursite.com/2017/06/09/naive-bayes/</id>
     <published>2017-06-09T11:59:44.000Z</published>
-    <updated>2017-06-11T07:37:32.522Z</updated>
+    <updated>2017-06-12T13:50:08.975Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -64,6 +64,22 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <li>先验概率的贝叶斯估计<br>$$P_{\lambda}(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)+\lambda}{N+K\lambda}$$<br>常取$\lambda=1$称为拉普拉斯平滑</li>
 </ul>
 <p><em>Note:朴素贝叶斯法中假设输入变量都是条件独立的，如果假设他们之间存在概率依存关系，模型就变成了<strong>贝叶斯网络</strong>。</em></p>
+<h3 id="实现——机器学习实战"><a href="#实现——机器学习实战" class="headerlink" title="实现——机器学习实战"></a>实现——机器学习实战</h3><p>按照机器学习实战第四章节的内容实现了基础的朴素贝叶斯分类器<br>不同于k-nn和感知机将实力硬性的划分到某一类别，朴素贝叶斯分类器是返回某一实例属于某类别的概率，此外，朴素贝叶斯分类器是一种生成模型，在数据较为缺少的情况下依然有效。</p>
+<ul>
+<li>本实验主要是针对文档的分类<ul>
+<li>根据文档中的词构建词集、词袋子</li>
+<li>涉及文档的词向量的解析、提取</li>
+<li>将文档中每一个词作为特征，计算先验概率、条件概率</li>
+<li>实际应用中使用对数处理了下溢出等问题</li>
+</ul>
+</li>
+<li>实例<ul>
+<li>使用朴素贝叶斯分类器过滤侮辱性留言</li>
+<li>使用朴素贝叶斯分类器过滤垃圾邮件</li>
+<li>使用朴素贝叶斯分类器从个人广告中获取地域倾向<br>具体实验代码见<a href="https://github.com/LancelotHolmes/MLinAction/blob/master/Naive_Bayes.ipynb" target="_blank" rel="external">github</a></li>
+</ul>
+</li>
+</ul>
 ]]></content>
     
     <summary type="html">

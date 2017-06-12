@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
-    <lastmod>2017-06-11T07:37:32.522Z</lastmod>
+    <lastmod>2017-06-12T13:50:08.975Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
