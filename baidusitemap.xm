@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
+    <lastmod>2017-06-20T13:33:42.440Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(五) —— 决策树</title>
+        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    <lastmod>2017-06-20T13:18:35.617Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(一)</title>
+        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
     <lastmod>2017-06-12T13:50:08.975Z</lastmod>
     <data>
@@ -82,32 +126,11 @@
         
         <tag>ML</tag>
          
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
         <tag>Perceptron</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-06-02T13:43:42.567Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(一)</title>
-        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            
