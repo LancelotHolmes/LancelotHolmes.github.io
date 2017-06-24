@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot2/roc_stacking2.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot2/roc_voting.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot2/point.png">
-<meta property="og:updated_time" content="2017-05-30T02:59:47.183Z">
+<meta property="og:updated_time" content="2017-06-24T03:17:17.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用机器学习识别出拍卖场中作弊的机器人用户(二)">
 <meta name="twitter:description" content="本文承接上一篇文章:使用机器学习识别出拍卖场中作弊的机器人用户 本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及">
@@ -290,11 +290,6 @@ ga('send', 'pageview');
 <th>country</th>
 <th>ip</th>
 <th>url</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
 </tr>
 </thead>
 <tbody>
@@ -678,7 +673,23 @@ mean model process time:  4.2736 s
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">submit(train_full, test_full, ytrain, test_ids)</div></pre></td></tr></table></figure>
 <p>最终结果提交到kaggle上进行评分，得分如下<br><img src="/materials/img/HumenOrRobot2/point.png" alt="point"></p>
 <p>以上就是整个完整的流程，当然还有很多模型可以尝试，很多聚合方法也可以使用，此外，特征工程部分还有很多空间可以挖掘，就留给大家去探索啦~</p>
-<p>参考资料<br><a href="/materials/img/HumenOrRobot2/roc_forest.png">1</a> Chen, K. T., Pao, H. K. K., &amp; Chang, H. C. (2008, October). Game bot identification based on manifold learning. In Proceedings of the 7th ACM SIGCOMM Workshop on Network and System Support for Games (pp. 21-26). ACM.<br><a href="/materials/img/HumenOrRobot2/roc_gbm.png">2</a> Alayed, H., Frangoudes, F., &amp; Neuman, C. (2013, August). Behavioral-based cheating detection in online first person shooters using machine learning techniques. In Computational Intelligence in Games (CIG), 2013 IEEE Conference on (pp. 1-8). IEEE.<br><a href="/materials/img/HumenOrRobot2/roc_xgb.png">3</a> <a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data</a><br><a href="/materials/img/HumenOrRobot2/roc_lgbm.png">4</a> <a href="http://stats.stackexchange.com/a/132832/152084" target="_blank" rel="external">http://stats.stackexchange.com/a/132832/152084</a><br><a href="/materials/img/HumenOrRobot2/model_performance.png">5</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/time.png">6</a> <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" rel="external">https://en.wikipedia.org/wiki/Random_forest</a><br><a href="/materials/img/HumenOrRobot2/roc_epoch.png">7</a> <a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="external">https://en.wikipedia.org/wiki/Gradient_boosting</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking.png">8</a> <a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking2.png">9</a> <a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a><br><a href="/materials/img/HumenOrRobot2/roc_voting.png">10</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/point.png">11</a> <a href="http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe" target="_blank" rel="external">http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe</a><br>[12] <a href="http://pandas.pydata.org/pandas-docs/stable/missing_data.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/missing_data.html</a><br>[13] <a href="http://stackoverflow.com/a/18272653/6653189" target="_blank" rel="external">http://stackoverflow.com/a/18272653/6653189</a><br>[14] <a href="http://www.cnblogs.com/jasonfreak/p/5720137.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5720137.html</a> </p>
+<p>参考资料</p>
+<ul>
+<li>Chen, K. T., Pao, H. K. K., &amp; Chang, H. C. (2008, October). Game bot identification based on manifold learning. In Proceedings of the 7th ACM SIGCOMM Workshop on Network and System Support for Games (pp. 21-26). ACM.</li>
+<li>Alayed, H., Frangoudes, F., &amp; Neuman, C. (2013, August). Behavioral-based cheating detection in online first person shooters using machine learning techniques. In Computational Intelligence in Games (CIG), 2013 IEEE Conference on (pp. 1-8). IEEE.</li>
+<li><a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data</a></li>
+<li><a href="http://stats.stackexchange.com/a/132832/152084" target="_blank" rel="external">http://stats.stackexchange.com/a/132832/152084</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" rel="external">https://en.wikipedia.org/wiki/Random_forest</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="external">https://en.wikipedia.org/wiki/Gradient_boosting</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a></li>
+<li><a href="http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe" target="_blank" rel="external">http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe</a></li>
+<li><a href="http://pandas.pydata.org/pandas-docs/stable/missing_data.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/missing_data.html</a></li>
+<li><a href="http://stackoverflow.com/a/18272653/6653189" target="_blank" rel="external">http://stackoverflow.com/a/18272653/6653189</a></li>
+<li><a href="http://www.cnblogs.com/jasonfreak/p/5720137.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5720137.html</a> </li>
+</ul>
 
       
 
@@ -933,14 +944,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -953,23 +956,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -977,31 +976,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1017,7 +992,47 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">memo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">

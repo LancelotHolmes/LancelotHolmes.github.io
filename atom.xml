@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-20T13:33:42.440Z</updated>
+  <updated>2017-06-22T02:58:57.245Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>概率统计小记</title>
+    <link href="http://yoursite.com/2017/06/22/Statistics/"/>
+    <id>http://yoursite.com/2017/06/22/Statistics/</id>
+    <published>2017-06-22T02:53:49.000Z</published>
+    <updated>2017-06-22T02:58:57.245Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>似然函数<br><a href="https://www.zhihu.com/question/54082000" target="_blank" rel="external">知乎上的一些理解</a><br><a href="https://zh.wikipedia.org/wiki/%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0" target="_blank" rel="external">wiki</a></li>
+<li>最大似然估计<br><a href="https://www.zhihu.com/question/20447622" target="_blank" rel="external">知乎</a><br><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="external">wiki</a></li>
+<li>最大后验概率<br><a href="http://blog.csdn.net/upon_the_yun/article/details/8915283" target="_blank" rel="external">最大似然估计 vs 最大后验概率</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;似然函数&lt;br&gt;&lt;a href=&quot;https://www.zhihu.com/question/54082000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;知乎上的一些理解&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://zh.wikipe
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>统计学习方法笔记(五) —— 决策树</title>
     <link href="http://yoursite.com/2017/06/19/Decision-Tree/"/>
     <id>http://yoursite.com/2017/06/19/Decision-Tree/</id>
     <published>2017-06-19T08:41:25.000Z</published>
-    <updated>2017-06-20T13:33:42.440Z</updated>
+    <updated>2017-06-20T13:38:30.068Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1231,13 +1261,13 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     </summary>
     
     
+      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
+    
       <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
       <category term="yilia" scheme="http://yoursite.com/tags/yilia/"/>
-    
-      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
     
   </entry>
   
@@ -1246,7 +1276,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/05/29/HumenOrRobot2/"/>
     <id>http://yoursite.com/2017/05/29/HumenOrRobot2/</id>
     <published>2017-05-29T12:52:19.000Z</published>
-    <updated>2017-05-30T02:59:47.183Z</updated>
+    <updated>2017-06-24T03:17:17.146Z</updated>
     
     <content type="html"><![CDATA[<!-- 本文承接上一篇文章:[使用机器学习识别出拍卖场中作弊的机器人用户](../HumenOrRobot) -->
 <p>本文承接上一篇文章:<a href="/2017/05/29/HumenOrRobot/" title="使用机器学习识别出拍卖场中作弊的机器人用户">使用机器学习识别出拍卖场中作弊的机器人用户</a></p>
@@ -1292,11 +1322,6 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <th>country</th>
 <th>ip</th>
 <th>url</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
 </tr>
 </thead>
 <tbody>
@@ -1680,7 +1705,23 @@ mean model process time:  4.2736 s
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">submit(train_full, test_full, ytrain, test_ids)</div></pre></td></tr></table></figure>
 <p>最终结果提交到kaggle上进行评分，得分如下<br><img src="/materials/img/HumenOrRobot2/point.png" alt="point"></p>
 <p>以上就是整个完整的流程，当然还有很多模型可以尝试，很多聚合方法也可以使用，此外，特征工程部分还有很多空间可以挖掘，就留给大家去探索啦~</p>
-<p>参考资料<br><a href="/materials/img/HumenOrRobot2/roc_forest.png">1</a> Chen, K. T., Pao, H. K. K., &amp; Chang, H. C. (2008, October). Game bot identification based on manifold learning. In Proceedings of the 7th ACM SIGCOMM Workshop on Network and System Support for Games (pp. 21-26). ACM.<br><a href="/materials/img/HumenOrRobot2/roc_gbm.png">2</a> Alayed, H., Frangoudes, F., &amp; Neuman, C. (2013, August). Behavioral-based cheating detection in online first person shooters using machine learning techniques. In Computational Intelligence in Games (CIG), 2013 IEEE Conference on (pp. 1-8). IEEE.<br><a href="/materials/img/HumenOrRobot2/roc_xgb.png">3</a> <a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data</a><br><a href="/materials/img/HumenOrRobot2/roc_lgbm.png">4</a> <a href="http://stats.stackexchange.com/a/132832/152084" target="_blank" rel="external">http://stats.stackexchange.com/a/132832/152084</a><br><a href="/materials/img/HumenOrRobot2/model_performance.png">5</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/time.png">6</a> <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" rel="external">https://en.wikipedia.org/wiki/Random_forest</a><br><a href="/materials/img/HumenOrRobot2/roc_epoch.png">7</a> <a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="external">https://en.wikipedia.org/wiki/Gradient_boosting</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking.png">8</a> <a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster</a><br><a href="/materials/img/HumenOrRobot2/roc_stacking2.png">9</a> <a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a><br><a href="/materials/img/HumenOrRobot2/roc_voting.png">10</a> <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a><br><a href="/materials/img/HumenOrRobot2/point.png">11</a> <a href="http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe" target="_blank" rel="external">http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe</a><br>[12] <a href="http://pandas.pydata.org/pandas-docs/stable/missing_data.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/missing_data.html</a><br>[13] <a href="http://stackoverflow.com/a/18272653/6653189" target="_blank" rel="external">http://stackoverflow.com/a/18272653/6653189</a><br>[14] <a href="http://www.cnblogs.com/jasonfreak/p/5720137.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5720137.html</a> </p>
+<p>参考资料</p>
+<ul>
+<li>Chen, K. T., Pao, H. K. K., &amp; Chang, H. C. (2008, October). Game bot identification based on manifold learning. In Proceedings of the 7th ACM SIGCOMM Workshop on Network and System Support for Games (pp. 21-26). ACM.</li>
+<li>Alayed, H., Frangoudes, F., &amp; Neuman, C. (2013, August). Behavioral-based cheating detection in online first person shooters using machine learning techniques. In Computational Intelligence in Games (CIG), 2013 IEEE Conference on (pp. 1-8). IEEE.</li>
+<li><a href="https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data" target="_blank" rel="external">https://www.kaggle.com/c/facebook-recruiting-iv-human-or-bot/data</a></li>
+<li><a href="http://stats.stackexchange.com/a/132832/152084" target="_blank" rel="external">http://stats.stackexchange.com/a/132832/152084</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" rel="external">https://en.wikipedia.org/wiki/Random_forest</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="external">https://en.wikipedia.org/wiki/Gradient_boosting</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster" target="_blank" rel="external">https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-for-tree-booster</a></li>
+<li><a href="https://github.com/Microsoft/LightGBM" target="_blank" rel="external">https://github.com/Microsoft/LightGBM</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">https://en.wikipedia.org/wiki/Receiver_operating_characteristic</a></li>
+<li><a href="http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe" target="_blank" rel="external">http://stackoverflow.com/questions/29530232/python-pandas-check-if-any-value-is-nan-in-dataframe</a></li>
+<li><a href="http://pandas.pydata.org/pandas-docs/stable/missing_data.html" target="_blank" rel="external">http://pandas.pydata.org/pandas-docs/stable/missing_data.html</a></li>
+<li><a href="http://stackoverflow.com/a/18272653/6653189" target="_blank" rel="external">http://stackoverflow.com/a/18272653/6653189</a></li>
+<li><a href="http://www.cnblogs.com/jasonfreak/p/5720137.html" target="_blank" rel="external">http://www.cnblogs.com/jasonfreak/p/5720137.html</a> </li>
+</ul>
 ]]></content>
     
     <summary type="html">
