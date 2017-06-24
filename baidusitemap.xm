@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
-    <lastmod>2017-06-24T03:17:17.146Z</lastmod>
+    <lastmod>2017-06-24T11:52:43.995Z</lastmod>
     <data>
         <display>
         <title>使用机器学习识别出拍卖场中作弊的机器人用户(二)</title>
@@ -233,13 +233,13 @@
         <title>来来来，我教你搭个博客好不好哇</title>
         <pubTime>2017-05-30T10:40:58.000Z</pubTime>
         
-        <tag>Coding</tag>
-         
         <tag>blog</tag>
          
         <tag>hexo</tag>
          
         <tag>yilia</tag>
+         
+        <tag>Coding</tag>
          
          
            
