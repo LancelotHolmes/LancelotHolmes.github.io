@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
+    <lastmod>2017-06-24T12:05:02.480Z</lastmod>
+    <data>
+        <display>
+        <title>使用机器学习识别出拍卖场中作弊的机器人用户</title>
+        <pubTime>2017-05-29T11:27:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Kaggle</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
     <lastmod>2017-06-24T11:52:43.995Z</lastmod>
     <data>
@@ -259,27 +280,6 @@
         <tag>Reading</tag>
          
         <tag>IT</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
-    <lastmod>2017-05-30T06:50:50.126Z</lastmod>
-    <data>
-        <display>
-        <title>使用机器学习识别出拍卖场中作弊的机器人用户</title>
-        <pubTime>2017-05-29T11:27:51.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Kaggle</tag>
-         
-        <tag>Python</tag>
          
          
            
