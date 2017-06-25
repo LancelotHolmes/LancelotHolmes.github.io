@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/25/JData/</loc>
+    <lastmod>2017-06-25T11:00:11.874Z</lastmod>
+    <data>
+        <display>
+        <title>京东JData算法大赛</title>
+        <pubTime>2017-06-25T06:04:31.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>JData</tag>
+         
+        <tag>比赛</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
     <lastmod>2017-06-24T12:05:02.480Z</lastmod>
     <data>
