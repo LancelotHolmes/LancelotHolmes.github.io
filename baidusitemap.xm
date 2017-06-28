@@ -3,6 +3,26 @@
 
 
     
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-06-27T03:00:25.551Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://yoursite.com/2017/06/25/JData/</loc>
     <lastmod>2017-06-25T11:00:11.874Z</lastmod>
@@ -308,7 +328,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://yoursite.com/2017/05/29/%E4%B8%96%E7%95%8C%E6%98%AF%E5%B9%B3%E7%9A%84/</loc>

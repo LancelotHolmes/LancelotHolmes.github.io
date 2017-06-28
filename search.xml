@@ -3,6 +3,22 @@
   
     
     <entry>
+      <title><![CDATA[基础算法小记]]></title>
+      <url>/2017/06/27/basic-algorithm/</url>
+      <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Note </tag>
+            
+            <tag> algorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[京东JData算法大赛]]></title>
       <url>/2017/06/25/JData/</url>
       <content type="html"><![CDATA[<h2 id="比赛简介"><a href="#比赛简介" class="headerlink" title="比赛简介"></a>比赛简介</h2><blockquote>
