@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: IT | Lancelot&#39;s Desert</title>
+  <title>统计学习方法笔记(八) —— 提升方法 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/tags/IT/index.html">
+  <meta name="description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
+<meta name="keywords" content="ML,decision tree,统计学习方法,Note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习方法笔记(八) —— 提升方法">
+<meta property="og:url" content="http://yoursite.com/2017/06/29/boosting/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
+<meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis1.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis2.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis3.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg1.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg2.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg3.jpg">
+<meta property="og:updated_time" content="2017-06-30T08:27:45.852Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="统计学习方法笔记(八) —— 提升方法">
+<meta name="twitter:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
+<meta name="twitter:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -192,69 +200,355 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-boosting" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      统计学习方法笔记(八) —— 提升方法
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/30/computer-life/" class="archive-article-date">
-  	<time datetime="2017-05-30T11:57:01.000Z" itemprop="datePublished">2017-05-30</time>
+
+        
+        <a href="/2017/06/29/boosting/" class="archive-article-date">
+  	<time datetime="2017-06-29T05:45:11.000Z" itemprop="datePublished">2017-06-29</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
 </a>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/30/computer-life/">计算机与生活</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
 
-        <div class="article-info info-on-right">
-          
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost——Adaptive-Boosting"><span class="toc-number">1.</span> <span class="toc-text">AdaBoost——Adaptive Boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练误差分析"><span class="toc-number">1.3.</span> <span class="toc-text">训练误差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分步算法"><span class="toc-number">1.4.</span> <span class="toc-text">前向分步算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-1"><span class="toc-number">1.4.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前向分步算法与AdaBoost"><span class="toc-number">1.4.3.</span> <span class="toc-text">前向分步算法与AdaBoost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升树"><span class="toc-number">2.</span> <span class="toc-text">提升树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-2"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升"><span class="toc-number">2.3.</span> <span class="toc-text">梯度提升</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#由来"><span class="toc-number">2.3.1.</span> <span class="toc-text">由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法（回归树）"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法（回归树）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<blockquote>
+<p>在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。</p>
+<p>“三个臭皮匠，顶个诸葛亮”</p>
+</blockquote>
+<p><strong>关键词：强可学习、弱可学习、PAC(probably approximately correct)</strong></p>
+<p>由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算法’？”<br><a id="more"></a></p>
+<blockquote>
+<p>提升方法就是从弱学习算法出发，反复学习(改变训练数据的权值分布)，得到一系列弱分类器，然后组合这些弱分类器，构成一个强分类器；</p>
+</blockquote>
+<p>提升方法需要解决的两个问题：</p>
+<ul>
+<li>在每一轮训练中，如何改变训练数据的权值/概率分布？</li>
+<li>在得到一系列弱分类器后，如何将弱分类器组合成一个强分类器？</li>
+</ul>
+<h2 id="AdaBoost——Adaptive-Boosting"><a href="#AdaBoost——Adaptive-Boosting" class="headerlink" title="AdaBoost——Adaptive Boosting"></a>AdaBoost——Adaptive Boosting</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>针对提升方法要截距的两个问题，AdaBoost的做法是这样的（两个‘权值’）</p>
+<ul>
+<li>提高那些被前一轮弱分类器错误分类样本的权值，而降低那些被正确分类样本的权值。（让被错误分类的样本得到当前弱分类器更多的‘关注’）</li>
+<li>AdaBoost采取加权多数表决的方法来组合弱分类器：加大分类误差率小的弱分类器的权值</li>
+</ul>
+<p><em>Notes:由上述基本思路可以发现，对于AdaBoost算法而言，其中最核心的部分是<strong>两个权值</strong>的求解，一个是每一轮用于训练基分类器的训练数据的样本的权值分布，而另一个则是最终组合各个基分类器时代表各个基分类器的‘话语权’的分类器的权重，而这两者都跟每一轮的基分类器的分类错误、训练误差相关，样本的权值分布根据前一轮基分类器的错误来进行调整，是一种‘弥补前人错误’的体现，而基分类器的权重则是收到每一轮训练的基分类器在该轮的分类误差影响，分类误差越小的基分类器自然可信度越高，所以最终我们组合基分类器时给它赋予的‘话语权’越大。</em></p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<ul>
+<li>输入：<ul>
+<li>训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n, y_i \in \lbrace -1, +1 \rbrace$;</li>
+<li>弱学习算法</li>
+</ul>
+</li>
+<li>输出：最终分类器$G(x)$</li>
+<li>(1) 初始化训练样本的权值分布为<br>$$D_1=(w_{11}, w_{12},…,w_{1N}), w_{1i}=\frac{1}{N}, i=1,2,…,N$$<br>即各个训练样本的权重均等</li>
+<li>(2) 对$m=1,2,…,M,  m$表示训练轮数(亦即基分类器个数，因为每一轮产生一个基分类器)：<ul>
+<li>使用具有权值分布$D_m$的训练数据集学习，得到基本分类器$G_m(x)$</li>
+<li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即分类错误的样本*该样本的权重之和</li>
+<li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导</li>
+<li>更新训练数据集的权值分布<br>$$D_{m+1}=(w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N})$$<br>如果$G_m(x_i)=y_i$那么$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{-\alpha_m}$$否则$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{\alpha_m}$$</li>
+</ul>
+</li>
+</ul>
+<p>如果将权重更新简化表示就是<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>其中$Z_m$是规范化因子，用来使权重分布成为一个概率分布<br>$$Z_m=\sum_{i=1}^Nw_{m,i}exp(-\alpha_my_iG_m(x_i))$$</p>
+<ul>
+<li>(3) 构建基本分类器的线性组合<br>$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$<br>得到最终分类器<br>$$G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))$$</li>
+</ul>
+</blockquote>
+<p><em>Notes:</em></p>
+<ul>
+<li>关于权值分布更新的计算：由于$Z_m$是未规范化的权值分布更新结果之和，所以一般先通过<br>$$\acute{w_{m+1,i}}=w_{m,i}exp(-\alpha_my_iG_m(x_i))$$<br>进一步由$$Z_m=\sum_{i=1}^N\acute{w_{m+1,i}}$$求得$Z_m$，最后将$\acute{w_{m+1,i}}$均除以$Z_m$即得到$w_{m+1,i}$的值，其实本质上就是一个规范化的过程</li>
+<li>训练结束的条件：一般是基分类器的组合分类器分类错误率足够小或者达到指定的基分类器数目（亦即迭代次数m）时即停止迭代训练</li>
+<li>由上述算法可知AdaBoost的两大特点<ul>
+<li>不改变所给的训练数据，而不断改变训练数据权值的分布，使得训练数据在基本分类器的学习中起不同的作用（与bagging的区别）</li>
+<li>利用基本分类器的线性组合构建最终的分类器（与GBDT的区别）</li>
+</ul>
+</li>
+<li>$f(x)$的符号决定实例的类别，其绝对值表示分类的确信度</li>
+<li>关于上述算法流程的熟悉，可以通过书上P140简单的例子或者《机器学习实战》一书中对应AdaBoost实现的部分来感受一下</li>
+</ul>
+<h3 id="训练误差分析"><a href="#训练误差分析" class="headerlink" title="训练误差分析"></a>训练误差分析</h3><p>即证明</p>
+<blockquote>
+<ul>
+<li>AdaBoost能在学习过程中不断减少训练误差，即在训练数据集上的分类误差率（关于这一点进一步引出了AdaBoost是否不会过拟合的<a href="http://blog.sina.com.cn/s/blog_6ae183910101chcg.html" target="_blank" rel="external">讨论</a>）</li>
+<li>AdaBoost的训练误差是以指数速率下降的</li>
+</ul>
+</blockquote>
+<p><img src="/materials/img/AdaBoost/error_analysis1.jpg" alt="error_analysis1"><br><img src="/materials/img/AdaBoost/error_analysis2.jpg" alt="error_analysis2"><br><img src="/materials/img/AdaBoost/error_analysis3.jpg" alt="error_analysis3"></p>
+<p>由上面两个定理，可以得到推论</p>
+<blockquote>
+<p>如果存在$\gamma&gt;0$,对所有$m$有$\gamma_m \leq \gamma$(原书这里是$\gamma_m \geq \gamma$，但个人感觉应该是$\leq$才能推得$exp(-2\sum_{m=1}^M \gamma_m^2) \leq exp(-2M\gamma^2)$),则<br>$$\frac{1}{N}\sum_{i=1}^NI(G(x_i) \neq y_i) \leq exp(-2M\gamma^2)$$</p>
+</blockquote>
+<p>因为<br>$$\frac{1}{N}\sum_{i=1}^NI(G(x_i) \neq y_i) \leq \prod_mZ_m \leq exp(-2\sum_{m=1}^M \gamma_m^2) \leq exp(-2M\gamma^2)$$<br>这也表明在此条件下AdaBoost的训练误差是一直输速率下降的</p>
+<p><em>Notes:</em></p>
+<ul>
+<li>AdaBoost算法不需要知道下届$\gamma$</li>
+<li>AdaBoost具有适应性，即它能适应弱分类器各自的训练误差率，这也是它的名字Adaptive Boosting的由来</li>
+</ul>
+<h3 id="前向分步算法"><a href="#前向分步算法" class="headerlink" title="前向分步算法"></a>前向分步算法</h3><blockquote>
+<p>可以认为AdaBoost算法是模型为加法模型，损失函数为指数函数，学习算法为前向分步算法时的二类分类学习方法。</p>
+</blockquote>
+<h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<li>假设现在在给定训练数据和损失函数$L(y, f(x))$的条件下，要学习一个加法模型<br>$$f(x)=\sum_{m=1}^{M}\beta_mb(x;\gamma_m)$$<br>其中$b(x;\gamma_m)$为基函数，$\gamma_m$为基函数的参数，$\beta_m$为基函数的系数</li>
+<li>学习该加法模型的问题可以转化为经验风险极小化即损失函数极小化问题<br>$$min_{\beta_m, \gamma_m}\sum_{i=1}^{N}L(y_i,\sum_{m=1}^{M}\beta_mb(x_i;\gamma_m))$$</li>
+<li>而上述问题是一个<strong>需要同时求解从$m=1$到$M$所有参数$\beta_m, \gamma_m$的优化问题</strong>，较为复杂；</li>
+<li>而前向分步算法的思想就是，针对该加法模型，从前到后，<strong>每一步仅学习一个基函数及其参数，逐步逼近上述优化目标函数式</strong>，如此简化优化的复杂度，即每一步只需优化损失函数<br>$$min_{\beta, \gamma}\sum_{i=1}^{N}L(y_i,\beta b(x_i;\gamma))$$</li>
+</ul>
+<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<ul>
+<li>输入：<ul>
+<li>训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $</li>
+<li>损失函数$L(y, f(x))$</li>
+<li>基函数集$b(x;\gamma)$</li>
+</ul>
+</li>
+<li>输出：加法模型$f(x)$</li>
+<li>(1) 初始化$f_0(x)=0$</li>
+<li>(2) 对$m=1,2,…,M$<ul>
+<li>极小化损失函数<br>$$(\beta_m, \gamma_m)=argmin_{\beta, \gamma}\sum_{i=1}^{N}L(y_i,f_{m-1}(x_i)+\beta b(x_i;\gamma))$$得到参数$\beta_m, \gamma_m$</li>
+<li>更新<br>$$f_m(x)=f_{m-1}(x)+\beta_m b(x;\gamma_m)$$</li>
+</ul>
+</li>
+<li>(3) 得到加法模型<br>$$f(x)=f_M(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$$</li>
+</ul>
+</blockquote>
+<p><em>Notes:由上述算法的第(2)部分可以看到，前向分布算法每次在上一个基函数得到的累加模型基础上通过极小化当前基函数的值从而得到当前基函数及其参数，然后累加到前面得到的加法模型上，这样一步一步地逼近想要优化的目标函数，最终会得到一个近似的加法模型</em></p>
+<h4 id="前向分步算法与AdaBoost"><a href="#前向分步算法与AdaBoost" class="headerlink" title="前向分步算法与AdaBoost"></a>前向分步算法与AdaBoost</h4><p><img src="/materials/img/AdaBoost/forward_step_alg1.jpg" alt="forward_step_alg1"><br><img src="/materials/img/AdaBoost/forward_step_alg2.jpg" alt="forward_step_alg2"><br><img src="/materials/img/AdaBoost/forward_step_alg3.jpg" alt="forward_step_alg3"><br>最后，来看一下每一轮样本权值的更新<br>$$f_m(x)=f_{m-1}(x)+\alpha_mG_m(x)$$<br>因为$\overline{w_{mi}}=exp(-y_if_{m-1}(x_i))$，对两边乘上$-y_i$并取指数得到<br>$$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$$<br>对比AdaBoost中的权值更新步骤<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>仅相差规范化因子，因而等价</p>
+<p><em>Notes:</em>对于原书中证明求$\alpha_m^*$的最后$$e_m=\frac{\sum_{i=1}^N\overline{w_{mi}}I(y_i \neq G_m(x_i))}{\sum_{i=1}^N\overline{w_{mi}}}=\sum_{i=1}^Nw_{mi}I(y_i \neq G_m(x_i))$$中的后半部分是怎么来的实在理解不了，猜测可能跟AdaBoost训练误差界中的定理以及后面的$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$有关</p>
+<h2 id="提升树"><a href="#提升树" class="headerlink" title="提升树"></a>提升树</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
+<li>提升树是以分类树或回归树为基本分类器的提升方法</li>
+<li>以决策树为基函数的提升方法称为提升树（一般是用决策树桩(decision stump)即由一个根结点直接连接两个叶节点的简单决策树）</li>
+<li>提升树模型可以表示为决策树的加法模型<br>$$f_M(x)=\sum_{m=1}^{M}T(x;\varTheta_m)$$<br>其中$T(x;\varTheta_m)$表示决策树，$\varTheta_m$为决策树的参数，$M$为树的个数</li>
+</ul>
+<h3 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h3><ul>
+<li><p>不同问题的提升树学习算法区别在于使用的损失函数不同</p>
+<ul>
+<li>回归树：平方误差（拟合残差）</li>
+<li>分类树：指数损失函数</li>
+<li>一般决策树：一般损失函数</li>
+</ul>
+</li>
+<li><p>回归问题的提升树算法<br>前向分步算法</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>输入：训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace ,x_i \in R^n, y_i \in R $</li>
+<li>输出：提升树$f_M(x)$</li>
+<li>(1) 初始化$f_0(x)=0$</li>
+<li>(2) 对$m=1,2,…,M$<ul>
+<li>计算残差$r_{mi}=y_i - f_{m-1}(x_i),　i=1,2,…,N$</li>
+<li>拟合残差$r_{mi}$学习一个回归树，得到$T(x;\varTheta_m)$</li>
+<li>更新$(f_m(x)=f_{m-1}(x)+T(x;\varTheta_m)$</li>
+</ul>
+</li>
+<li>(3) 得到回归问题提升树<br>$$f_M(x)=\sum_{m=1}^{M}T(x;\varTheta_m)$$</li>
+</ul>
+</blockquote>
+<p><em>Notes:对于上述算法的过程理解可以参照原书P149的例子来感受一下，需要回顾决策树的知识点</em></p>
+<ul>
+<li>除了一开始初始化以外，每一步都是拟合上一轮得到的加法模型的残差来寻找最佳切分点并构建决策树桩，然后将该决策树桩累加到加法模型上作为当前模型并计算平方损失误差</li>
+<li>当当前模型的平方损失误差降到某一阈值时则当前模型就是最终输出的模型。</li>
+</ul>
+<h3 id="梯度提升"><a href="#梯度提升" class="headerlink" title="梯度提升"></a>梯度提升</h3><h4 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h4><blockquote>
+<p>提升树利用加法模型与前向分步算法实现学习的优化过程，当损失函数为平方损失（回归）和指数损失函数（分类）时，每一步的优化较为简单，但是<strong>对一般损失函数而言，往往每一步的优化并不容易</strong>，而梯度提升算法则是利用最速下降法的近似方法，其关键是利用损失函数的负梯度在当前模型的值$$-\left[\frac{\partial L(y,f(x_i)}{\partial f(x_i)} \right]_{f(x)=f_{m-1}(x)}$$作为回归问题提升树算法中的残差的近似值，拟合一个回归树</p>
+</blockquote>
+<h4 id="算法（回归树）"><a href="#算法（回归树）" class="headerlink" title="算法（回归树）"></a>算法（回归树）</h4><blockquote>
+<ul>
+<li>输入：<ul>
+<li>训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace ,x_i \in R^n, y_i \in R $</li>
+<li>损失函数$L(y,f(x))$</li>
+</ul>
+</li>
+<li>输出：回归树$\widehat{f}(x)$</li>
+<li>(1) 初始化$$f_0(x)=argmin_c\sum_{i=1}^NL(y_i,c)$$来估计使损失函数极小化的常数值，它是只有一个根节点的树</li>
+<li>(2) 对$m=1,2,…,M$<ul>
+<li>对$i=1,2,…,N$,计算$$r_{mi}=-\left[\frac{\partial L(y,f(x_i)}{\partial f(x_i)} \right]_{f(x)=f_{m-1}(x)}$$即损失函数的负梯度在当前模型的值，将它作为残差的估计（对于平方损失函数，它就是通常所说的残差；而对于一般损失函数，它就是残差的近似值）</li>
+<li>对$r_{mi}$拟合一个回归树，得到第$m$棵树的叶节点区域$R_{mj}, j=1,2,…,J$</li>
+<li>对$j=1,2,…,J$,计算$$c_{mj}=argmin_c\sum_{x_i \in R_{mj}}L(y_i, f_{m-1}(x_i)+c)$$即利用线性搜索估计叶节点区域的值，使损失函数极小化</li>
+<li>更新回归树$$(f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x \in R_{mj}）$$</li>
+</ul>
+</li>
+<li>(3) 得到最终的回归树$$\widehat{f}(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x \in R_{mj}）$$</li>
+</ul>
+</blockquote>
+<p><em>Notes:梯度提升树（回归树）的算法与原始的提升树（回归树）算法的核心区别主要在于残差计算这里，由于原始的回归树指定了平方损失函数所以可以直接计算残差，而梯度提升树针对一般损失函数，所以采用负梯度来近似求解残差。</em></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>基于《机器学习实战》一书的第7章内容用决策树桩实现了简单的AdaBoost算法</p>
+<ul>
+<li>简要叙述了Boosting及其与Bagging的异同</li>
+<li>基于决策树桩实现了简单的AdaBoost算法</li>
+<li>应用所实现的AdaBoost分类器对马疝病数据集进行分类</li>
+<li>此外简要探讨了非平衡数据集的一些问题，包括<ul>
+<li>精确率、召回率</li>
+<li>过采样、欠采样</li>
+<li>roc-auc的实现<br>原始代码可以参考我的<a href="https://github.com/LancelotHolmes/MLinAction/blob/master/AdaBoost.ipynb" target="_blank" rel="external">github</a></li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IT</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/29/boosting/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/06/27/basic-algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基础算法小记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        $
+
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -277,9 +571,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

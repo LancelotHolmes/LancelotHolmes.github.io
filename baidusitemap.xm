@@ -3,6 +3,29 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-06-30T08:27:45.852Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
