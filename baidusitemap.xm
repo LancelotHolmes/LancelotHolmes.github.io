@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
+    <lastmod>2017-07-03T12:42:10.778Z</lastmod>
+    <data>
+        <display>
+        <title>模型集成小记</title>
+        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>ensemble</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/29/boosting/</loc>
     <lastmod>2017-07-03T07:06:59.410Z</lastmod>
     <data>

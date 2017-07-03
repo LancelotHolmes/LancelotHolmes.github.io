@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-03T07:06:59.410Z</updated>
+  <updated>2017-07-03T12:42:10.778Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,224 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模型集成小记</title>
+    <link href="http://yoursite.com/2017/07/03/ensemble/"/>
+    <id>http://yoursite.com/2017/07/03/ensemble/</id>
+    <published>2017-07-03T12:08:51.000Z</published>
+    <updated>2017-07-03T12:42:10.778Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。</em></p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>集成学习通过构建并结合多个学习起来完成学习任务。</p>
+</blockquote>
+<ul>
+<li>如何使得集成学习性能比最好的单一学习器更好？<ul>
+<li>准确性</li>
+<li>多样性<blockquote>
+<p>好而不同</p>
+<a id="more"></a></blockquote>
+</li>
+</ul>
+</li>
+<li>如何产生并结合“好而不同”的个体学习器？<br>集成学习研究的核心<br>当前按照个体学习器的生成方式划分</li>
+<li>bagging（及其变体随机森林）——个体学习器间不存在强依赖关系，可同时生成的并行化方法</li>
+<li>boosting——个体学习器间存在强依赖关系，必须串行生成的序列化方法</li>
+</ul>
+<h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><blockquote>
+<p>首先从初始训练集训练出一个基学习器，在根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行加权组合。</p>
+</blockquote>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><ul>
+<li></li>
+<li>推导方式，基于“加性模型”，即基于基学习器的线性组合，</li>
+<li>如何在每一轮修改样本分布<ul>
+<li>重赋权法：在每一轮训练中，根据样本分布为每一个训练样本重新赋予一个权重（比如《机器学习实战》一书中就是利用这种方法构建提升树算法，通过修改权重来计算每一轮的损失）</li>
+<li>重采样法：利用重采样的训练集来对基学习器进行训练–&gt;重启动：避免训练过程过早停止</li>
+</ul>
+</li>
+</ul>
+<p><em>Notes:</em></p>
+<ul>
+<li>西瓜书上的算法还提到训练的每一轮开始都要检查当前学习器是否比随机猜测好，若条件不满足则抛弃当前学习器，这种情形可能会导致学习过程未达到T轮即停止，所以有重采样的方法来进行重启动避免出现此种情况；但是另一方面《统计学习方法》以及《机器学习实战》中的算法并未有这条判断语句；</li>
+<li>《机器学习》一书中提到，从统计学的出发认为AdaBoost实质上是基于加性模型（后续指出这一视角阐释的是一个与AdaBoost很相似的过程而非其本身），以类似牛顿迭代法来优化指数损失函数，通过将迭代优化过程替换为其他优化方法产生了GradientBoosting、LPBoost等；而<a href="https://www.quora.com/What-are-the-differences-between-the-three-commonly-ensemble-learning-techniques-stacking-boosting-and-bagging" target="_blank" rel="external">这里</a>也提到每一种变体针对不同的问题（噪声、数据不平衡等）而拥有不同的权重更新规则。</li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><blockquote>
+<p>从偏差-方差分解的角度来看，Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成（与bagging不同）。</p>
+</blockquote>
+<p><em>Notes:</em></p>
+<ul>
+<li>boosting对于噪音数据较为敏感</li>
+</ul>
+<h2 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h2><ul>
+<li>Bootstrap AGGregatING的缩写</li>
+<li>出发点依然是“好而不同”<ul>
+<li>“不同”——不同基学习器基于不同的样本子集</li>
+<li>“好”——使用相互有交叠的采样子集</li>
+</ul>
+</li>
+</ul>
+<h3 id="工作机制-1"><a href="#工作机制-1" class="headerlink" title="工作机制"></a>工作机制</h3><p>基于自助采样法（bootstrap sampling） </p>
+<blockquote>
+<p>给定包含m个样本的数据集，我们先随机取出一个样本放入采样集中，再把该样本放回初始数据集，使得下次采样时该样本仍有可能被选中，这样经过m次随机采样操作，我们得到m含m个样本的采样集，初始训练集中有的样本在采样集里多次出现，有的则从未出现，照这样我们可采样出T个含m个训练样本的采样集，然后基于每个采样集训练出一个基学习器，再将这些基学习器进行结合；在对预测输出进行结合时，通常对分类任务使用简单投票法，对回归任务使用简单平均法</p>
+</blockquote>
+<h3 id="优点（相对于boosting）"><a href="#优点（相对于boosting）" class="headerlink" title="优点（相对于boosting）"></a>优点（相对于boosting）</h3><ul>
+<li>高效——训练一个bagging集成与直接使用基学习器算法训练一个学习器的复杂度同阶</li>
+<li>baggign能不经修改地用于多分类、回归任务（标准AdaBoosting只能适用于二分类任务）</li>
+<li>包外估计——自助采样过程中剩余的样本可以作为验证集来对泛化性能进行“包外估计”</li>
+</ul>
+<p><em>Notes:</em>包外样本的其他好处（针对基学习器为决策树或神经网络时）</p>
+<ul>
+<li>可使用包外样本来辅助剪枝</li>
+<li>用于估计决策树中各结点的后验概率以辅助对零训练样本节点的处理</li>
+<li>当基学习器为神经网络时，可使用包外样本来辅助早期停止以减小过拟和风险</li>
+</ul>
+<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><blockquote>
+<p>从偏差-方差角度看，Bagging主要关注降低方差，因此它在不剪枝决策树、神经网络等易受样本扰动的学习器上效用更为明显。</p>
+</blockquote>
+<h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>Bagging的一个扩展变体<ul>
+<li>以决策树维基学习器构建Bagging集成</li>
+<li>在决策树的训练过程中引入了随机属性选择</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>传统决策树在选择划分属性时是在当前结点的属性集合中选择一个最优属性；而在随机森林中，对基决策树的每个节点，先从该节点属性集合中<strong>随机选择一个包含k个属性的子集，然后再从这个子集中选择一个最优属性用于划分</strong>，其中k控制了随机性的引入程度</p>
+</blockquote>
+<h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>简单、易于实现、计算开销小</li>
+<li>样本扰动+属性扰动</li>
+</ul>
+<h3 id="bagging-vs-随机森林"><a href="#bagging-vs-随机森林" class="headerlink" title="bagging vs. 随机森林"></a>bagging vs. 随机森林</h3><ul>
+<li>两者收敛性相似，随机森林的起始性能往往相对较差，但会收敛到更低的泛化误差</li>
+<li>随机森林的训练效率常优于Bagging，主要是决策树划分属性时，原始baggin需要对属性全集进行考虑，而rf是针对一个子集</li>
+</ul>
+<h2 id="结合策略"><a href="#结合策略" class="headerlink" title="结合策略"></a>结合策略</h2><h3 id="学习器结合的好处"><a href="#学习器结合的好处" class="headerlink" title="学习器结合的好处"></a>学习器结合的好处</h3><ul>
+<li>统计的角度：假设空间很大时，可能存在多个假设在训练集上达到同等性能，但学习其可能误选导致泛化性能不佳，结合多个学习其可以减小该风险</li>
+<li>计算的角度：降低陷入糟糕局部极小点的风险</li>
+<li>表示的角度：结合多个学习器可扩大假设空间，对于真实假设在假设空间之外的情形可能学得更好的近似</li>
+</ul>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3><ul>
+<li>平均法(Averaging)<ul>
+<li>简单平均法</li>
+<li>加权平均法——BMA(贝叶斯模型平均：基于后验概率来为不同模型赋予权重)</li>
+</ul>
+</li>
+<li>投票法(Voting)<ul>
+<li>多数投票法<ul>
+<li>绝对多数投票法：若某标记得票过半数则预测为该标记，否则拒绝预测（可靠性）</li>
+<li>相对多数投票法：预测为得票最多的标记</li>
+</ul>
+</li>
+<li>加权投票法</li>
+<li>若按个体学习器输出值类型划分<ul>
+<li>硬投票：预测为0/1</li>
+<li>软投票：相当于对后验概率的一个估计</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>学习法<ul>
+<li>Stacking:先从初始数据集训练出初级学习器，然后生成一个新的数据集用于训练元学习器，在这个新数据集中，初级学习器的输出被当作样例输入特征，而初始样本的标记仍被当作样例标记；一般使用交叉验证法或留一法来用训练初级学习器未使用的样本来产生元学习器的训练样本</li>
+</ul>
+</li>
+</ul>
+<p><em>Notes:关于Stacking</em></p>
+<ul>
+<li>《机器学习》作者也指出Stacking本身是一种著名的集成方法，且有不少变体和特例，但他这里是作为一种特殊的结合策略看待</li>
+<li>关于Stacking的细节详述，个人觉得“<a href="https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/" target="_blank" rel="external">如何在 Kaggle 首战中进入前 10%</a>”一文中阐述的比较透彻，以一幅图来说说明5折Stacking的过程</li>
+<li>推荐一个Python的实现了Stacking集成的库<a href="https://github.com/rasbt/mlxtend" target="_blank" rel="external">mlxtend</a></li>
+</ul>
+<p><img src="/materials/img/ensemble/stacking.jpg" alt="stacking"><br>原作者举了一个5折stacking的例子，基本方法是，</p>
+<ul>
+<li>每一折取训练集80%的数据训练一个基模型并对剩下的20%的数据进行预测，同时将该模型对测试集做出预测，保留训练子集的预测结果和测试集的预测结果</li>
+<li>将5折的训练子集预测结果结合起来构成第二层元模型的输入特征进行训练得到元分类器</li>
+<li>将前面每一折在测试机集预测得到的结果<strong>取均值</strong>作为最终元分类器的预测输入，并使用训练好的元分类器在该数据上作出最终预测</li>
+</ul>
+<p>此外<a href="https://zhuanlan.zhihu.com/p/27424282" target="_blank" rel="external">知乎上的一篇文章</a>还提到</p>
+<blockquote>
+<p>可以将K个模型对Test Data的预测结果求平均，也可以用所有的Train Data重新训练一个新模型来预测Test Data</p>
+</blockquote>
+<h2 id="多样性"><a href="#多样性" class="headerlink" title="多样性"></a>多样性</h2><h3 id="误差-分歧分解"><a href="#误差-分歧分解" class="headerlink" title="误差-分歧分解"></a>误差-分歧分解</h3><ul>
+<li>集成学习“好而不同”的理论分析，见《机器学习》P185~186</li>
+<li>寻找集成泛化误差、个体学习器泛化误差、个体学习器间的分歧三者之间的关系</li>
+</ul>
+<h3 id="多样性度量"><a href="#多样性度量" class="headerlink" title="多样性度量"></a>多样性度量</h3><blockquote>
+<p>多样性度量是用于度量集成中个体分类器的多样性，即估算个体学习器的多样化程度，典型做法是考虑个体分类器的两两相似/不相似性</p>
+</blockquote>
+<p>度量方法</p>
+<ul>
+<li>不合度量</li>
+<li>相关系数</li>
+<li>Q-统计量</li>
+<li>k-统计量</li>
+</ul>
+<h3 id="多样性增强"><a href="#多样性增强" class="headerlink" title="多样性增强"></a>多样性增强</h3><p>如何增强多样性？——在学习过程中引入随机性</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>数据样本扰动</th>
+<th>输入属性扰动</th>
+<th>输出表示扰动</th>
+<th>算法参数扰动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>思路</td>
+<td>给定初始数据集，可从中产生不同的数据子集，再利用不同的数据子集训练出不同的个体学习器，通常基于采样法</td>
+<td>从初始属性集中抽取若干个属性子集、基于每个属性子集训练一个基学习器（如随机子空间算法），最后结合</td>
+<td>对输出表示进行操纵，比如<br> 1、对训练样本的类标记稍作变动（翻转法）<br> 2、对输出表示进行转化，如输出调制法<br> 3、将原任务拆解成多个可同时求解的子任务，如Ecoc法</td>
+<td>随机设置不同的参数，比如<br>1、负相关法 <br> 2、对参数较少的算法，可将其学习过程中某些环节用其他类似方式替代</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>不稳定学习器：决策树、神经网络</td>
+<td>包含大量冗余属性的数据</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><em>Notes:</em></p>
+<ul>
+<li>数据样本扰动中相对的稳定基学习器包括：线性学习器、支持向量机、朴素贝叶斯、k近邻学习器等</li>
+<li>对于算法参数扰动，与交叉验证做比较，交叉验证常常是在不同参数组合模型里选择最优参数组合模型，而集成则是将这些不同参数组合的模型结合起来，所以集成学习技术的实际计算开销并不比使用单一学习器大很多</li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="https://mlwave.com/kaggle-ensembling-guide/" target="_blank" rel="external">kaggle-ensembling-guide</a></li>
+<li><a href="https://www.quora.com/What-are-the-differences-between-the-three-commonly-ensemble-learning-techniques-stacking-boosting-and-bagging" target="_blank" rel="external">Bagging, Boosting &amp; Stacking</a></li>
+<li><a href="https://stats.stackexchange.com/a/19053/152084" target="_blank" rel="external">stackexchange</a>及评论区</li>
+<li><a href="https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/" target="_blank" rel="external">如何在 Kaggle 首战中进入前 10%</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27424282" target="_blank" rel="external">分分钟带你杀入Kaggle Top 1%</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;em&gt;本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;集成学习通过构建并结合多个学习起来完成学习任务。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如何使得集成学习性能比最好的单一学习器更好？&lt;ul&gt;
+&lt;li&gt;准确性&lt;/li&gt;
+&lt;li&gt;多样性&lt;blockquote&gt;
+&lt;p&gt;好而不同&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="ensemble" scheme="http://yoursite.com/tags/ensemble/"/>
+    
+  </entry>
   
   <entry>
     <title>统计学习方法笔记(八) —— 提升方法</title>
