@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-06-30T08:27:45.852Z</lastmod>
+    <lastmod>2017-07-03T07:06:59.410Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(八) —— 提升方法</title>
@@ -18,6 +18,29 @@
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/09/offer/</loc>
+    <lastmod>2017-07-02T01:21:29.471Z</lastmod>
+    <data>
+        <display>
+        <title>剑指offer阅读笔记</title>
+        <pubTime>2017-06-09T02:33:40.000Z</pubTime>
+        
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>校招</tag>
          
          
            
@@ -189,29 +212,6 @@
         <tag>Note</tag>
          
         <tag>k-NN</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/09/offer/</loc>
-    <lastmod>2017-06-09T03:07:56.633Z</lastmod>
-    <data>
-        <display>
-        <title>剑指offer阅读笔记</title>
-        <pubTime>2017-06-09T02:33:40.000Z</pubTime>
-        
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>校招</tag>
          
          
            

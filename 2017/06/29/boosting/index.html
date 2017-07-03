@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg1.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg2.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg3.jpg">
-<meta property="og:updated_time" content="2017-06-30T08:27:45.852Z">
+<meta property="og:updated_time" content="2017-07-03T07:06:59.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(八) —— 提升方法">
 <meta name="twitter:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
@@ -345,7 +345,25 @@ ga('send', 'pageview');
 </blockquote>
 <p><em>Notes:由上述算法的第(2)部分可以看到，前向分布算法每次在上一个基函数得到的累加模型基础上通过极小化当前基函数的值从而得到当前基函数及其参数，然后累加到前面得到的加法模型上，这样一步一步地逼近想要优化的目标函数，最终会得到一个近似的加法模型</em></p>
 <h4 id="前向分步算法与AdaBoost"><a href="#前向分步算法与AdaBoost" class="headerlink" title="前向分步算法与AdaBoost"></a>前向分步算法与AdaBoost</h4><p><img src="/materials/img/AdaBoost/forward_step_alg1.jpg" alt="forward_step_alg1"><br><img src="/materials/img/AdaBoost/forward_step_alg2.jpg" alt="forward_step_alg2"><br><img src="/materials/img/AdaBoost/forward_step_alg3.jpg" alt="forward_step_alg3"><br>最后，来看一下每一轮样本权值的更新<br>$$f_m(x)=f_{m-1}(x)+\alpha_mG_m(x)$$<br>因为$\overline{w_{mi}}=exp(-y_if_{m-1}(x_i))$，对两边乘上$-y_i$并取指数得到<br>$$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$$<br>对比AdaBoost中的权值更新步骤<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>仅相差规范化因子，因而等价</p>
-<p><em>Notes:</em>对于原书中证明求$\alpha_m^*$的最后$$e_m=\frac{\sum_{i=1}^N\overline{w_{mi}}I(y_i \neq G_m(x_i))}{\sum_{i=1}^N\overline{w_{mi}}}=\sum_{i=1}^Nw_{mi}I(y_i \neq G_m(x_i))$$中的后半部分是怎么来的实在理解不了，猜测可能跟AdaBoost训练误差界中的定理以及后面的$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$有关</p>
+<p><em>Notes:</em></p>
+<ul>
+<li>对于原书中证明求$\alpha_m^*$的最后$$e_m=\frac{\sum_{i=1}^N\overline{w_{mi}}I(y_i \neq G_m(x_i))}{\sum_{i=1}^N\overline{w_{mi}}}=\sum_{i=1}^Nw_{mi}I(y_i \neq G_m(x_i))$$中的后半部分是怎么来的实在理解不了，猜测可能跟AdaBoost训练误差界中的定理以及后面的$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$有关</li>
+<li>推导的核心还是基分类器在最终分类器中的权重$\alpha_m$以及样本权重分布这两项的推导</li>
+<li>为什么是指数损失函数？<em>参考周志华《机器学习》一书P174</em><ul>
+<li>由最终得到的基分类器的线性组合$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$</li>
+<li>若$f(x)$能令指数损失函数最小化，即最小化$L(y,f(x))=e^{-yf(x)}$</li>
+<li>对其求偏导得$$\frac{d(L(y,f(x)))}{df(x)}=-e^{f(x)}P(y=1|x)+e^{f(x)}P(y=-1|x)$$</li>
+<li>令其为0得到$$f(x)=\frac{1}{2}ln\frac{P(y=1|x)}{P(y=-1|x)}$$</li>
+<li>于是最终分类器$$sign(f(x))=sign(\frac{1}{2}ln\frac{P(y=1|x)}{P(y=-1|x)})$$</li>
+<li>即$$sign(f(x))=1，如果P(y=1|x)&gt;P(y=-1|x)$$,而$$sign(f(x))=-1，如果P(y=-1|x)&gt;P(y=1|x)$$</li>
+<li>也就表示，$sign(f(x))$达到了贝叶斯最优错误率，即<strong>若指数损失函数最小化则分类错误率也将最小化</strong>，这说明<ul>
+<li>指数损失函数是分类任务原本0/1损失函数的一致的替代损失函数；</li>
+<li>由于改替代函数有更好的数学性质（比如连续可微），因此我们用其替代0/1损失函数作为优化目标</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="提升树"><a href="#提升树" class="headerlink" title="提升树"></a>提升树</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
 <li>提升树是以分类树或回归树为基本分类器的提升方法</li>
 <li>以决策树为基函数的提升方法称为提升树（一般是用决策树桩(decision stump)即由一个根结点直接连接两个叶节点的简单决策树）</li>
@@ -665,6 +683,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -677,18 +703,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
@@ -697,11 +711,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,6 +724,26 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">memo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,6 +763,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
@@ -742,26 +780,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">校招</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">parameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
