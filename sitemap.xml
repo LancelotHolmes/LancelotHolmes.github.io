@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    
+    <lastmod>2017-07-08T07:18:12.111Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    
+    <lastmod>2017-07-08T07:17:56.362Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
+    
+    <lastmod>2017-07-08T05:50:40.849Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     
     <lastmod>2017-07-03T12:42:10.778Z</lastmod>
@@ -26,13 +47,6 @@
     <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2017-06-28T13:41:21.483Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    
-    <lastmod>2017-06-27T03:00:25.551Z</lastmod>
     
   </url>
   

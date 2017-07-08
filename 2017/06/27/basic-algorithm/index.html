@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>基础算法小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="查找类二分查找排序类快速排序归并排序动态规划贪心回溯法位运算">
+  <meta name="description" content="查找类二分查找基本思想在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**">
 <meta name="keywords" content="Note,algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基础算法小记">
 <meta property="og:url" content="http://yoursite.com/2017/06/27/basic-algorithm/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="查找类二分查找排序类快速排序归并排序动态规划贪心回溯法位运算">
-<meta property="og:updated_time" content="2017-06-27T03:00:25.551Z">
+<meta property="og:description" content="查找类二分查找基本思想在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**">
+<meta property="og:updated_time" content="2017-07-08T07:18:12.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础算法小记">
-<meta name="twitter:description" content="查找类二分查找排序类快速排序归并排序动态规划贪心回溯法位运算">
+<meta name="twitter:description" content="查找类二分查找基本思想在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -223,7 +223,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找类"><span class="toc-number">1.</span> <span class="toc-text">查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">1.1.</span> <span class="toc-text">二分查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序类"><span class="toc-number">2.</span> <span class="toc-text">排序类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序"><span class="toc-number">2.1.</span> <span class="toc-text">快速排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number">2.2.</span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态规划"><span class="toc-number">2.3.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贪心"><span class="toc-number">2.4.</span> <span class="toc-text">贪心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回溯法"><span class="toc-number">2.5.</span> <span class="toc-text">回溯法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算"><span class="toc-number">2.6.</span> <span class="toc-text">位运算</span></a></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找类"><span class="toc-number">1.</span> <span class="toc-text">查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">1.1.</span> <span class="toc-text">二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现"><span class="toc-number">1.1.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附：符号表（查找）的各种实现的优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">附：符号表（查找）的各种实现的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序类"><span class="toc-number">2.</span> <span class="toc-text">排序类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序"><span class="toc-number">2.1.</span> <span class="toc-text">快速排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number">2.2.</span> <span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态规划"><span class="toc-number">2.3.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贪心"><span class="toc-number">2.4.</span> <span class="toc-text">贪心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回溯法"><span class="toc-number">2.5.</span> <span class="toc-text">回溯法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算"><span class="toc-number">2.6.</span> <span class="toc-text">位运算</span></a></li></ol></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -234,7 +234,129 @@ ga('send', 'pageview');
            
          
 
-        <h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>
+        <h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**<br><a id="more"></a></p>
+<h4 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li><p>循环</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//二分查找适用于有序的数组，另外也有一些延伸用法，见剑指offer</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(num==<span class="keyword">null</span> || num.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">		<span class="comment">//为什么是length-1,因为查找也是从第0位开始的</span></div><div class="line">		<span class="keyword">int</span> high = num.length-<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(low &lt;= high)&#123;<span class="comment">//注意这里的取等与数组的元素奇偶个数、取边界值、边界以外的值相关，小心</span></div><div class="line">			<span class="keyword">int</span> mid = (low+high) &gt;&gt; <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(num[mid] == key)&#123;</div><div class="line">				pos = mid;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(num[mid] &gt; key)&#123;</div><div class="line">				high = mid - <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				low = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pos;</div><div class="line">		<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//		return low;</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>递归实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchRecursive</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> (num==<span class="keyword">null</span>||num.length==<span class="number">0</span>)?-<span class="number">1</span>:binarySearchRecursive(num,key,<span class="number">0</span>,num.length-<span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchRecursive</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(begin&gt;end)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">			<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//			return begin;</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> mid=(begin+end)&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(num[mid]==key)&#123;</div><div class="line">			<span class="keyword">return</span> mid;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(num[mid]&gt;key)&#123;</div><div class="line">			<span class="keyword">return</span> binarySearchRecursive(num,key,begin,mid-<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">return</span> binarySearchRecursive(num,key,mid+<span class="number">1</span>,end);</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span>[] num = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</div><div class="line"><span class="comment">//		int[] num = &#123;&#125;;</span></div><div class="line">		System.out.println(binarySearch(num, <span class="number">9</span>));</div><div class="line">		System.out.println(binarySearchRecursive(num, <span class="number">9</span>));</div><div class="line">		</div><div class="line">		System.out.println(binarySearch(num, <span class="number">11</span>));</div><div class="line">		System.out.println(binarySearchRecursive(num, <span class="number">0</span>));</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p><strong>在$N$个键的有序数组中进行二分查找最多需要$logN+1$次比较（无论是否成功）</strong>，即二分查找所需时间在对数范围之内。</p>
+<h3 id="附：符号表（查找）的各种实现的优缺点"><a href="#附：符号表（查找）的各种实现的优缺点" class="headerlink" title="附：符号表（查找）的各种实现的优缺点"></a>附：符号表（查找）的各种实现的优缺点</h3><ul>
+<li>符号表的各种实现的优缺点</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>使用的数据结构</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链表（顺序查找）</td>
+<td>适用于小型问题</td>
+<td>对于大型数据集很慢</td>
+</tr>
+<tr>
+<td>有序数组(二分查找)</td>
+<td>最优的查找效率和空间需求，能够进行有序性相关的操作</td>
+<td>插入操作很慢</td>
+</tr>
+<tr>
+<td>二叉查找树</td>
+<td>实现简单，能够进行有序性相关的操作</td>
+<td>没有性能上界的保证，此外链接需要额外的空间</td>
+</tr>
+<tr>
+<td>平衡二叉查找树（红黑树实现）</td>
+<td>最优的查找和插入效率，能够进行有序性相关的操作</td>
+<td>链接需要额外的空间</td>
+</tr>
+<tr>
+<td>散列表</td>
+<td>能够快速的查找和插入常见类型的数据</td>
+<td>需要计算各种类型的数据的散列，无法进行有序性相关的操作，此外链接和空结点需要额外的空间</td>
+</tr>
+</tbody>
+</table>
+<p><em>来源于《算法》一书中3.1.7</em></p>
+<ul>
+<li>各种符号表实现的渐进性能总结</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法（数据结构）</th>
+<th>查找（最坏情况）</th>
+<th>插入（最坏情况）</th>
+<th>查找命中（平均情况）</th>
+<th>插入（平均情况）</th>
+<th>关键接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顺序查询（无序链表）</td>
+<td>N</td>
+<td>N</td>
+<td>N/2</td>
+<td>N</td>
+<td>equals()</td>
+</tr>
+<tr>
+<td>二分查找（有序数组）</td>
+<td>$lgN$</td>
+<td>N</td>
+<td>$lgN$</td>
+<td>N/2</td>
+<td>compareTo()</td>
+</tr>
+<tr>
+<td>二叉树查找（二叉查找树）</td>
+<td>N</td>
+<td>N</td>
+<td>1.39$lgN$</td>
+<td>1.39$lgN$</td>
+<td>compareTo()</td>
+</tr>
+<tr>
+<td>2-3树查找（红黑树）</td>
+<td>2$lgN$</td>
+<td>2$lgN$</td>
+<td>1.00$lgN$</td>
+<td>1.00$lgN$</td>
+<td>compareTo()</td>
+</tr>
+<tr>
+<td>拉链法（链表数组）</td>
+<td>&lt;$lgN$</td>
+<td>&lt;$lgN$</td>
+<td>N/2M</td>
+<td>N/M</td>
+<td>equals()<br> hashCode()</td>
+</tr>
+<tr>
+<td>线性探测法（并行数组）</td>
+<td>c$lgN$</td>
+<td>c$lgN$</td>
+<td>&lt;1.5</td>
+<td>&lt;2.5</td>
+<td>equals()<br> hashCode()</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>N表示N次插入之后，M表示哈希表中的键的个数</li>
+<li>Java的<code>java.util.TreeMap</code>和<code>java.util.HashMap</code>分别是基于红黑树和拉链法的散列表的符号表实现</li>
+</ul>
+<h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>
       
 
       
@@ -496,6 +618,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
@@ -504,19 +630,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,7 +650,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,14 +686,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
@@ -568,6 +698,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -577,14 +715,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
              
               <li class="article-tag-list-item">

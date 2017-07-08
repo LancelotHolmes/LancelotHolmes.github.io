@@ -3,6 +3,148 @@
   
     
     <entry>
+      <title><![CDATA[统计学习方法笔记（六）——Logistic Regression]]></title>
+      <url>/2017/07/08/lr/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<blockquote>
+<p>Logistic Regression与最大熵模型均属于对数线性模型<br><a id="more"></a></p>
+<h2 id="Logistic-Regression的理解"><a href="#Logistic-Regression的理解" class="headerlink" title="Logistic Regression的理解"></a>Logistic Regression的理解</h2><h3 id="角度一：输入变量-X-服从Logistic分布的模型"><a href="#角度一：输入变量-X-服从Logistic分布的模型" class="headerlink" title="角度一：输入变量$X$服从Logistic分布的模型"></a>角度一：输入变量$X$服从Logistic分布的模型</h3><h4 id="Logistic分布"><a href="#Logistic分布" class="headerlink" title="Logistic分布"></a>Logistic分布</h4><ul>
+<li>定义：设$X$是连续随机变量，$X$服从Logistic分布是指$X$具有下列分布函数和密度函数<ul>
+<li>分布函数$$F(X)=P(X \leq x)=\frac{1}{1+e^{-(x-\mu)/\gamma}}$$</li>
+<li>密度函数$$f(x)=F’(x)=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})^2}$$<br>其中$\mu$为位置参数，$\gamma&gt;0$为形状参数</li>
+</ul>
+</li>
+<li>分布函数属于Logistic函数，对应的图行为一条S形曲线（sigmoid curve），以点$\left(\mu,\frac{1}{2}\right)$为中心对称，如图<br><img src="/materials/img/LR/sigmoid.png" alt="sigmoid"><br>，曲线在中心附近增长较快</li>
+</ul>
+</blockquote>
+<h4 id="二项LR模型"><a href="#二项LR模型" class="headerlink" title="二项LR模型"></a>二项LR模型</h4><blockquote>
+<p>二项LR模型是一种分类模型，由条件概率分布$P(Y|X)$表示，形式为参数化的Logistic分布，其中随机变量$X$的取值为实数，随机变量$Y$的取值为1或0</p>
+</blockquote>
+<ul>
+<li>定义：二项LR模型是如下的条件概率分布：<br>$$P(Y=1|x)=\frac{exp(w \cdot x+b)}{1+exp(w \cdot x+b)}$$<br>$$P(Y=0|x)=\frac{1}{1+exp(w \cdot x+b)}$$其中$w \in R^n$称为权值向量，$b$称为偏置，两者为需要估计（学习）的参数,$w \cdot x$为$w$和$x$的内积</li>
+<li>对于给定的输入实例$x$，按照上式可求得对应的条件概率，比较两个条件概率的大小，将实例划分到较大的一类</li>
+<li>有时为了方便，将偏置扩充到权值向量中，即$w=(w^{(1)},w^{(2)},…,w^{(n)},b)^T, x=(x^{(1)},x^{(2)},…,x^{(n)},1)^T$,此时模型表示如下<br>$$P(Y=1|x)=\frac{exp(w \cdot x)}{1+exp(w \cdot x)}$$<br>$$P(Y=0|x)=\frac{1}{1+exp(w \cdot x)}$$</li>
+</ul>
+<h3 id="角度二：LR模型将线性分类函数转换为（条件）概率"><a href="#角度二：LR模型将线性分类函数转换为（条件）概率" class="headerlink" title="角度二：LR模型将线性分类函数转换为（条件）概率"></a>角度二：LR模型将线性分类函数转换为（条件）概率</h3><ul>
+<li>几率：一个事件的几率是指该事件发生的概率与该事件不发生的概率的比值：若事件发生的概率为$p$则该事件的几率为$\frac{p}{1-p}$，进一步地该事件的对数几率为$$logit(p)=log\frac{p}{1-p}$$</li>
+<li>而观察前面的LR模型可以发现，$$log\frac{P(Y=1|x)}{1-P(Y=1|x)}=log\frac{P(Y=1|x)}{P(Y=0|x)}=w \cdot x$$，也就是说，在LR模型中，输出$Y=1$的<strong>对数几率</strong>是输入$x$的<strong>线性函数</strong>，或者说<strong>输出$Y=1$的对数几率是由输入$x$的线性函数表示的模型，即LR模型</strong>（所以说Logistic Regression属于对数线性模型）</li>
+<li>因此，针对对输入$x$进行分类的<strong>线性函数</strong>，通过LR模型可以将其转换为（条件）概率：$$P(Y=1|x)=\frac{exp(w \cdot x+b)}{1+exp(w \cdot x+b)}$$，其中线性函数的值越接近正无穷，概率值就越接近1，线性函数的值越接近负无穷，概率值就越接近0，这样的模型就是LR模型。</li>
+</ul>
+<p><em><a href="http://www.wengweitao.com/luo-ji-si-di-hui-gui-yu-zui-da-shang-mo-xing.html" target="_blank" rel="external">扩展</a></em><br>如果直接从概率的角度来使用线性回归模型进行分类，则对于$$P(Y=1|x)=w_0+w_1x_1+…+w_nx_n$$，存在如下问题</p>
+<ul>
+<li>等式两边的取值范围不同。左边为概率是$[0, 1]$，右边是无穷</li>
+<li>实际很多问题中，概率$P$和输入并非简单的线性关系，在$x$很小或很大的时候，可能对于$P$的影响很小，而$x$在某些值附近可能对$P$的影响很大。</li>
+</ul>
+<p>LR模型对线性回归模型进行了修正，解决了这两个问题</p>
+<h2 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h2><ul>
+<li>基本思想：应用极大似然估计法估计模型参数，从而将问题转化为以对数似然函数为目标函数的最优化问题，然后采用梯度下降法或者拟牛顿法进行求解</li>
+</ul>
+<p><a href="https://www.nowcoder.com/discuss/3243" target="_blank" rel="external"><strong>此处的目标函数为考点</strong></a><br><img src="/materials/img/LR/LR.jpg" alt="lr"></p>
+<h2 id="多项LR模型——多分类"><a href="#多项LR模型——多分类" class="headerlink" title="多项LR模型——多分类"></a>多项LR模型——多分类</h2><p>假设离散型随机变量$Y$的取值集合为$\lbrace 1,2,…,K \rbrace$，则多项LR模型是<br>$$P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>$$P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>注意$k=1,2,…,K-1$,其中$x\in R^{n+1}, w_k \in R^{n+1}$</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
+            
+            <tag> LR </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[GBDT]]></title>
+      <url>/2017/07/07/GBDT/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="external">A Gentle Introduction to Gradient Boosting</a></p>
+<blockquote>
+<p>gradient boosting = gradient descent + boosting</p>
+</blockquote>
+<h2 id="AdaBoost-vs-Gradient-Boosting"><a href="#AdaBoost-vs-Gradient-Boosting" class="headerlink" title="AdaBoost vs. Gradient Boosting"></a>AdaBoost vs. Gradient Boosting</h2><table>
+<thead>
+<tr>
+<th>AdaBoost</th>
+<th>Gradient Boosting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>相同点</td>
+<td>1、加性模型+前向分步算法<br> 2、每一步训练一个弱学习器以弥补前面模型的不足</td>
+</tr>
+<tr>
+<td>不同点</td>
+<td>1、AdaBoost中当前学习期器的“不足”由样本权重来决定<br> 2、GBDT中当前学习期器的“不足”由求梯度决定</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h2 id="Boosting历史"><a href="#Boosting历史" class="headerlink" title="Boosting历史"></a>Boosting历史</h2><ul>
+<li>发明AdaBoost。第一个成功的提升算法</li>
+<li>规整AdaBoost为使用特殊损失函数的梯度下降方法</li>
+<li>将AdaBoost泛化为Gradient Boosting（能处理一般的损失函数）</li>
+</ul>
+<h2 id="简单例子理解"><a href="#简单例子理解" class="headerlink" title="简单例子理解"></a>简单例子理解</h2><p>给定数据集$(x_1,y_1),(x_2,y_2),…,(x_n,y_n)$，现在需要拟和模型$F(x)$来使平均误差最小化，假设你的朋友给你提供了一个模型$F$，你发现该模型还可以进一步提升，对于上述数据集，该模型存在少量错误，比如$F(x_1)=0.8$但$y_1=0.9; F(x_2)=1.4$但$y_2=1.3$，如何改进这个模型？</p>
+<ul>
+<li>一种可行的方法就是在原始的模型$F$的基础上添加一个模型，h（比如回归树），从而得到模型$F(x):=F(x)+h(x)$</li>
+<li>通过拟合来改进该模型$$F(x_1)+h(x_1)=y_1$$<br>$$F(x_2)+h(x_2)=y_2$$<br>$$…$$<br>$$F(x_n)+h(x_n)=y_n$$<br>于是我们可以得到$$h(x_i)=y_i-F(x_i)$$,也就是在$F$的基础上我们针对数据集$(x_1,y_1-F(x_1)),(x_2,y_2-F(x_2)),…,(x_n,y_n-F(x_n))$拟和一个模型$h$，其中$y_i-F(x_i)$被称做是<strong>残差</strong></li>
+</ul>
+<h2 id="与梯度下降法的关联（回归树）"><a href="#与梯度下降法的关联（回归树）" class="headerlink" title="与梯度下降法的关联（回归树）"></a>与梯度下降法的关联（回归树）</h2><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>$$\theta_i=\theta_i-\rho \frac{dJ}{d \theta_i}$$通过朝负梯度方向移动来最小化函数</p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p><em>残差是如何与梯度联系起来的？</em><br><img src="/materials/img/GBDT/gd.jpg" alt="gradient descent"><br>那么我们为何还需要其他的损失函数？是因为平方损失函数不够好么？</p>
+<p>平方损失函数</p>
+<ul>
+<li>优点：易于计算</li>
+<li>缺点：对于离群值非常敏感（容易为了拟合离群值而导致整体性能下降）</li>
+</ul>
+<p>而其他的一些损失函数比如绝对损失函数、huber loss（丘陵损失）等对于离群值相对没有那么敏感</p>
+<h3 id="一般过程（算法）"><a href="#一般过程（算法）" class="headerlink" title="一般过程（算法）"></a>一般过程（算法）</h3><blockquote>
+<p>以$L$为损失函数的回归问题的一般过程</p>
+<ul>
+<li>初始化模型如$F(x)=\frac{\sum_{i=1}^ny_i}{n}$</li>
+<li>循环直至收敛<ul>
+<li>计算负梯度$-g(x_i)=-\frac{dL(y_i,F(x_i))}{dF(x_i)}$</li>
+<li>用一个回归树$h$来拟合负梯度</li>
+<li>更新模型$F:=F+\rho h$</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><em>Notes:相较之下，负梯度关注离群点较少。</em></p>
+<h2 id="GBDT用于分类——识别手写字母（多分类）"><a href="#GBDT用于分类——识别手写字母（多分类）" class="headerlink" title="GBDT用于分类——识别手写字母（多分类）"></a>GBDT用于分类——识别手写字母（多分类）</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<li>训练26个模型：$F_A~F_Z$</li>
+<li>针对每一个样本实例，分别使用每一个模型打分，计算样本属于某个类别的概率</li>
+<li>将概率最高的类标记为该样本的预测标记</li>
+</ul>
+<h3 id="一般过程"><a href="#一般过程" class="headerlink" title="一般过程"></a>一般过程</h3><ul>
+<li>讲样本集的实际标记转换为概率分布的形式（0-1）</li>
+<li>计算各个模型预测样本属于各自分类的概率</li>
+<li>计算真实概率与预测概率的差值，目的是通过调整模型减少整体误差（是预测点概率分布尽可能接近真实概率分布）</li>
+</ul>
+<p><em>Notes:优化参数矩阵、计算梯度矩阵</em></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> GBDT </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[模型集成小记]]></title>
       <url>/2017/07/03/ensemble/</url>
       <content type="html"><![CDATA[<p><em>本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。</em></p>
@@ -422,7 +564,129 @@
     <entry>
       <title><![CDATA[基础算法小记]]></title>
       <url>/2017/06/27/basic-algorithm/</url>
-      <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>]]></content>
+      <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**<br><a id="more"></a></p>
+<h4 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li><p>循环</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//二分查找适用于有序的数组，另外也有一些延伸用法，见剑指offer</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(num==<span class="keyword">null</span> || num.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">		<span class="comment">//为什么是length-1,因为查找也是从第0位开始的</span></div><div class="line">		<span class="keyword">int</span> high = num.length-<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(low &lt;= high)&#123;<span class="comment">//注意这里的取等与数组的元素奇偶个数、取边界值、边界以外的值相关，小心</span></div><div class="line">			<span class="keyword">int</span> mid = (low+high) &gt;&gt; <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(num[mid] == key)&#123;</div><div class="line">				pos = mid;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(num[mid] &gt; key)&#123;</div><div class="line">				high = mid - <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				low = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pos;</div><div class="line">		<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//		return low;</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>递归实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchRecursive</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> (num==<span class="keyword">null</span>||num.length==<span class="number">0</span>)?-<span class="number">1</span>:binarySearchRecursive(num,key,<span class="number">0</span>,num.length-<span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchRecursive</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(begin&gt;end)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">			<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//			return begin;</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> mid=(begin+end)&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(num[mid]==key)&#123;</div><div class="line">			<span class="keyword">return</span> mid;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(num[mid]&gt;key)&#123;</div><div class="line">			<span class="keyword">return</span> binarySearchRecursive(num,key,begin,mid-<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">return</span> binarySearchRecursive(num,key,mid+<span class="number">1</span>,end);</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span>[] num = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</div><div class="line"><span class="comment">//		int[] num = &#123;&#125;;</span></div><div class="line">		System.out.println(binarySearch(num, <span class="number">9</span>));</div><div class="line">		System.out.println(binarySearchRecursive(num, <span class="number">9</span>));</div><div class="line">		</div><div class="line">		System.out.println(binarySearch(num, <span class="number">11</span>));</div><div class="line">		System.out.println(binarySearchRecursive(num, <span class="number">0</span>));</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p><strong>在$N$个键的有序数组中进行二分查找最多需要$logN+1$次比较（无论是否成功）</strong>，即二分查找所需时间在对数范围之内。</p>
+<h3 id="附：符号表（查找）的各种实现的优缺点"><a href="#附：符号表（查找）的各种实现的优缺点" class="headerlink" title="附：符号表（查找）的各种实现的优缺点"></a>附：符号表（查找）的各种实现的优缺点</h3><ul>
+<li>符号表的各种实现的优缺点</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>使用的数据结构</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链表（顺序查找）</td>
+<td>适用于小型问题</td>
+<td>对于大型数据集很慢</td>
+</tr>
+<tr>
+<td>有序数组(二分查找)</td>
+<td>最优的查找效率和空间需求，能够进行有序性相关的操作</td>
+<td>插入操作很慢</td>
+</tr>
+<tr>
+<td>二叉查找树</td>
+<td>实现简单，能够进行有序性相关的操作</td>
+<td>没有性能上界的保证，此外链接需要额外的空间</td>
+</tr>
+<tr>
+<td>平衡二叉查找树（红黑树实现）</td>
+<td>最优的查找和插入效率，能够进行有序性相关的操作</td>
+<td>链接需要额外的空间</td>
+</tr>
+<tr>
+<td>散列表</td>
+<td>能够快速的查找和插入常见类型的数据</td>
+<td>需要计算各种类型的数据的散列，无法进行有序性相关的操作，此外链接和空结点需要额外的空间</td>
+</tr>
+</tbody>
+</table>
+<p><em>来源于《算法》一书中3.1.7</em></p>
+<ul>
+<li>各种符号表实现的渐进性能总结</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法（数据结构）</th>
+<th>查找（最坏情况）</th>
+<th>插入（最坏情况）</th>
+<th>查找命中（平均情况）</th>
+<th>插入（平均情况）</th>
+<th>关键接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顺序查询（无序链表）</td>
+<td>N</td>
+<td>N</td>
+<td>N/2</td>
+<td>N</td>
+<td>equals()</td>
+</tr>
+<tr>
+<td>二分查找（有序数组）</td>
+<td>$lgN$</td>
+<td>N</td>
+<td>$lgN$</td>
+<td>N/2</td>
+<td>compareTo()</td>
+</tr>
+<tr>
+<td>二叉树查找（二叉查找树）</td>
+<td>N</td>
+<td>N</td>
+<td>1.39$lgN$</td>
+<td>1.39$lgN$</td>
+<td>compareTo()</td>
+</tr>
+<tr>
+<td>2-3树查找（红黑树）</td>
+<td>2$lgN$</td>
+<td>2$lgN$</td>
+<td>1.00$lgN$</td>
+<td>1.00$lgN$</td>
+<td>compareTo()</td>
+</tr>
+<tr>
+<td>拉链法（链表数组）</td>
+<td>&lt;$lgN$</td>
+<td>&lt;$lgN$</td>
+<td>N/2M</td>
+<td>N/M</td>
+<td>equals()<br> hashCode()</td>
+</tr>
+<tr>
+<td>线性探测法（并行数组）</td>
+<td>c$lgN$</td>
+<td>c$lgN$</td>
+<td>&lt;1.5</td>
+<td>&lt;2.5</td>
+<td>equals()<br> hashCode()</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>N表示N次插入之后，M表示哈希表中的键的个数</li>
+<li>Java的<code>java.util.TreeMap</code>和<code>java.util.HashMap</code>分别是基于红黑树和拉链法的散列表的符号表实现</li>
+</ul>
+<h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>]]></content>
       
         
         <tags>

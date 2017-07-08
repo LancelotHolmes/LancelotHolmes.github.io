@@ -4,6 +4,67 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-07-08T07:18:12.111Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    <lastmod>2017-07-08T07:17:56.362Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记（六）——Logistic Regression</title>
+        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
+    <lastmod>2017-07-08T05:50:40.849Z</lastmod>
+    <data>
+        <display>
+        <title>GBDT</title>
+        <pubTime>2017-07-07T06:50:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>GBDT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     <lastmod>2017-07-03T12:42:10.778Z</lastmod>
     <data>
@@ -70,25 +131,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-06-27T03:00:25.551Z</lastmod>
-    <data>
-        <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://yoursite.com/2017/06/25/JData/</loc>
