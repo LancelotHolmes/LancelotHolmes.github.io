@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-08T07:17:56.362Z</updated>
+  <updated>2017-07-10T07:01:28.274Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,458 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>机器学习笔记之线性模型</title>
+    <link href="http://yoursite.com/2017/07/09/linear-model/"/>
+    <id>http://yoursite.com/2017/07/09/linear-model/</id>
+    <published>2017-07-09T07:09:53.000Z</published>
+    <updated>2017-07-10T07:01:28.274Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h2><blockquote>
+<p>线性模型试图学得一个通过属性的线性组合来进行预测的函数，即$$f(x)=w_1x_1+w_2x_2+…w_dx_d+b$$</p>
+</blockquote>
+<ul>
+<li>线性模型形式简单、易于建模，具有很好的可解释性</li>
+<li>很多功能强大的非线性模型可在线性模型的基础上通过引入层级结构或高维映射而得<a id="more"></a>
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><h3 id="线性回归-1"><a href="#线性回归-1" class="headerlink" title="线性回归"></a>线性回归</h3></li>
+<li>模型<br>线性回归试图学得$f(x_i)=wx_i+b$,使得$f(x_i)\approx y_i$</li>
+<li>均方误差<br>如何衡量$f(x)$与$y$之间的差别？<br>均方误差是回归任务中最常用的性能度量，所以关键在于使均方误差最小化，即<br>$$(w^*,b^*)=argmin_{(w,b)}\sum_{i=1}^m(f(x_i)-y_i)^2$$<br>$$(w^*,b^*)=argmin_{(w,b)}\sum_{i=1}^m(y_i-wx_i-b)^2$$<br>基于均方误差来进行模型求解的方法称为<strong>最小二乘法</strong>，在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到直线上的欧氏距离之和最小</li>
+<li>参数估计<br>线性回归模型的最小二乘参数估计，即求解$w,b$使$E_{(w,b)}=\sum_{i=1}^m(y_i-wx_i-b)^2$最小化的过程</li>
+<li>对w,b分别求导，得<ul>
+<li>$$\frac{dE_{(w,b)}}{dw}=2\left(w\sum_{i=1}^mx_i^2-\sum_{i=1}^m(y_i-b)x_i\right)$$</li>
+<li>$$\frac{dE_{(w,b)}}{db}=2\left(mb-\sum_{i=1}^m(y_i-wx_i)\right)$$</li>
+</ul>
+</li>
+<li>令导数为0可求得<ul>
+<li>$$w=\frac{\sum_{i=1}^my_i(x_i-\overline{x})}{\sum_{i=1}^mx_i^2-\frac{1}{m}(\sum_{i=1}^mx_i)^2}$$</li>
+<li>$$b=\frac{1}{m}\sum_{i=1}^m(y_i-wx_i)$$<br>其中$\overline{x}=\frac{1}{m}\sum_{i=1}^mx_i$为$x$的均值</li>
+</ul>
+</li>
+</ul>
+<h3 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h3><h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><p>线性模型可以有丰富的变化，对于原始的线性模型，我们希望其预测值逼近真实标记$y$，于是得到了线性回归模型，而如果我们令模型预测值逼近y的衍生物，这样一来就可以推广到广义的线性模型</p>
+<blockquote>
+<p>考虑单调可微函数$g(\cdot)$,令$$y=g^{-1}(w \cdot x+b)$$,这样得到的模型称为广义线性模型，其中函数$g(\cdot)$称为联系函数。</p>
+</blockquote>
+<p>实质上是在求取输入空间到输出空间的非线性函数映射</p>
+<h4 id="例子——对数线性回归"><a href="#例子——对数线性回归" class="headerlink" title="例子——对数线性回归"></a>例子——对数线性回归</h4><p>假设认为示例所对应的输出标记是在指数尺度上变化，那就可将输出标记的对数作为线性模型逼近的目标，即<br>$$ln y=w \cdot x+b$$<br>即对数线性回归，实际上是在试图让$e^{w\cdot x+b}$逼近$y$,这里的对数函数就起到了将线性回归模型的预测值与真实标记联系起来的作用</p>
+<p><em>Notes:此外，Logistic Regression模型可以看作是广义线性模型在分类问题上的延伸</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;h2 id=&quot;基本形式&quot;&gt;&lt;a href=&quot;#基本形式&quot; class=&quot;headerlink&quot; title=&quot;基本形式&quot;&gt;&lt;/a&gt;基本形式&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;线性模型试图学得一个通过属性的线性组合来进行预测的函数，即$$f(x)=w_1x_1+w_2x_2+…w_dx_d+b$$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;线性模型形式简单、易于建模，具有很好的可解释性&lt;/li&gt;
+&lt;li&gt;很多功能强大的非线性模型可在线性模型的基础上通过引入层级结构或高维映射而得
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习校招常考知识点小记</title>
+    <link href="http://yoursite.com/2017/07/08/ml-job/"/>
+    <id>http://yoursite.com/2017/07/08/ml-job/</id>
+    <published>2017-07-08T10:47:00.000Z</published>
+    <updated>2017-07-10T06:40:14.333Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<h2 id="概念-amp-原理"><a href="#概念-amp-原理" class="headerlink" title="概念&amp;原理"></a>概念&amp;原理</h2><blockquote>
+<ul>
+<li>高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备；</li>
+<li>算法要从以下几个方面来掌握<ul>
+<li>产生背景</li>
+<li>适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）；</li>
+<li>原理推导（最大间隔，软间隔，对偶）；</li>
+<li>求解方法（随机梯度下降、拟牛顿法等优化算法）；</li>
+<li>优缺点，相关改进；</li>
+<li>和其他基本方法的对比；</li>
+</ul>
+</li>
+<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。<a id="more"></a></li>
+<li>LDA的原理和推导；SVD、LDA</li>
+<li>无监督和有监督算法的区别？</li>
+<li>多分类怎么处理？（参见《机器学习》P64,通常切分为多个二分类，最后再集成）<ul>
+<li>OVO</li>
+<li>OVR</li>
+<li>MVM–&gt;ECOC(纠错输出码)</li>
+</ul>
+</li>
+<li>为什么会产生过拟合，有哪些方法可以预防或克服过拟合？</li>
+<li>采用EM算法求解的模型有哪些，为什么不用牛顿法或梯度下降法？</li>
+<li>有哪些聚类方法？<ul>
+<li>K-均值聚类算法、K-中心点聚类算法、CLARANS、 BIRCH、CLIQUE、DBSCAN等</li>
+</ul>
+</li>
+<li>聚类算法中的距离度量有哪些？</li>
+<li>如何进行实体识别？</li>
+<li>聚类和分类有什么区别？分类是事先知道类标的，而聚类事先不知道类标。</li>
+<li>L1和L2的区别</li>
+<li>生成与判别模型</li>
+<li>ROC-AUC<ul>
+<li><a href="http://www.tuicool.com/articles/q6zYrq" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>深度学习和机器学习的区别</li>
+<li>数据挖掘和人工智能的区别</li>
+<li>测试集和训练集的区别</li>
+<li>PCA</li>
+<li>什么是模糊聚类，还有划分聚类，层次聚类等<ul>
+<li><a href="http://blog.csdn.net/xiahouzuoxin/article/details/7748823" target="_blank" rel="external">http://blog.csdn.net/xiahouzuoxin/article/details/7748823</a></li>
+<li><a href="http://www.cnblogs.com/guolei/p/3899509.html" target="_blank" rel="external">http://www.cnblogs.com/guolei/p/3899509.html</a></li>
+</ul>
+</li>
+<li>线性分类器与非线性分类器的区别及优劣；</li>
+<li>特征比数据量还大时，选择什么样的分类器？</li>
+<li>对于维度很高的特征，你是选择线性还是非线性分类器？</li>
+<li>对于维度极低的特征，你是选择线性还是非线性分类器？</li>
+<li>如何解决过拟合问题？</li>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">L1和L2正则的区别，如何选择L1和L2正则？</a></li>
+<li>线性回归的梯度下降和牛顿法求解公式的推导</li>
+<li>如何处理类别不平衡问题？（参见《机器学习》P66）<ul>
+<li>欠采样–&gt;EasyEnsemble</li>
+<li>过采样–&gt;SMOTRE</li>
+<li>阈值移动/代价敏感学习–&gt;原始数据嵌入“负正比”，具体的比如在xgboost中可以调整scale_pos_weight参数为数据集的负正比</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><blockquote>
+<ul>
+<li>原理、推导、特性、优缺点、调参</li>
+<li>统计学习的核心步骤：模型、策略、算法，你应当对logistic、SVM、决策树、KNN及各种聚类方法有深刻的理解。能够随手写出这些算法的核心递归步的伪代码以及他们优化的函数表达式和对偶问题形式。</li>
+</ul>
+</blockquote>
+<ul>
+<li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别</li>
+<li>LR 的推导，特性？；为什么可以使用logistic回归。。。</li>
+<li>决策树的特性？</li>
+<li>用EM算法推导解释 Kmeans；K-means起始点；K-means的具体流程；如何优化K-means</li>
+<li>解释密度聚类算法</li>
+<li>解释贝叶斯公式和朴素贝叶斯分类；贝叶斯分类器的优化和特殊情况的处理<ul>
+<li>朴素贝叶斯核心思想利用先验概率得到后验概率，并且最终由期望风险最小化得出后验概率最大化，从而输出让后验概率最大化的值（具体概率与先验概率由加入拉普拉斯平滑的极大似然估计而成的贝叶斯估计得到），特征必须相互独立。</li>
+</ul>
+</li>
+<li>KNN（分类与回归）</li>
+<li>CART（回归树用平方误差最小化准则，分类树用基尼指数最小化准则）</li>
+<li>Logistics（推导）</li>
+<li>GBDT（利用损失函数的负梯度在当前模型的值作为回归问题提升树算法中的残差的近似值，拟合一个回归树）</li>
+<li>随机森林（Bagging+CART）</li>
+<li>神经网络,plsi的推导</li>
+<li>关联分析、apriori</li>
+<li>em算法推导</li>
+<li>随机森林的学习过程；随机森林中的每一棵树是如何学习的；随机森林学习算法中CART树的基尼指数是什么？</li>
+</ul>
+<h2 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h2><ul>
+<li>naive bayes和logistic regression的区别</li>
+<li>SVM、LR、决策树的对比？</li>
+<li>GBDT和随机森林的区别？</li>
+<li>哪些模型容易过拟合，模型怎么选择</li>
+<li>改变随机森林的训练样本数据量，是否会影响到随机森林学习到的模型的复杂度</li>
+</ul>
+<h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><blockquote>
+<p>用了什么算法？为什么用？有什么优缺点？</p>
+</blockquote>
+<ul>
+<li>你在研究/项目/实习经历中主要用过哪些机器学习/数据挖掘的算法？<ul>
+<li>最好是在项目/实习的大数据场景里用过，比如推荐里用过 CF、LR，分类里用过 SVM、GBDT；</li>
+<li>一般用法是什么，是不是自己实现的，有什么比较知名的实现，使用过程中踩过哪些坑；</li>
+<li>优缺点分析。</li>
+</ul>
+</li>
+<li>你熟悉的机器学习/数据挖掘算法主要有哪些？<ul>
+<li>基础算法要多说，其它算法要挑熟悉程度高的说，不光列举算法，也适当说说应用场合；</li>
+</ul>
+</li>
+<li>你用过哪些机器学习/数据挖掘工具或框架？</li>
+<li>如何进行特征选择？</li>
+<li>用过哪些聚类算法？</li>
+<li>项目中的数据是否会归一化处理，哪个机器学习算法不需要归一化处理<ul>
+<li>量纲问题：归一化有利于优化迭代速度（梯度下降），提高精度（KNN）</li>
+</ul>
+</li>
+<li>各类算法优缺点、模型调优细节</li>
+<li>特征提取的方法（无关键词也是一个特征）</li>
+<li>自己实现过什么机器学习算法?</li>
+<li>从项目中在哪一方面体会最深</li>
+<li>自己项目中有哪些可以迁移到其他领域的东西</li>
+<li>项目相比别人有什么优劣</li>
+<li>项目的数据从哪里来</li>
+<li>项目的特征向量的归一化与异常处理</li>
+<li>目前在研究什么</li>
+</ul>
+<h2 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h2><ul>
+<li>做广告点击率预测，用哪些数据什么算法<ul>
+<li><a href="http://bbs.pinggu.org/thread-3182029-1-1.html" target="_blank" rel="external">http://bbs.pinggu.org/thread-3182029-1-1.html</a></li>
+</ul>
+</li>
+<li>推荐系统的算法中最近邻和矩阵分解各自适用场景<ul>
+<li><a href="http://www.doc88.com/p-3961053026557.html" target="_blank" rel="external">http://www.doc88.com/p-3961053026557.html</a></li>
+</ul>
+</li>
+<li>今日头条的个性化推荐是如何实现的？</li>
+<li>推荐算法（基于用户的协同过滤，基于内容的协同过滤）</li>
+<li>如何做一个新闻推荐</li>
+<li>NLP<ul>
+<li>Q1：给定一个1T的单词文件，文件中每一行为一个单词，单词无序且有重复，当前有5台计算机。请问如何高效地利用5台计算机完成文件词频统计工作？ <ul>
+<li>Ans（有问题的）：将1T文件切分为5份，分配给5台计算机。每台计算机进行词频统计工作，输出一个结果为{单词：频数}的字典结果文件。将5台计算机生成的5个结果文件合并。</li>
+</ul>
+</li>
+<li>Q2：每台计算机需要计算200G左右的文件，内存无法存放200G内容，那么如何统计这些文件的词频？ <ul>
+<li>Ans（不是最优）：首先将文件排序，然后遍历利用list存储结果即可。（不能用字典，因为200G统计出来的结果会很大，没有那么大的内存存放字典。由于经过排序操作，遍历存储并不会使结果丢失，所以用list存储结果即可，每当一个list即将占满内存，则将其写入文件，然后清空list继续存储结果。）</li>
+</ul>
+</li>
+<li>Q3：如何将1T的文件均匀地分配给5台机器，且每台机器统计完词频生成的文件只需要拼接起来即可（即每台机器统计的单词不出现在其他机器中） <ul>
+<li>Ans1（不是很好）：对1T文件中的单词进行抽样，获得其概率分布，遍历文件，然后根据首字母的概率均匀分配至5台计算机，如a到e的概率均为0.04, 0.04*5=0.2，则将所有以a-e的单词放入第1台计算机，若z的概率为0.2，则把所有以z开头的单词放入第5台计算机。缺点：不具有可扩展性，如果有100台计算机，那么可能就需要2个字母计算了，则程序就要改变。还有可能出现2台机器中有相同的单词。 </li>
+<li>Ans2（不是最优）：遍历文件，对于每一个单词，获得单词中各字母的ASCII码值，然后将ASCII值之和取余。则每台机器中的单词必定是不一样。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="开放性问题"><a href="#开放性问题" class="headerlink" title="开放性问题"></a>开放性问题</h2><blockquote>
+<ul>
+<li>先不要考虑完善性或可实现性，调动你的一切知识储备和经验储备去设计，有多少说多少，想到什么说什么，方案都是在你和面试官讨论的过程里逐步完善的，不过面试官有两种风格：引导你思考考虑不周之处 or 指责你没有考虑到某些情况，遇到后者的话还请注意灵活调整答题策略;</li>
+<li>和同学朋友开展讨论</li>
+</ul>
+</blockquote>
+<ul>
+<li>用户流失率预测怎么做（游戏公司的数据挖掘都喜欢问这个）（涉及数据不平衡问题和时间序列分析）<ul>
+<li><a href="http://www.docin.com/p-1204742211.html" target="_blank" rel="external">http://www.docin.com/p-1204742211.html</a></li>
+</ul>
+</li>
+<li>一个游戏的设计过程中该收集什么数据</li>
+<li>如何从登陆日志中挖掘尽可能多的信息<ul>
+<li><a href="http://www.docin.com/p-118297971.html" target="_blank" rel="external">http://www.docin.com/p-118297971.html</a></li>
+</ul>
+</li>
+<li>给你公司内部群组的聊天记录，怎样区分出主管和员工？</li>
+<li>如何评估网站内容的真实性（针对代刷、作弊类）？</li>
+<li>深度学习在推荐系统上可能有怎样的发挥？</li>
+<li>路段平均车速反映了路况，在道路上布控采集车辆速度，如何对路况做出合理估计？采集数据中的异常值如何处理？</li>
+<li>如何根据语料计算两个词词义的相似度？</li>
+<li>在百度贴吧里发布 APP 广告，问推荐策略？</li>
+<li>如何判断自己实现的 LR、Kmeans 算法是否正确？</li>
+<li>100亿数字，怎么统计前100大的？</li>
+<li>每个实体有不同属性，现在有很多实体的各种属性数据，如何判断两个实体是否是同一种东西<ul>
+<li>重写equals方法，对类里面的对象进行属性比较</li>
+</ul>
+</li>
+<li>学校食堂如何应用数据挖掘的知识</li>
+</ul>
+<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
+<li>如何判断函数凸或非凸？<ul>
+<li>凸函数定义：对区间$[a,b]$上定义的函数$f$，若他对区间中任意两点$x_1,x_2$均有$f(\frac{x_1+x_2}{2})\leq \frac{f(x_1)+f(x_2)}{2}$,则称$f$为区间$[a,b]$上的凸函数。</li>
+<li>U形曲线的函数通常是凸函数</li>
+<li>对实数集上的函数通常可以通过求二阶导数来判别，而二阶导数在区间上非负则称为凸函数，若二阶导数在区间上恒大于0则称严格凸函数</li>
+</ul>
+</li>
+<li>解释对偶的概念</li>
+<li>一个概率题目： 6个LED灯管，找整体旋转180’后仍然是一个正常输入的情况（考虑全即可）</li>
+<li>一个袋子里有很多种颜色的球，其中抽红球的概率为1/4，现在有放回地抽10个球，其中7个球为红球的概率是多少？（伯努利试验）</li>
+<li>给定一个分类器p，它有0.5的概率输出1，0.5的概率输出0。<ul>
+<li>Q1：如何生成一个分类器使该分类器输出1的概率为0.25，输出0的概率为0.75？ <ul>
+<li>Ans：连续进行两次分类，两次结果均为1则输出1，其余情况（10,01,00）均输出0。</li>
+</ul>
+</li>
+<li>Q2：如何生成一个分类器使该分类器输出1的概率为0.3，输出0的概率为0.7？ Tip：小明正在做一道选择题，问题只有A、B和C三个选项，通过抛一个硬币来使选择3个选项的概率相同。小明只需抛连续抛两次硬币，结果正正为A，正负为B，负正为C，负负则重新抛硬币。 <ul>
+<li>Ans：连续进行4次分类（2^4=16 &gt; 10），结果前3种情况则输出1，结果接下来7种情况则输出0，其余情况重新进行分类。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="大数据相关"><a href="#大数据相关" class="headerlink" title="大数据相关"></a>大数据相关</h2><ul>
+<li>如何用hadoop实现k-means？</li>
+<li>spark工作原理</li>
+<li>spark运行原理</li>
+<li>map-reduce<ul>
+<li>mapreduce常用的接口</li>
+<li>mapreduce的工作流程</li>
+<li>MR优化方式</li>
+<li>什么样的情况下不能用mapreduce</li>
+<li>mapreduce怎么实现join连接</li>
+<li>如何解决mapreduce的数据倾斜</li>
+<li>mapreduce怎么实现把移动数据到移动计算的</li>
+</ul>
+</li>
+<li>10亿个整数，1G内存，O(n)算法，统计只出现一次的数。<ul>
+<li>方案一：分拆然后分布式，方案二：对应每个数有三个状态，01代表出现一次，统计10亿以内数据，然后看最终哪些是01状态</li>
+</ul>
+</li>
+<li>海量数据排序；<ul>
+<li>bit位操作</li>
+</ul>
+</li>
+<li>海量数据中求取出现次数最大的100个数<ul>
+<li><a href="http://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="external">链接</a></li>
+<li>分而治之/hash映射 + hash统计 + 堆/快速/归并排序；</li>
+<li>双层桶划分</li>
+<li>Bloom filter/Bitmap；</li>
+<li>Trie树/数据库/倒排索引；</li>
+<li>外排序；</li>
+<li>分布式处理之Hadoop/Mapreduce。</li>
+</ul>
+</li>
+<li>实现一个分布式的矩阵向量乘的算法</li>
+<li>实现一个分布式的topN算法</li>
+</ul>
+<h2 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h2><ul>
+<li>介绍卷积神经网络，和DBN有什么区别？</li>
+<li>Deep CNN, Deep RNN, RBM的典型应用与局限，看Hinton讲义和Paper去吧</li>
+</ul>
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><ul>
+<li>你觉得Python和Java在使用起来，有什么区别？</li>
+<li>Java<ul>
+<li>数组与链表的区别是什么？</li>
+<li>给你两张表，表A和表B，其中表A有3条数据，表B有5条数据，问：表A left join 表B后有几条？</li>
+<li>ArryList、LinkedList、vector的区别</li>
+<li>hashMap HashTable的区别</li>
+<li>垃圾回收机制</li>
+<li>JVM的工作原理</li>
+<li>for循环LinkedList</li>
+<li>遍历HashMap的并且把某一个值删除</li>
+<li>线程 进程</li>
+<li>Java中Runnable和Thread的区别Callable</li>
+<li>Callable与Future的介绍</li>
+<li>sleep wait区别</li>
+<li>java的数据类型</li>
+<li>JAVA如何实现序列化</li>
+<li>反序列化是什么？</li>
+<li>序列化是将（内存中的）结构化的数据数据，序列化成2进制</li>
+<li>python读取文件，写代码</li>
+<li>python计算一个文件中有N行，每行一列的数的平均值，方差，写代码</li>
+<li>main(argc,argv[])里面两个参数什么意思<ul>
+<li>args是Java命令行参数，我们在DOS中执行Java程序的时候使用“java 文件名 args参数”。args这个数组可以接收到这些参数。当然也可以在一个类中main方法中直接调用另一个类里的main方法，因为main方法都是static修饰的静态方法，因此可以通过类名.main来调用，这时就可在调用处main方法中传入String[]类型的字符串数组，达到调用的目的，也可不传入参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Python<ul>
+<li>list有哪几种添加元素的方法，能否从表头插入元素？(append, extend和insert, insert能从表头插入元素, 但是时间复杂度为O(n).)</li>
+<li>如何提高Python的运行效率</li>
+<li>写一个简单的正则匹配表达式(将文本中的123.4匹配出来)（Python）</li>
+<li>a = [1, 2, 3, 4], b = a, b[0] = 100, 请问print(a)结果是什么</li>
+<li><a href="http://www.jianshu.com/p/J4U6rR" target="_blank" rel="external">list是怎样实现的</a></li>
+<li>常用的数据结构及应用场景（list，dict，tuple）</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><ul>
+<li>两个数组，求差集</li>
+<li>写程序实现二分查找算法，给出递归和非递归实现，并分析算法的时间复杂度。</li>
+<li>实现单链表的反转</li>
+<li>求两个一维数组的余弦相似度，写代码</li>
+<li>字符串翻转</li>
+<li>快排</li>
+<li>非递归的二叉前/中/后序遍历</li>
+<li>手写二叉树前/中/后序递归遍历算法（千万不要忘记异常处理！）</li>
+<li>两个字符串的复制（除了字符串地址重叠的情况，也要注意判断字符串本身的空间足够不足够，对于异常情况要考虑全面）</li>
+<li>一个数组，如果存在两个数之和等于第三个数，找出满足这一条件的最大的第三个数（设为x+y =c）</li>
+<li>怎样将二叉排序树变成双向链表，且效率最高</li>
+<li>从栈里找最小的元素，且时间复杂度为常数级</li>
+<li>float转string</li>
+<li>判断一棵树是否是另一棵的子树</li>
+<li>在一个n*n的矩阵中填数的问题，那种转圈填数</li>
+<li>链表存在环问题，环的第一个节点在哪里？</li>
+<li>几个排序算法，时间复杂度&amp;空间复杂度</li>
+<li>数据结构当中的树，都有哪些？<ul>
+<li>二叉查找树（二叉排序树）、平衡二叉树（AVL树）、红黑树、B-树、B+树、字典树（trie树）、后缀树、广义后缀树</li>
+<li><a href="http://www.cnblogs.com/dong008259/archive/2011/11/22/2255361.html" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>输出一个循环矩阵</li>
+<li>翻转字符串（《剑指offer》原题）</li>
+<li>N个数找K大数那个题,堆解释了一遍,比较满意,问还能怎么优化O(Nlogk)的方法，并行方面想</li>
+<li>一个班60个人怎么保证有两个人生日相同,听完后有点奇怪,①为什么是60个人?②为什么是保证?,反正没管这么多就是概率嘛,算就完了.<ul>
+<li>1减去50个人生日不同的概率≈100%</li>
+</ul>
+</li>
+<li>问一个字符串怎么判断是邮箱比如:vzcxn@sdf.gre.有限状态自动机,然后要我画状态转移图.<ul>
+<li><a href="https://zhidao.baidu.com/question/1689951223170121588.html" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>给10^10个64位数,100M内存的空间排序,一个求中位数的方法.用文件操作来做了,像快排一样,二分选个数统计大于那个数的数量和小于那个数的数量,如果能用100M的空间排序就把那些数排了,如果不能继续.直到能排为止.<ul>
+<li><a href="http://blog.csdn.net/guyulongcs/article/details/7520467" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>kmp算法</li>
+<li>求最大字段和，用动态规划和分治法两个方法，时间复杂度怎么算</li>
+<li>统计字符串中出现的字符个数，忽略大小写，其中可能有其他字符。</li>
+<li>寻找二叉树的公共父节点</li>
+<li>b+ b-树、红黑树</li>
+<li>判断两条链表是否交叉</li>
+<li>树的广度、深度遍历</li>
+<li>稳定与不稳定排序</li>
+<li>并行计算、压缩算法</li>
+<li>最长上升子序列，两个大小相同的有序数组找公共中位数</li>
+<li>介绍大顶堆和小顶堆</li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/23259302#rd" target="_blank" rel="external">知乎-如何准备机器学习工程师的面试 ？</a></li>
+<li><a href="https://www.zhihu.com/question/23259302/answer/24300412" target="_blank" rel="external">by 刘志权</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27151345" target="_blank" rel="external">机器学习及大数据相关面试的职责和面试问题(转)</a></li>
+<li><a href="https://www.zhihu.com/question/23259302/answer/174467341" target="_blank" rel="external">by 姚凯飞</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+
+&lt;h2 id=&quot;概念-amp-原理&quot;&gt;&lt;a href=&quot;#概念-amp-原理&quot; class=&quot;headerlink&quot; title=&quot;概念&amp;amp;原理&quot;&gt;&lt;/a&gt;概念&amp;amp;原理&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备；&lt;/li&gt;
+&lt;li&gt;算法要从以下几个方面来掌握&lt;ul&gt;
+&lt;li&gt;产生背景&lt;/li&gt;
+&lt;li&gt;适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）；&lt;/li&gt;
+&lt;li&gt;原理推导（最大间隔，软间隔，对偶）；&lt;/li&gt;
+&lt;li&gt;求解方法（随机梯度下降、拟牛顿法等优化算法）；&lt;/li&gt;
+&lt;li&gt;优缺点，相关改进；&lt;/li&gt;
+&lt;li&gt;和其他基本方法的对比；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="offer" scheme="http://yoursite.com/tags/offer/"/>
+    
+  </entry>
+  
+  <entry>
     <title>统计学习方法笔记（六）——Logistic Regression</title>
     <link href="http://yoursite.com/2017/07/08/lr/"/>
     <id>http://yoursite.com/2017/07/08/lr/</id>
     <published>2017-07-08T05:49:08.000Z</published>
-    <updated>2017-07-08T07:17:56.362Z</updated>
+    <updated>2017-07-10T06:59:45.490Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -49,12 +496,22 @@
 <li>而观察前面的LR模型可以发现，$$log\frac{P(Y=1|x)}{1-P(Y=1|x)}=log\frac{P(Y=1|x)}{P(Y=0|x)}=w \cdot x$$，也就是说，在LR模型中，输出$Y=1$的<strong>对数几率</strong>是输入$x$的<strong>线性函数</strong>，或者说<strong>输出$Y=1$的对数几率是由输入$x$的线性函数表示的模型，即LR模型</strong>（所以说Logistic Regression属于对数线性模型）</li>
 <li>因此，针对对输入$x$进行分类的<strong>线性函数</strong>，通过LR模型可以将其转换为（条件）概率：$$P(Y=1|x)=\frac{exp(w \cdot x+b)}{1+exp(w \cdot x+b)}$$，其中线性函数的值越接近正无穷，概率值就越接近1，线性函数的值越接近负无穷，概率值就越接近0，这样的模型就是LR模型。</li>
 </ul>
-<p><em><a href="http://www.wengweitao.com/luo-ji-si-di-hui-gui-yu-zui-da-shang-mo-xing.html" target="_blank" rel="external">扩展</a></em><br>如果直接从概率的角度来使用线性回归模型进行分类，则对于$$P(Y=1|x)=w_0+w_1x_1+…+w_nx_n$$，存在如下问题</p>
+<h3 id="角度三：广义线性模型在分类问题上的推广（参考《机器学习》）"><a href="#角度三：广义线性模型在分类问题上的推广（参考《机器学习》）" class="headerlink" title="角度三：广义线性模型在分类问题上的推广（参考《机器学习》）"></a>角度三：广义线性模型在分类问题上的推广（参考《机器学习》）</h3><blockquote>
+<p>用线性回归模型的预测结果去逼近真实标记的对数几率</p>
+</blockquote>
 <ul>
-<li>等式两边的取值范围不同。左边为概率是$[0, 1]$，右边是无穷</li>
-<li>实际很多问题中，概率$P$和输入并非简单的线性关系，在$x$很小或很大的时候，可能对于$P$的影响很小，而$x$在某些值附近可能对$P$的影响很大。</li>
+<li>对于二分类任务：其输出标记$y \in \lbrace 0,1 \rbrace$,而线性回归模型产生的预测值$f(x)=w\cdot x+b$是实值</li>
+<li>而根据广义线性模型的思想，可以通过寻找一个联系函数来将分类任务的真实标记与线性回归模型的预测值联系起来</li>
+<li>最直接的想法是使用单位阶跃函数，即<br><img src="/materials/img/LR/jieyue.png" alt="jieyue"><br>即若预测值$z$大于0就判为正例，小于0则判为反例</li>
+<li>但是单位阶跃函数不连续，所以我们希望找到一个替代函数来在一定程度上近似单位阶跃函数，并希望该函数单调可微，于是就引入了对数几率函数$$y=\frac{1}{1+e^{-z}}$$</li>
+<li>将对数几率函数作为$g^-(\cdot)$带入广义线性模型则有$$y=\frac{1}{1+e^{-(w \cdot x+b)}}$$</li>
+<li>其变形形式为$$ln\frac{y}{1-y}=w\cdot x+b$$,若将$y$视作样本$x$作为正例的可能性，则$1-y$是其作为反例的可能性，两者的比值$\frac{y}{1-y}$称为几率（联系角度二），反映了$x$作为正例的<strong>相对可能性</strong></li>
 </ul>
-<p>LR模型对线性回归模型进行了修正，解决了这两个问题</p>
+<h2 id="LR模型的优点"><a href="#LR模型的优点" class="headerlink" title="LR模型的优点"></a>LR模型的优点</h2><ul>
+<li>LR模型直接对分类可能性进行建模，无需事先假设数据分布，这样就避免了假设分布不准确所带来的问题</li>
+<li>LR模型不是仅预测出类别，而是可得到近似概率预测，这对于许多需利用概率辅助决策的任务很有用</li>
+<li>对数几率函数是任意阶可导的凸函数，有很好的数学性质，现有很多数值优化算法均可直接用于求取最优解</li>
+</ul>
 <h2 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h2><ul>
 <li>基本思想：应用极大似然估计法估计模型参数，从而将问题转化为以对数似然函数为目标函数的最优化问题，然后采用梯度下降法或者拟牛顿法进行求解</li>
 </ul>
@@ -647,9 +1104,9 @@
     <link href="http://yoursite.com/2017/06/27/basic-algorithm/"/>
     <id>http://yoursite.com/2017/06/27/basic-algorithm/</id>
     <published>2017-06-27T02:56:11.000Z</published>
-    <updated>2017-07-08T07:18:12.111Z</updated>
+    <updated>2017-07-10T03:18:17.926Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**<br><a id="more"></a></p>
 <h4 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>循环</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//二分查找适用于有序的数组，另外也有一些延伸用法，见剑指offer</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(num==<span class="keyword">null</span> || num.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">		<span class="comment">//为什么是length-1,因为查找也是从第0位开始的</span></div><div class="line">		<span class="keyword">int</span> high = num.length-<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(low &lt;= high)&#123;<span class="comment">//注意这里的取等与数组的元素奇偶个数、取边界值、边界以外的值相关，小心</span></div><div class="line">			<span class="keyword">int</span> mid = (low+high) &gt;&gt; <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(num[mid] == key)&#123;</div><div class="line">				pos = mid;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(num[mid] &gt; key)&#123;</div><div class="line">				high = mid - <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				low = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pos;</div><div class="line">		<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//		return low;</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
@@ -771,11 +1228,73 @@
 <li>N表示N次插入之后，M表示哈希表中的键的个数</li>
 <li>Java的<code>java.util.TreeMap</code>和<code>java.util.HashMap</code>分别是基于红黑树和拉链法的散列表的符号表实现</li>
 </ul>
-<h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>]]></content>
+<p><em>来源于《算法》一书中3.5.1</em></p>
+<h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序【重点】"><a href="#快速排序【重点】" class="headerlink" title="快速排序【重点】"></a>快速排序【重点】</h3><h3 id="归并排序【重点】"><a href="#归并排序【重点】" class="headerlink" title="归并排序【重点】"></a>归并排序【重点】</h3><h4 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h4><ul>
+<li>额外数组空间+双指针<ul>
+<li>先将原始数组复制一份</li>
+<li>分别遍历两个子数组，遍历原始数组，逐个比较指针指向的元素和移动指针，将较小的元素复制到原始的数组，若一个子数组指向最后，则将另一个子数组元素逐个复制到原数组中</li>
+</ul>
+</li>
+<li>Java实现<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> mid, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=low;k&lt;=high;k++)&#123;</div><div class="line">		copy[k]=nums[k];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> i=low;</div><div class="line">	<span class="keyword">int</span> j=mid+<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=low;k&lt;=high;k++)&#123;</div><div class="line">		<span class="keyword">if</span>(i&gt;mid)&#123;<span class="comment">//左子数组元素用尽</span></div><div class="line">			nums[k]=copy[j++];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(j&gt;high)&#123;<span class="comment">//左子数组元素用尽</span></div><div class="line">			nums[k]=copy[i++];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(copy[i]&lt;copy[j])&#123;<span class="comment">//否则谁小就填充谁</span></div><div class="line">			nums[k]=copy[i++];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			nums[k]=copy[j++];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里的copy数组在类中一开始显式声明，然后在sort初始部分一次性分配空间初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] copy;		<span class="comment">//事先声明一个辅助数组</span></div></pre></td></tr></table></figure></p>
+<p><em>Notes:这里不一开始就复制所有元素到copy数组的原因在于，后续归并时是一个回退的过程，<strong>每次都是将前一阶段已经排好序的子数组复制到对应copy部分，然后进一步归并排序</strong>，所以如果一开始就复制而后面不复制，后面中间的排序过程就失效了</em></p>
+<h4 id="递归方法（自顶向下）"><a href="#递归方法（自顶向下）" class="headerlink" title="递归方法（自顶向下）"></a>递归方法（自顶向下）</h4><ul>
+<li>递归+分治的思想<br>对某一子数组排序，先将其对半分，然后对各部分分别递归调用排序，最后将有序的子数组归并为最终的排序结果</li>
+<li>Java实现<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	copy=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">	mergeSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(low+high)&gt;&gt;<span class="number">1</span>;</div><div class="line">	mergeSort(nums,low,mid);</div><div class="line">	mergeSort(nums,mid+<span class="number">1</span>,high);</div><div class="line">	merge(nums,low,mid,high);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>Notes:sort方法的作用在于安排多次merge方法调用的正确顺序，只有子数组有序了，merge方法才是有效的</em></p>
+<h3 id="堆排序【重点】"><a href="#堆排序【重点】" class="headerlink" title="堆排序【重点】"></a>堆排序【重点】</h3><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
+<p>不断地选择剩余元素中的最小者并与当前剩余元素第一位交换<br>首先，找到数组中最小的那个元素，其次将它和数组的第一个元素交换位置，再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此往复，直到将整个数组排序。</p>
+</blockquote>
+<h4 id="Java实现-1"><a href="#Java实现-1" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li><p>选择排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">int</span> minPos=i;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;nums.length;j++)&#123;</div><div class="line">			<span class="keyword">if</span>(nums[minPos]&gt;nums[j])&#123;</div><div class="line">				minPos=j;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> temp=nums[i];</div><div class="line">		nums[i]=nums[minPos];</div><div class="line">		nums[minPos]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span>[] nums=&#123;<span class="number">7</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">3</span>&#125;;</div><div class="line">	printArray(nums);</div><div class="line">	selectSort(nums);</div><div class="line">	printArray(nums);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">		System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>对于长度为$N$的数组，选择排序需要大约$N^2/2$次比较和$N$次交换</li>
+<li>运行时间和输入无关（缺点），比如元素相等的数组/已经有序的数组与随机数组的排序时间一样长</li>
+<li>数据移动是最少的，即元素交换次数是最少的，每次交换只改变两个数组元素的值，即交换次数和数组的大小呈线性关系，而其他的大部分排序算法是线性对数或者平方级别</li>
+</ul>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="基本思想-2"><a href="#基本思想-2" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
+<p>整理桥牌</p>
+</blockquote>
+<p>保证数组当前遍历的元素位置左方元素已经有序，然后将当前元素前向逐个比较，一边比较一边将前面的元素向后覆盖，直到找到第一个不大于该元素的位置，将该元素插入（《算法》一书中的基本实现采用的方法是将目标元素与前面比他大的元素逐个交换的做法，相较之下，我的这种直接移动所有较大元素的做法速度更快（《算法》一书作为练习题））</p>
+<h4 id="Java实现-2"><a href="#Java实现-2" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li>插入排序<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">int</span> temp=nums[i+<span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> j=i+<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;temp&lt;nums[j-<span class="number">1</span>])&#123;</div><div class="line">			nums[j]=nums[j-<span class="number">1</span>];</div><div class="line">			j--;</div><div class="line">		&#125;			</div><div class="line">		nums[j]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>插入排序所需时间取决于输入中元素的初始顺序，因此插入排序对于部分有序的数组十分高效，也很适合小规模数组（当数组中倒置（倒置指的是数组中两个顺序颠倒的元素）数量很少时，插入排序可能是最快的排序算法）</li>
+</ul>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h4 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<li>考虑到插入排序不适用于大规模乱序数组，所以进行改进得到的算法</li>
+<li>原则是保证数组中任意间隔为h的元素有序，即交换间隔为h的元素以对数组的局部进行排序，并最终使用插入排序将局部有序的数组排序</li>
+<li>权衡了子数组的规模和有序性：排序之初，各个子数组都很短，排序之后子数组都是部分有序的，这两种情况都很适合插入排序</li>
+</ul>
+<h4 id="Java实现-3"><a href="#Java实现-3" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li><p>希尔排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> h=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(h&lt;nums.length/<span class="number">3</span>)&#123;</div><div class="line">		h=h*<span class="number">3</span>+<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(h&gt;=<span class="number">1</span>)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-h;i++)&#123;</div><div class="line">			<span class="keyword">int</span> temp=nums[i+h];</div><div class="line">			<span class="keyword">int</span> j=i+h;</div><div class="line">			<span class="keyword">while</span>(j&gt;=h&amp;&amp;temp&lt;nums[j-h])&#123;</div><div class="line">				nums[j]=nums[j-h];</div><div class="line">				j-=h;</div><div class="line">			&#125;</div><div class="line">			nums[j]=temp;</div><div class="line">		&#125;</div><div class="line">		h/=<span class="number">3</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">		System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">randArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		nums[i]=(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span>[] nums=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</div><div class="line">	randArray(nums);</div><div class="line">	</div><div class="line">	printArray(nums);</div><div class="line">	shellSort(nums);</div><div class="line">	printArray(nums);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>算法性能取决于h值的选择，这里使用的是序列$\frac{3^k-1}{2}$，关于怎样的h值最好，尚无定论，实际应用中相差不大，但一般其时间复杂度不会到达$O(n^2)$</li>
+<li>希尔排序也可用于大型数组，其优点在于代码量小而且不需要额外的存储空间，在手头没有现成的排序算法可以调用时，不妨实现希尔排序来辅助工作</li>
+</ul>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;查找类&quot;&gt;&lt;a href=&quot;#查找类&quot; class=&quot;headerlink&quot; title=&quot;查找类&quot;&gt;&lt;/a&gt;查找类&lt;/h2&gt;&lt;h3 id=&quot;二分查找&quot;&gt;&lt;a href=&quot;#二分查找&quot; class=&quot;headerlink&quot; title=&quot;二分查找&quot;&gt;&lt;/a&gt;二分查找&lt;/h3&gt;&lt;h4 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h4&gt;&lt;p&gt;在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**&lt;br&gt;
+      &lt;h2 id=&quot;查找类&quot;&gt;&lt;a href=&quot;#查找类&quot; class=&quot;headerlink&quot; title=&quot;查找类&quot;&gt;&lt;/a&gt;查找类&lt;/h2&gt;&lt;h3 id=&quot;二分查找【重点】&quot;&gt;&lt;a href=&quot;#二分查找【重点】&quot; class=&quot;headerlink&quot; title=&quot;二分查找【重点】&quot;&gt;&lt;/a&gt;二分查找【重点】&lt;/h3&gt;&lt;h4 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h4&gt;&lt;p&gt;在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**&lt;br&gt;
     
     </summary>
     

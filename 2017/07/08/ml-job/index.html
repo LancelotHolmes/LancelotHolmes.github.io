@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>GBDT | Lancelot&#39;s Desert</title>
+  <title>机器学习校招常考知识点小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A Gentle Introduction to Gradient Boosting  gradient boosting = gradient descent + boosting  AdaBoost vs. Gradient Boosting   AdaBoost Gradient Boosting     相同点 1、加性模型+前向分步算法 2、每一步训练一个弱学习器以弥补前面模型的不">
-<meta name="keywords" content="ML,GBDT">
+  <meta name="description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
+<meta name="keywords" content="ML,Note,offer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GBDT">
-<meta property="og:url" content="http://yoursite.com/2017/07/07/GBDT/index.html">
+<meta property="og:title" content="机器学习校招常考知识点小记">
+<meta property="og:url" content="http://yoursite.com/2017/07/08/ml-job/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="A Gentle Introduction to Gradient Boosting  gradient boosting = gradient descent + boosting  AdaBoost vs. Gradient Boosting   AdaBoost Gradient Boosting     相同点 1、加性模型+前向分步算法 2、每一步训练一个弱学习器以弥补前面模型的不">
-<meta property="og:image" content="http://yoursite.com/materials/img/GBDT/gd.jpg">
-<meta property="og:updated_time" content="2017-07-08T05:50:40.849Z">
+<meta property="og:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
+<meta property="og:updated_time" content="2017-07-10T06:40:14.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GBDT">
-<meta name="twitter:description" content="A Gentle Introduction to Gradient Boosting  gradient boosting = gradient descent + boosting  AdaBoost vs. Gradient Boosting   AdaBoost Gradient Boosting     相同点 1、加性模型+前向分步算法 2、每一步训练一个弱学习器以弥补前面模型的不">
-<meta name="twitter:image" content="http://yoursite.com/materials/img/GBDT/gd.jpg">
+<meta name="twitter:title" content="机器学习校招常考知识点小记">
+<meta name="twitter:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -195,20 +193,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-GBDT" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ml-job" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      GBDT
+      机器学习校招常考知识点小记
     </h1>
   
 
         
-        <a href="/2017/07/07/GBDT/" class="archive-article-date">
-  	<time datetime="2017-07-07T06:50:00.000Z" itemprop="datePublished">2017-07-07</time>
+        <a href="/2017/07/08/ml-job/" class="archive-article-date">
+  	<time datetime="2017-07-08T10:47:00.000Z" itemprop="datePublished">2017-07-08</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
@@ -225,7 +223,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost-vs-Gradient-Boosting"><span class="toc-number">1.</span> <span class="toc-text">AdaBoost vs. Gradient Boosting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boosting历史"><span class="toc-number">2.</span> <span class="toc-text">Boosting历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单例子理解"><span class="toc-number">3.</span> <span class="toc-text">简单例子理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与梯度下降法的关联（回归树）"><span class="toc-number">4.</span> <span class="toc-text">与梯度下降法的关联（回归树）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-number">4.1.</span> <span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数"><span class="toc-number">4.2.</span> <span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般过程（算法）"><span class="toc-number">4.3.</span> <span class="toc-text">一般过程（算法）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT用于分类——识别手写字母（多分类）"><span class="toc-number">5.</span> <span class="toc-text">GBDT用于分类——识别手写字母（多分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">5.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般过程"><span class="toc-number">5.2.</span> <span class="toc-text">一般过程</span></a></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念-amp-原理"><span class="toc-number">1.</span> <span class="toc-text">概念&原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型简介"><span class="toc-number">2.</span> <span class="toc-text">模型简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型比较"><span class="toc-number">3.</span> <span class="toc-text">模型比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目相关"><span class="toc-number">4.</span> <span class="toc-text">项目相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#业务"><span class="toc-number">5.</span> <span class="toc-text">业务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开放性问题"><span class="toc-number">6.</span> <span class="toc-text">开放性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学"><span class="toc-number">7.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大数据相关"><span class="toc-number">8.</span> <span class="toc-text">大数据相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深度学习"><span class="toc-number">9.</span> <span class="toc-text">深度学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语言"><span class="toc-number">10.</span> <span class="toc-text">语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构与算法"><span class="toc-number">11.</span> <span class="toc-text">数据结构与算法</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -239,71 +237,345 @@ ga('send', 'pageview');
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<p><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="external">A Gentle Introduction to Gradient Boosting</a></p>
-<blockquote>
-<p>gradient boosting = gradient descent + boosting</p>
-</blockquote>
-<h2 id="AdaBoost-vs-Gradient-Boosting"><a href="#AdaBoost-vs-Gradient-Boosting" class="headerlink" title="AdaBoost vs. Gradient Boosting"></a>AdaBoost vs. Gradient Boosting</h2><table>
-<thead>
-<tr>
-<th>AdaBoost</th>
-<th>Gradient Boosting</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>相同点</td>
-<td>1、加性模型+前向分步算法<br> 2、每一步训练一个弱学习器以弥补前面模型的不足</td>
-</tr>
-<tr>
-<td>不同点</td>
-<td>1、AdaBoost中当前学习期器的“不足”由样本权重来决定<br> 2、GBDT中当前学习期器的“不足”由求梯度决定</td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<h2 id="Boosting历史"><a href="#Boosting历史" class="headerlink" title="Boosting历史"></a>Boosting历史</h2><ul>
-<li>发明AdaBoost。第一个成功的提升算法</li>
-<li>规整AdaBoost为使用特殊损失函数的梯度下降方法</li>
-<li>将AdaBoost泛化为Gradient Boosting（能处理一般的损失函数）</li>
-</ul>
-<h2 id="简单例子理解"><a href="#简单例子理解" class="headerlink" title="简单例子理解"></a>简单例子理解</h2><p>给定数据集$(x_1,y_1),(x_2,y_2),…,(x_n,y_n)$，现在需要拟和模型$F(x)$来使平均误差最小化，假设你的朋友给你提供了一个模型$F$，你发现该模型还可以进一步提升，对于上述数据集，该模型存在少量错误，比如$F(x_1)=0.8$但$y_1=0.9; F(x_2)=1.4$但$y_2=1.3$，如何改进这个模型？</p>
+
+<h2 id="概念-amp-原理"><a href="#概念-amp-原理" class="headerlink" title="概念&amp;原理"></a>概念&amp;原理</h2><blockquote>
 <ul>
-<li>一种可行的方法就是在原始的模型$F$的基础上添加一个模型，h（比如回归树），从而得到模型$F(x):=F(x)+h(x)$</li>
-<li>通过拟合来改进该模型$$F(x_1)+h(x_1)=y_1$$<br>$$F(x_2)+h(x_2)=y_2$$<br>$$…$$<br>$$F(x_n)+h(x_n)=y_n$$<br>于是我们可以得到$$h(x_i)=y_i-F(x_i)$$,也就是在$F$的基础上我们针对数据集$(x_1,y_1-F(x_1)),(x_2,y_2-F(x_2)),…,(x_n,y_n-F(x_n))$拟和一个模型$h$，其中$y_i-F(x_i)$被称做是<strong>残差</strong></li>
+<li>高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备；</li>
+<li>算法要从以下几个方面来掌握<ul>
+<li>产生背景</li>
+<li>适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）；</li>
+<li>原理推导（最大间隔，软间隔，对偶）；</li>
+<li>求解方法（随机梯度下降、拟牛顿法等优化算法）；</li>
+<li>优缺点，相关改进；</li>
+<li>和其他基本方法的对比；</li>
 </ul>
-<h2 id="与梯度下降法的关联（回归树）"><a href="#与梯度下降法的关联（回归树）" class="headerlink" title="与梯度下降法的关联（回归树）"></a>与梯度下降法的关联（回归树）</h2><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>$$\theta_i=\theta_i-\rho \frac{dJ}{d \theta_i}$$通过朝负梯度方向移动来最小化函数</p>
-<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p><em>残差是如何与梯度联系起来的？</em><br><img src="/materials/img/GBDT/gd.jpg" alt="gradient descent"><br>那么我们为何还需要其他的损失函数？是因为平方损失函数不够好么？</p>
-<p>平方损失函数</p>
-<ul>
-<li>优点：易于计算</li>
-<li>缺点：对于离群值非常敏感（容易为了拟合离群值而导致整体性能下降）</li>
+</li>
+<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。<a id="more"></a></li>
+<li>LDA的原理和推导；SVD、LDA</li>
+<li>无监督和有监督算法的区别？</li>
+<li>多分类怎么处理？（参见《机器学习》P64,通常切分为多个二分类，最后再集成）<ul>
+<li>OVO</li>
+<li>OVR</li>
+<li>MVM–&gt;ECOC(纠错输出码)</li>
 </ul>
-<p>而其他的一些损失函数比如绝对损失函数、huber loss（丘陵损失）等对于离群值相对没有那么敏感</p>
-<h3 id="一般过程（算法）"><a href="#一般过程（算法）" class="headerlink" title="一般过程（算法）"></a>一般过程（算法）</h3><blockquote>
-<p>以$L$为损失函数的回归问题的一般过程</p>
-<ul>
-<li>初始化模型如$F(x)=\frac{\sum_{i=1}^ny_i}{n}$</li>
-<li>循环直至收敛<ul>
-<li>计算负梯度$-g(x_i)=-\frac{dL(y_i,F(x_i))}{dF(x_i)}$</li>
-<li>用一个回归树$h$来拟合负梯度</li>
-<li>更新模型$F:=F+\rho h$</li>
+</li>
+<li>为什么会产生过拟合，有哪些方法可以预防或克服过拟合？</li>
+<li>采用EM算法求解的模型有哪些，为什么不用牛顿法或梯度下降法？</li>
+<li>有哪些聚类方法？<ul>
+<li>K-均值聚类算法、K-中心点聚类算法、CLARANS、 BIRCH、CLIQUE、DBSCAN等</li>
+</ul>
+</li>
+<li>聚类算法中的距离度量有哪些？</li>
+<li>如何进行实体识别？</li>
+<li>聚类和分类有什么区别？分类是事先知道类标的，而聚类事先不知道类标。</li>
+<li>L1和L2的区别</li>
+<li>生成与判别模型</li>
+<li>ROC-AUC<ul>
+<li><a href="http://www.tuicool.com/articles/q6zYrq" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>深度学习和机器学习的区别</li>
+<li>数据挖掘和人工智能的区别</li>
+<li>测试集和训练集的区别</li>
+<li>PCA</li>
+<li>什么是模糊聚类，还有划分聚类，层次聚类等<ul>
+<li><a href="http://blog.csdn.net/xiahouzuoxin/article/details/7748823" target="_blank" rel="external">http://blog.csdn.net/xiahouzuoxin/article/details/7748823</a></li>
+<li><a href="http://www.cnblogs.com/guolei/p/3899509.html" target="_blank" rel="external">http://www.cnblogs.com/guolei/p/3899509.html</a></li>
+</ul>
+</li>
+<li>线性分类器与非线性分类器的区别及优劣；</li>
+<li>特征比数据量还大时，选择什么样的分类器？</li>
+<li>对于维度很高的特征，你是选择线性还是非线性分类器？</li>
+<li>对于维度极低的特征，你是选择线性还是非线性分类器？</li>
+<li>如何解决过拟合问题？</li>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">L1和L2正则的区别，如何选择L1和L2正则？</a></li>
+<li>线性回归的梯度下降和牛顿法求解公式的推导</li>
+<li>如何处理类别不平衡问题？（参见《机器学习》P66）<ul>
+<li>欠采样–&gt;EasyEnsemble</li>
+<li>过采样–&gt;SMOTRE</li>
+<li>阈值移动/代价敏感学习–&gt;原始数据嵌入“负正比”，具体的比如在xgboost中可以调整scale_pos_weight参数为数据集的负正比</li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<p><em>Notes:相较之下，负梯度关注离群点较少。</em></p>
-<h2 id="GBDT用于分类——识别手写字母（多分类）"><a href="#GBDT用于分类——识别手写字母（多分类）" class="headerlink" title="GBDT用于分类——识别手写字母（多分类）"></a>GBDT用于分类——识别手写字母（多分类）</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
-<li>训练26个模型：$F_A~F_Z$</li>
-<li>针对每一个样本实例，分别使用每一个模型打分，计算样本属于某个类别的概率</li>
-<li>将概率最高的类标记为该样本的预测标记</li>
+<h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><blockquote>
+<ul>
+<li>原理、推导、特性、优缺点、调参</li>
+<li>统计学习的核心步骤：模型、策略、算法，你应当对logistic、SVM、决策树、KNN及各种聚类方法有深刻的理解。能够随手写出这些算法的核心递归步的伪代码以及他们优化的函数表达式和对偶问题形式。</li>
 </ul>
-<h3 id="一般过程"><a href="#一般过程" class="headerlink" title="一般过程"></a>一般过程</h3><ul>
-<li>讲样本集的实际标记转换为概率分布的形式（0-1）</li>
-<li>计算各个模型预测样本属于各自分类的概率</li>
-<li>计算真实概率与预测概率的差值，目的是通过调整模型减少整体误差（是预测点概率分布尽可能接近真实概率分布）</li>
+</blockquote>
+<ul>
+<li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别</li>
+<li>LR 的推导，特性？；为什么可以使用logistic回归。。。</li>
+<li>决策树的特性？</li>
+<li>用EM算法推导解释 Kmeans；K-means起始点；K-means的具体流程；如何优化K-means</li>
+<li>解释密度聚类算法</li>
+<li>解释贝叶斯公式和朴素贝叶斯分类；贝叶斯分类器的优化和特殊情况的处理<ul>
+<li>朴素贝叶斯核心思想利用先验概率得到后验概率，并且最终由期望风险最小化得出后验概率最大化，从而输出让后验概率最大化的值（具体概率与先验概率由加入拉普拉斯平滑的极大似然估计而成的贝叶斯估计得到），特征必须相互独立。</li>
 </ul>
-<p><em>Notes:优化参数矩阵、计算梯度矩阵</em></p>
+</li>
+<li>KNN（分类与回归）</li>
+<li>CART（回归树用平方误差最小化准则，分类树用基尼指数最小化准则）</li>
+<li>Logistics（推导）</li>
+<li>GBDT（利用损失函数的负梯度在当前模型的值作为回归问题提升树算法中的残差的近似值，拟合一个回归树）</li>
+<li>随机森林（Bagging+CART）</li>
+<li>神经网络,plsi的推导</li>
+<li>关联分析、apriori</li>
+<li>em算法推导</li>
+<li>随机森林的学习过程；随机森林中的每一棵树是如何学习的；随机森林学习算法中CART树的基尼指数是什么？</li>
+</ul>
+<h2 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h2><ul>
+<li>naive bayes和logistic regression的区别</li>
+<li>SVM、LR、决策树的对比？</li>
+<li>GBDT和随机森林的区别？</li>
+<li>哪些模型容易过拟合，模型怎么选择</li>
+<li>改变随机森林的训练样本数据量，是否会影响到随机森林学习到的模型的复杂度</li>
+</ul>
+<h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><blockquote>
+<p>用了什么算法？为什么用？有什么优缺点？</p>
+</blockquote>
+<ul>
+<li>你在研究/项目/实习经历中主要用过哪些机器学习/数据挖掘的算法？<ul>
+<li>最好是在项目/实习的大数据场景里用过，比如推荐里用过 CF、LR，分类里用过 SVM、GBDT；</li>
+<li>一般用法是什么，是不是自己实现的，有什么比较知名的实现，使用过程中踩过哪些坑；</li>
+<li>优缺点分析。</li>
+</ul>
+</li>
+<li>你熟悉的机器学习/数据挖掘算法主要有哪些？<ul>
+<li>基础算法要多说，其它算法要挑熟悉程度高的说，不光列举算法，也适当说说应用场合；</li>
+</ul>
+</li>
+<li>你用过哪些机器学习/数据挖掘工具或框架？</li>
+<li>如何进行特征选择？</li>
+<li>用过哪些聚类算法？</li>
+<li>项目中的数据是否会归一化处理，哪个机器学习算法不需要归一化处理<ul>
+<li>量纲问题：归一化有利于优化迭代速度（梯度下降），提高精度（KNN）</li>
+</ul>
+</li>
+<li>各类算法优缺点、模型调优细节</li>
+<li>特征提取的方法（无关键词也是一个特征）</li>
+<li>自己实现过什么机器学习算法?</li>
+<li>从项目中在哪一方面体会最深</li>
+<li>自己项目中有哪些可以迁移到其他领域的东西</li>
+<li>项目相比别人有什么优劣</li>
+<li>项目的数据从哪里来</li>
+<li>项目的特征向量的归一化与异常处理</li>
+<li>目前在研究什么</li>
+</ul>
+<h2 id="业务"><a href="#业务" class="headerlink" title="业务"></a>业务</h2><ul>
+<li>做广告点击率预测，用哪些数据什么算法<ul>
+<li><a href="http://bbs.pinggu.org/thread-3182029-1-1.html" target="_blank" rel="external">http://bbs.pinggu.org/thread-3182029-1-1.html</a></li>
+</ul>
+</li>
+<li>推荐系统的算法中最近邻和矩阵分解各自适用场景<ul>
+<li><a href="http://www.doc88.com/p-3961053026557.html" target="_blank" rel="external">http://www.doc88.com/p-3961053026557.html</a></li>
+</ul>
+</li>
+<li>今日头条的个性化推荐是如何实现的？</li>
+<li>推荐算法（基于用户的协同过滤，基于内容的协同过滤）</li>
+<li>如何做一个新闻推荐</li>
+<li>NLP<ul>
+<li>Q1：给定一个1T的单词文件，文件中每一行为一个单词，单词无序且有重复，当前有5台计算机。请问如何高效地利用5台计算机完成文件词频统计工作？ <ul>
+<li>Ans（有问题的）：将1T文件切分为5份，分配给5台计算机。每台计算机进行词频统计工作，输出一个结果为{单词：频数}的字典结果文件。将5台计算机生成的5个结果文件合并。</li>
+</ul>
+</li>
+<li>Q2：每台计算机需要计算200G左右的文件，内存无法存放200G内容，那么如何统计这些文件的词频？ <ul>
+<li>Ans（不是最优）：首先将文件排序，然后遍历利用list存储结果即可。（不能用字典，因为200G统计出来的结果会很大，没有那么大的内存存放字典。由于经过排序操作，遍历存储并不会使结果丢失，所以用list存储结果即可，每当一个list即将占满内存，则将其写入文件，然后清空list继续存储结果。）</li>
+</ul>
+</li>
+<li>Q3：如何将1T的文件均匀地分配给5台机器，且每台机器统计完词频生成的文件只需要拼接起来即可（即每台机器统计的单词不出现在其他机器中） <ul>
+<li>Ans1（不是很好）：对1T文件中的单词进行抽样，获得其概率分布，遍历文件，然后根据首字母的概率均匀分配至5台计算机，如a到e的概率均为0.04, 0.04*5=0.2，则将所有以a-e的单词放入第1台计算机，若z的概率为0.2，则把所有以z开头的单词放入第5台计算机。缺点：不具有可扩展性，如果有100台计算机，那么可能就需要2个字母计算了，则程序就要改变。还有可能出现2台机器中有相同的单词。 </li>
+<li>Ans2（不是最优）：遍历文件，对于每一个单词，获得单词中各字母的ASCII码值，然后将ASCII值之和取余。则每台机器中的单词必定是不一样。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="开放性问题"><a href="#开放性问题" class="headerlink" title="开放性问题"></a>开放性问题</h2><blockquote>
+<ul>
+<li>先不要考虑完善性或可实现性，调动你的一切知识储备和经验储备去设计，有多少说多少，想到什么说什么，方案都是在你和面试官讨论的过程里逐步完善的，不过面试官有两种风格：引导你思考考虑不周之处 or 指责你没有考虑到某些情况，遇到后者的话还请注意灵活调整答题策略;</li>
+<li>和同学朋友开展讨论</li>
+</ul>
+</blockquote>
+<ul>
+<li>用户流失率预测怎么做（游戏公司的数据挖掘都喜欢问这个）（涉及数据不平衡问题和时间序列分析）<ul>
+<li><a href="http://www.docin.com/p-1204742211.html" target="_blank" rel="external">http://www.docin.com/p-1204742211.html</a></li>
+</ul>
+</li>
+<li>一个游戏的设计过程中该收集什么数据</li>
+<li>如何从登陆日志中挖掘尽可能多的信息<ul>
+<li><a href="http://www.docin.com/p-118297971.html" target="_blank" rel="external">http://www.docin.com/p-118297971.html</a></li>
+</ul>
+</li>
+<li>给你公司内部群组的聊天记录，怎样区分出主管和员工？</li>
+<li>如何评估网站内容的真实性（针对代刷、作弊类）？</li>
+<li>深度学习在推荐系统上可能有怎样的发挥？</li>
+<li>路段平均车速反映了路况，在道路上布控采集车辆速度，如何对路况做出合理估计？采集数据中的异常值如何处理？</li>
+<li>如何根据语料计算两个词词义的相似度？</li>
+<li>在百度贴吧里发布 APP 广告，问推荐策略？</li>
+<li>如何判断自己实现的 LR、Kmeans 算法是否正确？</li>
+<li>100亿数字，怎么统计前100大的？</li>
+<li>每个实体有不同属性，现在有很多实体的各种属性数据，如何判断两个实体是否是同一种东西<ul>
+<li>重写equals方法，对类里面的对象进行属性比较</li>
+</ul>
+</li>
+<li>学校食堂如何应用数据挖掘的知识</li>
+</ul>
+<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
+<li>如何判断函数凸或非凸？<ul>
+<li>凸函数定义：对区间$[a,b]$上定义的函数$f$，若他对区间中任意两点$x_1,x_2$均有$f(\frac{x_1+x_2}{2})\leq \frac{f(x_1)+f(x_2)}{2}$,则称$f$为区间$[a,b]$上的凸函数。</li>
+<li>U形曲线的函数通常是凸函数</li>
+<li>对实数集上的函数通常可以通过求二阶导数来判别，而二阶导数在区间上非负则称为凸函数，若二阶导数在区间上恒大于0则称严格凸函数</li>
+</ul>
+</li>
+<li>解释对偶的概念</li>
+<li>一个概率题目： 6个LED灯管，找整体旋转180’后仍然是一个正常输入的情况（考虑全即可）</li>
+<li>一个袋子里有很多种颜色的球，其中抽红球的概率为1/4，现在有放回地抽10个球，其中7个球为红球的概率是多少？（伯努利试验）</li>
+<li>给定一个分类器p，它有0.5的概率输出1，0.5的概率输出0。<ul>
+<li>Q1：如何生成一个分类器使该分类器输出1的概率为0.25，输出0的概率为0.75？ <ul>
+<li>Ans：连续进行两次分类，两次结果均为1则输出1，其余情况（10,01,00）均输出0。</li>
+</ul>
+</li>
+<li>Q2：如何生成一个分类器使该分类器输出1的概率为0.3，输出0的概率为0.7？ Tip：小明正在做一道选择题，问题只有A、B和C三个选项，通过抛一个硬币来使选择3个选项的概率相同。小明只需抛连续抛两次硬币，结果正正为A，正负为B，负正为C，负负则重新抛硬币。 <ul>
+<li>Ans：连续进行4次分类（2^4=16 &gt; 10），结果前3种情况则输出1，结果接下来7种情况则输出0，其余情况重新进行分类。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="大数据相关"><a href="#大数据相关" class="headerlink" title="大数据相关"></a>大数据相关</h2><ul>
+<li>如何用hadoop实现k-means？</li>
+<li>spark工作原理</li>
+<li>spark运行原理</li>
+<li>map-reduce<ul>
+<li>mapreduce常用的接口</li>
+<li>mapreduce的工作流程</li>
+<li>MR优化方式</li>
+<li>什么样的情况下不能用mapreduce</li>
+<li>mapreduce怎么实现join连接</li>
+<li>如何解决mapreduce的数据倾斜</li>
+<li>mapreduce怎么实现把移动数据到移动计算的</li>
+</ul>
+</li>
+<li>10亿个整数，1G内存，O(n)算法，统计只出现一次的数。<ul>
+<li>方案一：分拆然后分布式，方案二：对应每个数有三个状态，01代表出现一次，统计10亿以内数据，然后看最终哪些是01状态</li>
+</ul>
+</li>
+<li>海量数据排序；<ul>
+<li>bit位操作</li>
+</ul>
+</li>
+<li>海量数据中求取出现次数最大的100个数<ul>
+<li><a href="http://blog.csdn.net/v_july_v/article/details/7382693" target="_blank" rel="external">链接</a></li>
+<li>分而治之/hash映射 + hash统计 + 堆/快速/归并排序；</li>
+<li>双层桶划分</li>
+<li>Bloom filter/Bitmap；</li>
+<li>Trie树/数据库/倒排索引；</li>
+<li>外排序；</li>
+<li>分布式处理之Hadoop/Mapreduce。</li>
+</ul>
+</li>
+<li>实现一个分布式的矩阵向量乘的算法</li>
+<li>实现一个分布式的topN算法</li>
+</ul>
+<h2 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h2><ul>
+<li>介绍卷积神经网络，和DBN有什么区别？</li>
+<li>Deep CNN, Deep RNN, RBM的典型应用与局限，看Hinton讲义和Paper去吧</li>
+</ul>
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><ul>
+<li>你觉得Python和Java在使用起来，有什么区别？</li>
+<li>Java<ul>
+<li>数组与链表的区别是什么？</li>
+<li>给你两张表，表A和表B，其中表A有3条数据，表B有5条数据，问：表A left join 表B后有几条？</li>
+<li>ArryList、LinkedList、vector的区别</li>
+<li>hashMap HashTable的区别</li>
+<li>垃圾回收机制</li>
+<li>JVM的工作原理</li>
+<li>for循环LinkedList</li>
+<li>遍历HashMap的并且把某一个值删除</li>
+<li>线程 进程</li>
+<li>Java中Runnable和Thread的区别Callable</li>
+<li>Callable与Future的介绍</li>
+<li>sleep wait区别</li>
+<li>java的数据类型</li>
+<li>JAVA如何实现序列化</li>
+<li>反序列化是什么？</li>
+<li>序列化是将（内存中的）结构化的数据数据，序列化成2进制</li>
+<li>python读取文件，写代码</li>
+<li>python计算一个文件中有N行，每行一列的数的平均值，方差，写代码</li>
+<li>main(argc,argv[])里面两个参数什么意思<ul>
+<li>args是Java命令行参数，我们在DOS中执行Java程序的时候使用“java 文件名 args参数”。args这个数组可以接收到这些参数。当然也可以在一个类中main方法中直接调用另一个类里的main方法，因为main方法都是static修饰的静态方法，因此可以通过类名.main来调用，这时就可在调用处main方法中传入String[]类型的字符串数组，达到调用的目的，也可不传入参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Python<ul>
+<li>list有哪几种添加元素的方法，能否从表头插入元素？(append, extend和insert, insert能从表头插入元素, 但是时间复杂度为O(n).)</li>
+<li>如何提高Python的运行效率</li>
+<li>写一个简单的正则匹配表达式(将文本中的123.4匹配出来)（Python）</li>
+<li>a = [1, 2, 3, 4], b = a, b[0] = 100, 请问print(a)结果是什么</li>
+<li><a href="http://www.jianshu.com/p/J4U6rR" target="_blank" rel="external">list是怎样实现的</a></li>
+<li>常用的数据结构及应用场景（list，dict，tuple）</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><ul>
+<li>两个数组，求差集</li>
+<li>写程序实现二分查找算法，给出递归和非递归实现，并分析算法的时间复杂度。</li>
+<li>实现单链表的反转</li>
+<li>求两个一维数组的余弦相似度，写代码</li>
+<li>字符串翻转</li>
+<li>快排</li>
+<li>非递归的二叉前/中/后序遍历</li>
+<li>手写二叉树前/中/后序递归遍历算法（千万不要忘记异常处理！）</li>
+<li>两个字符串的复制（除了字符串地址重叠的情况，也要注意判断字符串本身的空间足够不足够，对于异常情况要考虑全面）</li>
+<li>一个数组，如果存在两个数之和等于第三个数，找出满足这一条件的最大的第三个数（设为x+y =c）</li>
+<li>怎样将二叉排序树变成双向链表，且效率最高</li>
+<li>从栈里找最小的元素，且时间复杂度为常数级</li>
+<li>float转string</li>
+<li>判断一棵树是否是另一棵的子树</li>
+<li>在一个n*n的矩阵中填数的问题，那种转圈填数</li>
+<li>链表存在环问题，环的第一个节点在哪里？</li>
+<li>几个排序算法，时间复杂度&amp;空间复杂度</li>
+<li>数据结构当中的树，都有哪些？<ul>
+<li>二叉查找树（二叉排序树）、平衡二叉树（AVL树）、红黑树、B-树、B+树、字典树（trie树）、后缀树、广义后缀树</li>
+<li><a href="http://www.cnblogs.com/dong008259/archive/2011/11/22/2255361.html" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>输出一个循环矩阵</li>
+<li>翻转字符串（《剑指offer》原题）</li>
+<li>N个数找K大数那个题,堆解释了一遍,比较满意,问还能怎么优化O(Nlogk)的方法，并行方面想</li>
+<li>一个班60个人怎么保证有两个人生日相同,听完后有点奇怪,①为什么是60个人?②为什么是保证?,反正没管这么多就是概率嘛,算就完了.<ul>
+<li>1减去50个人生日不同的概率≈100%</li>
+</ul>
+</li>
+<li>问一个字符串怎么判断是邮箱比如:vzcxn@sdf.gre.有限状态自动机,然后要我画状态转移图.<ul>
+<li><a href="https://zhidao.baidu.com/question/1689951223170121588.html" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>给10^10个64位数,100M内存的空间排序,一个求中位数的方法.用文件操作来做了,像快排一样,二分选个数统计大于那个数的数量和小于那个数的数量,如果能用100M的空间排序就把那些数排了,如果不能继续.直到能排为止.<ul>
+<li><a href="http://blog.csdn.net/guyulongcs/article/details/7520467" target="_blank" rel="external">链接</a></li>
+</ul>
+</li>
+<li>kmp算法</li>
+<li>求最大字段和，用动态规划和分治法两个方法，时间复杂度怎么算</li>
+<li>统计字符串中出现的字符个数，忽略大小写，其中可能有其他字符。</li>
+<li>寻找二叉树的公共父节点</li>
+<li>b+ b-树、红黑树</li>
+<li>判断两条链表是否交叉</li>
+<li>树的广度、深度遍历</li>
+<li>稳定与不稳定排序</li>
+<li>并行计算、压缩算法</li>
+<li>最长上升子序列，两个大小相同的有序数组找公共中位数</li>
+<li>介绍大顶堆和小顶堆</li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/23259302#rd" target="_blank" rel="external">知乎-如何准备机器学习工程师的面试 ？</a></li>
+<li><a href="https://www.zhihu.com/question/23259302/answer/24300412" target="_blank" rel="external">by 刘志权</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27151345" target="_blank" rel="external">机器学习及大数据相关面试的职责和面试问题(转)</a></li>
+<li><a href="https://www.zhihu.com/question/23259302/answer/174467341" target="_blank" rel="external">by 姚凯飞</a></li>
+</ul>
 
       
 
@@ -321,7 +593,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">GBDT</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">offer</a>
         		</li>
       		
 		</ul>
@@ -377,7 +653,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/07/GBDT/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/08/ml-job/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -391,18 +667,18 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2017/07/08/lr/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/07/09/linear-model/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          统计学习方法笔记（六）——Logistic Regression
+          机器学习笔记之线性模型
         
       </div>
     </a>
   
   
-    <a href="/2017/07/03/ensemble/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">模型集成小记</div>
+    <a href="/2017/07/08/lr/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">统计学习方法笔记（六）——Logistic Regression</div>
       <i class="icon-circle-right"></i>
     </a>
   

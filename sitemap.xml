@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
     
-    <lastmod>2017-07-08T07:18:12.111Z</lastmod>
+    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
     
-    <lastmod>2017-07-08T07:17:56.362Z</lastmod>
+    <lastmod>2017-07-10T06:59:45.490Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    
+    <lastmod>2017-07-10T06:40:14.333Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    
+    <lastmod>2017-07-10T03:18:17.926Z</lastmod>
     
   </url>
   

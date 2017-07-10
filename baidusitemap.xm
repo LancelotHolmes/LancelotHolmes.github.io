@@ -4,16 +4,20 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-08T07:18:12.111Z</lastmod>
+    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
+    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
     <data>
         <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        <title>机器学习笔记之线性模型</title>
+        <pubTime>2017-07-09T07:09:53.000Z</pubTime>
         
+        <tag>ML</tag>
+         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
+        <tag>LR</tag>
+         
+        <tag>机器学习</tag>
          
          
            
@@ -24,7 +28,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-07-08T07:17:56.362Z</lastmod>
+    <lastmod>2017-07-10T06:59:45.490Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记（六）——Logistic Regression</title>
@@ -37,6 +41,46 @@
         <tag>Note</tag>
          
         <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-07-10T06:40:14.333Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-07-10T03:18:17.926Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
          
          
            
