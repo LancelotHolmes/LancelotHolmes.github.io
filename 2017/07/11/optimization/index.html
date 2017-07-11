@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Economy | Lancelot&#39;s Desert</title>
+  <title>最优化算法小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+  <meta name="description" content="最优化： * 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西； * 找到一个能让这个目标函数取到极值的方法（算法）  这里主要讨论几种常用的求解最优化问题的算法">
 <meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/tags/Economy/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最优化算法小记">
+<meta property="og:url" content="http://yoursite.com/2017/07/11/optimization/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="最优化： * 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西； * 找到一个能让这个目标函数取到极值的方法（算法）  这里主要讨论几种常用的求解最优化问题的算法">
+<meta property="og:updated_time" content="2017-07-11T12:04:57.669Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="最优化算法小记">
+<meta name="twitter:description" content="最优化： * 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西； * 找到一个能让这个目标函数取到极值的方法（算法）  这里主要讨论几种常用的求解最优化问题的算法">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -192,69 +193,236 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-optimization" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      最优化算法小记
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/世界是平的/" class="archive-article-date">
-  	<time datetime="2017-05-29T08:30:23.000Z" itemprop="datePublished">2017-05-29</time>
+
+        
+        <a href="/2017/07/11/optimization/" class="archive-article-date">
+  	<time datetime="2017-07-11T06:14:02.000Z" itemprop="datePublished">2017-07-11</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
 </a>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降法（最速下降法）"><span class="toc-number">1.</span> <span class="toc-text">梯度下降法（最速下降法）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度"><span class="toc-number">1.1.</span> <span class="toc-text">梯度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法"><span class="toc-number">1.2.</span> <span class="toc-text">梯度下降法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缘由"><span class="toc-number">1.3.</span> <span class="toc-text">缘由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">1.4.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">1.5.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调优"><span class="toc-number">1.6.</span> <span class="toc-text">调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.7.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#批量梯度下降法"><span class="toc-number">1.7.1.</span> <span class="toc-text">批量梯度下降法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机梯度下降法"><span class="toc-number">1.7.2.</span> <span class="toc-text">随机梯度下降法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小批量梯度下降法"><span class="toc-number">1.7.3.</span> <span class="toc-text">小批量梯度下降法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最小二乘法"><span class="toc-number">2.</span> <span class="toc-text">最小二乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#牛顿法"><span class="toc-number">3.</span> <span class="toc-text">牛顿法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拟牛顿法"><span class="toc-number">4.</span> <span class="toc-text">拟牛顿法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<blockquote>
+<p>最优化：</p>
+<pre><code>* 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；
+* 找到一个能让这个目标函数取到极值的方法（算法）
+</code></pre></blockquote>
+<p>这里主要讨论几种常用的求解最优化问题的算法<br><a id="more"></a></p>
+<h2 id="梯度下降法（最速下降法）"><a href="#梯度下降法（最速下降法）" class="headerlink" title="梯度下降法（最速下降法）"></a>梯度下降法（最速下降法）</h2><h3 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h3><blockquote>
+<p>在微积分里面，对多元函数的参数求偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度;从几何意义上讲，就是函数变化增加最快的地方。</p>
+</blockquote>
+<h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><blockquote>
+<p>梯度下降法是求解无约束最优化问题的一种常用的<strong>一阶优化方法</strong>，是一种<strong>迭代算法</strong>，每一步需要求解目标函数的梯度向量。</p>
+</blockquote>
+<h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><ul>
+<li>对于无约束优化问题$min_xf(x)$，其中$f(x)$为连续可微函数，若能构造一个序列$x^0,x^1,…$,满足$$f(x^{t+1})&lt;f(x^t),t=0,1,2,..$$，则不断执行该过程即可收敛到局部极小点；</li>
+<li>而为了达到这一目的，根据泰勒展开式有$$f(x+\Delta x)\approx f(x)+\Delta x^T\nabla f(x)$$,而为了满足$f(x+\Delta x)&lt;f(x)$，可选择$$\Delta x=-\gamma \nabla f(x)$$即负梯度,其中步长（即学习率）$\gamma$是一个小常数（每步的步长可以不同）；</li>
+<li>对于步长，可通过一维检索确定，即$$f(x^{(k)}-\gamma \nabla f(x))=min_{\gamma\geq 0}f(x^{(k)}-\gamma \nabla f(x))$$,但是这种方法会增加额外的计算开销，不过如果固定步长，也有可能导致糟糕的收敛，所以需要根据实际情况选择处理方法。</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<ul>
+<li>输入：目标函数$f(x)$,梯度函数$g(x)=\nabla f(x)$，计算精度$\varepsilon$</li>
+<li>输出：$f(x)$的极小点$x^*$</li>
+<li>(1)取初始值$x^{(0)}\in R^n$,置$k=0$</li>
+<li>(2)计算$f(x^{(k)})$</li>
+<li>(3)计算梯度$g_k=g(x^{(k)})$,当$||g_k||&lt;\varepsilon$时，停止迭代，令极小点$x^*=x^{(k)}$,否则令负梯度$p_k=-g(x^{(k)})$,求步长$\lambda_k$，使$$f(x^{(k)}+\lambda_kp_k)=min_{\lambda\geq 0}f(x^{(k)}+\lambda p_k)$$</li>
+<li>(4)迭代更新，置$x^{(k+1)}=x^{(k)}+\lambda_kp_k$,计算$f(x^{(k+1)})$,当$||f(x^{(k+1)})-f(x^{(k)})||&lt;\varepsilon$或$||x^{(k+1)}-x^{(k)}||&lt;\varepsilon$时，停止迭代，令$x^*=x^{(k)}$</li>
+<li>(5)否则,置$k=k+1$,转第(3)步</li>
+</ul>
+</blockquote>
+<p><em>Notes:</em></p>
+<ul>
+<li>一般情况下，步长可以取一个较小的值，而不必每次都计算当前的最佳步长</li>
+<li>另外，该算法中停止迭代的条件出现了两次，第一次是刚计算出梯度时就与计算精度进行比较，第二次是分别把目标函数值以及两次迭代的输入$x$的差值与计算精度进行了比较，但其他的一些参考资料似乎只是检查了梯度下降的距离与计算精度的关系，即$||f(x^{(k+1)})-f(x^{(k)})||&lt;\varepsilon$，比如<a href="http://www.cnblogs.com/pinard/p/5970503.html" target="_blank" rel="external">博客</a></li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>梯度下降法靠近极小值时速度减慢（所以不必每次迭代刻意减小步长）</li>
+<li>对某些目标函数可能会“之字型”地下降</li>
+<li>若目标函数$f(x)$满足一些条件，则通过选取适当的步长能确保通过梯度下降收敛到局部极小点，比如若$f(x)$满足L-Lipschitz条件（对任意$x$存在常数$L$使得$||\nabla f(x)||\leq L$成立），则将步长设置为$1/2L$可确保收敛到局部极小点；</li>
+<li>当目标函数是凸函数时，局部极小点即对应着函数的全局最小点</li>
+</ul>
+<h3 id="调优"><a href="#调优" class="headerlink" title="调优"></a>调优</h3><ul>
+<li>梯度下降算法的步长会影响其收敛，步长太大可能难以收敛到局部最优值，步长太小则会导致收敛速度较慢；</li>
+<li>初始值不同可能导致梯度下降算法收敛到不同的局部最优解，所以一般可以采取多次训练的方法求解</li>
+<li>由于样本不同特征的取值范围不一样，可能导致迭代很慢，为了减少特征取值的影响，可以对特征数据归一化$$\frac{x-\overline{x}}{std(x)}$$从而加快收敛速度</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><h4 id="批量梯度下降法"><a href="#批量梯度下降法" class="headerlink" title="批量梯度下降法"></a>批量梯度下降法</h4><blockquote>
+<p>Batch Gradient Descent(BGD):在更新参数时使用所有的样本来进行更新</p>
+</blockquote>
+<p>$$\theta_i=\theta_i-\alpha\sum_{j=0}^{m}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}$$<br>其中$\theta_i$为需要估计的达到局部最优时的参数值，步长为$\alpha$，一共$m$个样本$n$个特征,求梯度的时候用了所有样本的梯度数据</p>
+<h4 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h4><blockquote>
+<p>Stochastic Gradient Descent(SGD):计算梯度时仅选取一个样本来求梯度，适用于训练数据集数据量较大的情形</p>
+</blockquote>
+<p>$$\theta_i=\theta_i-\alpha(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}$$</p>
+<h4 id="小批量梯度下降法"><a href="#小批量梯度下降法" class="headerlink" title="小批量梯度下降法"></a>小批量梯度下降法</h4><blockquote>
+<p>Mini-batch Gradient Descent(MBGD):批量梯度下降法和随机梯度下降法的折衷，也就是对于$m$个样本，我们采用$x$个样本来迭代，$1&lt;x&lt;m$</p>
+</blockquote>
+<p>$$\theta_i=\theta_i-\alpha\sum_{j=t}^{t+x-1}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}$$</p>
+<p><em>Notes:</em></p>
+<ul>
+<li>目标函数收敛速度来说：随机梯度下降法由于每次仅仅采用一个样本来迭代，训练速度很快，而批量梯度下降法在样本量很大的时候，训练速度不能让人满意。</li>
+<li>对于准确度来说，随机梯度下降法用于仅仅用一个样本决定梯度方向，导致解很有可能不是最优。对于收敛速度来说，由于随机梯度下降法一次迭代一个样本，导致迭代方向变化很大，不能很快的收敛到局部最优解。</li>
+<li>小批量梯度下降法则是批量梯度下降法和随机梯度下降法的折衷</li>
+</ul>
+<h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><p><em>严格来讲，最小二乘法其实并不能归类到最优化算法这里面来，主要是在涉及线性回归模型的目标函数求解时，不少资料里都提到过可以用最小二乘法或者梯度下降法求解，所以放到这里进行比较讨论，具体的一些讨论可以参照参考资料里的知乎的一系列问题</em></p>
+<h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><h2 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>对于梯度下降法，当目标函数$f(x)$二阶可微时，可将一阶泰勒展开式$f(x+\Delta x)\approx f(x)+\Delta x^T\nabla f(x)$替换为更精确的二阶泰勒展开式，这样就得到了<strong>牛顿法</strong>，牛顿法是典型的二阶方法，其迭代轮数远小于梯度下降法；但另一方面由于牛顿法使用了二阶导数，所以其每轮迭代都涉及了海森矩阵的求逆，计算复杂度较高，尤其在高维问题中几乎不可行；若能以较低的计算代价寻找海森矩阵的近似逆矩阵，则可显著降低计算开销，这就是<strong>拟牛顿法</strong></li>
+</ul>
+<p>参考资料</p>
+<ul>
+<li><a href="http://www.cnblogs.com/pinard/p/5970503.html" target="_blank" rel="external">刘建平Pinard的博客</a></li>
+<li><a href="https://www.zhihu.com/question/24900876/answer/46567811" target="_blank" rel="external">知乎-最优化问题的简洁介绍是什么？</a></li>
+<li><a href="https://www.zhihu.com/question/20822481" target="_blank" rel="external">知乎-最小二乘法和梯度下降法有哪些区别？</a></li>
+<li>李航《统计学习方法》</li>
+<li>周志华《机器学习》</li>
+<li>Andrew Ng 机器学习课程（Coursera）</li>
+<li><a href="https://en.wikipedia.org/wiki/Gradient_descent" target="_blank" rel="external">梯度下降法维基百科</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/世界是平的/">平坦世界</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Economy</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/11/optimization/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/07/09/linear-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习笔记之线性模型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        $
+
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -277,9 +445,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

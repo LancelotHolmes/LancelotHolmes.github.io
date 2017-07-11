@@ -3,6 +3,93 @@
   
     
     <entry>
+      <title><![CDATA[最优化算法小记]]></title>
+      <url>/2017/07/11/optimization/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<blockquote>
+<p>最优化：</p>
+<pre><code>* 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；
+* 找到一个能让这个目标函数取到极值的方法（算法）
+</code></pre></blockquote>
+<p>这里主要讨论几种常用的求解最优化问题的算法<br><a id="more"></a></p>
+<h2 id="梯度下降法（最速下降法）"><a href="#梯度下降法（最速下降法）" class="headerlink" title="梯度下降法（最速下降法）"></a>梯度下降法（最速下降法）</h2><h3 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h3><blockquote>
+<p>在微积分里面，对多元函数的参数求偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度;从几何意义上讲，就是函数变化增加最快的地方。</p>
+</blockquote>
+<h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><blockquote>
+<p>梯度下降法是求解无约束最优化问题的一种常用的<strong>一阶优化方法</strong>，是一种<strong>迭代算法</strong>，每一步需要求解目标函数的梯度向量。</p>
+</blockquote>
+<h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><ul>
+<li>对于无约束优化问题$min_xf(x)$，其中$f(x)$为连续可微函数，若能构造一个序列$x^0,x^1,…$,满足$$f(x^{t+1})&lt;f(x^t),t=0,1,2,..$$，则不断执行该过程即可收敛到局部极小点；</li>
+<li>而为了达到这一目的，根据泰勒展开式有$$f(x+\Delta x)\approx f(x)+\Delta x^T\nabla f(x)$$,而为了满足$f(x+\Delta x)&lt;f(x)$，可选择$$\Delta x=-\gamma \nabla f(x)$$即负梯度,其中步长（即学习率）$\gamma$是一个小常数（每步的步长可以不同）；</li>
+<li>对于步长，可通过一维检索确定，即$$f(x^{(k)}-\gamma \nabla f(x))=min_{\gamma\geq 0}f(x^{(k)}-\gamma \nabla f(x))$$,但是这种方法会增加额外的计算开销，不过如果固定步长，也有可能导致糟糕的收敛，所以需要根据实际情况选择处理方法。</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<ul>
+<li>输入：目标函数$f(x)$,梯度函数$g(x)=\nabla f(x)$，计算精度$\varepsilon$</li>
+<li>输出：$f(x)$的极小点$x^*$</li>
+<li>(1)取初始值$x^{(0)}\in R^n$,置$k=0$</li>
+<li>(2)计算$f(x^{(k)})$</li>
+<li>(3)计算梯度$g_k=g(x^{(k)})$,当$||g_k||&lt;\varepsilon$时，停止迭代，令极小点$x^*=x^{(k)}$,否则令负梯度$p_k=-g(x^{(k)})$,求步长$\lambda_k$，使$$f(x^{(k)}+\lambda_kp_k)=min_{\lambda\geq 0}f(x^{(k)}+\lambda p_k)$$</li>
+<li>(4)迭代更新，置$x^{(k+1)}=x^{(k)}+\lambda_kp_k$,计算$f(x^{(k+1)})$,当$||f(x^{(k+1)})-f(x^{(k)})||&lt;\varepsilon$或$||x^{(k+1)}-x^{(k)}||&lt;\varepsilon$时，停止迭代，令$x^*=x^{(k)}$</li>
+<li>(5)否则,置$k=k+1$,转第(3)步</li>
+</ul>
+</blockquote>
+<p><em>Notes:</em></p>
+<ul>
+<li>一般情况下，步长可以取一个较小的值，而不必每次都计算当前的最佳步长</li>
+<li>另外，该算法中停止迭代的条件出现了两次，第一次是刚计算出梯度时就与计算精度进行比较，第二次是分别把目标函数值以及两次迭代的输入$x$的差值与计算精度进行了比较，但其他的一些参考资料似乎只是检查了梯度下降的距离与计算精度的关系，即$||f(x^{(k+1)})-f(x^{(k)})||&lt;\varepsilon$，比如<a href="http://www.cnblogs.com/pinard/p/5970503.html" target="_blank" rel="external">博客</a></li>
+</ul>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>梯度下降法靠近极小值时速度减慢（所以不必每次迭代刻意减小步长）</li>
+<li>对某些目标函数可能会“之字型”地下降</li>
+<li>若目标函数$f(x)$满足一些条件，则通过选取适当的步长能确保通过梯度下降收敛到局部极小点，比如若$f(x)$满足L-Lipschitz条件（对任意$x$存在常数$L$使得$||\nabla f(x)||\leq L$成立），则将步长设置为$1/2L$可确保收敛到局部极小点；</li>
+<li>当目标函数是凸函数时，局部极小点即对应着函数的全局最小点</li>
+</ul>
+<h3 id="调优"><a href="#调优" class="headerlink" title="调优"></a>调优</h3><ul>
+<li>梯度下降算法的步长会影响其收敛，步长太大可能难以收敛到局部最优值，步长太小则会导致收敛速度较慢；</li>
+<li>初始值不同可能导致梯度下降算法收敛到不同的局部最优解，所以一般可以采取多次训练的方法求解</li>
+<li>由于样本不同特征的取值范围不一样，可能导致迭代很慢，为了减少特征取值的影响，可以对特征数据归一化$$\frac{x-\overline{x}}{std(x)}$$从而加快收敛速度</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><h4 id="批量梯度下降法"><a href="#批量梯度下降法" class="headerlink" title="批量梯度下降法"></a>批量梯度下降法</h4><blockquote>
+<p>Batch Gradient Descent(BGD):在更新参数时使用所有的样本来进行更新</p>
+</blockquote>
+<p>$$\theta_i=\theta_i-\alpha\sum_{j=0}^{m}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}$$<br>其中$\theta_i$为需要估计的达到局部最优时的参数值，步长为$\alpha$，一共$m$个样本$n$个特征,求梯度的时候用了所有样本的梯度数据</p>
+<h4 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h4><blockquote>
+<p>Stochastic Gradient Descent(SGD):计算梯度时仅选取一个样本来求梯度，适用于训练数据集数据量较大的情形</p>
+</blockquote>
+<p>$$\theta_i=\theta_i-\alpha(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}$$</p>
+<h4 id="小批量梯度下降法"><a href="#小批量梯度下降法" class="headerlink" title="小批量梯度下降法"></a>小批量梯度下降法</h4><blockquote>
+<p>Mini-batch Gradient Descent(MBGD):批量梯度下降法和随机梯度下降法的折衷，也就是对于$m$个样本，我们采用$x$个样本来迭代，$1&lt;x&lt;m$</p>
+</blockquote>
+<p>$$\theta_i=\theta_i-\alpha\sum_{j=t}^{t+x-1}(h_\theta(x_0^{j}, x_1^{j}, …x_n^{j}) - y_j)x_i^{j}$$</p>
+<p><em>Notes:</em></p>
+<ul>
+<li>目标函数收敛速度来说：随机梯度下降法由于每次仅仅采用一个样本来迭代，训练速度很快，而批量梯度下降法在样本量很大的时候，训练速度不能让人满意。</li>
+<li>对于准确度来说，随机梯度下降法用于仅仅用一个样本决定梯度方向，导致解很有可能不是最优。对于收敛速度来说，由于随机梯度下降法一次迭代一个样本，导致迭代方向变化很大，不能很快的收敛到局部最优解。</li>
+<li>小批量梯度下降法则是批量梯度下降法和随机梯度下降法的折衷</li>
+</ul>
+<h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><p><em>严格来讲，最小二乘法其实并不能归类到最优化算法这里面来，主要是在涉及线性回归模型的目标函数求解时，不少资料里都提到过可以用最小二乘法或者梯度下降法求解，所以放到这里进行比较讨论，具体的一些讨论可以参照参考资料里的知乎的一系列问题</em></p>
+<h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><h2 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>对于梯度下降法，当目标函数$f(x)$二阶可微时，可将一阶泰勒展开式$f(x+\Delta x)\approx f(x)+\Delta x^T\nabla f(x)$替换为更精确的二阶泰勒展开式，这样就得到了<strong>牛顿法</strong>，牛顿法是典型的二阶方法，其迭代轮数远小于梯度下降法；但另一方面由于牛顿法使用了二阶导数，所以其每轮迭代都涉及了海森矩阵的求逆，计算复杂度较高，尤其在高维问题中几乎不可行；若能以较低的计算代价寻找海森矩阵的近似逆矩阵，则可显著降低计算开销，这就是<strong>拟牛顿法</strong></li>
+</ul>
+<p>参考资料</p>
+<ul>
+<li><a href="http://www.cnblogs.com/pinard/p/5970503.html" target="_blank" rel="external">刘建平Pinard的博客</a></li>
+<li><a href="https://www.zhihu.com/question/24900876/answer/46567811" target="_blank" rel="external">知乎-最优化问题的简洁介绍是什么？</a></li>
+<li><a href="https://www.zhihu.com/question/20822481" target="_blank" rel="external">知乎-最小二乘法和梯度下降法有哪些区别？</a></li>
+<li>李航《统计学习方法》</li>
+<li>周志华《机器学习》</li>
+<li>Andrew Ng 机器学习课程（Coursera）</li>
+<li><a href="https://en.wikipedia.org/wiki/Gradient_descent" target="_blank" rel="external">梯度下降法维基百科</a></li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[机器学习笔记之线性模型]]></title>
       <url>/2017/07/09/linear-model/</url>
       <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -118,6 +205,9 @@
 <li>阈值移动/代价敏感学习–&gt;原始数据嵌入“负正比”，具体的比如在xgboost中可以调整scale_pos_weight参数为数据集的负正比</li>
 </ul>
 </li>
+<li>常见的最优化方法</li>
+<li>牛顿法的原理</li>
+<li>L1正则化的优化</li>
 </ul>
 </blockquote>
 <h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><blockquote>
@@ -127,9 +217,9 @@
 </ul>
 </blockquote>
 <ul>
-<li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别</li>
-<li>LR 的推导，特性？；为什么可以使用logistic回归。。。</li>
-<li>决策树的特性？</li>
+<li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别;SVM的支持向量的数学表示</li>
+<li>LR 的推导，特性？；为什么可以使用logistic回归;logistic regression为什么使用sigmoid函数？;linear regression 如何处理离散值的情况，如特征为：男1，女0</li>
+<li>决策树的特性？;决策树分裂</li>
 <li>用EM算法推导解释 Kmeans；K-means起始点；K-means的具体流程；如何优化K-means</li>
 <li>解释密度聚类算法</li>
 <li>解释贝叶斯公式和朴素贝叶斯分类；贝叶斯分类器的优化和特殊情况的处理<ul>
@@ -145,6 +235,9 @@
 <li>关联分析、apriori</li>
 <li>em算法推导</li>
 <li>随机森林的学习过程；随机森林中的每一棵树是如何学习的；随机森林学习算法中CART树的基尼指数是什么？</li>
+<li>谱聚类处理同心圆的情况如何处理</li>
+<li>spectral clustering的实现</li>
+<li>推导softmax regression模型</li>
 </ul>
 <h2 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h2><ul>
 <li>naive bayes和logistic regression的区别</li>
@@ -152,6 +245,8 @@
 <li>GBDT和随机森林的区别？</li>
 <li>哪些模型容易过拟合，模型怎么选择</li>
 <li>改变随机森林的训练样本数据量，是否会影响到随机森林学习到的模型的复杂度</li>
+<li>lr的正则化，与SVM的区别</li>
+<li>LR与最大熵的关系</li>
 </ul>
 <h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><blockquote>
 <p>用了什么算法？为什么用？有什么优缺点？</p>
@@ -242,6 +337,8 @@
 </ul>
 </li>
 <li>学校食堂如何应用数据挖掘的知识</li>
+<li>有用户的搜索历史数据，如何判断用户此时的各种状态（准备买车、已经买车等）</li>
+<li>给定年龄、性别、学历等信息，对用户的信用进行评估</li>
 </ul>
 <h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
 <li>如何判断函数凸或非凸？<ul>
@@ -264,6 +361,7 @@
 </li>
 </ul>
 </li>
+<li>概率题：一个游戏，升一级的概率为p1，等级保持不变的概率为p2，等级下降一级的概率为p3。一个用户经过n个回合，等级为m的概率</li>
 </ul>
 <h2 id="大数据相关"><a href="#大数据相关" class="headerlink" title="大数据相关"></a>大数据相关</h2><ul>
 <li>如何用hadoop实现k-means？</li>
@@ -338,6 +436,8 @@
 <li>a = [1, 2, 3, 4], b = a, b[0] = 100, 请问print(a)结果是什么</li>
 <li><a href="http://www.jianshu.com/p/J4U6rR" target="_blank" rel="external">list是怎样实现的</a></li>
 <li>常用的数据结构及应用场景（list，dict，tuple）</li>
+<li>Python装饰器、yield等</li>
+<li>给定一个文件，包含了data, ciyt, count等信息，写代码实现给定city和date1-date2日期内，count最高的日期</li>
 </ul>
 </li>
 </ul>
@@ -390,6 +490,8 @@
 <li>并行计算、压缩算法</li>
 <li>最长上升子序列，两个大小相同的有序数组找公共中位数</li>
 <li>介绍大顶堆和小顶堆</li>
+<li>反转链表</li>
+<li>单链表转二叉树，二叉树转单链表（要求原地）</li>
 </ul>
 <p>参考</p>
 <ul>
@@ -463,7 +565,18 @@
 <li>基本思想：应用极大似然估计法估计模型参数，从而将问题转化为以对数似然函数为目标函数的最优化问题，然后采用梯度下降法或者拟牛顿法进行求解</li>
 </ul>
 <p><a href="https://www.nowcoder.com/discuss/3243" target="_blank" rel="external"><strong>此处的目标函数为考点</strong></a><br><img src="/materials/img/LR/LR.jpg" alt="lr"></p>
+<p><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">为什么LR模型的损失函数是交叉熵？</a>而线性回归模型的损失函数却是最小二乘呢？能否随意确定一个损失函数作为目标呢？</p>
+<ul>
+<li>答案是模型的损失函数由各自的响应变量$y$的概率分布决定，比如对于线性回归模型，针对的问题是预测某个结果，属于回归问题，其输出是连续值，所以我们对于该问题假设$y$服从正态分布；相对的，LR模型一般用来解决二分类问题，所以其输出是0/1，故而我们假设其输出服从伯努利分布；而进一步地，两者的损失函数都是通过极大似然估计推导的来的，所以模型的损失函数并非随意确定。</li>
+<li>另外，对于线性回归问题，它的模型是 $p(y|x) = N(w^Tx, \sigma^2)$,我们采用最大似然来构造一个目标函数，最后用梯度下降来找到目标函数的最值。当然，对于这个问题，我们也可以不用梯度下降，直接用向量的投影来直接算出最优解的表达式,即“最小二乘法”；而LR模型是$p(y|x)=Ber(y|sigmoid(w^Tx))$，Ber是伯努利分布，sigmoid是logistic sigmoid函数，我们采用最大似然来构造一个目标函数，与之前的问题不同，这个目标函数比较复杂，是无法像线性回归那样一步直接算出最终的解的，但是，这个目标函数是凸的，所以我们依然能用梯度下降或者牛顿法来来找到它的最优解。</li>
+</ul>
 <h2 id="多项LR模型——多分类"><a href="#多项LR模型——多分类" class="headerlink" title="多项LR模型——多分类"></a>多项LR模型——多分类</h2><p>假设离散型随机变量$Y$的取值集合为$\lbrace 1,2,…,K \rbrace$，则多项LR模型是<br>$$P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>$$P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>注意$k=1,2,…,K-1$,其中$x\in R^{n+1}, w_k \in R^{n+1}$</p>
+<p>参考资料</p>
+<ul>
+<li>李航《统计学习方法》</li>
+<li>周志华《机器学习》</li>
+<li><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">知乎-最小二乘、极大似然、梯度下降有何区别？</a></li>
+</ul>
 ]]></content>
       
         
@@ -471,9 +584,9 @@
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> LR </tag>
             
@@ -972,11 +1085,11 @@
             
             <tag> ML </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
         </tags>
         
@@ -1108,7 +1221,45 @@
 <li>Java的<code>java.util.TreeMap</code>和<code>java.util.HashMap</code>分别是基于红黑树和拉链法的散列表的符号表实现</li>
 </ul>
 <p><em>来源于《算法》一书中3.5.1</em></p>
-<h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序【重点】"><a href="#快速排序【重点】" class="headerlink" title="快速排序【重点】"></a>快速排序【重点】</h3><h3 id="归并排序【重点】"><a href="#归并排序【重点】" class="headerlink" title="归并排序【重点】"></a>归并排序【重点】</h3><h4 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h4><ul>
+<h2 id="排序类"><a href="#排序类" class="headerlink" title="排序类"></a>排序类</h2><h3 id="快速排序【重点】"><a href="#快速排序【重点】" class="headerlink" title="快速排序【重点】"></a>快速排序【重点】</h3><h4 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h4><p>分治+双指针：核心在于切分(partition)，即首先根据数组中的某一个元素(一般取当前首位元素)，将数组进行切分，最终目的是使该元素左侧元素均不大于该元素，该元素右侧元素均不小于该元素（通过双指针将左侧指针指向较大元素与右侧指针指向较小元素交换实现）；然后进一步递归地对左右子数组调用切分方法直到最终数组有序。</p>
+<p><em>Notes:双指针i,j,<strong>保证i左侧元素均不超过pivot,而j右侧元素均不小于pivot</strong>，最终i,j相遇的地方即为pivot的位置，所以重点不在于pivot的选取，比如还可以取<a href="http://www.algolist.net/Algorithms/Sorting/Quicksort" target="_blank" rel="external">中间位置</a>或者任意位置，只是需要选定一个pivot来开始进行划分，每次划分都保证了双指针左右的元素的大小符合要求，然后递归的对双指针左右的元素进行切分处理</em></p>
+<h4 id="Java实现-1"><a href="#Java实现-1" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li><p>快速排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	shuffle(nums);</div><div class="line">	printArray(nums);</div><div class="line">	quickSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> j=partition(nums,low,high);</div><div class="line">	quickSort(nums,low,j-<span class="number">1</span>);</div><div class="line">	quickSort(nums,j+<span class="number">1</span>,high);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> pivot=nums[low];	<span class="comment">//设置分割值为首位的元素值</span></div><div class="line">	<span class="keyword">int</span> i=low+<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> j=high;</div><div class="line">	<span class="keyword">while</span>(i&lt;=j)&#123;</div><div class="line">		<span class="keyword">while</span>(i&lt;=j &amp;&amp; nums[i]&lt;pivot)&#123;	<span class="comment">//找到左侧超过pivot的第一个元素</span></div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">while</span>(i&lt;=j &amp;&amp; nums[j]&gt;pivot)&#123;	<span class="comment">//找到右侧小于pivot的第一个元素</span></div><div class="line">			j--;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(i&lt;=j)&#123;	<span class="comment">//交换两边的元素</span></div><div class="line">			<span class="keyword">int</span> temp=nums[i];</div><div class="line">			nums[i]=nums[j];</div><div class="line">			nums[j]=temp;</div><div class="line">			i++;</div><div class="line">			j--;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//最后将pivot放置到“中间”位置达成a[low..j-1]&lt;=a[j]&lt;=a[j+1..high]</span></div><div class="line">	nums[low]=nums[j];</div><div class="line">	nums[j]=pivot;</div><div class="line">	<span class="keyword">return</span> j;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试及辅助函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">randArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		nums[i]=(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">		System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shuffle</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	List&lt;Integer&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		list.add(nums[i]);</div><div class="line">	&#125;</div><div class="line">	Collections.shuffle(list);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		nums[i]=list.get(i);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>优点：<ul>
+<li>实现简单，适用于各种不同的输入数据且在一般应用中比其他排序算法都要快得多；</li>
+<li>原地排序（只需要一个很小的辅助栈）</li>
+<li>将长度为N的数组排序所需时间和$NlgN$成正比</li>
+<li>性能优势<ul>
+<li>内循环简洁，只涉及元素比较，而像希尔排序、归并排序还涉及元素的移动</li>
+<li>比较次数很少</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>缺点：切分不平衡时程序可能会变得极为低效–&gt; 这也是在快排中一开始对数组进行随机化处理的原因，目的是为了降低这种情况出现的概率</li>
+</ul>
+<h4 id="进一步改进"><a href="#进一步改进" class="headerlink" title="进一步改进"></a>进一步改进</h4><ul>
+<li>对于小数组切换到插入排序，修改<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>为<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(low+M&gt;=high)&#123;	<span class="comment">//M为转换参数，与系统相关，一般取5~15之间</span></div><div class="line">	insertSort(nums,low,high);</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>三取样切分：使用数组的一部分元素的中位数来切分数组，代价是需要计算中位数</li>
+<li>熵最优的排序——三向切分的快排<ul>
+<li>针对存在大量重复元素的数组，可将性能提升到线性级别</li>
+<li>将数组划分为三个部分，分别对应于小于、等于和大于切分元素的数组元素<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quick3waySort</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(high&lt;=low)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> lt=low,i=low+<span class="number">1</span>,gt=high;</div><div class="line">	<span class="keyword">int</span> pivot=nums[low];</div><div class="line">	<span class="keyword">while</span>(i&lt;=gt)&#123;	<span class="comment">//保证nums[low..lt-1]&lt;pivot=nums[lt..gt]&lt;nums[gt+1..high]</span></div><div class="line">		<span class="keyword">if</span>(nums[i]&lt;pivot)&#123;		<span class="comment">//而i在lt与gt之间，循环的过程就是不断调整i与gt之间的元素</span></div><div class="line">			exchange(nums,lt++,i++);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(nums[i]&gt;pivot)&#123;</div><div class="line">			exchange(nums,i,gt--);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	quick3waySort(nums,low,lt-<span class="number">1</span>);</div><div class="line">	quick3waySort(nums,gt+<span class="number">1</span>,high);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="归并排序【重点】"><a href="#归并排序【重点】" class="headerlink" title="归并排序【重点】"></a>归并排序【重点】</h3><h4 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h4><ul>
 <li>额外数组空间+双指针<ul>
 <li>先将原始数组复制一份</li>
 <li>分别遍历两个子数组，遍历原始数组，逐个比较指针指向的元素和移动指针，将较小的元素复制到原始的数组，若一个子数组指向最后，则将另一个子数组元素逐个复制到原数组中</li>
@@ -1120,15 +1271,39 @@
 <p>这里的copy数组在类中一开始显式声明，然后在sort初始部分一次性分配空间初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] copy;		<span class="comment">//事先声明一个辅助数组</span></div></pre></td></tr></table></figure></p>
 <p><em>Notes:这里不一开始就复制所有元素到copy数组的原因在于，后续归并时是一个回退的过程，<strong>每次都是将前一阶段已经排好序的子数组复制到对应copy部分，然后进一步归并排序</strong>，所以如果一开始就复制而后面不复制，后面中间的排序过程就失效了</em></p>
 <h4 id="递归方法（自顶向下）"><a href="#递归方法（自顶向下）" class="headerlink" title="递归方法（自顶向下）"></a>递归方法（自顶向下）</h4><ul>
-<li>递归+分治的思想<br>对某一子数组排序，先将其对半分，然后对各部分分别递归调用排序，最后将有序的子数组归并为最终的排序结果</li>
-<li>Java实现<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	copy=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">	mergeSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(low+high)&gt;&gt;<span class="number">1</span>;</div><div class="line">	mergeSort(nums,low,mid);</div><div class="line">	mergeSort(nums,mid+<span class="number">1</span>,high);</div><div class="line">	merge(nums,low,mid,high);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>递归+分治的思想<br>对某一子数组排序，先将其对半分，然后对各部分分别递归调用排序，最后将有序的子数组归并为最终的排序结果<br><img src="/materials/img/basic_alg/top_down.jpg" alt="top down"></li>
+<li>Java实现<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	copy=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">	mergeSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mid=(low+high)&gt;&gt;<span class="number">1</span>;</div><div class="line">	mergeSort(nums,low,mid);</div><div class="line">	mergeSort(nums,mid+<span class="number">1</span>,high);</div><div class="line">	<span class="keyword">if</span>(nums[mid]&gt;nums[mid+<span class="number">1</span>])&#123;</div><div class="line">		merge(nums,low,mid,high);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><em>Notes:sort方法的作用在于安排多次merge方法调用的正确顺序，只有子数组有序了，merge方法才是有效的</em></p>
-<h3 id="堆排序【重点】"><a href="#堆排序【重点】" class="headerlink" title="堆排序【重点】"></a>堆排序【重点】</h3><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
+<ul>
+<li>归并排序的时间复杂度分析<br><img src="/materials/img/basic_alg/merge_sort.jpg" alt="merge sort"><blockquote>
+<p>对于长度为N的任意数组，自顶向下的归并排序需要$\frac{1}{2}NlgN$至$NlgN$次比较</p>
+</blockquote>
+</li>
+</ul>
+<p>如图，以$N$表示数组元素数目，n表示树的层级则有$n=lgN$,每个节点都表示一个mergeSort()方法通过merge()方法归并而成的子数组，第$k$层有$2^k$个子数组，每个数组的长度为$2^{n-k}$，所以归并最多需要$2^{n-k}$次比较，因此每层的比较次数为$2^k\times 2^{n-k}=2^n$,$n$层总共是$n2^n=NlgN$</p>
+<h4 id="自底向上（非递归）"><a href="#自底向上（非递归）" class="headerlink" title="自底向上（非递归）"></a>自底向上（非递归）</h4><ul>
+<li>先归并微型数组，然后再<strong>成对</strong>归并得到的子数组，直到将整个数组归并在一起<br><img src="/materials/img/basic_alg/bottom_up.jpg" alt="bottom up"></li>
+<li>Java实现<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort2</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	copy=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> sz=<span class="number">1</span>;sz&lt;nums.length;sz*=<span class="number">2</span>)&#123;		<span class="comment">//每轮遍历倍增归并的子数组大小</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> low=<span class="number">0</span>;low&lt;nums.length;low+=(<span class="number">2</span>*sz))&#123;	<span class="comment">//成对归并</span></div><div class="line">			merge(nums,low,low+sz-<span class="number">1</span>,Math.min(low+<span class="number">2</span>*sz-<span class="number">1</span>, nums.length-<span class="number">1</span>));<span class="comment">//最后一组子数组大小可能小于对半分的子数组</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>自底向上的归并排序比较适合用链表组织的数据，这种方法只需要重新组织链表链接就能将链表原地排序</p>
+</blockquote>
+<h4 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>优点：能保证将任意长度为$N$的数组排序所需时间和$NlgN$成正比，所以能使用归并排序处理数百万乃至更大规模的数组</li>
+<li>缺点：他所需的额外空间与$N$成正比</li>
+<li>归并排序是一种渐近最优的<strong>基于比较</strong>排序的算法：归并排序在最坏情况下的比较次数和任意基于比较的排序算法所需的最少比较次数都是$~NlgN$</li>
+</ul>
+<h4 id="进一步改进的方向"><a href="#进一步改进的方向" class="headerlink" title="进一步改进的方向"></a>进一步改进的方向</h4><ul>
+<li>对小规模子数组用插入排序</li>
+<li>不将元素复制到辅助数组，而是在递归调用的每个层次交换输入数组和辅助数组的角色</li>
+</ul>
+<h3 id="堆排序【重点】"><a href="#堆排序【重点】" class="headerlink" title="堆排序【重点】"></a>堆排序【重点】</h3><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="基本思想-2"><a href="#基本思想-2" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
 <p>不断地选择剩余元素中的最小者并与当前剩余元素第一位交换<br>首先，找到数组中最小的那个元素，其次将它和数组的第一个元素交换位置，再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此往复，直到将整个数组排序。</p>
 </blockquote>
-<h4 id="Java实现-1"><a href="#Java实现-1" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<h4 id="Java实现-2"><a href="#Java实现-2" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>选择排序</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">int</span> minPos=i;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;nums.length;j++)&#123;</div><div class="line">			<span class="keyword">if</span>(nums[minPos]&gt;nums[j])&#123;</div><div class="line">				minPos=j;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> temp=nums[i];</div><div class="line">		nums[i]=nums[minPos];</div><div class="line">		nums[minPos]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -1136,28 +1311,28 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span>[] nums=&#123;<span class="number">7</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">3</span>&#125;;</div><div class="line">	printArray(nums);</div><div class="line">	selectSort(nums);</div><div class="line">	printArray(nums);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">		System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<h4 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>对于长度为$N$的数组，选择排序需要大约$N^2/2$次比较和$N$次交换</li>
 <li>运行时间和输入无关（缺点），比如元素相等的数组/已经有序的数组与随机数组的排序时间一样长</li>
 <li>数据移动是最少的，即元素交换次数是最少的，每次交换只改变两个数组元素的值，即交换次数和数组的大小呈线性关系，而其他的大部分排序算法是线性对数或者平方级别</li>
 </ul>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="基本思想-2"><a href="#基本思想-2" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
 <p>整理桥牌</p>
 </blockquote>
 <p>保证数组当前遍历的元素位置左方元素已经有序，然后将当前元素前向逐个比较，一边比较一边将前面的元素向后覆盖，直到找到第一个不大于该元素的位置，将该元素插入（《算法》一书中的基本实现采用的方法是将目标元素与前面比他大的元素逐个交换的做法，相较之下，我的这种直接移动所有较大元素的做法速度更快（《算法》一书作为练习题））</p>
-<h4 id="Java实现-2"><a href="#Java实现-2" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<h4 id="Java实现-3"><a href="#Java实现-3" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li>插入排序<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">int</span> temp=nums[i+<span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> j=i+<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;temp&lt;nums[j-<span class="number">1</span>])&#123;</div><div class="line">			nums[j]=nums[j-<span class="number">1</span>];</div><div class="line">			j--;</div><div class="line">		&#125;			</div><div class="line">		nums[j]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h4><ul>
+<h4 id="特点-4"><a href="#特点-4" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>插入排序所需时间取决于输入中元素的初始顺序，因此插入排序对于部分有序的数组十分高效，也很适合小规模数组（当数组中倒置（倒置指的是数组中两个顺序颠倒的元素）数量很少时，插入排序可能是最快的排序算法）</li>
 </ul>
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h4 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h4 id="基本思想-4"><a href="#基本思想-4" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
 <li>考虑到插入排序不适用于大规模乱序数组，所以进行改进得到的算法</li>
 <li>原则是保证数组中任意间隔为h的元素有序，即交换间隔为h的元素以对数组的局部进行排序，并最终使用插入排序将局部有序的数组排序</li>
 <li>权衡了子数组的规模和有序性：排序之初，各个子数组都很短，排序之后子数组都是部分有序的，这两种情况都很适合插入排序</li>
 </ul>
-<h4 id="Java实现-3"><a href="#Java实现-3" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<h4 id="Java实现-4"><a href="#Java实现-4" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>希尔排序</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> h=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(h&lt;nums.length/<span class="number">3</span>)&#123;</div><div class="line">		h=h*<span class="number">3</span>+<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(h&gt;=<span class="number">1</span>)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-h;i++)&#123;</div><div class="line">			<span class="keyword">int</span> temp=nums[i+h];</div><div class="line">			<span class="keyword">int</span> j=i+h;</div><div class="line">			<span class="keyword">while</span>(j&gt;=h&amp;&amp;temp&lt;nums[j-h])&#123;</div><div class="line">				nums[j]=nums[j-h];</div><div class="line">				j-=h;</div><div class="line">			&#125;</div><div class="line">			nums[j]=temp;</div><div class="line">		&#125;</div><div class="line">		h/=<span class="number">3</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -1165,7 +1340,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">		System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">randArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		nums[i]=(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span>[] nums=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</div><div class="line">	randArray(nums);</div><div class="line">	</div><div class="line">	printArray(nums);</div><div class="line">	shellSort(nums);</div><div class="line">	printArray(nums);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="特点-3"><a href="#特点-3" class="headerlink" title="特点"></a>特点</h4><ul>
+<h4 id="特点-5"><a href="#特点-5" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>算法性能取决于h值的选择，这里使用的是序列$\frac{3^k-1}{2}$，关于怎样的h值最好，尚无定论，实际应用中相差不大，但一般其时间复杂度不会到达$O(n^2)$</li>
 <li>希尔排序也可用于大型数组，其优点在于代码量小而且不需要额外的存储空间，在手头没有现成的排序算法可以调用时，不妨实现希尔排序来辅助工作</li>
 </ul>
@@ -2345,11 +2520,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
         </tags>
         
@@ -2423,9 +2598,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> k-NN </tag>
             
@@ -2766,9 +2941,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> k-NN </tag>
             
@@ -2888,9 +3063,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> Perceptron </tag>
             
@@ -2963,11 +3138,20 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 </li>
 </ul>
 <p><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></p>
-<p><em>Note:在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</em></p>
+<p><em>Note:</em></p>
+<ul>
+<li>在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</li>
+<li>最大似然（MLE），最大后验（MAP）都是构造目标函数的方法</li>
+</ul>
 <h3 id="算法（求解-amp-优化）"><a href="#算法（求解-amp-优化）" class="headerlink" title="算法（求解&amp;优化）"></a>算法（求解&amp;优化）</h3><p>模型学习的算法，即学习模型的具体计算方法</p>
 <ul>
 <li>用什么样的计算方法求解最优模型（寻找全局最优解）</li>
 <li>如何高效实现</li>
+</ul>
+<p><em>Note:</em></p>
+<ul>
+<li>一句话小结：针对某一问题，我们提出了一种假设（模型），然后制订了解决该问题的目标（策略/损失函数）；接下来就是采取某种方式来达成这一目标（算法/优化）</li>
+<li>常用优化方法大致可以分为两类，一类使用函数的梯度信息，包括一阶的方法，例如梯度下降，以及二阶的方法，例如牛顿法等。当然，还有和梯度无关的方法，例如 fixed point iteration，坐标下降等等</li>
 </ul>
 <h2 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h2><h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><h4 id="训练误差-amp-测试误差"><a href="#训练误差-amp-测试误差" class="headerlink" title="训练误差&amp;测试误差"></a>训练误差&amp;测试误差</h4><ul>
 <li>训练误差：对判断给定的问题是不是一个容易学习的问题是有意义的，但若一味追求减小训练误差，会出现过拟合的情况（所选模型的复杂度比真模型高）</li>
@@ -3072,6 +3256,12 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 </ul>
 </li>
 </ul>
+<p>参考资料</p>
+<ul>
+<li>李航《统计学习方法》</li>
+<li>周志华《机器学习》</li>
+<li><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">知乎-最小二乘、极大似然、梯度下降有何区别？</a></li>
+</ul>
 ]]></content>
       
         
@@ -3079,9 +3269,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
         </tags>
         
@@ -3269,13 +3459,13 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
         
         <tags>
             
+            <tag> Coding </tag>
+            
             <tag> blog </tag>
             
             <tag> hexo </tag>
             
             <tag> yilia </tag>
-            
-            <tag> Coding </tag>
             
         </tags>
         

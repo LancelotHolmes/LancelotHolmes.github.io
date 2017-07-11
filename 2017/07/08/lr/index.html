@@ -9,7 +9,7 @@
   <title>统计学习方法笔记（六）——Logistic Regression | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Logistic Regression与最大熵模型均属于对数线性模型">
-<meta name="keywords" content="ML,统计学习方法,Note,LR">
+<meta name="keywords" content="ML,Note,统计学习方法,LR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记（六）——Logistic Regression">
 <meta property="og:url" content="http://yoursite.com/2017/07/08/lr/index.html">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/LR/sigmoid.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/LR/jieyue.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/LR/LR.jpg">
-<meta property="og:updated_time" content="2017-07-10T06:59:45.490Z">
+<meta property="og:updated_time" content="2017-07-11T08:30:40.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记（六）——Logistic Regression">
 <meta name="twitter:description" content="Logistic Regression与最大熵模型均属于对数线性模型">
@@ -285,7 +285,18 @@ ga('send', 'pageview');
 <li>基本思想：应用极大似然估计法估计模型参数，从而将问题转化为以对数似然函数为目标函数的最优化问题，然后采用梯度下降法或者拟牛顿法进行求解</li>
 </ul>
 <p><a href="https://www.nowcoder.com/discuss/3243" target="_blank" rel="external"><strong>此处的目标函数为考点</strong></a><br><img src="/materials/img/LR/LR.jpg" alt="lr"></p>
+<p><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">为什么LR模型的损失函数是交叉熵？</a>而线性回归模型的损失函数却是最小二乘呢？能否随意确定一个损失函数作为目标呢？</p>
+<ul>
+<li>答案是模型的损失函数由各自的响应变量$y$的概率分布决定，比如对于线性回归模型，针对的问题是预测某个结果，属于回归问题，其输出是连续值，所以我们对于该问题假设$y$服从正态分布；相对的，LR模型一般用来解决二分类问题，所以其输出是0/1，故而我们假设其输出服从伯努利分布；而进一步地，两者的损失函数都是通过极大似然估计推导的来的，所以模型的损失函数并非随意确定。</li>
+<li>另外，对于线性回归问题，它的模型是 $p(y|x) = N(w^Tx, \sigma^2)$,我们采用最大似然来构造一个目标函数，最后用梯度下降来找到目标函数的最值。当然，对于这个问题，我们也可以不用梯度下降，直接用向量的投影来直接算出最优解的表达式,即“最小二乘法”；而LR模型是$p(y|x)=Ber(y|sigmoid(w^Tx))$，Ber是伯努利分布，sigmoid是logistic sigmoid函数，我们采用最大似然来构造一个目标函数，与之前的问题不同，这个目标函数比较复杂，是无法像线性回归那样一步直接算出最终的解的，但是，这个目标函数是凸的，所以我们依然能用梯度下降或者牛顿法来来找到它的最优解。</li>
+</ul>
 <h2 id="多项LR模型——多分类"><a href="#多项LR模型——多分类" class="headerlink" title="多项LR模型——多分类"></a>多项LR模型——多分类</h2><p>假设离散型随机变量$Y$的取值集合为$\lbrace 1,2,…,K \rbrace$，则多项LR模型是<br>$$P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>$$P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>注意$k=1,2,…,K-1$,其中$x\in R^{n+1}, w_k \in R^{n+1}$</p>
+<p>参考资料</p>
+<ul>
+<li>李航《统计学习方法》</li>
+<li>周志华《机器学习》</li>
+<li><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">知乎-最小二乘、极大似然、梯度下降有何区别？</a></li>
+</ul>
 
       
 
@@ -303,11 +314,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -544,15 +555,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,7 +567,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,11 +603,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,15 +619,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,6 +643,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -656,7 +659,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">

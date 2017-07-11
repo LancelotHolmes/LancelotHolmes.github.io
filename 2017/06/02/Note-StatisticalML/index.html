@@ -9,7 +9,7 @@
   <title>统计学习方法笔记(一) | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
-<meta name="keywords" content="ML,统计学习方法,Note">
+<meta name="keywords" content="ML,Note,统计学习方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(一)">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Note-StatisticalML/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
 <meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/overview.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/loss.jpg">
-<meta property="og:updated_time" content="2017-06-20T13:18:35.617Z">
+<meta property="og:updated_time" content="2017-07-11T08:26:27.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(一)">
 <meta name="twitter:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
@@ -299,11 +299,20 @@ ga('send', 'pageview');
 </li>
 </ul>
 <p><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></p>
-<p><em>Note:在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</em></p>
+<p><em>Note:</em></p>
+<ul>
+<li>在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</li>
+<li>最大似然（MLE），最大后验（MAP）都是构造目标函数的方法</li>
+</ul>
 <h3 id="算法（求解-amp-优化）"><a href="#算法（求解-amp-优化）" class="headerlink" title="算法（求解&amp;优化）"></a>算法（求解&amp;优化）</h3><p>模型学习的算法，即学习模型的具体计算方法</p>
 <ul>
 <li>用什么样的计算方法求解最优模型（寻找全局最优解）</li>
 <li>如何高效实现</li>
+</ul>
+<p><em>Note:</em></p>
+<ul>
+<li>一句话小结：针对某一问题，我们提出了一种假设（模型），然后制订了解决该问题的目标（策略/损失函数）；接下来就是采取某种方式来达成这一目标（算法/优化）</li>
+<li>常用优化方法大致可以分为两类，一类使用函数的梯度信息，包括一阶的方法，例如梯度下降，以及二阶的方法，例如牛顿法等。当然，还有和梯度无关的方法，例如 fixed point iteration，坐标下降等等</li>
 </ul>
 <h2 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h2><h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><h4 id="训练误差-amp-测试误差"><a href="#训练误差-amp-测试误差" class="headerlink" title="训练误差&amp;测试误差"></a>训练误差&amp;测试误差</h4><ul>
 <li>训练误差：对判断给定的问题是不是一个容易学习的问题是有意义的，但若一味追求减小训练误差，会出现过拟合的情况（所选模型的复杂度比真模型高）</li>
@@ -408,6 +417,12 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
+<p>参考资料</p>
+<ul>
+<li>李航《统计学习方法》</li>
+<li>周志华《机器学习》</li>
+<li><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">知乎-最小二乘、极大似然、梯度下降有何区别？</a></li>
+</ul>
 
       
 
@@ -425,11 +440,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		
 		</ul>
@@ -662,15 +677,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,7 +689,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,11 +725,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,15 +741,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,6 +765,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -774,7 +781,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/08/ml-job/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
-<meta property="og:updated_time" content="2017-07-10T06:40:14.333Z">
+<meta property="og:updated_time" content="2017-07-10T10:18:32.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习校招常考知识点小记">
 <meta name="twitter:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
@@ -296,6 +296,9 @@ ga('send', 'pageview');
 <li>阈值移动/代价敏感学习–&gt;原始数据嵌入“负正比”，具体的比如在xgboost中可以调整scale_pos_weight参数为数据集的负正比</li>
 </ul>
 </li>
+<li>常见的最优化方法</li>
+<li>牛顿法的原理</li>
+<li>L1正则化的优化</li>
 </ul>
 </blockquote>
 <h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><blockquote>
@@ -305,9 +308,9 @@ ga('send', 'pageview');
 </ul>
 </blockquote>
 <ul>
-<li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别</li>
-<li>LR 的推导，特性？；为什么可以使用logistic回归。。。</li>
-<li>决策树的特性？</li>
+<li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别;SVM的支持向量的数学表示</li>
+<li>LR 的推导，特性？；为什么可以使用logistic回归;logistic regression为什么使用sigmoid函数？;linear regression 如何处理离散值的情况，如特征为：男1，女0</li>
+<li>决策树的特性？;决策树分裂</li>
 <li>用EM算法推导解释 Kmeans；K-means起始点；K-means的具体流程；如何优化K-means</li>
 <li>解释密度聚类算法</li>
 <li>解释贝叶斯公式和朴素贝叶斯分类；贝叶斯分类器的优化和特殊情况的处理<ul>
@@ -323,6 +326,9 @@ ga('send', 'pageview');
 <li>关联分析、apriori</li>
 <li>em算法推导</li>
 <li>随机森林的学习过程；随机森林中的每一棵树是如何学习的；随机森林学习算法中CART树的基尼指数是什么？</li>
+<li>谱聚类处理同心圆的情况如何处理</li>
+<li>spectral clustering的实现</li>
+<li>推导softmax regression模型</li>
 </ul>
 <h2 id="模型比较"><a href="#模型比较" class="headerlink" title="模型比较"></a>模型比较</h2><ul>
 <li>naive bayes和logistic regression的区别</li>
@@ -330,6 +336,8 @@ ga('send', 'pageview');
 <li>GBDT和随机森林的区别？</li>
 <li>哪些模型容易过拟合，模型怎么选择</li>
 <li>改变随机森林的训练样本数据量，是否会影响到随机森林学习到的模型的复杂度</li>
+<li>lr的正则化，与SVM的区别</li>
+<li>LR与最大熵的关系</li>
 </ul>
 <h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><blockquote>
 <p>用了什么算法？为什么用？有什么优缺点？</p>
@@ -420,6 +428,8 @@ ga('send', 'pageview');
 </ul>
 </li>
 <li>学校食堂如何应用数据挖掘的知识</li>
+<li>有用户的搜索历史数据，如何判断用户此时的各种状态（准备买车、已经买车等）</li>
+<li>给定年龄、性别、学历等信息，对用户的信用进行评估</li>
 </ul>
 <h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><ul>
 <li>如何判断函数凸或非凸？<ul>
@@ -442,6 +452,7 @@ ga('send', 'pageview');
 </li>
 </ul>
 </li>
+<li>概率题：一个游戏，升一级的概率为p1，等级保持不变的概率为p2，等级下降一级的概率为p3。一个用户经过n个回合，等级为m的概率</li>
 </ul>
 <h2 id="大数据相关"><a href="#大数据相关" class="headerlink" title="大数据相关"></a>大数据相关</h2><ul>
 <li>如何用hadoop实现k-means？</li>
@@ -516,6 +527,8 @@ ga('send', 'pageview');
 <li>a = [1, 2, 3, 4], b = a, b[0] = 100, 请问print(a)结果是什么</li>
 <li><a href="http://www.jianshu.com/p/J4U6rR" target="_blank" rel="external">list是怎样实现的</a></li>
 <li>常用的数据结构及应用场景（list，dict，tuple）</li>
+<li>Python装饰器、yield等</li>
+<li>给定一个文件，包含了data, ciyt, count等信息，写代码实现给定city和date1-date2日期内，count最高的日期</li>
 </ul>
 </li>
 </ul>
@@ -568,6 +581,8 @@ ga('send', 'pageview');
 <li>并行计算、压缩算法</li>
 <li>最长上升子序列，两个大小相同的有序数组找公共中位数</li>
 <li>介绍大顶堆和小顶堆</li>
+<li>反转链表</li>
+<li>单链表转二叉树，二叉树转单链表（要求原地）</li>
 </ul>
 <p>参考</p>
 <ul>
@@ -830,15 +845,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -850,7 +857,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -882,11 +893,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -902,15 +909,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -930,6 +933,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -942,7 +949,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">

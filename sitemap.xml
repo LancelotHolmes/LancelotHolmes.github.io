@@ -2,30 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
+    <loc>http://yoursite.com/2017/07/11/optimization/</loc>
     
-    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
+    <lastmod>2017-07-11T12:04:57.669Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
     
-    <lastmod>2017-07-10T06:59:45.490Z</lastmod>
+    <lastmod>2017-07-11T08:30:40.990Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
     
-    <lastmod>2017-07-10T06:40:14.333Z</lastmod>
+    <lastmod>2017-07-11T08:26:27.641Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
     
-    <lastmod>2017-07-10T03:18:17.926Z</lastmod>
+    <lastmod>2017-07-11T01:47:22.923Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    
+    <lastmod>2017-07-10T10:18:32.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
+    
+    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
     
   </url>
   
@@ -96,13 +110,6 @@
     <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
     
     <lastmod>2017-06-20T13:38:30.068Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    
-    <lastmod>2017-06-20T13:18:35.617Z</lastmod>
     
   </url>
   

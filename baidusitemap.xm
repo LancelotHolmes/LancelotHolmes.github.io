@@ -4,21 +4,13 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
-    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
+    <loc>http://yoursite.com/2017/07/11/optimization/</loc>
+    <lastmod>2017-07-11T12:04:57.669Z</lastmod>
     <data>
         <display>
-        <title>机器学习笔记之线性模型</title>
-        <pubTime>2017-07-09T07:09:53.000Z</pubTime>
+        <title>最优化算法小记</title>
+        <pubTime>2017-07-11T06:14:02.000Z</pubTime>
         
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>LR</tag>
-         
-        <tag>机器学习</tag>
-         
          
            
         </display>
@@ -28,7 +20,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-07-10T06:59:45.490Z</lastmod>
+    <lastmod>2017-07-11T08:30:40.990Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记（六）——Logistic Regression</title>
@@ -36,11 +28,51 @@
         
         <tag>ML</tag>
          
+        <tag>Note</tag>
+         
         <tag>统计学习方法</tag>
+         
+        <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    <lastmod>2017-07-11T08:26:27.641Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(一)</title>
+        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
+        
+        <tag>ML</tag>
          
         <tag>Note</tag>
          
-        <tag>LR</tag>
+        <tag>统计学习方法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-07-11T01:47:22.923Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
          
          
            
@@ -51,7 +83,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-07-10T06:40:14.333Z</lastmod>
+    <lastmod>2017-07-10T10:18:32.687Z</lastmod>
     <data>
         <display>
         <title>机器学习校招常考知识点小记</title>
@@ -71,16 +103,20 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-10T03:18:17.926Z</lastmod>
+    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
+    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
     <data>
         <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        <title>机器学习笔记之线性模型</title>
+        <pubTime>2017-07-09T07:09:53.000Z</pubTime>
         
+        <tag>ML</tag>
+         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
+        <tag>LR</tag>
+         
+        <tag>机器学习</tag>
          
          
            
@@ -139,11 +175,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -270,32 +306,11 @@
         
         <tag>ML</tag>
          
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
         <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-06-20T13:18:35.617Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(一)</title>
-        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            
@@ -314,9 +329,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -337,9 +352,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -360,9 +375,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>Perceptron</tag>
          
@@ -425,13 +440,13 @@
         <title>来来来，我教你搭个博客好不好哇</title>
         <pubTime>2017-05-30T10:40:58.000Z</pubTime>
         
+        <tag>Coding</tag>
+         
         <tag>blog</tag>
          
         <tag>hexo</tag>
          
         <tag>yilia</tag>
-         
-        <tag>Coding</tag>
          
          
            
