@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    
+    <lastmod>2017-07-12T03:09:27.166Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    
+    <lastmod>2017-07-11T12:35:19.854Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/11/optimization/</loc>
     
-    <lastmod>2017-07-11T12:04:57.669Z</lastmod>
+    <lastmod>2017-07-11T12:06:39.774Z</lastmod>
     
   </url>
   
@@ -19,20 +33,6 @@
     <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
     
     <lastmod>2017-07-11T08:26:27.641Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    
-    <lastmod>2017-07-11T01:47:22.923Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    
-    <lastmod>2017-07-10T10:18:32.687Z</lastmod>
     
   </url>
   

@@ -4,13 +4,61 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-07-12T03:09:27.166Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-07-11T12:35:19.854Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/11/optimization/</loc>
-    <lastmod>2017-07-11T12:04:57.669Z</lastmod>
+    <lastmod>2017-07-11T12:06:39.774Z</lastmod>
     <data>
         <display>
         <title>最优化算法小记</title>
         <pubTime>2017-07-11T06:14:02.000Z</pubTime>
         
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>最优化问题</tag>
+         
          
            
         </display>
@@ -54,46 +102,6 @@
         <tag>Note</tag>
          
         <tag>统计学习方法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-11T01:47:22.923Z</lastmod>
-    <data>
-        <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-07-10T10:18:32.687Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            
@@ -440,13 +448,13 @@
         <title>来来来，我教你搭个博客好不好哇</title>
         <pubTime>2017-05-30T10:40:58.000Z</pubTime>
         
-        <tag>Coding</tag>
-         
         <tag>blog</tag>
          
         <tag>hexo</tag>
          
         <tag>yilia</tag>
+         
+        <tag>Coding</tag>
          
          
            
