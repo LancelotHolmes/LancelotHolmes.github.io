@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
+    <lastmod>2017-07-12T06:23:47.860Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(二) —— 感知机</title>
+        <pubTime>2017-06-03T08:53:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Perceptron</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-12T03:09:27.166Z</lastmod>
+    <lastmod>2017-07-12T03:24:27.753Z</lastmod>
     <data>
         <display>
         <title>基础算法小记</title>
@@ -14,6 +37,33 @@
         <tag>Note</tag>
          
         <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/11/optimization/</loc>
+    <lastmod>2017-07-12T03:17:39.451Z</lastmod>
+    <data>
+        <display>
+        <title>最优化算法小记</title>
+        <pubTime>2017-07-11T06:14:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>最优化问题</tag>
          
          
            
@@ -44,29 +94,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/11/optimization/</loc>
-    <lastmod>2017-07-11T12:06:39.774Z</lastmod>
-    <data>
-        <display>
-        <title>最优化算法小记</title>
-        <pubTime>2017-07-11T06:14:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>最优化问题</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
     <lastmod>2017-07-11T08:30:40.990Z</lastmod>
     <data>
@@ -76,9 +103,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>LR</tag>
          
@@ -99,9 +126,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -183,11 +210,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
          
            
@@ -204,13 +231,13 @@
         <title>剑指offer阅读笔记</title>
         <pubTime>2017-06-09T02:33:40.000Z</pubTime>
         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
+        <tag>校招</tag>
          
         <tag>面试</tag>
          
-        <tag>校招</tag>
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
          
          
            
@@ -314,11 +341,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
          
            
@@ -337,9 +364,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -360,34 +387,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    <lastmod>2017-06-07T08:45:09.062Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(二) —— 感知机</title>
-        <pubTime>2017-06-03T08:53:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Perceptron</tag>
          
          
            

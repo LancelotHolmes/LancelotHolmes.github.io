@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-11T12:06:39.774Z</updated>
+  <updated>2017-07-12T03:17:39.451Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,16 +20,18 @@
     <link href="http://yoursite.com/2017/07/11/optimization/"/>
     <id>http://yoursite.com/2017/07/11/optimization/</id>
     <published>2017-07-11T06:14:02.000Z</published>
-    <updated>2017-07-11T12:06:39.774Z</updated>
+    <updated>2017-07-12T03:17:39.451Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <blockquote>
 <p>最优化：</p>
-<pre><code>* 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；
-* 找到一个能让这个目标函数取到极值的方法（算法）
-</code></pre></blockquote>
+<ul>
+<li>构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；</li>
+<li>找到一个能让这个目标函数取到极值的方法（算法）</li>
+</ul>
+</blockquote>
 <p>这里主要讨论几种常用的求解最优化问题的算法<br><a id="more"></a></p>
 <h2 id="梯度下降法（最速下降法）"><a href="#梯度下降法（最速下降法）" class="headerlink" title="梯度下降法（最速下降法）"></a>梯度下降法（最速下降法）</h2><h3 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h3><blockquote>
 <p>在微积分里面，对多元函数的参数求偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度;从几何意义上讲，就是函数变化增加最快的地方。</p>
@@ -110,9 +112,11 @@
 
 &lt;blockquote&gt;
 &lt;p&gt;最优化：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;* 构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；
-* 找到一个能让这个目标函数取到极值的方法（算法）
-&lt;/code&gt;&lt;/pre&gt;&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；&lt;/li&gt;
+&lt;li&gt;找到一个能让这个目标函数取到极值的方法（算法）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这里主要讨论几种常用的求解最优化问题的算法&lt;br&gt;
     
     </summary>
@@ -120,9 +124,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -675,9 +679,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1234,11 +1238,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -1247,9 +1251,9 @@
     <link href="http://yoursite.com/2017/06/27/basic-algorithm/"/>
     <id>http://yoursite.com/2017/06/27/basic-algorithm/</id>
     <published>2017-06-27T02:56:11.000Z</published>
-    <updated>2017-07-12T03:09:27.166Z</updated>
+    <updated>2017-07-12T03:24:27.753Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
 <h4 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>循环</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//二分查找适用于有序的数组，另外也有一些延伸用法，见剑指offer</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(num==<span class="keyword">null</span> || num.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">		<span class="comment">//为什么是length-1,因为查找也是从第0位开始的</span></div><div class="line">		<span class="keyword">int</span> high = num.length-<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(low &lt;= high)&#123;<span class="comment">//注意这里的取等与数组的元素奇偶个数、取边界值、边界以外的值相关，小心</span></div><div class="line">			<span class="keyword">int</span> mid = (low+high) &gt;&gt; <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(num[mid] == key)&#123;</div><div class="line">				pos = mid;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(num[mid] &gt; key)&#123;</div><div class="line">				high = mid - <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				low = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pos;</div><div class="line">		<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//		return low;</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
@@ -1376,7 +1380,7 @@
 <p><em>Notes:双指针i,j,<strong>保证i左侧元素均不超过pivot,而j右侧元素均不小于pivot</strong>，最终i,j相遇的地方即为pivot的位置，所以重点不在于pivot的选取，比如还可以取<a href="http://www.algolist.net/Algorithms/Sorting/Quicksort" target="_blank" rel="external">中间位置</a>或者任意位置，只是需要选定一个pivot来开始进行划分，每次划分都保证了双指针左右的元素的大小符合要求，然后递归的对双指针左右的元素进行切分处理</em></p>
 <h4 id="Java实现-1"><a href="#Java实现-1" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>快速排序</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	shuffle(nums);</div><div class="line">	printArray(nums);</div><div class="line">	quickSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> j=partition(nums,low,high);</div><div class="line">	quickSort(nums,low,j-<span class="number">1</span>);</div><div class="line">	quickSort(nums,j+<span class="number">1</span>,high);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> pivot=nums[low];	<span class="comment">//设置分割值为首位的元素值</span></div><div class="line">	<span class="keyword">int</span> i=low+<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> j=high;</div><div class="line">	<span class="keyword">while</span>(i&lt;=j)&#123;</div><div class="line">		<span class="keyword">while</span>(i&lt;=j &amp;&amp; nums[i]&lt;pivot)&#123;	<span class="comment">//找到左侧超过pivot的第一个元素</span></div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">while</span>(i&lt;=j &amp;&amp; nums[j]&gt;pivot)&#123;	<span class="comment">//找到右侧小于pivot的第一个元素</span></div><div class="line">			j--;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(i&lt;=j)&#123;	<span class="comment">//交换两边的元素</span></div><div class="line">			<span class="keyword">int</span> temp=nums[i];</div><div class="line">			nums[i]=nums[j];</div><div class="line">			nums[j]=temp;</div><div class="line">			i++;</div><div class="line">			j--;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//最后将pivot放置到“中间”位置达成a[low..j-1]&lt;=a[j]&lt;=a[j+1..high]</span></div><div class="line">	nums[low]=nums[j];</div><div class="line">	nums[j]=pivot;</div><div class="line">	<span class="keyword">return</span> j;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	shuffle(nums);	</div><div class="line">	quickSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> j=partition(nums,low,high);</div><div class="line">	quickSort(nums,low,j-<span class="number">1</span>);</div><div class="line">	quickSort(nums,j+<span class="number">1</span>,high);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> pivot=nums[low];	<span class="comment">//设置分割值为首位的元素值</span></div><div class="line">	<span class="keyword">int</span> i=low+<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> j=high;</div><div class="line">	<span class="keyword">while</span>(i&lt;=j)&#123;</div><div class="line">		<span class="keyword">while</span>(i&lt;=j &amp;&amp; nums[i]&lt;pivot)&#123;	<span class="comment">//找到左侧超过pivot的第一个元素</span></div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">while</span>(i&lt;=j &amp;&amp; nums[j]&gt;pivot)&#123;	<span class="comment">//找到右侧小于pivot的第一个元素</span></div><div class="line">			j--;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(i&lt;=j)&#123;	<span class="comment">//交换两边的元素</span></div><div class="line">			<span class="keyword">int</span> temp=nums[i];</div><div class="line">			nums[i]=nums[j];</div><div class="line">			nums[j]=temp;</div><div class="line">			i++;</div><div class="line">			j--;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//最后将pivot放置到“中间”位置达成a[low..j-1]&lt;=a[j]&lt;=a[j+1..high]</span></div><div class="line">	nums[low]=nums[j];</div><div class="line">	nums[j]=pivot;</div><div class="line">	<span class="keyword">return</span> j;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>测试及辅助函数</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">randArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		nums[i]=(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">		System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">	&#125;</div><div class="line">	System.out.println();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shuffle</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	List&lt;Integer&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		list.add(nums[i]);</div><div class="line">	&#125;</div><div class="line">	Collections.shuffle(list);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</div><div class="line">		nums[i]=list.get(i);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -1394,7 +1398,7 @@
 </li>
 </ul>
 </li>
-<li>缺点：切分不平衡时程序可能会变得极为低效–&gt; 这也是在快排中一开始对数组进行随机化处理的原因，目的是为了降低这种情况出现的概率</li>
+<li>缺点：切分不平衡时程序可能会变得极为低效–&gt; 这也是在快排中一开始对数组进行随机化处理（shuffle()）的原因，目的是为了降低这种情况出现的概率</li>
 </ul>
 <h4 id="进一步改进"><a href="#进一步改进" class="headerlink" title="进一步改进"></a>进一步改进</h4><ul>
 <li>对于小数组切换到插入排序，修改<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">	<span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -1621,11 +1625,15 @@
 <h3 id="排序的应用延伸"><a href="#排序的应用延伸" class="headerlink" title="排序的应用延伸"></a>排序的应用延伸</h3><h4 id="在线性对数时间内计算两组排列之间的Kendall-tau距离"><a href="#在线性对数时间内计算两组排列之间的Kendall-tau距离" class="headerlink" title="在线性对数时间内计算两组排列之间的Kendall tau距离"></a>在线性对数时间内计算两组排列之间的Kendall tau距离</h4><p><em>关键字：逆序对</em></p>
 <h4 id="找出一组元素的中位数"><a href="#找出一组元素的中位数" class="headerlink" title="找出一组元素的中位数"></a>找出一组元素的中位数</h4><p><em>快速排序的partition的进一步应用</em></p>
 <h4 id="最长重复子字符串"><a href="#最长重复子字符串" class="headerlink" title="最长重复子字符串"></a>最长重复子字符串</h4><p><em>特殊的字符串排序算法</em></p>
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><h3 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h3><h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3>]]></content>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h2 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h2><h2 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h2><h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>Robert Sedgewick《算法》4th</li>
+<li><a href="http://www.algolist.net/Algorithms/Sorting/Quicksort" target="_blank" rel="external">http://www.algolist.net/Algorithms/Sorting/Quicksort</a></li>
+</ul>
+]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;查找类&quot;&gt;&lt;a href=&quot;#查找类&quot; class=&quot;headerlink&quot; title=&quot;查找类&quot;&gt;&lt;/a&gt;查找类&lt;/h2&gt;&lt;h3 id=&quot;二分查找【重点】&quot;&gt;&lt;a href=&quot;#二分查找【重点】&quot; class=&quot;headerlink&quot; title=&quot;二分查找【重点】&quot;&gt;&lt;/a&gt;二分查找【重点】&lt;/h3&gt;&lt;h4 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h4&gt;&lt;p&gt;在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半**&lt;br&gt;
+      &lt;h2 id=&quot;查找类&quot;&gt;&lt;a href=&quot;#查找类&quot; class=&quot;headerlink&quot; title=&quot;查找类&quot;&gt;&lt;/a&gt;查找类&lt;/h2&gt;&lt;h3 id=&quot;二分查找【重点】&quot;&gt;&lt;a href=&quot;#二分查找【重点】&quot; class=&quot;headerlink&quot; title=&quot;二分查找【重点】&quot;&gt;&lt;/a&gt;二分查找【重点】&lt;/h3&gt;&lt;h4 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h4&gt;&lt;p&gt;在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半&lt;br&gt;
     
     </summary>
     
@@ -1633,6 +1641,10 @@
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+    
+      <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
@@ -2838,11 +2850,11 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -2928,9 +2940,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3120,13 +3132,13 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     </summary>
     
     
-      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
-    
-      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
+      <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
+      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
+    
+      <category term="剑指offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87offer/"/>
     
   </entry>
   
@@ -3291,9 +3303,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3304,7 +3316,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/03/Perceptron/"/>
     <id>http://yoursite.com/2017/06/03/Perceptron/</id>
     <published>2017-06-03T08:53:02.000Z</published>
-    <updated>2017-06-07T08:45:09.062Z</updated>
+    <updated>2017-07-12T06:23:47.860Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -3316,7 +3328,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <ul>
 <li>输入空间：$R^n$</li>
 <li>输出空间：$\lbrace+1, -1 \rbrace$</li>
-<li>假设空间：${f|f(x) = w \cdot x + b}$，表示定义在特征空间中的所有线性分类模型或线性分类器</li>
+<li>假设空间：$\lbrace f|f(x) = w \cdot x + b\rbrace$，表示定义在特征空间中的所有线性分类模型或线性分类器</li>
 <li>$w \in R^n$，其中$w$表示权值向量，几何意义为<em>超平面的法向量</em></li>
 <li>$b \in R$，$b$表示偏置，几何意义为超平面的截距</li>
 </ul>
@@ -3330,22 +3342,23 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 </li>
 <li><p>转化：经验损失函数最小化——基于误分类</p>
 <ul>
-<li>直观思路：误分类点总数，非$w, b$的连续可导函数，不易优化</li>
-<li>修改：误分类点到超平面$S$的总距离$$L(w, b)=-\sum_{x_i \in M} y_i(w \cdot x_i + b)$$,其中$M$为误分类点的集合，损失函数$L(w, b)$是$w, b$的连续可导函数。</li>
+<li>直观思路：<del>误分类点总数，非$w, b$的连续可导函数，不易优化</del></li>
+<li>修改：误分类点到超平面$S$的总距离$$L(w, b)=-\sum_{x_i \in M} y_i(w \cdot x_i + b)$$,其中$M$为误分类点的集合，损失函数$L(w, b)$是$w, b$的连续可导函数。(简单的解释一下，此处计算误差取的是所有误分类点的集合，所以式中$y_i(w\cdot x_i+b)$符号为负，这是前面的负号的由来，另外表示点到平面的距离的主要是$w\cdot x_i+b$这部分，其中$x_i$为平面外一点，$w,b$分别为平面的法向量和截距，这里的计算省略了绝对值符号（原因同负号的由来），另外省略了分子法向量的平方和，应该是求解最小化误差时，该项不影响所以简化了计算，具体的推导可以参见下面的链接)</li>
 </ul>
 </li>
 </ul>
 <p><em>Note:</em></p>
 <ul>
-<li>感知机的学习策略是在假设空间中选取是损失函数最小的模型参数$w, b$，即感知机模型。</li>
+<li>感知机的学习策略是在假设空间中选取使损失函数最小的模型参数$w, b$，即感知机模型。</li>
 <li><a href="http://www.cnblogs.com/graphics/archive/2010/07/10/1774809.html" target="_blank" rel="external">点到平面的距离推导</a></li>
 <li><a href="https://www.zhihu.com/question/20473040" target="_blank" rel="external">范数的通俗解释</a></li>
 <li>另外关于范数、规范化的理解，这篇<a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">博文</a>写的深入浅出</li>
 </ul>
-<h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
-<p>输入：训练集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
+<h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>随机梯度下降法</p>
+<blockquote>
+<p>输入：训练集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$即为误分类点<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
 </blockquote>
-<h4 id="几何解释-1"><a href="#几何解释-1" class="headerlink" title="几何解释"></a>几何解释</h4><p>当一个实例点被误分类，即位于分离超平面的错误的一侧时，则调整$w, b$的值，是分离超平面向该误分类点的一侧移动，以减少该误分类点与超平面间的距离，直至超平面越过该误分类点使其被正确分类。</p>
+<h4 id="几何解释-1"><a href="#几何解释-1" class="headerlink" title="几何解释"></a>几何解释</h4><p>当一个实例点被误分类，即位于分离超平面的错误的一侧时，则调整$w, b$的值，使分离超平面向该误分类点的一侧移动，以减少该误分类点与超平面间的距离，直至超平面越过该误分类点使其被正确分类。</p>
 <h4 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h4><ul>
 <li>首先任意选取一个超平面$w_0, b_0$，然后用随机梯度下降法不断地极小化目标函数</li>
 </ul>
@@ -3368,7 +3381,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 </ul>
 <h3 id="算法的收敛性"><a href="#算法的收敛性" class="headerlink" title="算法的收敛性"></a>算法的收敛性</h3><p>证明如下<br><img src="/materials/img/Perceptron/Convergence_1.JPG" alt="convergence_1"><br><img src="/materials/img/Perceptron/Convergence_2.JPG" alt="convergence_2"><br><img src="/materials/img/Perceptron/Convergence_3.JPG" alt="convergence_3"><br><img src="/materials/img/Perceptron/Convergence_4.JPG" alt="convergence_4"></p>
 <p>另外可以看看其他人写的<a href="http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf" target="_blank" rel="external">证明过程</a></p>
-<p><em>Note: 当训练数据集线性可分时，感知机学习算法存在无穷多个解，其解由于不同的初值或不同的迭代顺序而可能有所不同。</em></p>
+<p><em>Note: 当训练数据集线性可分时，感知机学习算法存在无穷多个解，其解由于不同的初值或不同的迭代顺序而可能有所不同。相对的，线性可分支持向量机则克服了这一点，根据间隔最大化从无穷多个超平面中唯一确定了一个</em></p>
 <h3 id="对偶形式"><a href="#对偶形式" class="headerlink" title="对偶形式"></a>对偶形式</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>将$w$和$b$表示为实例$x_i$和标记$y_i$的线性组合的形式，通过求解其系数而求得$w, b$。</p>
 <ul>
 <li>假设初始值$w_0, b_0$均为0，对误分类点$(x_i, y_i)$，通过<ul>
@@ -3387,10 +3400,10 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><blockquote>
 <p>输入：线性可分的数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace +1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$</p>
 <p>输出：$\alpha, b$；感知机模型$f(x) = sign(\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x + b)$,其中$\alpha=(alpla_1, alpla_2,…,alpla_N)^T$<br>(1): $\alpha \leftarrow 0$, $b \leftarrow 0$<br>(2): 计算所有样本内积形成的Gram矩阵$G$，</p>
-<p>$G=[x_i \cdot x_j ]_{N \times N}$</p>
+<p>$$G=[x_i \cdot x_j ]_{N \times N}$$</p>
 <p>(3): 在训练集中选取数据$(x_i, y_i)$，若</p>
-<p>$y_i (\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x_i + b) \leq 0$</p>
-<p>计算过程中可通过查$G$的值来提高效率）则更新：</p>
+<p>$$y_i (\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x_i + b) \leq 0$$</p>
+<p>（计算过程中可通过查$G$的值来提高效率）则更新：</p>
 <p>$$\alpha_i \leftarrow \alpha_i + \eta$$</p>
 <p>$$b \leftarrow b + \eta y_i$$<br>(4): 转至(3)直至没有误分类数据</p>
 </blockquote>
@@ -3403,10 +3416,19 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 </li>
 <li><p>此外，关于对偶形式的优势，<a href="https://www.zhihu.com/question/26526858" target="_blank" rel="external">小结</a>一下：</p>
 <ul>
-<li>对偶形式将权重向量$w$转化为实例$x_i$和标记$y_i$的线性组合形式，且在原书中也提到，对偶形式中的训练实例仅以内积的形式出现，所以可以预先使用Gram矩阵存储，也就是时间换空间的方法提高计算效率</li>
-<li>书中这里应该也有点为后续介绍支持向量机做铺垫，所以这里为核函数的引入埋一个伏笔，毕竟书中提到感知机是神经网络与支持向量机的基础，而且后面书中在支持向量机部分的讲解也多次使用对偶形式的求解</li>
+<li>对偶形式将权重向量$w$转化为实例$x_i$和标记$y_i$的线性组合形式，且在原书中也提到，对偶形式中的训练实例仅以内积的形式出现，所以可以预先使用Gram矩阵存储，也就是空间换时间的方法提高计算效率</li>
+<li>书中这里应该也有点为后续介绍支持向量机做铺垫，所以这里为核函数的引入埋一个伏笔，毕竟感知机是神经网络与支持向量机的基础，而且后面书中在支持向量机部分的讲解也多次使用对偶形式的求解</li>
 </ul>
 </li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>李航《统计学习方法》</li>
+<li><a href="http://www.cnblogs.com/graphics/archive/2010/07/10/1774809.html" target="_blank" rel="external">点到平面的距离推导</a></li>
+<li><a href="https://www.zhihu.com/question/20473040" target="_blank" rel="external">范数的通俗解释</a></li>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">关于范数、规范化的理解</a></li>
+<li><a href="http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf" target="_blank" rel="external">http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf</a></li>
+<li><a href="http://www.cnblogs.com/pinard/p/6042320.html" target="_blank" rel="external">http://www.cnblogs.com/pinard/p/6042320.html</a></li>
+<li><a href="https://www.zhihu.com/question/26526858" target="_blank" rel="external">https://www.zhihu.com/question/26526858</a></li>
 </ul>
 ]]></content>
     
@@ -3423,9 +3445,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
@@ -3641,9 +3663,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   

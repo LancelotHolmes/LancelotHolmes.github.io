@@ -9,7 +9,7 @@
   <title>统计学习方法笔记(二) —— 感知机 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="概述 感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。">
-<meta name="keywords" content="ML,Note,统计学习方法,Perceptron">
+<meta name="keywords" content="ML,统计学习方法,Note,Perceptron">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(二) —— 感知机">
 <meta property="og:url" content="http://yoursite.com/2017/06/03/Perceptron/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/Perceptron/Convergence_2.JPG">
 <meta property="og:image" content="http://yoursite.com/materials/img/Perceptron/Convergence_3.JPG">
 <meta property="og:image" content="http://yoursite.com/materials/img/Perceptron/Convergence_4.JPG">
-<meta property="og:updated_time" content="2017-06-07T08:45:09.062Z">
+<meta property="og:updated_time" content="2017-07-12T06:23:47.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(二) —— 感知机">
 <meta name="twitter:description" content="概述 感知机（perceptron）是二类分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值。感知机对应于输入空间中将实例划分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此导入了基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。感知机学习算法具有简单而易于实现的优点，分为原始形式和对偶形式。">
@@ -228,7 +228,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机模型——分离超平面"><span class="toc-number">2.</span> <span class="toc-text">感知机模型——分离超平面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数学表达"><span class="toc-number">2.1.</span> <span class="toc-text">数学表达</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几何解释"><span class="toc-number">2.2.</span> <span class="toc-text">几何解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机的学习策略"><span class="toc-number">3.</span> <span class="toc-text">感知机的学习策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据集的线性可分性"><span class="toc-number">3.1.</span> <span class="toc-text">数据集的线性可分性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习策略"><span class="toc-number">3.2.</span> <span class="toc-text">学习策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机学习算法"><span class="toc-number">4.</span> <span class="toc-text">感知机学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原始形式"><span class="toc-number">4.1.</span> <span class="toc-text">原始形式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述-1"><span class="toc-number">4.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#几何解释-1"><span class="toc-number">4.1.2.</span> <span class="toc-text">几何解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机梯度下降法"><span class="toc-number">4.1.3.</span> <span class="toc-text">随机梯度下降法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法的收敛性"><span class="toc-number">4.2.</span> <span class="toc-text">算法的收敛性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对偶形式"><span class="toc-number">4.3.</span> <span class="toc-text">对偶形式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">4.3.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法"><span class="toc-number">4.3.2.</span> <span class="toc-text">算法</span></a></li></ol></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机模型——分离超平面"><span class="toc-number">2.</span> <span class="toc-text">感知机模型——分离超平面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数学表达"><span class="toc-number">2.1.</span> <span class="toc-text">数学表达</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几何解释"><span class="toc-number">2.2.</span> <span class="toc-text">几何解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机的学习策略"><span class="toc-number">3.</span> <span class="toc-text">感知机的学习策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据集的线性可分性"><span class="toc-number">3.1.</span> <span class="toc-text">数据集的线性可分性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习策略"><span class="toc-number">3.2.</span> <span class="toc-text">学习策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机学习算法"><span class="toc-number">4.</span> <span class="toc-text">感知机学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原始形式"><span class="toc-number">4.1.</span> <span class="toc-text">原始形式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述-1"><span class="toc-number">4.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#几何解释-1"><span class="toc-number">4.1.2.</span> <span class="toc-text">几何解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机梯度下降法"><span class="toc-number">4.1.3.</span> <span class="toc-text">随机梯度下降法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法的收敛性"><span class="toc-number">4.2.</span> <span class="toc-text">算法的收敛性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对偶形式"><span class="toc-number">4.3.</span> <span class="toc-text">对偶形式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">4.3.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法"><span class="toc-number">4.3.2.</span> <span class="toc-text">算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -249,7 +249,7 @@ ga('send', 'pageview');
 <ul>
 <li>输入空间：$R^n$</li>
 <li>输出空间：$\lbrace+1, -1 \rbrace$</li>
-<li>假设空间：${f|f(x) = w \cdot x + b}$，表示定义在特征空间中的所有线性分类模型或线性分类器</li>
+<li>假设空间：$\lbrace f|f(x) = w \cdot x + b\rbrace$，表示定义在特征空间中的所有线性分类模型或线性分类器</li>
 <li>$w \in R^n$，其中$w$表示权值向量，几何意义为<em>超平面的法向量</em></li>
 <li>$b \in R$，$b$表示偏置，几何意义为超平面的截距</li>
 </ul>
@@ -263,22 +263,23 @@ ga('send', 'pageview');
 </li>
 <li><p>转化：经验损失函数最小化——基于误分类</p>
 <ul>
-<li>直观思路：误分类点总数，非$w, b$的连续可导函数，不易优化</li>
-<li>修改：误分类点到超平面$S$的总距离$$L(w, b)=-\sum_{x_i \in M} y_i(w \cdot x_i + b)$$,其中$M$为误分类点的集合，损失函数$L(w, b)$是$w, b$的连续可导函数。</li>
+<li>直观思路：<del>误分类点总数，非$w, b$的连续可导函数，不易优化</del></li>
+<li>修改：误分类点到超平面$S$的总距离$$L(w, b)=-\sum_{x_i \in M} y_i(w \cdot x_i + b)$$,其中$M$为误分类点的集合，损失函数$L(w, b)$是$w, b$的连续可导函数。(简单的解释一下，此处计算误差取的是所有误分类点的集合，所以式中$y_i(w\cdot x_i+b)$符号为负，这是前面的负号的由来，另外表示点到平面的距离的主要是$w\cdot x_i+b$这部分，其中$x_i$为平面外一点，$w,b$分别为平面的法向量和截距，这里的计算省略了绝对值符号（原因同负号的由来），另外省略了分子法向量的平方和，应该是求解最小化误差时，该项不影响所以简化了计算，具体的推导可以参见下面的链接)</li>
 </ul>
 </li>
 </ul>
 <p><em>Note:</em></p>
 <ul>
-<li>感知机的学习策略是在假设空间中选取是损失函数最小的模型参数$w, b$，即感知机模型。</li>
+<li>感知机的学习策略是在假设空间中选取使损失函数最小的模型参数$w, b$，即感知机模型。</li>
 <li><a href="http://www.cnblogs.com/graphics/archive/2010/07/10/1774809.html" target="_blank" rel="external">点到平面的距离推导</a></li>
 <li><a href="https://www.zhihu.com/question/20473040" target="_blank" rel="external">范数的通俗解释</a></li>
 <li>另外关于范数、规范化的理解，这篇<a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">博文</a>写的深入浅出</li>
 </ul>
-<h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><blockquote>
-<p>输入：训练集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
+<h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><p>随机梯度下降法</p>
+<blockquote>
+<p>输入：训练集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace+1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$<br>  输出：$w, b$;感知机模型$f(x) = sign(w \cdot x + b)$<br>  (1) 选取初值$w_0, b_0$<br>  (2) 在训练集中选取数据$(x_i, y_i)$<br>  (3) if $y_i(w \cdot x_i + b) \leq 0$即为误分类点<br>    $w \leftarrow  w + \eta y_i x_i$<br>    $b \leftarrow  b + \eta y_i $<br>  (4) 转至(2)，直至训练集中没有误分类点</p>
 </blockquote>
-<h4 id="几何解释-1"><a href="#几何解释-1" class="headerlink" title="几何解释"></a>几何解释</h4><p>当一个实例点被误分类，即位于分离超平面的错误的一侧时，则调整$w, b$的值，是分离超平面向该误分类点的一侧移动，以减少该误分类点与超平面间的距离，直至超平面越过该误分类点使其被正确分类。</p>
+<h4 id="几何解释-1"><a href="#几何解释-1" class="headerlink" title="几何解释"></a>几何解释</h4><p>当一个实例点被误分类，即位于分离超平面的错误的一侧时，则调整$w, b$的值，使分离超平面向该误分类点的一侧移动，以减少该误分类点与超平面间的距离，直至超平面越过该误分类点使其被正确分类。</p>
 <h4 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h4><ul>
 <li>首先任意选取一个超平面$w_0, b_0$，然后用随机梯度下降法不断地极小化目标函数</li>
 </ul>
@@ -301,7 +302,7 @@ ga('send', 'pageview');
 </ul>
 <h3 id="算法的收敛性"><a href="#算法的收敛性" class="headerlink" title="算法的收敛性"></a>算法的收敛性</h3><p>证明如下<br><img src="/materials/img/Perceptron/Convergence_1.JPG" alt="convergence_1"><br><img src="/materials/img/Perceptron/Convergence_2.JPG" alt="convergence_2"><br><img src="/materials/img/Perceptron/Convergence_3.JPG" alt="convergence_3"><br><img src="/materials/img/Perceptron/Convergence_4.JPG" alt="convergence_4"></p>
 <p>另外可以看看其他人写的<a href="http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf" target="_blank" rel="external">证明过程</a></p>
-<p><em>Note: 当训练数据集线性可分时，感知机学习算法存在无穷多个解，其解由于不同的初值或不同的迭代顺序而可能有所不同。</em></p>
+<p><em>Note: 当训练数据集线性可分时，感知机学习算法存在无穷多个解，其解由于不同的初值或不同的迭代顺序而可能有所不同。相对的，线性可分支持向量机则克服了这一点，根据间隔最大化从无穷多个超平面中唯一确定了一个</em></p>
 <h3 id="对偶形式"><a href="#对偶形式" class="headerlink" title="对偶形式"></a>对偶形式</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>将$w$和$b$表示为实例$x_i$和标记$y_i$的线性组合的形式，通过求解其系数而求得$w, b$。</p>
 <ul>
 <li>假设初始值$w_0, b_0$均为0，对误分类点$(x_i, y_i)$，通过<ul>
@@ -320,10 +321,10 @@ ga('send', 'pageview');
 <h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><blockquote>
 <p>输入：线性可分的数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n$,$y_i \in \lbrace +1, -1 \rbrace$,$i=1, 2, 3…, N$，学习率$\eta (0&lt; \eta \leq 1)$</p>
 <p>输出：$\alpha, b$；感知机模型$f(x) = sign(\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x + b)$,其中$\alpha=(alpla_1, alpla_2,…,alpla_N)^T$<br>(1): $\alpha \leftarrow 0$, $b \leftarrow 0$<br>(2): 计算所有样本内积形成的Gram矩阵$G$，</p>
-<p>$G=[x_i \cdot x_j ]_{N \times N}$</p>
+<p>$$G=[x_i \cdot x_j ]_{N \times N}$$</p>
 <p>(3): 在训练集中选取数据$(x_i, y_i)$，若</p>
-<p>$y_i (\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x_i + b) \leq 0$</p>
-<p>计算过程中可通过查$G$的值来提高效率）则更新：</p>
+<p>$$y_i (\sum_{j=1}^{N} \alpha_j y_j x_j \cdot x_i + b) \leq 0$$</p>
+<p>（计算过程中可通过查$G$的值来提高效率）则更新：</p>
 <p>$$\alpha_i \leftarrow \alpha_i + \eta$$</p>
 <p>$$b \leftarrow b + \eta y_i$$<br>(4): 转至(3)直至没有误分类数据</p>
 </blockquote>
@@ -336,10 +337,19 @@ ga('send', 'pageview');
 </li>
 <li><p>此外，关于对偶形式的优势，<a href="https://www.zhihu.com/question/26526858" target="_blank" rel="external">小结</a>一下：</p>
 <ul>
-<li>对偶形式将权重向量$w$转化为实例$x_i$和标记$y_i$的线性组合形式，且在原书中也提到，对偶形式中的训练实例仅以内积的形式出现，所以可以预先使用Gram矩阵存储，也就是时间换空间的方法提高计算效率</li>
-<li>书中这里应该也有点为后续介绍支持向量机做铺垫，所以这里为核函数的引入埋一个伏笔，毕竟书中提到感知机是神经网络与支持向量机的基础，而且后面书中在支持向量机部分的讲解也多次使用对偶形式的求解</li>
+<li>对偶形式将权重向量$w$转化为实例$x_i$和标记$y_i$的线性组合形式，且在原书中也提到，对偶形式中的训练实例仅以内积的形式出现，所以可以预先使用Gram矩阵存储，也就是空间换时间的方法提高计算效率</li>
+<li>书中这里应该也有点为后续介绍支持向量机做铺垫，所以这里为核函数的引入埋一个伏笔，毕竟感知机是神经网络与支持向量机的基础，而且后面书中在支持向量机部分的讲解也多次使用对偶形式的求解</li>
 </ul>
 </li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>李航《统计学习方法》</li>
+<li><a href="http://www.cnblogs.com/graphics/archive/2010/07/10/1774809.html" target="_blank" rel="external">点到平面的距离推导</a></li>
+<li><a href="https://www.zhihu.com/question/20473040" target="_blank" rel="external">范数的通俗解释</a></li>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/24971995/" target="_blank" rel="external">关于范数、规范化的理解</a></li>
+<li><a href="http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf" target="_blank" rel="external">http://www.cs.columbia.edu/~mcollins/courses/6998-2012/notes/perc.converge.pdf</a></li>
+<li><a href="http://www.cnblogs.com/pinard/p/6042320.html" target="_blank" rel="external">http://www.cnblogs.com/pinard/p/6042320.html</a></li>
+<li><a href="https://www.zhihu.com/question/26526858" target="_blank" rel="external">https://www.zhihu.com/question/26526858</a></li>
 </ul>
 
       
@@ -358,11 +368,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -599,6 +609,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
@@ -611,11 +633,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,15 +641,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,18 +661,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
@@ -663,7 +669,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,6 +702,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,18 +730,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">校招</a>
               </li>
              
               <li class="article-tag-list-item">
