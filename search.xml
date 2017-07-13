@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title><![CDATA[统计学习方法笔记(七) —— 支持向量机]]></title>
+      <url>/2017/07/12/svm/</url>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<a id="more"></a>
+<p>书中例题7.1的凸二次优化的Python解法，参照<a href="https://wizardforcel.gitbooks.io/python-quant-uqer/content/192.html" target="_blank" rel="external">凸优化 · 如何在 Python 中利用 CVXOPT 求解二次规划问题</a>,针对该题可见我的github</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
+            
+            <tag> SVM </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[最优化算法小记]]></title>
       <url>/2017/07/11/optimization/</url>
       <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -93,9 +118,9 @@
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> 最优化问题 </tag>
             
@@ -602,9 +627,9 @@
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> LR </tag>
             
@@ -1103,11 +1128,11 @@
             
             <tag> ML </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
         </tags>
         
@@ -1116,7 +1141,8 @@
     <entry>
       <title><![CDATA[基础算法小记]]></title>
       <url>/2017/06/27/basic-algorithm/</url>
-      <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<p><em>本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍</em></p>
+<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
 <h4 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>循环</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//二分查找适用于有序的数组，另外也有一些延伸用法，见剑指offer</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(num==<span class="keyword">null</span> || num.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">		<span class="comment">//为什么是length-1,因为查找也是从第0位开始的</span></div><div class="line">		<span class="keyword">int</span> high = num.length-<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(low &lt;= high)&#123;<span class="comment">//注意这里的取等与数组的元素奇偶个数、取边界值、边界以外的值相关，小心</span></div><div class="line">			<span class="keyword">int</span> mid = (low+high) &gt;&gt; <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(num[mid] == key)&#123;</div><div class="line">				pos = mid;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(num[mid] &gt; key)&#123;</div><div class="line">				high = mid - <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				low = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pos;</div><div class="line">		<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//		return low;</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
@@ -1504,6 +1530,8 @@
             <tag> 校招 </tag>
             
             <tag> 面试 </tag>
+            
+            <tag> Coding </tag>
             
         </tags>
         
@@ -2672,11 +2700,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
         </tags>
         
@@ -2750,9 +2778,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> k-NN </tag>
             
@@ -3093,9 +3121,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> k-NN </tag>
             
@@ -3225,9 +3253,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> Perceptron </tag>
             
@@ -3431,9 +3459,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
         </tags>
         
@@ -3621,13 +3649,13 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
         
         <tags>
             
+            <tag> Coding </tag>
+            
             <tag> blog </tag>
             
             <tag> hexo </tag>
             
             <tag> yilia </tag>
-            
-            <tag> Coding </tag>
             
         </tags>
         

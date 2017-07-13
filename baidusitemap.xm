@@ -4,31 +4,8 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    <lastmod>2017-07-12T06:23:47.860Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(二) —— 感知机</title>
-        <pubTime>2017-06-03T08:53:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Perceptron</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-12T03:24:27.753Z</lastmod>
+    <lastmod>2017-07-13T00:00:39.253Z</lastmod>
     <data>
         <display>
         <title>基础算法小记</title>
@@ -41,6 +18,54 @@
         <tag>校招</tag>
          
         <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-07-12T09:14:17.955Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
+    <lastmod>2017-07-12T06:23:47.860Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(二) —— 感知机</title>
+        <pubTime>2017-06-03T08:53:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Perceptron</tag>
          
          
            
@@ -59,9 +84,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -103,9 +128,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
          
@@ -126,9 +151,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            
@@ -210,11 +235,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -341,11 +366,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -364,9 +389,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -387,9 +412,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -452,13 +477,13 @@
         <title>来来来，我教你搭个博客好不好哇</title>
         <pubTime>2017-05-30T10:40:58.000Z</pubTime>
         
+        <tag>Coding</tag>
+         
         <tag>blog</tag>
          
         <tag>hexo</tag>
          
         <tag>yilia</tag>
-         
-        <tag>Coding</tag>
          
          
            

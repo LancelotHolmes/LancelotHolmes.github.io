@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>概率统计小记 | Lancelot&#39;s Desert</title>
+  <title>统计学习方法笔记(七) —— 支持向量机 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="似然函数知乎上的一些理解wiki 最大似然估计知乎wiki 最大后验概率最大似然估计 vs 最大后验概率">
-<meta name="keywords" content="ML,Note,统计学">
+  <meta name="keywords" content="ML,Note,统计学习方法,SVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="概率统计小记">
-<meta property="og:url" content="http://yoursite.com/2017/06/22/Statistics/index.html">
+<meta property="og:title" content="统计学习方法笔记(七) —— 支持向量机">
+<meta property="og:url" content="http://yoursite.com/2017/07/12/svm/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="似然函数知乎上的一些理解wiki 最大似然估计知乎wiki 最大后验概率最大似然估计 vs 最大后验概率">
-<meta property="og:updated_time" content="2017-06-22T02:58:57.245Z">
+<meta property="og:updated_time" content="2017-07-12T09:14:17.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="概率统计小记">
-<meta name="twitter:description" content="似然函数知乎上的一些理解wiki 最大似然估计知乎wiki 最大后验概率最大似然估计 vs 最大后验概率">
+<meta name="twitter:title" content="统计学习方法笔记(七) —— 支持向量机">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -193,20 +190,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Statistics" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-svm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      概率统计小记
+      统计学习方法笔记(七) —— 支持向量机
     </h1>
   
 
         
-        <a href="/2017/06/22/Statistics/" class="archive-article-date">
-  	<time datetime="2017-06-22T02:53:49.000Z" itemprop="datePublished">2017-06-22</time>
+        <a href="/2017/07/12/svm/" class="archive-article-date">
+  	<time datetime="2017-07-12T09:11:48.000Z" itemprop="datePublished">2017-07-12</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
@@ -223,11 +220,11 @@ ga('send', 'pageview');
            
          
 
-        <ul>
-<li>似然函数<br><a href="https://www.zhihu.com/question/54082000" target="_blank" rel="external">知乎上的一些理解</a><br><a href="https://zh.wikipedia.org/wiki/%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0" target="_blank" rel="external">wiki</a></li>
-<li>最大似然估计<br><a href="https://www.zhihu.com/question/20447622" target="_blank" rel="external">知乎</a><br><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="external">wiki</a></li>
-<li>最大后验概率<br><a href="http://blog.csdn.net/upon_the_yun/article/details/8915283" target="_blank" rel="external">最大似然估计 vs 最大后验概率</a></li>
-</ul>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<a id="more"></a>
+<p>书中例题7.1的凸二次优化的Python解法，参照<a href="https://wizardforcel.gitbooks.io/python-quant-uqer/content/192.html" target="_blank" rel="external">凸优化 · 如何在 Python 中利用 CVXOPT 求解二次规划问题</a>,针对该题可见我的github</p>
 
       
 
@@ -249,7 +246,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">统计学</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
         		</li>
       		
 		</ul>
@@ -305,7 +306,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/22/Statistics/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/svm/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -319,18 +320,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2017/06/25/JData/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          京东JData算法大赛
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/19/Decision-Tree/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">统计学习方法笔记(五) —— 决策树</div>
+    <a href="/2017/07/11/optimization/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">最优化算法小记</div>
       <i class="icon-circle-right"></i>
     </a>
   

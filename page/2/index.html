@@ -194,6 +194,100 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-GBDT" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/07/GBDT/">GBDT</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/07/GBDT/" class="archive-article-date">
+  	<time datetime="2017-07-07T06:50:00.000Z" itemprop="datePublished">2017-07-07</time>
+  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
+      view <span id="busuanzi_value_page_pv"></span> times
+    </span>
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="external">A Gentle Introduction to Gradient Boosting</a></p>
+<blockquote>
+<p>gradient boosting = gradient descent + boosting</p>
+</blockquote>
+<h2 id="AdaBoost-vs-Gradient-Boosting"><a href="#AdaBoost-vs-Gradient-Boosting" class="headerlink" title="AdaBoost vs. Gradient Boosting"></a>AdaBoost vs. Gradient Boosting</h2><table>
+<thead>
+<tr>
+<th>AdaBoost</th>
+<th>Gradient Boosting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>相同点</td>
+<td>1、加性模型+前向分步算法<br> 2、每一步训练一个弱学习器以弥补前面模型的不足</td>
+</tr>
+<tr>
+<td>不同点</td>
+<td>1、AdaBoost中当前学习期器的“不足”由样本权重来决定<br> 2、GBDT中当前学习期器的“不足”由求梯度决定</td>
+</tr>
+</tbody>
+</table>
+        
+          <a class="article-more-a" href="/2017/07/07/GBDT/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">GBDT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/07/GBDT/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-ensemble" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -329,7 +423,7 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -337,7 +431,7 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
         		</li>
       		
 		</ul>
@@ -387,7 +481,8 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br>
+        <p><em>本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍</em></p>
+<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br>
         
           <a class="article-more-a" href="/2017/06/27/basic-algorithm/#more">more >></a>
         
@@ -416,6 +511,10 @@ ga('send', 'pageview');
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
         		</li>
       		
 		</ul>
@@ -501,85 +600,6 @@ ga('send', 'pageview');
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/25/JData/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Statistics" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/22/Statistics/">概率统计小记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/22/Statistics/" class="archive-article-date">
-  	<time datetime="2017-06-22T02:53:49.000Z" itemprop="datePublished">2017-06-22</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-
-        <ul>
-<li>似然函数<br><a href="https://www.zhihu.com/question/54082000" target="_blank" rel="external">知乎上的一些理解</a><br><a href="https://zh.wikipedia.org/wiki/%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0" target="_blank" rel="external">wiki</a></li>
-<li>最大似然估计<br><a href="https://www.zhihu.com/question/20447622" target="_blank" rel="external">知乎</a><br><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1" target="_blank" rel="external">wiki</a></li>
-<li>最大后验概率<br><a href="http://blog.csdn.net/upon_the_yun/article/details/8915283" target="_blank" rel="external">最大似然估计 vs 最大后验概率</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">统计学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/22/Statistics/">展开全文 >></a>
         </p>
       
 
@@ -715,18 +735,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
@@ -739,11 +747,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -759,11 +775,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,11 +791,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -791,7 +807,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,15 +839,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

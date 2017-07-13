@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-12T03:17:39.451Z</updated>
+  <updated>2017-07-12T09:14:17.955Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计学习方法笔记(七) —— 支持向量机</title>
+    <link href="http://yoursite.com/2017/07/12/svm/"/>
+    <id>http://yoursite.com/2017/07/12/svm/</id>
+    <published>2017-07-12T09:11:48.000Z</published>
+    <updated>2017-07-12T09:14:17.955Z</updated>
+    
+    <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<a id="more"></a>
+<p>书中例题7.1的凸二次优化的Python解法，参照<a href="https://wizardforcel.gitbooks.io/python-quant-uqer/content/192.html" target="_blank" rel="external">凸优化 · 如何在 Python 中利用 CVXOPT 求解二次规划问题</a>,针对该题可见我的github</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="SVM" scheme="http://yoursite.com/tags/SVM/"/>
+    
+  </entry>
   
   <entry>
     <title>最优化算法小记</title>
@@ -124,9 +156,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -679,9 +711,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1238,11 +1270,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
   </entry>
   
@@ -1251,9 +1283,10 @@
     <link href="http://yoursite.com/2017/06/27/basic-algorithm/"/>
     <id>http://yoursite.com/2017/06/27/basic-algorithm/</id>
     <published>2017-06-27T02:56:11.000Z</published>
-    <updated>2017-07-12T03:24:27.753Z</updated>
+    <updated>2017-07-13T00:00:39.253Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p><em>本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍</em></p>
+<h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
 <h4 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>循环</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//二分查找适用于有序的数组，另外也有一些延伸用法，见剑指offer</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] num, <span class="keyword">int</span> key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(num==<span class="keyword">null</span> || num.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">		<span class="comment">//为什么是length-1,因为查找也是从第0位开始的</span></div><div class="line">		<span class="keyword">int</span> high = num.length-<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(low &lt;= high)&#123;<span class="comment">//注意这里的取等与数组的元素奇偶个数、取边界值、边界以外的值相关，小心</span></div><div class="line">			<span class="keyword">int</span> mid = (low+high) &gt;&gt; <span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(num[mid] == key)&#123;</div><div class="line">				pos = mid;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(num[mid] &gt; key)&#123;</div><div class="line">				high = mid - <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				low = mid + <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> pos;</div><div class="line">		<span class="comment">//如果是需要在数组中不存在该键时要求返回插入的位置，则修改如下</span></div><div class="line"><span class="comment">//		return low;</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
@@ -1633,7 +1666,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;查找类&quot;&gt;&lt;a href=&quot;#查找类&quot; class=&quot;headerlink&quot; title=&quot;查找类&quot;&gt;&lt;/a&gt;查找类&lt;/h2&gt;&lt;h3 id=&quot;二分查找【重点】&quot;&gt;&lt;a href=&quot;#二分查找【重点】&quot; class=&quot;headerlink&quot; title=&quot;二分查找【重点】&quot;&gt;&lt;/a&gt;二分查找【重点】&lt;/h3&gt;&lt;h4 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h4&gt;&lt;p&gt;在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半&lt;br&gt;
+      &lt;p&gt;&lt;em&gt;本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;查找类&quot;&gt;&lt;a href=&quot;#查找类&quot; class=&quot;headerlink&quot; title=&quot;查找类&quot;&gt;&lt;/a&gt;查找类&lt;/h2&gt;&lt;h3 id=&quot;二分查找【重点】&quot;&gt;&lt;a href=&quot;#二分查找【重点】&quot; class=&quot;headerlink&quot; title=&quot;二分查找【重点】&quot;&gt;&lt;/a&gt;二分查找【重点】&lt;/h3&gt;&lt;h4 id=&quot;基本思想&quot;&gt;&lt;a href=&quot;#基本思想&quot; class=&quot;headerlink&quot; title=&quot;基本思想&quot;&gt;&lt;/a&gt;基本思想&lt;/h4&gt;&lt;p&gt;在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半&lt;br&gt;
     
     </summary>
     
@@ -1645,6 +1679,8 @@
       <category term="校招" scheme="http://yoursite.com/tags/%E6%A0%A1%E6%8B%9B/"/>
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
     
   </entry>
   
@@ -2850,11 +2886,11 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
   </entry>
   
@@ -2940,9 +2976,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3303,9 +3339,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3445,9 +3481,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
@@ -3663,9 +3699,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
@@ -3883,13 +3919,13 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     </summary>
     
     
+      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
+    
       <category term="blog" scheme="http://yoursite.com/tags/blog/"/>
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
       <category term="yilia" scheme="http://yoursite.com/tags/yilia/"/>
-    
-      <category term="Coding" scheme="http://yoursite.com/tags/Coding/"/>
     
   </entry>
   
