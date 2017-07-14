@@ -39,9 +39,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="SVM" scheme="http://yoursite.com/tags/SVM/"/>
     
@@ -156,9 +156,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -234,7 +234,7 @@
     <link href="http://yoursite.com/2017/07/08/ml-job/"/>
     <id>http://yoursite.com/2017/07/08/ml-job/</id>
     <published>2017-07-08T10:47:00.000Z</published>
-    <updated>2017-07-13T13:59:12.374Z</updated>
+    <updated>2017-07-14T02:58:44.041Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -262,6 +262,10 @@
 </ul>
 </li>
 <li>为什么会产生过拟合，有哪些方法可以预防或克服过拟合？</li>
+<li>什么情况下一定会发生过拟合？<ul>
+<li>训练集和测试集分布不一致的时候</li>
+</ul>
+</li>
 <li>采用EM算法求解的模型有哪些，为什么不用牛顿法或梯度下降法？</li>
 <li>有哪些聚类方法？<ul>
 <li>K-均值聚类算法、K-中心点聚类算法、CLARANS、 BIRCH、CLIQUE、DBSCAN等</li>
@@ -740,9 +744,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1299,11 +1303,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -1312,7 +1316,7 @@
     <link href="http://yoursite.com/2017/06/27/basic-algorithm/"/>
     <id>http://yoursite.com/2017/06/27/basic-algorithm/</id>
     <published>2017-06-27T02:56:11.000Z</published>
-    <updated>2017-07-13T04:41:20.085Z</updated>
+    <updated>2017-07-14T01:38:56.785Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍</em></p>
 <h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
@@ -1581,8 +1585,15 @@
 <li>小顶堆的做法，与前一个问题一致</li>
 </ul>
 <p><em>《剑指offer》第二版一书P209面试题40也有关于这个问题的讨论</em></p>
-<h4 id="Multiway"><a href="#Multiway" class="headerlink" title="Multiway"></a>Multiway</h4><p>将M个输入流归并为一个有序的输出流</p>
-<h4 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h4><h4 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h4><h4 id="霍夫曼压缩"><a href="#霍夫曼压缩" class="headerlink" title="霍夫曼压缩"></a>霍夫曼压缩</h4><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
+<h4 id="Multiway（多向归并）"><a href="#Multiway（多向归并）" class="headerlink" title="Multiway（多向归并）"></a>Multiway（多向归并）</h4><blockquote>
+<p>将M个有序输入流归并为一个有序的输出流(《算法》中文版2.4.4.7 P205)</p>
+</blockquote>
+<h4 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<li>维持一个大小为M的小顶(索引)堆，存储来自不同输入流的索引</li>
+<li>先逐个遍历输入流将每个输入流的首位元素（最小元素）插入到堆中，并与对应的索引关联</li>
+<li>此时输出的最小元素即为所有输入流的最小元素，每输出一个最小元素，即在输出元素索引对应的输入流中读入下一个元素（如果存在）并插入堆中，这样就能保证每次输出的都是所有输入流中的最小元素</li>
+</ul>
+<h4 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h4><h4 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h4><h4 id="霍夫曼压缩"><a href="#霍夫曼压缩" class="headerlink" title="霍夫曼压缩"></a>霍夫曼压缩</h4><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="基本思想-4"><a href="#基本思想-4" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
 <p>不断地选择剩余元素中的最小者并与当前剩余元素第一位交换<br>首先，找到数组中最小的那个元素，其次将它和数组的第一个元素交换位置，再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此往复，直到将整个数组排序。</p>
 </blockquote>
 <h4 id="Java实现-4"><a href="#Java实现-4" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
@@ -1598,7 +1609,7 @@
 <li>运行时间和输入无关（缺点），比如元素相等的数组/已经有序的数组与随机数组的排序时间一样长</li>
 <li>数据移动是最少的，即元素交换次数是最少的，每次交换只改变两个数组元素的值，即交换次数和数组的大小呈线性关系，而其他的大部分排序算法是线性对数或者平方级别</li>
 </ul>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="基本思想-4"><a href="#基本思想-4" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="基本思想-5"><a href="#基本思想-5" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
 <p>整理桥牌</p>
 </blockquote>
 <p>保证数组当前遍历的元素位置左方元素已经有序，然后将当前元素前向逐个比较，一边比较一边将前面的元素向后覆盖，直到找到第一个不大于该元素的位置，将该元素插入（《算法》一书中的基本实现采用的方法是将目标元素与前面比他大的元素逐个交换的做法，相较之下，我的这种直接移动所有较大元素的做法速度更快（《算法》一书作为练习题））</p>
@@ -1609,7 +1620,7 @@
 <h4 id="特点-5"><a href="#特点-5" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>插入排序所需时间取决于输入中元素的初始顺序，因此插入排序对于部分有序的数组十分高效，也很适合小规模数组（当数组中倒置（倒置指的是数组中两个顺序颠倒的元素）数量很少时，插入排序可能是最快的排序算法）</li>
 </ul>
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h4 id="基本思想-5"><a href="#基本思想-5" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h4 id="基本思想-6"><a href="#基本思想-6" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
 <li>考虑到插入排序不适用于大规模乱序数组，所以进行改进得到的算法</li>
 <li>原则是保证数组中任意间隔为h的元素有序，即交换间隔为h的元素以对数组的局部进行排序，并最终使用插入排序将局部有序的数组排序</li>
 <li>权衡了子数组的规模和有序性：排序之初，各个子数组都很短，排序之后子数组都是部分有序的，这两种情况都很适合插入排序</li>
@@ -1626,7 +1637,7 @@
 <li>算法性能取决于h值的选择，这里使用的是序列$\frac{3^k-1}{2}$，关于怎样的h值最好，尚无定论，实际应用中相差不大，但一般其时间复杂度不会到达$O(n^2)$</li>
 <li>希尔排序也可用于大型数组，其优点在于代码量小而且不需要额外的存储空间，在手头没有现成的排序算法可以调用时，不妨实现希尔排序来辅助工作</li>
 </ul>
-<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h4 id="基本思想-6"><a href="#基本思想-6" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h4 id="基本思想-7"><a href="#基本思想-7" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
 <li>用一个‘指针’遍历数组并比较与该指针指向元素相邻的元素，如果相邻元素呈逆序状态则交换元素，直到移动到数组末端即完成一轮冒泡排序，然后重复上述操作，一般会设置一个flag来在数组已经有序时（即该轮排序没有发生交换）结束排序</li>
 <li>另外一种思路，由于每一次冒泡排序可以保证最大的元素‘沉到’最后一位，所以也可以不设置flag，而使用双指针，后一个指针的遍历范围逐轮缩小<br><em>其中第一个设置flag的方案更优，因为第二种方法即使在数组有序时也会循环遍历两次</em></li>
 </ul>
@@ -1747,6 +1758,8 @@
 <p>_ Notes:关于排序算法稳定性以及其他更多的排序算法，可以参考<a href="https://www.wikiwand.com/en/Sorting_algorithm#/Stability" target="_blank" rel="external">这里</a>_</p>
 <h3 id="排序的应用延伸"><a href="#排序的应用延伸" class="headerlink" title="排序的应用延伸"></a>排序的应用延伸</h3><h4 id="在线性对数时间内计算两组排列之间的Kendall-tau距离"><a href="#在线性对数时间内计算两组排列之间的Kendall-tau距离" class="headerlink" title="在线性对数时间内计算两组排列之间的Kendall tau距离"></a>在线性对数时间内计算两组排列之间的Kendall tau距离</h4><p><em>关键字：逆序对</em></p>
 <h4 id="找出一组元素的中位数"><a href="#找出一组元素的中位数" class="headerlink" title="找出一组元素的中位数"></a>找出一组元素的中位数</h4><p><em>快速排序的partition的进一步应用</em></p>
+<h5 id="基本思想-8"><a href="#基本思想-8" class="headerlink" title="基本思想"></a>基本思想</h5><p>partition+二分查找：由于对原始数组进行一次切分可以得到数组中的一个索引k，而且此时的数组中该位置左边的元素都不超过该元素，右边的都不小于该元素，即k是第k+1大的元素（从1开始计）如果此时k恰为数组大小的一半，那么这个位置的元素就恰好是数组的中位数，如果不是，则采取二分查找的思想，在该索引的某一边进行进一步切分（比如k小于len(array)/2就在k的右侧进行切分），经过有限次切分就可以找到中位数对应的元素。</p>
+<p><em>Notes:本题的变体是寻找数组中出现次数超过一半的数字</em></p>
 <h4 id="最长重复子字符串"><a href="#最长重复子字符串" class="headerlink" title="最长重复子字符串"></a>最长重复子字符串</h4><p><em>特殊的字符串排序算法</em></p>
 <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h2 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h2><h2 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h2><h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li>Robert Sedgewick《算法》4th</li>
@@ -2716,9 +2729,9 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/"/>
     
   </entry>
   
@@ -2978,11 +2991,11 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -3068,9 +3081,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3431,9 +3444,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3573,9 +3586,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
@@ -3791,9 +3804,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -4514,7 +4527,7 @@ mean model process time:  4.055 s
     <link href="http://yoursite.com/2017/05/29/HumenOrRobot/"/>
     <id>http://yoursite.com/2017/05/29/HumenOrRobot/</id>
     <published>2017-05-29T11:27:51.000Z</published>
-    <updated>2017-06-24T12:05:02.480Z</updated>
+    <updated>2017-07-14T08:09:04.547Z</updated>
     
     <content type="html"><![CDATA[<p><em>原创文章，首发于<a href="https://segmentfault.com/a/1190000009101175" target="_blank" rel="external">SegmentFault</a></em></p>
 <p>本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的<a href="https://github.com/LancelotHolmes/HumanOrRobot" target="_blank" rel="external">github</a>,欢迎来玩~</p>
@@ -4562,7 +4575,6 @@ mean model process time:  4.055 s
 <tbody>
 <tr>
 <td>0</td>
-<td>0</td>
 <td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
 <td>ewmzr</td>
 <td>jewelry</td>
@@ -4574,7 +4586,6 @@ mean model process time:  4.055 s
 </tr>
 <tr>
 <td>1</td>
-<td>1</td>
 <td>668d393e858e8126275433046bbd35c6tywop</td>
 <td>aeqok</td>
 <td>furniture</td>
@@ -4585,7 +4596,6 @@ mean model process time:  4.055 s
 <td>jmqlhflrzwuay9c</td>
 </tr>
 <tr>
-<td>2</td>
 <td>2</td>
 <td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
 <td>wa00e</td>
@@ -4610,21 +4620,18 @@ mean model process time:  4.055 s
 </thead>
 <tbody>
 <tr>
-<td>0</td>
 <td>91a3c57b13234af24875c56fb7e2b2f4rb56a</td>
 <td>a3d2de7675556553a5f08e4c88d2c228754av</td>
 <td>a3d2de7675556553a5f08e4c88d2c228vt0u4</td>
 <td>0.0</td>
 </tr>
 <tr>
-<td>1</td>
 <td>624f258b49e77713fc34034560f93fb3hu3jo</td>
 <td>a3d2de7675556553a5f08e4c88d2c228v1sga</td>
 <td>ae87054e5a97a8f840a3991d12611fdcrfbq3</td>
 <td>0.0</td>
 </tr>
 <tr>
-<td>2</td>
 <td>1c5f4fc669099bfbfac515cd26997bd12ruaj</td>
 <td>a3d2de7675556553a5f08e4c88d2c2280cybl</td>
 <td>92520288b50f03907041887884ba49c0cl0pd</td>
@@ -4721,7 +4728,6 @@ Index: []
 <tbody>
 <tr>
 <td>0</td>
-<td>0</td>
 <td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
 <td>ewmzr</td>
 <td>jewelry</td>
@@ -4733,7 +4739,6 @@ Index: []
 </tr>
 <tr>
 <td>1</td>
-<td>1</td>
 <td>668d393e858e8126275433046bbd35c6tywop</td>
 <td>aeqok</td>
 <td>furniture</td>
@@ -4744,7 +4749,6 @@ Index: []
 <td>jmqlhflrzwuay9c</td>
 </tr>
 <tr>
-<td>2</td>
 <td>2</td>
 <td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
 <td>wa00e</td>
@@ -4778,7 +4782,6 @@ Index: []
 <tbody>
 <tr>
 <td>0</td>
-<td>0</td>
 <td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
 <td>ewmzr</td>
 <td>jewelry</td>
@@ -4790,7 +4793,6 @@ Index: []
 </tr>
 <tr>
 <td>1</td>
-<td>1</td>
 <td>668d393e858e8126275433046bbd35c6tywop</td>
 <td>aeqok</td>
 <td>furniture</td>
@@ -4801,7 +4803,6 @@ Index: []
 <td>jmqlhflrzwuay9c</td>
 </tr>
 <tr>
-<td>2</td>
 <td>2</td>
 <td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
 <td>wa00e</td>
@@ -5003,6 +5004,7 @@ Name: outcome, dtype: float64
 </code></pre><table>
 <thead>
 <tr>
+<th>bidder_type</th>
 <th>auc_mean</th>
 <th>auction_c</th>
 <th>bids_c</th>
@@ -5010,14 +5012,11 @@ Name: outcome, dtype: float64
 <th>devices_c</th>
 <th>ip_c</th>
 <th>url_c</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>robot1</td>
 <td>3.190981</td>
 <td>5.594711</td>
 <td>8.785692</td>
@@ -5027,6 +5026,7 @@ Name: outcome, dtype: float64
 <td>7.557995</td>
 </tr>
 <tr>
+<td>robot2</td>
 <td>2.780432</td>
 <td>4.844187</td>
 <td>7.624619</td>
@@ -5036,6 +5036,7 @@ Name: outcome, dtype: float64
 <td>1.609438</td>
 </tr>
 <tr>
+<td>human1</td>
 <td>0.287682</td>
 <td>1.098612</td>
 <td>1.386294</td>
@@ -5045,6 +5046,7 @@ Name: outcome, dtype: float64
 <td>0.000000</td>
 </tr>
 <tr>
+<td>human2</td>
 <td>0.287682</td>
 <td>2.890372</td>
 <td>3.178054</td>
@@ -5074,7 +5076,7 @@ d878560888b11447e73324a6e263fbd5iydo1         48.8       38.7  34.2   13.4
 <p>由上面的热力图对比可以看到，机器人的各项统计指标除去商品类别上的统计以外，均比人类用户要高，所以考虑据此设计基于基本统计指标规则的基准模型，其中最显著的特征差异应该是在<code>auc_mean</code>一项即用户在各个拍卖场的平均竞标次数，不妨先按照异常值处理的方法来找出上述基础统计中的异常情况</p>
 <h3 id="设计朴素分类器"><a href="#设计朴素分类器" class="headerlink" title="设计朴素分类器"></a>设计朴素分类器</h3><p>由于最终目的是从竞标者中寻找到机器人用户，而根据常识，机器人用户的各项竞标行为的操作应该比人类要频繁许多，所以可以从异常值检验的角度来设计朴素分类器，根据之前针对不同用户统计的基本特征计数情况，可以先针对每一个特征找出其中的疑似异常用户列表，最后整合各个特征生成的用户列表，认为超过多个特征异常的用户为机器人用户。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># find the outliers for each feature</span></div><div class="line">lst_outlier = []</div><div class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> cnt_bidder.keys():</div><div class="line">    <span class="comment"># percentile  25th</span></div><div class="line">    Q1 = np.percentile(cnt_bidder[feature], <span class="number">25</span>)</div><div class="line">    <span class="comment"># percentile  75th</span></div><div class="line">    Q3 = np.percentile(cnt_bidder[feature], <span class="number">75</span>)</div><div class="line">    step = <span class="number">1.5</span> * (Q3 - Q1)    </div><div class="line">    <span class="comment"># show outliers</span></div><div class="line">    <span class="comment"># print "Data points considered outliers for the feature '&#123;&#125;':".format(feature)</span></div><div class="line">    display(cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))])</div><div class="line">    lst_outlier += cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))].index.values.tolist()</div></pre></td></tr></table></figure>
-<p>再找到各种特征的所有可能作为‘异常值’的用户id之后，可以对其做一个基本统计，进一步找出其中超过某几个特征值均异常的用户，经过测试，考虑到原始train集合里bots用户不到5%，所以最终确定以不低于1个特征值均异常的用户作为异常用户的一个假设，由此与train集合里的用户进行交叉，可以得到一个用户子集，可以作为朴素分类器的一个操作方法。</p>
+<p>再找到各种特征的所有可能作为‘异常值’的用户id之后，可以对其做一个基本统计，进一步找出其中超过某几个特征值均异常的用户，经过测试，考虑到原始train集合里bots用户不到5%，所以最终确定以至少存在1个特征值异常的用户作为异常用户的一个假设，由此与test集合里的用户进行判断，可以得到一个用户子集，将这部分用户判定为朴素分类器的作弊用户判定结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print len(lst_outlier)</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</div><div class="line">freq_outlier = dict(Counter(lst_outlier))</div><div class="line">perhaps_outlier = [i <span class="keyword">for</span> i <span class="keyword">in</span> freq_outlier <span class="keyword">if</span> freq_outlier[i] &gt;= <span class="number">1</span>]</div><div class="line"><span class="keyword">print</span> len(perhaps_outlier)</div></pre></td></tr></table></figure>
 <pre><code>214
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># basic_pred = test[test['bidder_id'].isin(perhaps_outlier)]['bidder_id'].tolist()</span></div><div class="line">train_pred = train[train[<span class="string">'bidder_id'</span>].isin(perhaps_outlier)][<span class="string">'bidder_id'</span>].tolist()</div><div class="line"><span class="keyword">print</span> len(train_pred)</div></pre></td></tr></table></figure>

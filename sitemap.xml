@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
+    
+    <lastmod>2017-07-14T08:09:04.547Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
     
-    <lastmod>2017-07-13T13:59:12.374Z</lastmod>
+    <lastmod>2017-07-14T02:58:44.041Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
     
-    <lastmod>2017-07-13T04:41:20.085Z</lastmod>
+    <lastmod>2017-07-14T01:38:56.785Z</lastmod>
     
   </url>
   
@@ -96,13 +103,6 @@
     <loc>http://yoursite.com/2017/06/25/JData/</loc>
     
     <lastmod>2017-06-25T11:00:11.874Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
-    
-    <lastmod>2017-06-24T12:05:02.480Z</lastmod>
     
   </url>
   

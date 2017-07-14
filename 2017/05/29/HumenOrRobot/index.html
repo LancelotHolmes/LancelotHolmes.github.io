@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/scatter_origin.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/scatter_new.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot/hot_map.png">
-<meta property="og:updated_time" content="2017-06-24T12:05:02.480Z">
+<meta property="og:updated_time" content="2017-07-14T08:09:04.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用机器学习识别出拍卖场中作弊的机器人用户">
 <meta name="twitter:description" content="原创文章，首发于SegmentFault 本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engineering2.ipynb 模型设计及评测——Model_De">
@@ -287,7 +287,6 @@ ga('send', 'pageview');
 <tbody>
 <tr>
 <td>0</td>
-<td>0</td>
 <td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
 <td>ewmzr</td>
 <td>jewelry</td>
@@ -299,7 +298,6 @@ ga('send', 'pageview');
 </tr>
 <tr>
 <td>1</td>
-<td>1</td>
 <td>668d393e858e8126275433046bbd35c6tywop</td>
 <td>aeqok</td>
 <td>furniture</td>
@@ -310,7 +308,6 @@ ga('send', 'pageview');
 <td>jmqlhflrzwuay9c</td>
 </tr>
 <tr>
-<td>2</td>
 <td>2</td>
 <td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
 <td>wa00e</td>
@@ -335,21 +332,18 @@ ga('send', 'pageview');
 </thead>
 <tbody>
 <tr>
-<td>0</td>
 <td>91a3c57b13234af24875c56fb7e2b2f4rb56a</td>
 <td>a3d2de7675556553a5f08e4c88d2c228754av</td>
 <td>a3d2de7675556553a5f08e4c88d2c228vt0u4</td>
 <td>0.0</td>
 </tr>
 <tr>
-<td>1</td>
 <td>624f258b49e77713fc34034560f93fb3hu3jo</td>
 <td>a3d2de7675556553a5f08e4c88d2c228v1sga</td>
 <td>ae87054e5a97a8f840a3991d12611fdcrfbq3</td>
 <td>0.0</td>
 </tr>
 <tr>
-<td>2</td>
 <td>1c5f4fc669099bfbfac515cd26997bd12ruaj</td>
 <td>a3d2de7675556553a5f08e4c88d2c2280cybl</td>
 <td>92520288b50f03907041887884ba49c0cl0pd</td>
@@ -446,7 +440,6 @@ Index: []
 <tbody>
 <tr>
 <td>0</td>
-<td>0</td>
 <td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
 <td>ewmzr</td>
 <td>jewelry</td>
@@ -458,7 +451,6 @@ Index: []
 </tr>
 <tr>
 <td>1</td>
-<td>1</td>
 <td>668d393e858e8126275433046bbd35c6tywop</td>
 <td>aeqok</td>
 <td>furniture</td>
@@ -469,7 +461,6 @@ Index: []
 <td>jmqlhflrzwuay9c</td>
 </tr>
 <tr>
-<td>2</td>
 <td>2</td>
 <td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
 <td>wa00e</td>
@@ -503,7 +494,6 @@ Index: []
 <tbody>
 <tr>
 <td>0</td>
-<td>0</td>
 <td>8dac2b259fd1c6d1120e519fb1ac14fbqvax8</td>
 <td>ewmzr</td>
 <td>jewelry</td>
@@ -515,7 +505,6 @@ Index: []
 </tr>
 <tr>
 <td>1</td>
-<td>1</td>
 <td>668d393e858e8126275433046bbd35c6tywop</td>
 <td>aeqok</td>
 <td>furniture</td>
@@ -526,7 +515,6 @@ Index: []
 <td>jmqlhflrzwuay9c</td>
 </tr>
 <tr>
-<td>2</td>
 <td>2</td>
 <td>aa5f360084278b35d746fa6af3a7a1a5ra3xe</td>
 <td>wa00e</td>
@@ -728,6 +716,7 @@ Name: outcome, dtype: float64
 </code></pre><table>
 <thead>
 <tr>
+<th>bidder_type</th>
 <th>auc_mean</th>
 <th>auction_c</th>
 <th>bids_c</th>
@@ -735,14 +724,11 @@ Name: outcome, dtype: float64
 <th>devices_c</th>
 <th>ip_c</th>
 <th>url_c</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>robot1</td>
 <td>3.190981</td>
 <td>5.594711</td>
 <td>8.785692</td>
@@ -752,6 +738,7 @@ Name: outcome, dtype: float64
 <td>7.557995</td>
 </tr>
 <tr>
+<td>robot2</td>
 <td>2.780432</td>
 <td>4.844187</td>
 <td>7.624619</td>
@@ -761,6 +748,7 @@ Name: outcome, dtype: float64
 <td>1.609438</td>
 </tr>
 <tr>
+<td>human1</td>
 <td>0.287682</td>
 <td>1.098612</td>
 <td>1.386294</td>
@@ -770,6 +758,7 @@ Name: outcome, dtype: float64
 <td>0.000000</td>
 </tr>
 <tr>
+<td>human2</td>
 <td>0.287682</td>
 <td>2.890372</td>
 <td>3.178054</td>
@@ -799,7 +788,7 @@ d878560888b11447e73324a6e263fbd5iydo1         48.8       38.7  34.2   13.4
 <p>由上面的热力图对比可以看到，机器人的各项统计指标除去商品类别上的统计以外，均比人类用户要高，所以考虑据此设计基于基本统计指标规则的基准模型，其中最显著的特征差异应该是在<code>auc_mean</code>一项即用户在各个拍卖场的平均竞标次数，不妨先按照异常值处理的方法来找出上述基础统计中的异常情况</p>
 <h3 id="设计朴素分类器"><a href="#设计朴素分类器" class="headerlink" title="设计朴素分类器"></a>设计朴素分类器</h3><p>由于最终目的是从竞标者中寻找到机器人用户，而根据常识，机器人用户的各项竞标行为的操作应该比人类要频繁许多，所以可以从异常值检验的角度来设计朴素分类器，根据之前针对不同用户统计的基本特征计数情况，可以先针对每一个特征找出其中的疑似异常用户列表，最后整合各个特征生成的用户列表，认为超过多个特征异常的用户为机器人用户。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># find the outliers for each feature</span></div><div class="line">lst_outlier = []</div><div class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> cnt_bidder.keys():</div><div class="line">    <span class="comment"># percentile  25th</span></div><div class="line">    Q1 = np.percentile(cnt_bidder[feature], <span class="number">25</span>)</div><div class="line">    <span class="comment"># percentile  75th</span></div><div class="line">    Q3 = np.percentile(cnt_bidder[feature], <span class="number">75</span>)</div><div class="line">    step = <span class="number">1.5</span> * (Q3 - Q1)    </div><div class="line">    <span class="comment"># show outliers</span></div><div class="line">    <span class="comment"># print "Data points considered outliers for the feature '&#123;&#125;':".format(feature)</span></div><div class="line">    display(cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))])</div><div class="line">    lst_outlier += cnt_bidder[~((cnt_bidder[feature] &gt;= Q1 - step) &amp; (cnt_bidder[feature] &lt;= Q3 + step))].index.values.tolist()</div></pre></td></tr></table></figure>
-<p>再找到各种特征的所有可能作为‘异常值’的用户id之后，可以对其做一个基本统计，进一步找出其中超过某几个特征值均异常的用户，经过测试，考虑到原始train集合里bots用户不到5%，所以最终确定以不低于1个特征值均异常的用户作为异常用户的一个假设，由此与train集合里的用户进行交叉，可以得到一个用户子集，可以作为朴素分类器的一个操作方法。</p>
+<p>再找到各种特征的所有可能作为‘异常值’的用户id之后，可以对其做一个基本统计，进一步找出其中超过某几个特征值均异常的用户，经过测试，考虑到原始train集合里bots用户不到5%，所以最终确定以至少存在1个特征值异常的用户作为异常用户的一个假设，由此与test集合里的用户进行判断，可以得到一个用户子集，将这部分用户判定为朴素分类器的作弊用户判定结果。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print len(lst_outlier)</span></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</div><div class="line">freq_outlier = dict(Counter(lst_outlier))</div><div class="line">perhaps_outlier = [i <span class="keyword">for</span> i <span class="keyword">in</span> freq_outlier <span class="keyword">if</span> freq_outlier[i] &gt;= <span class="number">1</span>]</div><div class="line"><span class="keyword">print</span> len(perhaps_outlier)</div></pre></td></tr></table></figure>
 <pre><code>214
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># basic_pred = test[test['bidder_id'].isin(perhaps_outlier)]['bidder_id'].tolist()</span></div><div class="line">train_pred = train[train[<span class="string">'bidder_id'</span>].isin(perhaps_outlier)][<span class="string">'bidder_id'</span>].tolist()</div><div class="line"><span class="keyword">print</span> len(train_pred)</div></pre></td></tr></table></figure>
@@ -1090,7 +1079,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1098,11 +1091,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,7 +1115,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1138,23 +1143,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,11 +1163,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,7 +1183,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,10 +1192,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">

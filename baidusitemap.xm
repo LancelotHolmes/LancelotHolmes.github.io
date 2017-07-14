@@ -4,8 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
+    <lastmod>2017-07-14T08:09:04.547Z</lastmod>
+    <data>
+        <display>
+        <title>使用机器学习识别出拍卖场中作弊的机器人用户</title>
+        <pubTime>2017-05-29T11:27:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Kaggle</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-07-13T13:59:12.374Z</lastmod>
+    <lastmod>2017-07-14T02:58:44.041Z</lastmod>
     <data>
         <display>
         <title>机器学习校招常考知识点小记</title>
@@ -26,7 +47,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-13T04:41:20.085Z</lastmod>
+    <lastmod>2017-07-14T01:38:56.785Z</lastmod>
     <data>
         <display>
         <title>基础算法小记</title>
@@ -59,9 +80,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>SVM</tag>
          
@@ -82,9 +103,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>Perceptron</tag>
          
@@ -105,9 +126,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>最优化问题</tag>
          
@@ -128,9 +149,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>LR</tag>
          
@@ -151,9 +172,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -235,11 +256,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -294,27 +315,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
-    <lastmod>2017-06-24T12:05:02.480Z</lastmod>
-    <data>
-        <display>
-        <title>使用机器学习识别出拍卖场中作弊的机器人用户</title>
-        <pubTime>2017-05-29T11:27:51.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Kaggle</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
     <lastmod>2017-06-24T11:52:43.995Z</lastmod>
     <data>
@@ -345,9 +345,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学</tag>
          
          
            
@@ -366,11 +366,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -389,9 +389,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -412,9 +412,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
