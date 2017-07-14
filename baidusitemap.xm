@@ -4,8 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-07-13T13:59:12.374Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-13T00:00:39.253Z</lastmod>
+    <lastmod>2017-07-13T04:41:20.085Z</lastmod>
     <data>
         <display>
         <title>基础算法小记</title>
@@ -89,27 +110,6 @@
         <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-07-11T12:35:19.854Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            
@@ -237,9 +237,9 @@
          
         <tag>Note</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            
@@ -345,9 +345,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -368,9 +368,9 @@
          
         <tag>Note</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            

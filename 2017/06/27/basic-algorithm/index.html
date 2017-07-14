@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/basic_alg/top_down.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/basic_alg/merge_sort.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/basic_alg/bottom_up.jpg">
-<meta property="og:updated_time" content="2017-07-13T00:00:39.253Z">
+<meta property="og:updated_time" content="2017-07-13T04:41:20.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础算法小记">
 <meta name="twitter:description" content="本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍 查找类二分查找【重点】基本思想在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半">
@@ -227,7 +227,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找类"><span class="toc-number">1.</span> <span class="toc-text">查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找【重点】"><span class="toc-number">1.1.</span> <span class="toc-text">二分查找【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现"><span class="toc-number">1.1.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附：符号表（查找）的各种实现的优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">附：符号表（查找）的各种实现的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序类"><span class="toc-number">2.</span> <span class="toc-text">排序类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序【重点】"><span class="toc-number">2.1.</span> <span class="toc-text">快速排序【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-1"><span class="toc-number">2.1.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-1"><span class="toc-number">2.1.3.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步改进"><span class="toc-number">2.1.4.</span> <span class="toc-text">进一步改进</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序【重点】"><span class="toc-number">2.2.</span> <span class="toc-text">归并排序【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#归并"><span class="toc-number">2.2.1.</span> <span class="toc-text">归并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#递归方法（自顶向下）"><span class="toc-number">2.2.2.</span> <span class="toc-text">递归方法（自顶向下）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自底向上（非递归）"><span class="toc-number">2.2.3.</span> <span class="toc-text">自底向上（非递归）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-2"><span class="toc-number">2.2.4.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步改进的方向"><span class="toc-number">2.2.5.</span> <span class="toc-text">进一步改进的方向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆排序【重点】"><span class="toc-number">2.3.</span> <span class="toc-text">堆排序【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-3"><span class="toc-number">2.3.3.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步优化"><span class="toc-number">2.3.4.</span> <span class="toc-text">进一步优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先队列的应用延伸"><span class="toc-number">2.4.</span> <span class="toc-text">优先队列的应用延伸</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TopM【考点】"><span class="toc-number">2.4.1.</span> <span class="toc-text">TopM【考点】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiway"><span class="toc-number">2.4.2.</span> <span class="toc-text">Multiway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Prim"><span class="toc-number">2.4.3.</span> <span class="toc-text">Prim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dijkstra"><span class="toc-number">2.4.4.</span> <span class="toc-text">Dijkstra</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#霍夫曼压缩"><span class="toc-number">2.4.5.</span> <span class="toc-text">霍夫曼压缩</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序"><span class="toc-number">2.5.</span> <span class="toc-text">选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-3"><span class="toc-number">2.5.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-3"><span class="toc-number">2.5.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-4"><span class="toc-number">2.5.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序"><span class="toc-number">2.6.</span> <span class="toc-text">插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-4"><span class="toc-number">2.6.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-4"><span class="toc-number">2.6.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-5"><span class="toc-number">2.6.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#希尔排序"><span class="toc-number">2.7.</span> <span class="toc-text">希尔排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-5"><span class="toc-number">2.7.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-5"><span class="toc-number">2.7.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-6"><span class="toc-number">2.7.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序算法小结"><span class="toc-number">2.8.</span> <span class="toc-text">排序算法小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序的应用延伸"><span class="toc-number">2.9.</span> <span class="toc-text">排序的应用延伸</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线性对数时间内计算两组排列之间的Kendall-tau距离"><span class="toc-number">2.9.1.</span> <span class="toc-text">在线性对数时间内计算两组排列之间的Kendall tau距离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#找出一组元素的中位数"><span class="toc-number">2.9.2.</span> <span class="toc-text">找出一组元素的中位数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最长重复子字符串"><span class="toc-number">2.9.3.</span> <span class="toc-text">最长重复子字符串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划"><span class="toc-number">3.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贪心"><span class="toc-number">4.</span> <span class="toc-text">贪心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回溯法"><span class="toc-number">5.</span> <span class="toc-text">回溯法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位运算"><span class="toc-number">6.</span> <span class="toc-text">位运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找类"><span class="toc-number">1.</span> <span class="toc-text">查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找【重点】"><span class="toc-number">1.1.</span> <span class="toc-text">二分查找【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现"><span class="toc-number">1.1.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.1.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附：符号表（查找）的各种实现的优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">附：符号表（查找）的各种实现的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序类"><span class="toc-number">2.</span> <span class="toc-text">排序类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速排序【重点】"><span class="toc-number">2.1.</span> <span class="toc-text">快速排序【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-1"><span class="toc-number">2.1.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-1"><span class="toc-number">2.1.3.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步改进"><span class="toc-number">2.1.4.</span> <span class="toc-text">进一步改进</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序【重点】"><span class="toc-number">2.2.</span> <span class="toc-text">归并排序【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#归并"><span class="toc-number">2.2.1.</span> <span class="toc-text">归并</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#递归方法（自顶向下）"><span class="toc-number">2.2.2.</span> <span class="toc-text">递归方法（自顶向下）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自底向上（非递归）"><span class="toc-number">2.2.3.</span> <span class="toc-text">自底向上（非递归）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-2"><span class="toc-number">2.2.4.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步改进的方向"><span class="toc-number">2.2.5.</span> <span class="toc-text">进一步改进的方向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆排序【重点】"><span class="toc-number">2.3.</span> <span class="toc-text">堆排序【重点】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-3"><span class="toc-number">2.3.3.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进一步优化"><span class="toc-number">2.3.4.</span> <span class="toc-text">进一步优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先队列的应用延伸"><span class="toc-number">2.4.</span> <span class="toc-text">优先队列的应用延伸</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TopM【考点】"><span class="toc-number">2.4.1.</span> <span class="toc-text">TopM【考点】</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#思路概述"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">思路概述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Java实现-3"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">Java实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiway"><span class="toc-number">2.4.2.</span> <span class="toc-text">Multiway</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Prim"><span class="toc-number">2.4.3.</span> <span class="toc-text">Prim</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dijkstra"><span class="toc-number">2.4.4.</span> <span class="toc-text">Dijkstra</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#霍夫曼压缩"><span class="toc-number">2.4.5.</span> <span class="toc-text">霍夫曼压缩</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序"><span class="toc-number">2.5.</span> <span class="toc-text">选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-3"><span class="toc-number">2.5.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-4"><span class="toc-number">2.5.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序"><span class="toc-number">2.6.</span> <span class="toc-text">插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-4"><span class="toc-number">2.6.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-5"><span class="toc-number">2.6.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-5"><span class="toc-number">2.6.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#希尔排序"><span class="toc-number">2.7.</span> <span class="toc-text">希尔排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-5"><span class="toc-number">2.7.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-6"><span class="toc-number">2.7.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-6"><span class="toc-number">2.7.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡排序"><span class="toc-number">2.8.</span> <span class="toc-text">冒泡排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-6"><span class="toc-number">2.8.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java实现-7"><span class="toc-number">2.8.2.</span> <span class="toc-text">Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-7"><span class="toc-number">2.8.3.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序算法小结"><span class="toc-number">2.9.</span> <span class="toc-text">排序算法小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序的应用延伸"><span class="toc-number">2.10.</span> <span class="toc-text">排序的应用延伸</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在线性对数时间内计算两组排列之间的Kendall-tau距离"><span class="toc-number">2.10.1.</span> <span class="toc-text">在线性对数时间内计算两组排列之间的Kendall tau距离</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#找出一组元素的中位数"><span class="toc-number">2.10.2.</span> <span class="toc-text">找出一组元素的中位数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最长重复子字符串"><span class="toc-number">2.10.3.</span> <span class="toc-text">最长重复子字符串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划"><span class="toc-number">3.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贪心"><span class="toc-number">4.</span> <span class="toc-text">贪心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回溯法"><span class="toc-number">5.</span> <span class="toc-text">回溯法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位运算"><span class="toc-number">6.</span> <span class="toc-text">位运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -468,11 +468,48 @@ ga('send', 'pageview');
 <li>但另一方面，用堆实现的优先队列的应用却越来越重要，因为它能在插入操作和删除最大元素操作混合的动态场景中保证对数级别的运行时间，另外常考算法比如topM和MultiWay(特别针对大数据、数据流)</li>
 </ul>
 <h4 id="进一步优化"><a href="#进一步优化" class="headerlink" title="进一步优化"></a>进一步优化</h4><p>可以通过先下沉后上浮来来免去检查元素是否到达正确位置的时间，但是这种方法需要额外的空间</p>
-<h3 id="优先队列的应用延伸"><a href="#优先队列的应用延伸" class="headerlink" title="优先队列的应用延伸"></a>优先队列的应用延伸</h3><h4 id="TopM【考点】"><a href="#TopM【考点】" class="headerlink" title="TopM【考点】"></a>TopM【考点】</h4><h4 id="Multiway"><a href="#Multiway" class="headerlink" title="Multiway"></a>Multiway</h4><p>将M个输入流归并为一个有序的输出流</p>
+<h3 id="优先队列的应用延伸"><a href="#优先队列的应用延伸" class="headerlink" title="优先队列的应用延伸"></a>优先队列的应用延伸</h3><h4 id="TopM【考点】"><a href="#TopM【考点】" class="headerlink" title="TopM【考点】"></a>TopM【考点】</h4><p>问题描述，参照<a href="http://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/" target="_blank" rel="external">geeksforgeeks</a></p>
+<blockquote>
+<p>打印一个无序数组中最大的M个元素</p>
+</blockquote>
+<h5 id="思路概述"><a href="#思路概述" class="headerlink" title="思路概述"></a>思路概述</h5><ul>
+<li>部分排序，比如修改冒泡排序，执行M次，然后将数组末端的M个元素打印出来（也可以使用选择排序等，思路类似），时间复杂度为$O(NM)$</li>
+<li>使用一个小型的缓存数组，将原数组中的M个元素先保存到一个大小为M的小数组中，然后查找其中的最小值记为min，接下来遍历原始数组剩余部分，遇到比min大的元素则从小数组中去掉min元素，插入新元素并重新查找到当前最小元素，时间复杂度为$O((N-M)*M+MlgM)$,前一项为遍历以及插入元素以后更新（查找）当前最小元素的时间消耗，后一项则是最后要按顺序打印的小数组排序时间复杂度</li>
+<li>直接对原始数组进行排序，时间复杂度一般为$O(NlgN)$，但是这种方法对于数据量较大的情况是不合适的</li>
+<li>使用大顶堆存储原始数组，这样构建大顶堆的时间为$O(N)$(参见《算法》P206命题R用下沉法构建堆)，构建好堆以后重复取M次堆顶元素的时间复杂度为$O(MlgN)$，因为涉及到每次取最大元素以后调整堆的操作，所以总体时间复杂度为$O(N+MlgN)$</li>
+<li>有序统计【有待进一步分析】<ul>
+<li>使用有序统计算法（order statistic algorithm）来找到第k大的元素，时间复杂度为$O(N)$</li>
+<li>使用快速排序的切分算法来将前一步找到的第k大元素作为pivot切分点对数组进行切分，时间复杂度为O(N)</li>
+<li>最后对与小于切分点的元素排序输出$O(MlgM)$</li>
+<li>总体时间复杂度为$O(N+MlgM)$</li>
+</ul>
+</li>
+<li>使用小顶堆【重点掌握】，该方法是对第二种方法的一个改进，即不使用暂存数组，而是使用一个大小为M的小顶堆来暂存数据，这样节省查找时间<ul>
+<li>使用前M个元素构建一个小顶堆，时间复杂度$O(M)$</li>
+<li>对后续每一个元素，将元素与堆顶元素比较，若比堆顶元素大，则交换并下沉调整堆，时间复杂度为$O((N-M)lgM)$</li>
+<li>最后对小顶堆排序输出$O(MlgM)$<br>总体时间复杂度$O(M+(N-M)lgM+MlgM)$</li>
+</ul>
+</li>
+</ul>
+<h5 id="Java实现-3"><a href="#Java实现-3" class="headerlink" title="Java实现"></a>Java实现</h5><ul>
+<li>针对小顶堆的方法，不过这里进行了微调，在后续插入数据时采取的方法是移除当前最小值然后插入元素调整堆的方法，可以修改<code>delMin()</code>方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="comment">//用小顶堆实现从数组中找出其中最大的M个元素</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopM</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner in=<span class="keyword">new</span> Scanner(System.in);</div><div class="line">		<span class="keyword">if</span>(in.hasNext())&#123;</div><div class="line">			<span class="keyword">int</span> cases=in.nextInt();</div><div class="line">			<span class="keyword">while</span>(cases--&gt;=<span class="number">0</span> &amp;&amp; in.hasNext())&#123;</div><div class="line">				<span class="keyword">int</span> N=in.nextInt();</div><div class="line">				<span class="keyword">int</span> M=in.nextInt();</div><div class="line">				<span class="keyword">int</span>[] total=<span class="keyword">new</span> <span class="keyword">int</span>[N];</div><div class="line">				<span class="keyword">int</span>[] heap=<span class="keyword">new</span> <span class="keyword">int</span>[M];</div><div class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;total.length;i++)&#123;</div><div class="line">					total[i]=in.nextInt();</div><div class="line">				&#125;</div><div class="line">				topM(total,heap);</div><div class="line">				printArray(heap);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		in.close();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">topM</span><span class="params">(<span class="keyword">int</span>[] total, <span class="keyword">int</span>[] top)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> N=total.length;</div><div class="line">		<span class="keyword">int</span> M=top.length;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</div><div class="line">			<span class="keyword">if</span>(i&lt;M)&#123;</div><div class="line">				insert(top,i,total[i]);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">if</span>(total[i]&gt;getMin(top))&#123;</div><div class="line">					delMin(top);</div><div class="line">					insert(top,i,total[i]);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		heapSort(top);		</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">(<span class="keyword">int</span>[] top)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(top.length==<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> top[<span class="number">0</span>];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">delMin</span><span class="params">(<span class="keyword">int</span>[] top)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> M=top.length;</div><div class="line">		exchange(top,<span class="number">0</span>,M-<span class="number">1</span>);</div><div class="line">		sink(top);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">int</span>[] top)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> M=top.length;</div><div class="line">		<span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span>(<span class="number">2</span>*i+<span class="number">2</span>&lt;=M-<span class="number">1</span>)&#123;</div><div class="line">			<span class="keyword">int</span> left=<span class="number">2</span>*i+<span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(left+<span class="number">1</span>!=M-<span class="number">1</span>&amp;&amp;top[left+<span class="number">1</span>]&lt;top[left])&#123;</div><div class="line">				left++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(top[i]&lt;=top[left])&#123;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			exchange(top,i,left);</div><div class="line">			i=left;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span>[] top,<span class="keyword">int</span> index, <span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> M=top.length;</div><div class="line">		<span class="keyword">if</span>(index&gt;=M-<span class="number">1</span>)&#123;</div><div class="line">			index=M-<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		top[index]=key;</div><div class="line">		swim(top,index);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swim</span><span class="params">(<span class="keyword">int</span>[] top, <span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">		<span class="keyword">while</span>(index&gt;<span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">int</span> parent=(index-<span class="number">1</span>)/<span class="number">2</span>;</div><div class="line">			<span class="keyword">if</span>(top[parent]&gt;top[index])&#123;</div><div class="line">				exchange(top,index,parent);</div><div class="line">				index=parent;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> temp=nums[i];</div><div class="line">		nums[i]=nums[j];</div><div class="line">		nums[j]=temp;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//构建小顶堆排序</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> N=nums.length-<span class="number">1</span>;</div><div class="line">		<span class="comment">//构建堆</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k=(N-<span class="number">1</span>)/<span class="number">2</span>;k&gt;=<span class="number">0</span>;k--)&#123;</div><div class="line">			sink(nums,k,N);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//重复取最大元素并恢复堆结构</span></div><div class="line">		<span class="keyword">while</span>(N&gt;<span class="number">0</span>)&#123;</div><div class="line">			exchange(nums, <span class="number">0</span>, N--);</div><div class="line">			sink(nums,<span class="number">0</span>,N);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> p, <span class="keyword">int</span> N)</span> </span>&#123;</div><div class="line">		<span class="comment">//自上而下调整</span></div><div class="line">		<span class="keyword">while</span>(p*<span class="number">2</span>+<span class="number">1</span>&lt;=N)&#123;</div><div class="line">			<span class="keyword">int</span> temp=p*<span class="number">2</span>+<span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span>(temp+<span class="number">1</span>&lt;=N &amp;&amp; nums[temp]&gt;nums[temp+<span class="number">1</span>])&#123;<span class="comment">//取子节点中较小的一个元素</span></div><div class="line">				temp+=<span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(nums[p]&lt;=nums[temp])&#123;	<span class="comment">//此时堆有序，无需调整，结束循环</span></div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="comment">//否则元素下沉</span></div><div class="line">			exchange(nums,p,temp);</div><div class="line">			p=temp;</div><div class="line">		&#125;		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;			</div><div class="line">			System.out.print(nums[i]+<span class="string">" "</span>);</div><div class="line">		&#125;</div><div class="line">		System.out.println();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>从数据流中得到当前的k个最大的元素（默认数据流为无限）</p>
+</blockquote>
+<p>这样的话上述不少方法就不能使用了，常见思路如下</p>
+<ul>
+<li>维持一个大小为k的有序数组，这样和前面一样，针对后续读取的每一个元素，比当前数组中的首位元素（最小元素）小的元素忽略，大的则删除当前数组最小元素并插入该元素</li>
+<li>使用大小为k的平衡二叉查找树来存储元素，当然要求是每次插入元素后得调整树结构保持树的平衡</li>
+<li>小顶堆的做法，与前一个问题一致</li>
+</ul>
+<p><em>《剑指offer》第二版一书P209面试题40也有关于这个问题的讨论</em></p>
+<h4 id="Multiway"><a href="#Multiway" class="headerlink" title="Multiway"></a>Multiway</h4><p>将M个输入流归并为一个有序的输出流</p>
 <h4 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h4><h4 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h4><h4 id="霍夫曼压缩"><a href="#霍夫曼压缩" class="headerlink" title="霍夫曼压缩"></a>霍夫曼压缩</h4><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h4><blockquote>
 <p>不断地选择剩余元素中的最小者并与当前剩余元素第一位交换<br>首先，找到数组中最小的那个元素，其次将它和数组的第一个元素交换位置，再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置，如此往复，直到将整个数组排序。</p>
 </blockquote>
-<h4 id="Java实现-3"><a href="#Java实现-3" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<h4 id="Java实现-4"><a href="#Java实现-4" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>选择排序</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">int</span> minPos=i;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;nums.length;j++)&#123;</div><div class="line">			<span class="keyword">if</span>(nums[minPos]&gt;nums[j])&#123;</div><div class="line">				minPos=j;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> temp=nums[i];</div><div class="line">		nums[i]=nums[minPos];</div><div class="line">		nums[minPos]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -489,7 +526,7 @@ ga('send', 'pageview');
 <p>整理桥牌</p>
 </blockquote>
 <p>保证数组当前遍历的元素位置左方元素已经有序，然后将当前元素前向逐个比较，一边比较一边将前面的元素向后覆盖，直到找到第一个不大于该元素的位置，将该元素插入（《算法》一书中的基本实现采用的方法是将目标元素与前面比他大的元素逐个交换的做法，相较之下，我的这种直接移动所有较大元素的做法速度更快（《算法》一书作为练习题））</p>
-<h4 id="Java实现-4"><a href="#Java实现-4" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<h4 id="Java实现-5"><a href="#Java实现-5" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li>插入排序<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">int</span> temp=nums[i+<span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> j=i+<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;temp&lt;nums[j-<span class="number">1</span>])&#123;</div><div class="line">			nums[j]=nums[j-<span class="number">1</span>];</div><div class="line">			j--;</div><div class="line">		&#125;			</div><div class="line">		nums[j]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -501,7 +538,7 @@ ga('send', 'pageview');
 <li>原则是保证数组中任意间隔为h的元素有序，即交换间隔为h的元素以对数组的局部进行排序，并最终使用插入排序将局部有序的数组排序</li>
 <li>权衡了子数组的规模和有序性：排序之初，各个子数组都很短，排序之后子数组都是部分有序的，这两种情况都很适合插入排序</li>
 </ul>
-<h4 id="Java实现-5"><a href="#Java实现-5" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<h4 id="Java实现-6"><a href="#Java实现-6" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
 <li><p>希尔排序</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> h=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(h&lt;nums.length/<span class="number">3</span>)&#123;</div><div class="line">		h=h*<span class="number">3</span>+<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(h&gt;=<span class="number">1</span>)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-h;i++)&#123;</div><div class="line">			<span class="keyword">int</span> temp=nums[i+h];</div><div class="line">			<span class="keyword">int</span> j=i+h;</div><div class="line">			<span class="keyword">while</span>(j&gt;=h&amp;&amp;temp&lt;nums[j-h])&#123;</div><div class="line">				nums[j]=nums[j-h];</div><div class="line">				j-=h;</div><div class="line">			&#125;</div><div class="line">			nums[j]=temp;</div><div class="line">		&#125;</div><div class="line">		h/=<span class="number">3</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
@@ -512,6 +549,21 @@ ga('send', 'pageview');
 <h4 id="特点-6"><a href="#特点-6" class="headerlink" title="特点"></a>特点</h4><ul>
 <li>算法性能取决于h值的选择，这里使用的是序列$\frac{3^k-1}{2}$，关于怎样的h值最好，尚无定论，实际应用中相差不大，但一般其时间复杂度不会到达$O(n^2)$</li>
 <li>希尔排序也可用于大型数组，其优点在于代码量小而且不需要额外的存储空间，在手头没有现成的排序算法可以调用时，不妨实现希尔排序来辅助工作</li>
+</ul>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h4 id="基本思想-6"><a href="#基本思想-6" class="headerlink" title="基本思想"></a>基本思想</h4><ul>
+<li>用一个‘指针’遍历数组并比较与该指针指向元素相邻的元素，如果相邻元素呈逆序状态则交换元素，直到移动到数组末端即完成一轮冒泡排序，然后重复上述操作，一般会设置一个flag来在数组已经有序时（即该轮排序没有发生交换）结束排序</li>
+<li>另外一种思路，由于每一次冒泡排序可以保证最大的元素‘沉到’最后一位，所以也可以不设置flag，而使用双指针，后一个指针的遍历范围逐轮缩小<br><em>其中第一个设置flag的方案更优，因为第二种方法即使在数组有序时也会循环遍历两次</em></li>
+</ul>
+<h4 id="Java实现-7"><a href="#Java实现-7" class="headerlink" title="Java实现"></a>Java实现</h4><ul>
+<li><p>flag方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</div><div class="line">		<span class="keyword">boolean</span> flag=<span class="keyword">true</span>;	<span class="comment">//标记该轮排序是否没有发生交换操作（若是则表明当前数组已有序）</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">			<span class="keyword">if</span>(nums[i+<span class="number">1</span>]&lt;nums[i])&#123;</div><div class="line">				flag=<span class="keyword">false</span>;</div><div class="line">				exchange(nums,i,i+<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(flag)&#123;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> temp=nums[i];</div><div class="line">	nums[i]=nums[j];</div><div class="line">	nums[j]=temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>双指针</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort2</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length-<span class="number">1</span>;i++)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;nums.length-i-<span class="number">1</span>;j++)&#123;</div><div class="line">			<span class="keyword">if</span>(nums[j]&gt;nums[j+<span class="number">1</span>])&#123;</div><div class="line">				exchange(nums,j,j+<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="特点-7"><a href="#特点-7" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>数组有序时冒泡排序只需遍历一次数组，但是若当数组完全逆序时，则时间复杂度达到$O(n^2)$，这点和插入排序类似</li>
 </ul>
 <h3 id="排序算法小结"><a href="#排序算法小结" class="headerlink" title="排序算法小结"></a>排序算法小结</h3><table>
 <thead>
@@ -581,6 +633,14 @@ ga('send', 'pageview');
 <td>1</td>
 <td>-</td>
 </tr>
+<tr>
+<td>冒泡排序</td>
+<td>是</td>
+<td>是</td>
+<td>介于$N$和$N^2$之间</td>
+<td>1</td>
+<td>取决于输入元素的排列情况</td>
+</tr>
 </tbody>
 </table>
 <p><em>来源于《算法》一书中2.5.2</em></p>
@@ -590,7 +650,7 @@ ga('send', 'pageview');
 <p>如果一个排序算法能够保留数组中重复元素的相对位置则可以被称为是稳定的</p>
 </blockquote>
 </li>
-<li><p>稳定排序算法：插入排序、归并排序</p>
+<li><p>稳定排序算法：<strong>插入排序、归并排序、冒泡排序</strong></p>
 </li>
 <li>另外有很多办法将任意排序算法变成稳定的，不过比较复杂</li>
 <li><p>原地排序</p>
@@ -598,7 +658,7 @@ ga('send', 'pageview');
 <p>除了函数调用所需的栈和固定数目的实例变量之外无需额外内存的原地排序算法</p>
 </blockquote>
 </li>
-<li><p>原地排序算法：上述算法中除了归并排序以外都是</p>
+<li><p>原地排序算法：上述算法中<strong>除了归并排序</strong>以外都是</p>
 </li>
 <li>对于Java而言，<code>java.util.Arrays.sort</code>实际上代表了一系列排序方法<ul>
 <li>每种原始数据类型都有一个不同的排序方法</li>
@@ -608,12 +668,15 @@ ga('send', 'pageview');
 </li>
 <li>一般而言，Java系统程序员选择对原始数据类型使用（三向切分的）快速排序，对引用类型使用归并排序</li>
 </ul>
+<p>_ Notes:关于排序算法稳定性以及其他更多的排序算法，可以参考<a href="https://www.wikiwand.com/en/Sorting_algorithm#/Stability" target="_blank" rel="external">这里</a>_</p>
 <h3 id="排序的应用延伸"><a href="#排序的应用延伸" class="headerlink" title="排序的应用延伸"></a>排序的应用延伸</h3><h4 id="在线性对数时间内计算两组排列之间的Kendall-tau距离"><a href="#在线性对数时间内计算两组排列之间的Kendall-tau距离" class="headerlink" title="在线性对数时间内计算两组排列之间的Kendall tau距离"></a>在线性对数时间内计算两组排列之间的Kendall tau距离</h4><p><em>关键字：逆序对</em></p>
 <h4 id="找出一组元素的中位数"><a href="#找出一组元素的中位数" class="headerlink" title="找出一组元素的中位数"></a>找出一组元素的中位数</h4><p><em>快速排序的partition的进一步应用</em></p>
 <h4 id="最长重复子字符串"><a href="#最长重复子字符串" class="headerlink" title="最长重复子字符串"></a>最长重复子字符串</h4><p><em>特殊的字符串排序算法</em></p>
 <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h2 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h2><h2 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h2><h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li>Robert Sedgewick《算法》4th</li>
 <li><a href="http://www.algolist.net/Algorithms/Sorting/Quicksort" target="_blank" rel="external">http://www.algolist.net/Algorithms/Sorting/Quicksort</a></li>
+<li><a href="https://www.wikiwand.com/en/Sorting_algorithm#/Stability" target="_blank" rel="external">排序算法稳定性</a></li>
+<li><a href="http://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/" target="_blank" rel="external">geeksforgeeks</a></li>
 </ul>
 
       
@@ -889,11 +952,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -901,7 +964,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -921,7 +984,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -933,27 +1008,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -962,10 +1017,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -985,6 +1036,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -997,11 +1052,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
