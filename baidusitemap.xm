@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/25/JData/</loc>
+    <lastmod>2017-07-16T13:04:56.329Z</lastmod>
+    <data>
+        <display>
+        <title>京东JData算法大赛</title>
+        <pubTime>2017-06-25T06:04:31.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>JData</tag>
+         
+        <tag>比赛</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
     <lastmod>2017-07-14T08:09:04.547Z</lastmod>
     <data>
@@ -80,9 +101,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>SVM</tag>
          
@@ -103,9 +124,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>Perceptron</tag>
          
@@ -126,9 +147,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -149,9 +170,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
          
@@ -172,9 +193,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            
@@ -256,11 +277,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -292,27 +313,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/25/JData/</loc>
-    <lastmod>2017-06-25T11:00:11.874Z</lastmod>
-    <data>
-        <display>
-        <title>京东JData算法大赛</title>
-        <pubTime>2017-06-25T06:04:31.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>JData</tag>
-         
-        <tag>比赛</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
@@ -366,11 +366,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -389,9 +389,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -412,9 +412,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
