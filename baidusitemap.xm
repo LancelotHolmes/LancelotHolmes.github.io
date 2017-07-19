@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
+    <lastmod>2017-07-19T09:02:23.605Z</lastmod>
+    <data>
+        <display>
+        <title>GBDT</title>
+        <pubTime>2017-07-07T06:50:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>GBDT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-07-19T08:48:45.118Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
     <lastmod>2017-07-19T07:48:24.949Z</lastmod>
     <data>
@@ -251,25 +293,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
-    <lastmod>2017-07-08T05:50:40.849Z</lastmod>
-    <data>
-        <display>
-        <title>GBDT</title>
-        <pubTime>2017-07-07T06:50:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>GBDT</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     <lastmod>2017-07-03T12:42:10.778Z</lastmod>
     <data>
@@ -282,29 +305,6 @@
         <tag>Note</tag>
          
         <tag>ensemble</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-07-03T07:06:59.410Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            

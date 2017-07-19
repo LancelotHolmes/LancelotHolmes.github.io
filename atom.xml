@@ -757,15 +757,16 @@
     <link href="http://yoursite.com/2017/07/07/GBDT/"/>
     <id>http://yoursite.com/2017/07/07/GBDT/</id>
     <published>2017-07-07T06:50:00.000Z</published>
-    <updated>2017-07-08T05:50:40.849Z</updated>
+    <updated>2017-07-19T09:02:23.605Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<p><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="external">A Gentle Introduction to Gradient Boosting</a></p>
+<p><em>参考资料:</em><a href="http://www.chengli.io/tutorials/gradient_boosting.pdf" target="_blank" rel="external">A Gentle Introduction to Gradient Boosting</a></p>
 <blockquote>
 <p>gradient boosting = gradient descent + boosting</p>
 </blockquote>
+<p>附：回顾<a href="/2017/06/29/boosting/" title="AdaBoost">AdaBoost</a></p>
 <h2 id="AdaBoost-vs-Gradient-Boosting"><a href="#AdaBoost-vs-Gradient-Boosting" class="headerlink" title="AdaBoost vs. Gradient Boosting"></a>AdaBoost vs. Gradient Boosting</h2><table>
 <thead>
 <tr>
@@ -780,7 +781,7 @@
 </tr>
 <tr>
 <td>不同点</td>
-<td>1、AdaBoost中当前学习期器的“不足”由样本权重来决定<br> 2、GBDT中当前学习期器的“不足”由求梯度决定</td>
+<td>1、AdaBoost中当前学习器的“不足”由样本权重来决定<br> 2、GBDT中当前学习器的“不足”由求梯度决定</td>
 </tr>
 </tbody>
 </table>
@@ -795,7 +796,7 @@
 <li>一种可行的方法就是在原始的模型$F$的基础上添加一个模型，h（比如回归树），从而得到模型$F(x):=F(x)+h(x)$</li>
 <li>通过拟合来改进该模型$$F(x_1)+h(x_1)=y_1$$<br>$$F(x_2)+h(x_2)=y_2$$<br>$$…$$<br>$$F(x_n)+h(x_n)=y_n$$<br>于是我们可以得到$$h(x_i)=y_i-F(x_i)$$,也就是在$F$的基础上我们针对数据集$(x_1,y_1-F(x_1)),(x_2,y_2-F(x_2)),…,(x_n,y_n-F(x_n))$拟和一个模型$h$，其中$y_i-F(x_i)$被称做是<strong>残差</strong></li>
 </ul>
-<h2 id="与梯度下降法的关联（回归树）"><a href="#与梯度下降法的关联（回归树）" class="headerlink" title="与梯度下降法的关联（回归树）"></a>与梯度下降法的关联（回归树）</h2><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>$$\theta_i=\theta_i-\rho \frac{dJ}{d \theta_i}$$通过朝负梯度方向移动来最小化函数</p>
+<h2 id="与梯度下降法的关联（回归树）"><a href="#与梯度下降法的关联（回归树）" class="headerlink" title="与梯度下降法的关联（回归树）"></a>与梯度下降法的关联（回归树）</h2><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>$$\theta_i=\theta_i-\rho \frac{\partial J}{\partial \theta_i}$$通过朝负梯度方向移动来最小化函数</p>
 <h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p><em>残差是如何与梯度联系起来的？</em><br><img src="/materials/img/GBDT/gd.jpg" alt="gradient descent"><br>那么我们为何还需要其他的损失函数？是因为平方损失函数不够好么？</p>
 <p>平方损失函数</p>
 <ul>
@@ -817,14 +818,14 @@
 </blockquote>
 <p><em>Notes:相较之下，负梯度关注离群点较少。</em></p>
 <h2 id="GBDT用于分类——识别手写字母（多分类）"><a href="#GBDT用于分类——识别手写字母（多分类）" class="headerlink" title="GBDT用于分类——识别手写字母（多分类）"></a>GBDT用于分类——识别手写字母（多分类）</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
-<li>训练26个模型：$F_A~F_Z$</li>
+<li>训练26个模型：$F_A ~ F_Z$</li>
 <li>针对每一个样本实例，分别使用每一个模型打分，计算样本属于某个类别的概率</li>
 <li>将概率最高的类标记为该样本的预测标记</li>
 </ul>
 <h3 id="一般过程"><a href="#一般过程" class="headerlink" title="一般过程"></a>一般过程</h3><ul>
-<li>讲样本集的实际标记转换为概率分布的形式（0-1）</li>
+<li>将样本集的实际标记转换为概率分布的形式（0-1）</li>
 <li>计算各个模型预测样本属于各自分类的概率</li>
-<li>计算真实概率与预测概率的差值，目的是通过调整模型减少整体误差（是预测点概率分布尽可能接近真实概率分布）</li>
+<li>计算真实概率与预测概率的差值，目的是通过调整模型减少整体误差（使预测点概率分布尽可能接近真实概率分布）</li>
 </ul>
 <p><em>Notes:优化参数矩阵、计算梯度矩阵</em></p>
 ]]></content>
@@ -834,10 +835,11 @@
       &lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.chengli.io/tutorials/gradient_boosting.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Gentle Introduction to Gradient Boosting&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;参考资料:&lt;/em&gt;&lt;a href=&quot;http://www.chengli.io/tutorials/gradient_boosting.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Gentle Introduction to Gradient Boosting&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;gradient boosting = gradient descent + boosting&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;附：回顾&lt;a href=&quot;/2017/06/29/boosting/&quot; title=&quot;AdaBoost&quot;&gt;AdaBoost&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;AdaBoost-vs-Gradient-Boosting&quot;&gt;&lt;a href=&quot;#AdaBoost-vs-Gradient-Boosting&quot; class=&quot;headerlink&quot; title=&quot;AdaBoost vs. Gradient Boosting&quot;&gt;&lt;/a&gt;AdaBoost vs. Gradient Boosting&lt;/h2&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -852,7 +854,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;不同点&lt;/td&gt;
-&lt;td&gt;1、AdaBoost中当前学习期器的“不足”由样本权重来决定&lt;br&gt; 2、GBDT中当前学习期器的“不足”由求梯度决定&lt;/td&gt;
+&lt;td&gt;1、AdaBoost中当前学习器的“不足”由样本权重来决定&lt;br&gt; 2、GBDT中当前学习器的“不足”由求梯度决定&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1089,7 +1091,7 @@
     <link href="http://yoursite.com/2017/06/29/boosting/"/>
     <id>http://yoursite.com/2017/06/29/boosting/</id>
     <published>2017-06-29T05:45:11.000Z</published>
-    <updated>2017-07-03T07:06:59.410Z</updated>
+    <updated>2017-07-19T08:48:45.118Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1108,13 +1110,13 @@
 <li>在每一轮训练中，如何改变训练数据的权值/概率分布？</li>
 <li>在得到一系列弱分类器后，如何将弱分类器组合成一个强分类器？</li>
 </ul>
-<h2 id="AdaBoost——Adaptive-Boosting"><a href="#AdaBoost——Adaptive-Boosting" class="headerlink" title="AdaBoost——Adaptive Boosting"></a>AdaBoost——Adaptive Boosting</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>针对提升方法要截距的两个问题，AdaBoost的做法是这样的（两个‘权值’）</p>
+<h2 id="AdaBoost——Adaptive-Boosting"><a href="#AdaBoost——Adaptive-Boosting" class="headerlink" title="AdaBoost——Adaptive Boosting"></a>AdaBoost——Adaptive Boosting</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>针对提升方法要解决的两个问题，AdaBoost的做法是这样的（两个‘权值’）</p>
 <ul>
 <li>提高那些被前一轮弱分类器错误分类样本的权值，而降低那些被正确分类样本的权值。（让被错误分类的样本得到当前弱分类器更多的‘关注’）</li>
 <li>AdaBoost采取加权多数表决的方法来组合弱分类器：加大分类误差率小的弱分类器的权值</li>
 </ul>
-<p><em>Notes:由上述基本思路可以发现，对于AdaBoost算法而言，其中最核心的部分是<strong>两个权值</strong>的求解，一个是每一轮用于训练基分类器的训练数据的样本的权值分布，而另一个则是最终组合各个基分类器时代表各个基分类器的‘话语权’的分类器的权重，而这两者都跟每一轮的基分类器的分类错误、训练误差相关，样本的权值分布根据前一轮基分类器的错误来进行调整，是一种‘弥补前人错误’的体现，而基分类器的权重则是收到每一轮训练的基分类器在该轮的分类误差影响，分类误差越小的基分类器自然可信度越高，所以最终我们组合基分类器时给它赋予的‘话语权’越大。</em></p>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><blockquote>
+<p><em>Notes:由上述基本思路可以发现，对于AdaBoost算法而言，其中最核心的部分是<strong>两个权值</strong>的求解，一个是每一轮用于训练基分类器的训练数据的样本的权值分布，而另一个则是最终组合各个基分类器时代表各个基分类器的‘话语权’的分类器的权重，而这两者都跟每一轮的基分类器的分类错误、训练误差相关，样本的权值分布根据前一轮基分类器的错误来进行调整，是一种‘弥补前人错误’的体现，而基分类器的权重则是受到每一轮训练的基分类器在该轮的分类误差影响，分类误差越小的基分类器自然可信度越高，所以最终我们组合基分类器时给它赋予的‘话语权’越大。</em></p>
+<h3 id="算法-AdaBoost"><a href="#算法-AdaBoost" class="headerlink" title="算法-AdaBoost"></a>算法-AdaBoost</h3><blockquote>
 <ul>
 <li>输入：<ul>
 <li>训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $，其中$x_i \in R^n, y_i \in \lbrace -1, +1 \rbrace$;</li>
@@ -1125,7 +1127,7 @@
 <li>(1) 初始化训练样本的权值分布为<br>$$D_1=(w_{11}, w_{12},…,w_{1N}), w_{1i}=\frac{1}{N}, i=1,2,…,N$$<br>即各个训练样本的权重均等</li>
 <li>(2) 对$m=1,2,…,M,  m$表示训练轮数(亦即基分类器个数，因为每一轮产生一个基分类器)：<ul>
 <li>使用具有权值分布$D_m$的训练数据集学习，得到基本分类器$G_m(x)$</li>
-<li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即分类错误的样本*该样本的权重之和</li>
+<li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即分类错误的样本$\times$该样本的权重之和</li>
 <li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导</li>
 <li>更新训练数据集的权值分布<br>$$D_{m+1}=(w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N})$$<br>如果$G_m(x_i)=y_i$那么$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{-\alpha_m}$$否则$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{\alpha_m}$$</li>
 </ul>
@@ -1158,12 +1160,12 @@
 <p><img src="/materials/img/AdaBoost/error_analysis1.jpg" alt="error_analysis1"><br><img src="/materials/img/AdaBoost/error_analysis2.jpg" alt="error_analysis2"><br><img src="/materials/img/AdaBoost/error_analysis3.jpg" alt="error_analysis3"></p>
 <p>由上面两个定理，可以得到推论</p>
 <blockquote>
-<p>如果存在$\gamma&gt;0$,对所有$m$有$\gamma_m \leq \gamma$(原书这里是$\gamma_m \geq \gamma$，但个人感觉应该是$\leq$才能推得$exp(-2\sum_{m=1}^M \gamma_m^2) \leq exp(-2M\gamma^2)$),则<br>$$\frac{1}{N}\sum_{i=1}^NI(G(x_i) \neq y_i) \leq exp(-2M\gamma^2)$$</p>
+<p>如果存在$\gamma&gt;0$,对所有$m$有$\gamma_m \leq \gamma$【原书这里是$\gamma_m \geq \gamma$，但个人感觉应该是$\leq$才能推得$exp(-2\sum_{m=1}^M \gamma_m^2) \leq exp(-2M\gamma^2)$】,则<br>$$\frac{1}{N}\sum_{i=1}^NI(G(x_i) \neq y_i) \leq exp(-2M\gamma^2)$$</p>
 </blockquote>
-<p>因为<br>$$\frac{1}{N}\sum_{i=1}^NI(G(x_i) \neq y_i) \leq \prod_mZ_m \leq exp(-2\sum_{m=1}^M \gamma_m^2) \leq exp(-2M\gamma^2)$$<br>这也表明在此条件下AdaBoost的训练误差是一直输速率下降的</p>
+<p>因为<br>$$\frac{1}{N}\sum_{i=1}^NI(G(x_i) \neq y_i) \leq \prod_mZ_m \leq exp(-2\sum_{m=1}^M \gamma_m^2) \leq exp(-2M\gamma^2)$$<br>这也表明在此条件下AdaBoost的训练误差是以指数速率速率下降的</p>
 <p><em>Notes:</em></p>
 <ul>
-<li>AdaBoost算法不需要知道下届$\gamma$</li>
+<li>AdaBoost算法不需要知道下界$\gamma$</li>
 <li>AdaBoost具有适应性，即它能适应弱分类器各自的训练误差率，这也是它的名字Adaptive Boosting的由来</li>
 </ul>
 <h3 id="前向分步算法"><a href="#前向分步算法" class="headerlink" title="前向分步算法"></a>前向分步算法</h3><blockquote>
@@ -1175,7 +1177,7 @@
 <li>而上述问题是一个<strong>需要同时求解从$m=1$到$M$所有参数$\beta_m, \gamma_m$的优化问题</strong>，较为复杂；</li>
 <li>而前向分步算法的思想就是，针对该加法模型，从前到后，<strong>每一步仅学习一个基函数及其参数，逐步逼近上述优化目标函数式</strong>，如此简化优化的复杂度，即每一步只需优化损失函数<br>$$min_{\beta, \gamma}\sum_{i=1}^{N}L(y_i,\beta b(x_i;\gamma))$$</li>
 </ul>
-<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<h4 id="算法-加法模型-前向分步算法"><a href="#算法-加法模型-前向分步算法" class="headerlink" title="算法-加法模型+前向分步算法"></a>算法-加法模型+前向分步算法</h4><blockquote>
 <ul>
 <li>输入：<ul>
 <li>训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $</li>
@@ -1193,7 +1195,7 @@
 <li>(3) 得到加法模型<br>$$f(x)=f_M(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$$</li>
 </ul>
 </blockquote>
-<p><em>Notes:由上述算法的第(2)部分可以看到，前向分布算法每次在上一个基函数得到的累加模型基础上通过极小化当前基函数的值从而得到当前基函数及其参数，然后累加到前面得到的加法模型上，这样一步一步地逼近想要优化的目标函数，最终会得到一个近似的加法模型</em></p>
+<p><em>Notes:由上述算法的第(2)部分可以看到，前向分布算法每次在上一个基函数得到的累加模型基础上通过极小化当前基函数与累加模型之和的值从而得到当前基函数及其参数，然后累加到前面得到的加法模型上，这样一步一步地逼近想要优化的目标函数，最终会得到一个近似的加法模型</em></p>
 <h4 id="前向分步算法与AdaBoost"><a href="#前向分步算法与AdaBoost" class="headerlink" title="前向分步算法与AdaBoost"></a>前向分步算法与AdaBoost</h4><p><img src="/materials/img/AdaBoost/forward_step_alg1.jpg" alt="forward_step_alg1"><br><img src="/materials/img/AdaBoost/forward_step_alg2.jpg" alt="forward_step_alg2"><br><img src="/materials/img/AdaBoost/forward_step_alg3.jpg" alt="forward_step_alg3"><br>最后，来看一下每一轮样本权值的更新<br>$$f_m(x)=f_{m-1}(x)+\alpha_mG_m(x)$$<br>因为$\overline{w_{mi}}=exp(-y_if_{m-1}(x_i))$，对两边乘上$-y_i$并取指数得到<br>$$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$$<br>对比AdaBoost中的权值更新步骤<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>仅相差规范化因子，因而等价</p>
 <p><em>Notes:</em></p>
 <ul>
@@ -1208,7 +1210,7 @@
 <li>即$$sign(f(x))=1，如果P(y=1|x)&gt;P(y=-1|x)$$,而$$sign(f(x))=-1，如果P(y=-1|x)&gt;P(y=1|x)$$</li>
 <li>也就表示，$sign(f(x))$达到了贝叶斯最优错误率，即<strong>若指数损失函数最小化则分类错误率也将最小化</strong>，这说明<ul>
 <li>指数损失函数是分类任务原本0/1损失函数的一致的替代损失函数；</li>
-<li>由于改替代函数有更好的数学性质（比如连续可微），因此我们用其替代0/1损失函数作为优化目标</li>
+<li>由于该替代函数有更好的数学性质（比如连续可微），因此我们用其替代0/1损失函数作为优化目标（类似的这种情况在SVM里用合页损失函数代替0-1损失函数也出现过）</li>
 </ul>
 </li>
 </ul>
@@ -1219,7 +1221,7 @@
 <li>以决策树为基函数的提升方法称为提升树（一般是用决策树桩(decision stump)即由一个根结点直接连接两个叶节点的简单决策树）</li>
 <li>提升树模型可以表示为决策树的加法模型<br>$$f_M(x)=\sum_{m=1}^{M}T(x;\varTheta_m)$$<br>其中$T(x;\varTheta_m)$表示决策树，$\varTheta_m$为决策树的参数，$M$为树的个数</li>
 </ul>
-<h3 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h3><ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
 <li><p>不同问题的提升树学习算法区别在于使用的损失函数不同</p>
 <ul>
 <li>回归树：平方误差（拟合残差）</li>
@@ -1238,13 +1240,13 @@
 <li>(2) 对$m=1,2,…,M$<ul>
 <li>计算残差$r_{mi}=y_i - f_{m-1}(x_i),　i=1,2,…,N$</li>
 <li>拟合残差$r_{mi}$学习一个回归树，得到$T(x;\varTheta_m)$</li>
-<li>更新$(f_m(x)=f_{m-1}(x)+T(x;\varTheta_m)$</li>
+<li>更新$f_m(x)=f_{m-1}(x)+T(x;\varTheta_m)$</li>
 </ul>
 </li>
 <li>(3) 得到回归问题提升树<br>$$f_M(x)=\sum_{m=1}^{M}T(x;\varTheta_m)$$</li>
 </ul>
 </blockquote>
-<p><em>Notes:对于上述算法的过程理解可以参照原书P149的例子来感受一下，需要回顾决策树的知识点</em></p>
+<p><em>Notes:对于上述算法的过程理解可以参照原书P149的例子来感受一下，需要回顾决策树（主要是CART算法）的知识点</em></p>
 <ul>
 <li>除了一开始初始化以外，每一步都是拟合上一轮得到的加法模型的残差来寻找最佳切分点并构建决策树桩，然后将该决策树桩累加到加法模型上作为当前模型并计算平方损失误差</li>
 <li>当当前模型的平方损失误差降到某一阈值时则当前模型就是最终输出的模型。</li>
@@ -1262,13 +1264,13 @@
 <li>输出：回归树$\widehat{f}(x)$</li>
 <li>(1) 初始化$$f_0(x)=argmin_c\sum_{i=1}^NL(y_i,c)$$来估计使损失函数极小化的常数值，它是只有一个根节点的树</li>
 <li>(2) 对$m=1,2,…,M$<ul>
-<li>对$i=1,2,…,N$,计算$$r_{mi}=-\left[\frac{\partial L(y,f(x_i)}{\partial f(x_i)} \right]_{f(x)=f_{m-1}(x)}$$即损失函数的负梯度在当前模型的值，将它作为残差的估计（对于平方损失函数，它就是通常所说的残差；而对于一般损失函数，它就是残差的近似值）</li>
+<li>对$i=1,2,…,N$,计算$$r_{mi}=-\left[\frac{\partial L(y,f(x_i)}{\partial f(x_i)} \right]_{f(x)=f_{m-1}(x)}$$即损失函数的<strong>负梯度</strong>在当前模型的值，将它作为残差的估计（对于平方损失函数，它就是通常所说的残差；而对于一般损失函数，它就是残差的近似值）</li>
 <li>对$r_{mi}$拟合一个回归树，得到第$m$棵树的叶节点区域$R_{mj}, j=1,2,…,J$</li>
 <li>对$j=1,2,…,J$,计算$$c_{mj}=argmin_c\sum_{x_i \in R_{mj}}L(y_i, f_{m-1}(x_i)+c)$$即利用线性搜索估计叶节点区域的值，使损失函数极小化</li>
-<li>更新回归树$$(f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x \in R_{mj}）$$</li>
+<li>更新回归树$$f_m(x)=f_{m-1}(x)+\sum_{j=1}^Jc_{mj}I(x \in R_{mj})$$</li>
 </ul>
 </li>
-<li>(3) 得到最终的回归树$$\widehat{f}(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x \in R_{mj}）$$</li>
+<li>(3) 得到最终的回归树$$\widehat{f}(x)=f_M(x)=\sum_{m=1}^M\sum_{j=1}^Jc_{mj}I(x \in R_{mj})$$</li>
 </ul>
 </blockquote>
 <p><em>Notes:梯度提升树（回归树）的算法与原始的提升树（回归树）算法的核心区别主要在于残差计算这里，由于原始的回归树指定了平方损失函数所以可以直接计算残差，而梯度提升树针对一般损失函数，所以采用负梯度来近似求解残差。</em></p>
