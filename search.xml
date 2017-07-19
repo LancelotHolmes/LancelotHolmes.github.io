@@ -17,9 +17,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> SVM </tag>
             
@@ -118,9 +118,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> 最优化问题 </tag>
             
@@ -660,9 +660,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> LR </tag>
             
@@ -1161,11 +1161,11 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -2624,11 +2624,12 @@ No. of dup:  0
 <li>ID3</li>
 <li>C4.5</li>
 <li>CART<a id="more"></a>
-<em>Notes:关于损失函数最小化可以回顾<a href="/2017/06/02/Note-StatisticalML/" title="第一章节">第一章节</a>的模型选择部分的内容。</em></li>
+</li>
 </ul>
 </li>
 </ul>
 </blockquote>
+<p><em>Notes:关于损失函数最小化可以回顾<a href="/2017/06/02/Note-StatisticalML/" title="第一章节">第一章节</a>的模型选择部分的内容。</em></p>
 <h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>分类决策树模型是一种描述对实例进行分类的树形结构，其中包含两种类型的节点</p>
 <ul>
 <li>内部节点：表示一个特征（属性）</li>
@@ -2671,7 +2672,7 @@ No. of dup:  0
 </ul>
 <p><em>Notes:</em></p>
 <ul>
-<li>分类能力强即表示给定一个特征使得实例能较准确地被分类，及减少了实力的不确定性，掌握了更多的信息（信息增益角度的理解）</li>
+<li>分类能力强即表示给定一个特征使得实例能较准确地被分类，及减少了实例的不确定性，掌握了更多的信息（信息增益角度的理解）</li>
 <li>每次挑一个特征（列），根据该特征下各记录的不同取值来划分实例点（过程让我联想起k-nn中kd树的构建）–&gt; 所以一般要求特征值为离散值，或者事先对特征进行离散化处理</li>
 </ul>
 <h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>$$g(D, A)=H(D)-H(D|A)$$</p>
@@ -2692,7 +2693,7 @@ No. of dup:  0
 <li>对于数据集$D$而言，信息增益依赖于特征，不同的特征往往具有不同的信息增益，信息增益大的特征具有更强的分类能力（也就是我们需要挑选的目标）</li>
 </ul>
 </blockquote>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<h4 id="算法——特征选择"><a href="#算法——特征选择" class="headerlink" title="算法——特征选择"></a>算法——特征选择</h4><blockquote>
 <ul>
 <li>输入：训练数据集$D$和特征$A$；</li>
 <li>输出：特征$A$对训练数据集$D$的信息增益$g(D,A)$</li>
@@ -2709,10 +2710,10 @@ No. of dup:  0
 <h4 id="信息增益比定义"><a href="#信息增益比定义" class="headerlink" title="信息增益比定义"></a>信息增益比定义</h4><p>特征$A$对训练数据集$D$的信息增益比$g_R(D,A)$定义为其信息增益$g(D,A)$与训练数据集$D$关于特征$A$的值的熵$H_A(D)$之比：<br>$$g_R(D,A)= \frac{g(D,A)}{H_A(D)}$$<br>其中<br>$$H_A(D)=- \sum_{i=1}^{n} \frac{|D_{i}|}{|D|}log_2 \frac{|D_{i}|}{|D|}$$<br>$n$为特征$A$的取值个数，$D_i$表示据特征$A$的取值将$D$分成的子集</p>
 <h2 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h2><h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><ul>
 <li>在决策树的各个结点上应用<strong>信息增益</strong>准则选择特征，<strong>递归</strong>地构建决策树。</li>
-<li>递归终止条件：所有特征的信息增益（设置信息增益的阈值来判断是否进一步划分）均很小或没有特征可以选择（没选择一个特征则后期划分子树不再使用前面使用过的特征，因为子树已经是在该特征下属于同一取值的实例集合）为止。</li>
+<li>递归终止条件：所有特征的信息增益（设置信息增益的阈值来判断是否进一步划分）均很小或没有特征可以选择（每选择一个特征则后期划分子树不再使用前面使用过的特征，因为子树已经是在该特征下属于同一取值的实例集合）为止。</li>
 <li>ID3相当于用<strong>极大似然法</strong>进行概率模型的选择。</li>
 </ul>
-<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<h4 id="算法-决策树生成"><a href="#算法-决策树生成" class="headerlink" title="算法-决策树生成"></a>算法-决策树生成</h4><blockquote>
 <ul>
 <li>输入：训练数据集$D$和特征集$A$，阈值$\varepsilon$；</li>
 <li>输出：决策树$T$</li>
@@ -2732,16 +2733,16 @@ No. of dup:  0
 <h3 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>在决策树学习中将已生成的树进行简化的过程</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>决策树的剪枝往往通过极小化决策树<strong>整体</strong>的损失函数或代价函数来实现</p>
 <ul>
-<li>决策树的损失函数<br>$$C_\alpha(T)= \sum_{t=1}^{|T|}N_tH_t(T)+ \alpha|T|$$<br>其中，树$T$的叶节点数为$|T|$，叶节点$t$有$|N_t|$个样本点，其中属于$k$类的数目为$|N_{tk}|$个</li>
+<li>决策树的损失函数<br>$$C_\alpha(T)= \sum_{t=1}^{|T|}|N_t|H_t(T)+ \alpha|T|$$<br>其中，树$T$的叶节点数为$|T|$，叶节点$t$有$|N_t|$个样本点，其中属于$k$类的数目为$|N_{tk}|$个</li>
 <li>其中经验熵$H_t(T)$为<br>$$H_t(T)=- \sum_{k=1}^{K} \frac{|N_{tk}|}{|N_t|}log_2 \frac{|N_{tk}|}{|N_t|}$$</li>
-<li>令$C(T)=\sum_{t=1}^{|T|}N_tH_t(T)$，则损失函数可表示为<br>$$C_\alpha(T)=C(T)+\alpha|T|$$<br>$C(T)$表示模型对训练数据的预测误差，即模型与训练数据的拟合程度，$|T|$表示模型的复杂度，参数$\alpha$控制两者之间的影响</li>
+<li>令$C(T)=\sum_{t=1}^{|T|}|N_t|H_t(T)$，则损失函数可表示为<br>$$C_\alpha(T)=C(T)+\alpha|T|$$<br>$C(T)$表示模型对训练数据的预测误差（个人理解为叶节点的经验熵与该叶节点的样本点数之积的加和，类似一种叶节点的总体的不确定性），即模型与训练数据的拟合程度，$|T|$表示模型的复杂度（叶节点数），参数$\alpha$控制两者之间的影响</li>
 </ul>
 <p><em>Notes:</em></p>
 <ul>
 <li>剪枝就是当$\alpha$确定时，选择损失函数最小的模型，及损失函数最小的子树。</li>
 <li>利用损失函数最小原则进行剪枝就是用正则化的极大似然估计进行模型选择。</li>
 </ul>
-<h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<h4 id="算法-决策树剪枝"><a href="#算法-决策树剪枝" class="headerlink" title="算法-决策树剪枝"></a>算法-决策树剪枝</h4><blockquote>
 <ul>
 <li>输入：生成算法产生的整棵树$T$，参数$\alpha$</li>
 <li>输出：修剪后的子树$T\alpha$</li>
@@ -2762,16 +2763,16 @@ No. of dup:  0
 <h3 id="CART生成"><a href="#CART生成" class="headerlink" title="CART生成"></a>CART生成</h3><h4 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h4><h5 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h5><p>设$X, Y$分别为输入和输出变量，其中$Y$为连续变量，给定训练数据集$D= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace $</p>
 <ul>
 <li>一个回归树对应着输入空间（即特征空间）的一个划分以及在划分的单元上的输出值，所以我们的主要目的是要构建回归树，也就是<strong>如何划分输入空间</strong>，因为一旦划分好输入空间，如将输入空间划分为$M$个单元$R_1, R_2,…,R_M$,并且在每个单元$R_m$上有一个固定的输出值$c_m$，那么回归树的模型就可以表示为<br>$$f(x)=\sum_{m=1}^Mc_mI(x \in R_m)$$</li>
-<li>如何划分输入空间？<br>仍然是采用启发式的方法（尝试），假设我们取$j$的某个值$s$来划分实例点，就可以根据各实例点对应该特征的取值与选定的特征值$s$比较大小来划分，即<br>$$R_1(j, s)= \lbrace x|x^{(j)} \leq s \rbrace;  R_2(j, s)= \lbrace x|x^{(j)} &gt; s \rbrace$$</li>
+<li>如何划分输入空间？<br>仍然是采用启发式的方法（尝试），假设我们取$j$的某个值$s$来划分实例点，就可以根据各实例点对应该特征$j$的取值与选定的特征值$s$比较大小来划分，即<br>$$R_1(j, s)= \lbrace x|x^{(j)} \leq s \rbrace$$<br>$$R_2(j, s)= \lbrace x|x^{(j)} &gt; s \rbrace$$</li>
 <li>如何选择最优切分点$s$和对应的切分变量$j$?<br>逐一计算和比较，比较的标准是平方误差最小化，即<br>$$min_{j,s} \left[ min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i-c_1)^2 + min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i-c_2)^2 \right]$$<br>,这里的$c_1, c_2$就是各个区域的输出，那么各个区域的输出又是怎么得到的呢？</li>
 <li>如何得到各区域的输出？<br>仍然是依照平方误差最小准则，计算$\sum_{x_i \in R_m}(y_i-f(x_i))^2$，所以计算得到的单元$R_m$上的$c_m$的最优值刚好是$R_m$上所有输入实例$x_i$对应的输出$y_i$的均值，即<br>$$\hat{c_m}=ave(y_i|x_i \in R_m)$$</li>
 <li>小结一下，通过计算各区域的实例对应的输出的均值可以得到当前尝试的划分点和划分变量划分的各区域的输出，从而可以计算和比较不同的切分点和切分变量下的误差，并进一步根据平方误差最小化准则从中选取出最优的切分点和切分变量，而确定了切分点和切分变量就相当于确定了区域的一个划分，接下来针对已划分的区域进一步根据需求进行划分或者停止划分就最终将输入空间划分为多个区域，而每个区域对应有一个确定的输出值，也就是构建好了一颗回归树</li>
 </ul>
-<h5 id="算法-3"><a href="#算法-3" class="headerlink" title="算法"></a>算法</h5><blockquote>
+<h5 id="算法-CART回归树"><a href="#算法-CART回归树" class="headerlink" title="算法-CART回归树"></a>算法-CART回归树</h5><blockquote>
 <ul>
 <li>输入：训练数据集$D$</li>
 <li>输出：回归树$f(x)$<br>在训练数据集所在的输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树</li>
-<li>(1) 选择最有切分点$s$和切分变量$j$，求解<br>$$min_{j,s} \left[ min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i-c_1)^2 + min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i-c_2)^2 \right]$$<br>遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，选择使上式达到最小的$s, j$</li>
+<li>(1) 选择最优切分点$s$和切分变量$j$，求解<br>$$min_{j,s} \left[ min_{c_1} \sum_{x_i \in R_1(j,s)} (y_i-c_1)^2 + min_{c_2} \sum_{x_i \in R_2(j,s)} (y_i-c_2)^2 \right]$$<br>遍历变量$j$，对固定的切分变量$j$扫描切分点$s$，选择使上式达到最小的$s, j$</li>
 <li>(2) 用选定的$s, j$划分区域并决定相应的输出值：<br>$$R_1(j, s)= \lbrace x|x^{(j)} \leq s \rbrace;  R_2(j, s)= \lbrace x|x^{(j)} &gt; s \rbrace$$<br>$$\hat{c_m}=ave(y_i|x_i \in R_m)$$</li>
 <li>(3) 继续对两个子区域调用步骤(1),(2)直至满足停止条件</li>
 <li>(4) 将输入空间划分为$M$个区域$R_1, R_2,…,R_M$，生成决策树<br>$$f(x)=\sum_{m=1}^Mc_mI(x \in R_m)$$</li>
@@ -2783,7 +2784,7 @@ No. of dup:  0
 <li>特征$A$的条件下，集合$D$的基尼指数<br>$$Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)$$<br>，其中样本集合$D$根据特征$A$<strong>是否取某一可能值</strong>$a$被分割成$D_1, D_2$两部分<br>$$D_1=\lbrace (x, y) \in D|A(x)=a \rbrace;    D_2=D-D_1$$</li>
 <li>基尼指数$Gini(D)$表示集合$D$的不确定性，基尼指数$Gini(D,A)$表示经$A=a$分割后集合$D$的不确定性，基尼指数值越大，样本集合的不确定性也就越大。</li>
 </ul>
-<h5 id="算法-4"><a href="#算法-4" class="headerlink" title="算法"></a>算法</h5><blockquote>
+<h5 id="算法-CART分类树"><a href="#算法-CART分类树" class="headerlink" title="算法-CART分类树"></a>算法-CART分类树</h5><blockquote>
 <ul>
 <li>输入：训练数据集$D$，停止计算的条件（如结点中样本个数小于预定阈值，或样本集的基尼指数小于预定阈值(样本基本属于同一类)，或者没有更多的特征）</li>
 <li>输出：CART决策树<br>从根结点开始，递归地对每个结点进行以下操作：</li>
@@ -2799,22 +2800,28 @@ No. of dup:  0
 </ul>
 <h4 id="剪枝过程理解"><a href="#剪枝过程理解" class="headerlink" title="剪枝过程理解"></a>剪枝过程理解</h4><ul>
 <li>基本原理如上所述，就是由先前生成的CART决策树开始逆向剪枝得到一系列不同的子树集合，然后使用另一份验证集来对上述子树测试选出其中损失函数最小的子树</li>
-<li>而由于我们根据损失函数最小来选取决策树，而由损失函数的定义<br>$$C_\alpha(T)= \sum_{t=1}^{|T|}N_tH_t(T)+ \alpha|T|$$<br>而我们主要是通过调整$\alpha$的值来权衡模型对训练集的预测能力和模型复杂度，因此对于固定的$\alpha$必然存在使损失函数$C_\alpha(T)$最小的子树，而极端情况下，前面根据CART生成算法得到的决策树$T_0$可认为是模型复杂度最大时的树，即此时可认为$\alpha=0$，而当$\alpha=+\infty$时对应的是以根结点为单节点树的简单模型</li>
+<li>而由于我们根据损失函数最小来选取决策树，而由损失函数的定义<br>$$C_\alpha(T)= \sum_{t=1}^{|T|}|N_t|H_t(T)+ \alpha|T|$$<br>而我们主要是通过调整$\alpha$的值来权衡模型对训练集的预测能力和模型复杂度，因此对于固定的$\alpha$必然存在使损失函数$C_\alpha(T)$最小的子树，而极端情况下，前面根据CART生成算法得到的决策树$T_0$可认为是模型复杂度最大时的树，即此时可认为$\alpha=0$，而当$\alpha=+\infty$时对应的是以根结点为单节点树的简单模型</li>
 <li>如此一来对于每一个$\alpha$的值，存在一个不同的子树模型，我们可以通过慢慢的从原始生成树中剪去叶节点并收集新得到的决策树，最后可以得到一个决策树的集合，而这个修剪和收集的过程，为了保证<strong>收集到完备的决策树序列</strong>，我们每次在原始生成树的基础上比较每个结点的剪枝前后的损失函数减少程度（即比较以该节点为根的节点的模型的损失与以该节点为单节点的模型的损失之差），并选取损失函数减少程度最小的一个子树部分，从原始生成树中剪去该子树得到新的子树保存到子树序列，并作为进一步剪枝的起始子树，直到最后得到以根节点为单节点模型。</li>
 </ul>
-<h4 id="算法-5"><a href="#算法-5" class="headerlink" title="算法"></a>算法</h4><blockquote>
+<h4 id="算法-CART剪枝"><a href="#算法-CART剪枝" class="headerlink" title="算法-CART剪枝"></a>算法-CART剪枝</h4><blockquote>
 <ul>
 <li>输入：CART算法生成的决策树$T_0$</li>
 <li>输出：最优决策树$T_{\alpha}$</li>
 <li>(1) 设$k=0, T=T_0$</li>
 <li>(2) 设$\alpha = +\infty $</li>
-<li>(3) 自下而上对各内部结点$s$计算$C(T_t), |T_t|$，以及<br>$$g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}$$<br>$$\alpha=min(\alpha,g(t))$$<br>其中$T_t$表示以$t$为根节点的子树，$C(T_t)$是对训练数据的预测误差，$|T_t|$是$T_t$的叶节点个数</li>
+<li>(3) 自下而上对各内部结点$t$计算$C(T_t), |T_t|$，以及<br>$$g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}$$<br>$$\alpha=min(\alpha,g(t))$$<br>其中$T_t$表示以$t$为根节点的子树，$C(T_t)$是对训练数据的预测误差，$|T_t|$是$T_t$的叶节点个数</li>
 <li>(4) 对$g(t)=\alpha$的内部节点$t$进行剪枝，剪去$g(t)$最小的子树，并对叶节点$t$以多数表决法决定其类，得到树$T$</li>
 <li>(5) 设$k=k+1, \alpha_k=\alpha, T_k=T$</li>
 <li>(6) 若$T_k$不是由根结点及两个叶结点构成的树，就返回(3)，否则令$T_k=T_n$(即最后一次剪枝得到根结点为单节点模型)</li>
 <li>(7) 采用交叉验证在剪枝得到的子树序列$T_0,T_1,…,T_n$中选取最优子树$T_{\alpha}$</li>
 </ul>
 </blockquote>
+<h2 id="决策树算法对比"><a href="#决策树算法对比" class="headerlink" title="决策树算法对比"></a>决策树算法对比</h2><p>如果按照特征选择、决策树生成和决策树剪枝三个步骤来比较的话</p>
+<ul>
+<li>在特征选择上，三个决策树算法的选择标准都不一样：ID3(信息增益)、C4.5(信息增益比)、CART(分类：基尼指数，回归：最小二乘法)；此外就分类而言，ID3和C4.5分别是选择是信息增益、信息增益比最大的特征而CART则选择基尼指数最小的特征；</li>
+<li>在决策树生成时：三者的终止条件大致类似（预设阈值、特征集合非空等），但是ID3和C4.5生成过程中是根据每一个特征值来生成一个对应子树，而CART则是根据特征值是否等于选定的特征值来进行二分（回归中则是根据大于小于某选定值划分区域）；也就是说前两者是树，而CART是二叉树（而这也大概决定了为什么原始的CART可以用来做回归，而前两者不行）</li>
+<li>决策树剪枝方面：标准都是判断决策树整体的损失函数（预测误差+正则化项（模型复杂度））；不同的是，ID3,C4.5是局部的对比叶节点删除前后的损失来决定是否剪枝，而CART则是自下而上从最复杂的完整二叉树一直剪枝到最简单的单节点决策树得到一系列决策树，并最后在验证集上验证选择其中最佳的决策树（每次剪枝为了保证最后得到的决策树序列尽可能完备，每次选择前后损失函数减少最小的一种剪枝策略）</li>
+</ul>
 <h2 id="决策树生成算法ID3的实现"><a href="#决策树生成算法ID3的实现" class="headerlink" title="决策树生成算法ID3的实现"></a>决策树生成算法ID3的实现</h2><p>按照机器学习实战第三章节的内容实现了简单的ID3算法</p>
 <ul>
 <li>特征选择<ul>
@@ -2834,11 +2841,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -2912,9 +2919,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3255,9 +3262,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3387,9 +3394,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> Perceptron </tag>
             
@@ -3593,9 +3600,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
         </tags>
         
