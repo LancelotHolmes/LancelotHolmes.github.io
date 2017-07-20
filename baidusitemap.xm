@@ -76,11 +76,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
          
            
@@ -99,11 +99,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
          
            
@@ -210,9 +210,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>SVM</tag>
          
@@ -233,9 +233,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>Perceptron</tag>
          
@@ -256,9 +256,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>最优化问题</tag>
          
@@ -279,9 +279,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>LR</tag>
          
@@ -302,9 +302,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -433,9 +433,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -456,9 +456,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          

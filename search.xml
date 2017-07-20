@@ -17,9 +17,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> SVM </tag>
             
@@ -118,9 +118,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> 最优化问题 </tag>
             
@@ -660,9 +660,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> LR </tag>
             
@@ -1162,11 +1162,11 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -2842,11 +2842,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -2920,9 +2920,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3263,9 +3263,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3395,9 +3395,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> Perceptron </tag>
             
@@ -3601,9 +3601,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
         </tags>
         
