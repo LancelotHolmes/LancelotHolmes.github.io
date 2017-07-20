@@ -39,9 +39,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="SVM" scheme="http://yoursite.com/tags/SVM/"/>
     
@@ -156,9 +156,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -744,9 +744,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1305,11 +1305,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
   </entry>
   
@@ -3029,11 +3029,11 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
   </entry>
   
@@ -3119,9 +3119,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3482,9 +3482,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3624,9 +3624,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
@@ -3842,9 +3842,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
@@ -3853,19 +3853,19 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/01/cv/"/>
     <id>http://yoursite.com/2017/06/01/cv/</id>
     <published>2017-06-01T12:28:36.000Z</published>
-    <updated>2017-06-01T12:36:16.424Z</updated>
+    <updated>2017-07-20T06:19:43.060Z</updated>
     
     <content type="html"><![CDATA[<p> 首先按照《统计学习方法》第一章的内容，常用的模型选择方法有两种，按照结构风险最小化思想的具体实现即<strong>正则化</strong>以及数据驱动的<strong>交叉验证方法</strong>。</p>
 <ul>
 <li>CV是用于模型的(评估)挑选和<strong>超参数</strong>(关于超参数和参数的区别请见另一篇<a href="/2017/06/01/parameter-hyperparameter/" title="memo">memo</a>)调整的，首先明确一点，所谓模型，指的是我们用来描述输入数据与最终需要预测的输出数据之间的关联的方法，而不是不同数据拟合的模型得到的实例，比如我们可以说一个<strong>线性回归模型</strong>，但是不会说用不同数据拟合的<strong>线性回归器</strong>为不同的模型；<a id="more"></a></li>
 <li>为什么要用CV，这涉及到数据划分的问题，首先我们训练好一个模型后需要评估这个模型的效果，但是如果把全部数据都投入训练就没有数据来进行验证了，常规而言，可以将数据集划分为训练集和验证集比如80%训练、20%验证，但是这样会有一些问题，首先有可能你很不巧的将一些特殊数据划分到这20%的验证集里了(要么效果很好、要么效果很糟糕)，这样的话仅仅这么一组验证集的评估效果就很不稳定也不确切；此外我们划分训练集和验证集就减少了训练数据，而一般而言数据越多训练出的模型方差是越小的，从这个角度来看数据越多一般我们训练的效果更好；</li>
 <li>那么有没有方法既可以用上所有数据进行验证和评估、最后又可以用所有数据进行训练呢？所以我们就需要交叉验证，比如五折交叉验证，假设我们仍将数据集8-2划分（80%-20%），对于五折交叉验证，我们就是针对模型进行了五次训练，每次取80%训练数据、20%验证数据，并最终保证每个数据都曾在这五次训练验证中作为20%的验证集对模型进行过评估，这样我们就可以确保我们使用了所有数据对我们的模型进行评估</li>
-<li>为什么不用CV中得到的预测器进行预测？一般而言，在做交叉验证时确实可能出现某一组交叉验证的得分较高，我们会试图用这一组数据进行模型的拟合和最终预测，但是这种得分高只是一种表面现象，首先数据量少了，其次这一组验证集并非独立的，是在整个交叉验证中随机生成的，所以这个预测器的结果到底好不好还需要在对额外的数据进行测试，如果数据重组也许你可以用<a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">嵌套式的交叉验证</a>进行实验，即第一步用常规内层交叉验证确定最佳模型，然后采用数据驱动的方式(外层交叉验证)拟合最佳的一组预测器</li>
-<li>所以CV的作用是用来对不同模型（SVM和生成树等），不同参数的模型中评估各个模型的效果，而得到最佳参数组合的模型；接下来将所有训练集投入进去拟合预测得到拟合好的预测器最后对测试集进行预测</li>
-<li>那么把所有训练集放到模型中会不会导致过拟合呢？答案是不会，过拟合产生的原因是模型过于复杂（模型的参数），而不是数据增加导致，（而不是传入参数的值），增加数据一般而言更有利于训练集的训练</li>
+<li>为什么不用CV中得到的预测器进行预测？一般而言，在做交叉验证时确实可能出现某一组交叉验证的得分较高，我们会试图用这一组数据进行模型的拟合和最终预测，但是这种得分高只是一种表面现象，首先数据量少了，其次这一组验证集并非独立的，是在整个交叉验证中随机生成的，所以这个预测器的结果到底好不好还需要在对额外的数据进行测试，如果数据充足也许你可以用<a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">嵌套式的交叉验证</a>进行实验，即第一步用常规内层交叉验证确定最佳模型，然后采用数据驱动的方式(外层交叉验证)拟合最佳的一组预测器</li>
+<li>所以CV的作用是用来对不同模型（SVM和生成树等）或者不同(超)参数组合的模型中评估各个模型的效果，而得到最佳(超)参数组合的模型；接下来将所有训练集投入进去拟合预测得到拟合好的预测器最后对测试集进行预测</li>
+<li>那么把所有训练集放到模型中会不会导致过拟合呢？答案是不会，过拟合产生的原因是模型过于复杂（模型的参数），而不是数据增加导致，（而不是传入参数的值），增加数据一般而言更有利于训练集的训练，因为一般而言，训练数据越充足，越能反映出真实数据的分布情况，得到一种近似无偏估计的结果</li>
 <li><p>补充：关于生成树模型中的early_stopping，按照《统计学习方法》一书的第12章总结部分P213所述</p>
 <blockquote>
-<p>提升方法没有现实的正则化项，通常通过早停止(early stopping)的方法达到正则化的效果</p>
+<p>提升方法没有显示的正则化项，通常通过早停止(early stopping)的方法达到正则化的效果</p>
 </blockquote>
 <p>所以early_stopping属于正则化的范畴，是另一种模型选择的具体方法。</p>
 <p>参考资料<br><a href="https://stats.stackexchange.com/a/52277/152084" target="_blank" rel="external">https://stats.stackexchange.com/a/52277/152084</a><br><a href="http://scikit-learn.org/stable/modules/cross_validation.html" target="_blank" rel="external">http://scikit-learn.org/stable/modules/cross_validation.html</a><br><a href="https://stats.stackexchange.com/a/52312/152084" target="_blank" rel="external">https://stats.stackexchange.com/a/52312/152084</a></p>
@@ -3895,7 +3895,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/01/parameter-hyperparameter/"/>
     <id>http://yoursite.com/2017/06/01/parameter-hyperparameter/</id>
     <published>2017-06-01T12:24:11.000Z</published>
-    <updated>2017-06-01T12:27:02.876Z</updated>
+    <updated>2017-07-20T07:17:34.466Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>

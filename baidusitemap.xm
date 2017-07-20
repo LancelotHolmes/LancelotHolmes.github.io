@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/01/parameter-hyperparameter/</loc>
+    <lastmod>2017-07-20T07:17:34.466Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习中模型的参数和超参数</title>
+        <pubTime>2017-06-01T12:24:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>memo</tag>
+         
+        <tag>parameter</tag>
+         
+        <tag>hyperparameter</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/01/cv/</loc>
+    <lastmod>2017-07-20T06:19:43.060Z</lastmod>
+    <data>
+        <display>
+        <title>关于交叉验证和模型选择的一点思考</title>
+        <pubTime>2017-06-01T12:28:36.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>CV</tag>
+         
+        <tag>model selection</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
     <lastmod>2017-07-19T09:02:23.605Z</lastmod>
     <data>
@@ -32,11 +76,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -55,11 +99,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -166,9 +210,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>SVM</tag>
          
@@ -189,9 +233,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>Perceptron</tag>
          
@@ -212,9 +256,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -235,9 +279,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
          
@@ -258,9 +302,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            
@@ -389,9 +433,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -412,55 +456,11 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
          
+        <tag>统计学习方法</tag>
+         
         <tag>k-NN</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/01/cv/</loc>
-    <lastmod>2017-06-01T12:36:16.424Z</lastmod>
-    <data>
-        <display>
-        <title>关于交叉验证和模型选择的一点思考</title>
-        <pubTime>2017-06-01T12:28:36.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>CV</tag>
-         
-        <tag>model selection</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/01/parameter-hyperparameter/</loc>
-    <lastmod>2017-06-01T12:27:02.876Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习中模型的参数和超参数</title>
-        <pubTime>2017-06-01T12:24:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>memo</tag>
-         
-        <tag>parameter</tag>
-         
-        <tag>hyperparameter</tag>
          
          
            
