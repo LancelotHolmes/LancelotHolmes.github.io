@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-12T09:14:17.955Z</updated>
+  <updated>2017-07-20T13:54:03.506Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>方差、偏差、噪声和期望泛化误差小记</title>
+    <link href="http://yoursite.com/2017/07/20/bias-variance/"/>
+    <id>http://yoursite.com/2017/07/20/bias-variance/</id>
+    <published>2017-07-20T13:52:17.000Z</published>
+    <updated>2017-07-20T13:54:03.506Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般我们希望最小化的模型的期望泛化误差可以分解为偏差、方差、噪声的加和</p>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>定义</th>
+<th>理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>偏差</td>
+<td>算法的期望预测与真实结果的偏离程度</td>
+<td>学习算法本身的拟合能力</td>
+</tr>
+<tr>
+<td>方差</td>
+<td>同样大小的训练集的变动所导致的学习性能的变化</td>
+<td>数据扰动所造成的影响</td>
+</tr>
+<tr>
+<td>噪声</td>
+<td>（给定）样本数据的标记与真实结果的差别（自身的错误）</td>
+<td>学习问题本身的难度（期望泛化误差的下界）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>一般而言，噪声不可避免，属于数据集以及所需解决问题本身的限制；所以我们只能从偏差和方差的角度来尽可能的减小期望泛化误差的值，而偏差和方差本身存在冲突，表现为：给定一个学习任务，假定我们能控制学习算法的训练程度，则在训练不足时，学习器的拟和能力不强，<strong>训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率</strong>；而随着训练程度的加深，学习器的拟合能力也逐渐加强，训练数据发生的扰动渐渐能被学习器学到，方差逐渐主导了泛化错误率，在训练程度充足后，学习器的拟合能力已经非常强了，<strong>训练数据发生的轻微扰动都会导致学习器发生显著变化，若训练数据自身的、非全局的特性被学习器学到，则将发生过拟合</strong></p>
+</blockquote>
+<p>对此理解bagging、boosting;对于bagging而言，通过不同训练子集来训练基分类器，这样首先就有较大的数据扰动，然后由于针对每一个基分类器都是“尽力地”去拟合各子训练集的（比如随机森林不剪枝生成完整的决策树的做法），所以对每一个子训练集而言，对应学得的基分类器拟合程度相当高，甚至可以认为对子训练集都是过拟合了的，所以针对bagging而言它的起点就是一个偏差小、方差大的集成，而他接下来的目的就是为了降低方差，减小由数据扰动带来的影响；而反观boosting，他的每一个基分类器是比较简单的弱分类器，而数据集其实一直都是整个样本全集，只是每一轮迭代修改了部分样本的权重（使整体的样本分布变化），所以初始的基分类器的拟合效果自然不好，也就是起始的时候偏差大、方差相对小，而接下来每一个学习器都是针对前一个学习器的错误进行修正，也就是修正预测结果与真实结果的偏离，所以目的是在减小偏差；</p>
+<p>参考</p>
+<ul>
+<li>周志华《机器学习》2.5</li>
+<li>《数据挖掘导论》5.6.3</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一般我们希望最小化的模型的期望泛化误差可以分解为偏差、方差、噪声的加和&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名词&lt;/th&gt;
+&lt;th&gt;定义&lt;/th&gt;
+&lt;th&gt;理解&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;偏差&lt;/td&gt;
+
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="方差" scheme="http://yoursite.com/tags/%E6%96%B9%E5%B7%AE/"/>
+    
+      <category term="偏差" scheme="http://yoursite.com/tags/%E5%81%8F%E5%B7%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>统计学习方法笔记(七) —— 支持向量机</title>
@@ -873,11 +947,11 @@
     <link href="http://yoursite.com/2017/07/03/ensemble/"/>
     <id>http://yoursite.com/2017/07/03/ensemble/</id>
     <published>2017-07-03T12:08:51.000Z</published>
-    <updated>2017-07-03T12:42:10.778Z</updated>
+    <updated>2017-07-20T11:45:02.402Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。</em></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
-<p>集成学习通过构建并结合多个学习起来完成学习任务。</p>
+<p>集成学习通过构建并结合多个学习器来完成学习任务。</p>
 </blockquote>
 <ul>
 <li>如何使得集成学习性能比最好的单一学习器更好？<ul>
@@ -893,10 +967,10 @@
 <li>boosting——个体学习器间存在强依赖关系，必须串行生成的序列化方法</li>
 </ul>
 <h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><blockquote>
-<p>首先从初始训练集训练出一个基学习器，在根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行加权组合。</p>
+<p>首先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行加权组合。</p>
 </blockquote>
-<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><ul>
-<li></li>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>参见</p>
+<ul>
 <li>推导方式，基于“加性模型”，即基于基学习器的线性组合，</li>
 <li>如何在每一轮修改样本分布<ul>
 <li>重赋权法：在每一轮训练中，根据样本分布为每一个训练样本重新赋予一个权重（比如《机器学习实战》一书中就是利用这种方法构建提升树算法，通过修改权重来计算每一轮的损失）</li>
@@ -924,9 +998,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="工作机制-1"><a href="#工作机制-1" class="headerlink" title="工作机制"></a>工作机制</h3><p>基于自助采样法（bootstrap sampling） </p>
+<h3 id="工作机制-1"><a href="#工作机制-1" class="headerlink" title="工作机制"></a>工作机制</h3><p>基于自助采样法（bootstrap sampling）——“有放回地全抽”</p>
 <blockquote>
-<p>给定包含m个样本的数据集，我们先随机取出一个样本放入采样集中，再把该样本放回初始数据集，使得下次采样时该样本仍有可能被选中，这样经过m次随机采样操作，我们得到m含m个样本的采样集，初始训练集中有的样本在采样集里多次出现，有的则从未出现，照这样我们可采样出T个含m个训练样本的采样集，然后基于每个采样集训练出一个基学习器，再将这些基学习器进行结合；在对预测输出进行结合时，通常对分类任务使用简单投票法，对回归任务使用简单平均法</p>
+<p>给定包含m个样本的数据集，我们先随机取出一个样本放入采样集中，再把该样本放回初始数据集，使得下次采样时该样本仍有可能被选中，这样经过m次随机采样操作，我们得到含m个样本的采样集，初始训练集中有的样本在采样集里多次出现，有的则从未出现，照这样我们可采样出T个含m个训练样本的采样集，然后基于每个采样集训练出一个基学习器，再将这些基学习器进行结合；在对预测输出进行结合时，通常对分类任务使用简单投票法，对回归任务使用简单平均法</p>
 </blockquote>
 <h3 id="优点（相对于boosting）"><a href="#优点（相对于boosting）" class="headerlink" title="优点（相对于boosting）"></a>优点（相对于boosting）</h3><ul>
 <li>高效——训练一个bagging集成与直接使用基学习器算法训练一个学习器的复杂度同阶</li>
@@ -944,7 +1018,7 @@
 </blockquote>
 <h2 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
 <li>Bagging的一个扩展变体<ul>
-<li>以决策树维基学习器构建Bagging集成</li>
+<li>以决策树为基学习器构建Bagging集成</li>
 <li>在决策树的训练过程中引入了随机属性选择</li>
 </ul>
 </li>
@@ -1000,7 +1074,7 @@
 <ul>
 <li>每一折取训练集80%的数据训练一个基模型并对剩下的20%的数据进行预测，同时将该模型对测试集做出预测，保留训练子集的预测结果和测试集的预测结果</li>
 <li>将5折的训练子集预测结果结合起来构成第二层元模型的输入特征进行训练得到元分类器</li>
-<li>将前面每一折在测试机集预测得到的结果<strong>取均值</strong>作为最终元分类器的预测输入，并使用训练好的元分类器在该数据上作出最终预测</li>
+<li>将前面每一折在测试机集预测得到的结果<strong>取均值</strong>作为最终元分类器的预测输入(最终的测试数据)，并使用训练好的元分类器在该数据上作出最终预测</li>
 </ul>
 <p>此外<a href="https://zhuanlan.zhihu.com/p/27424282" target="_blank" rel="external">知乎上的一篇文章</a>还提到</p>
 <blockquote>
@@ -1067,7 +1141,7 @@
     
       &lt;p&gt;&lt;em&gt;本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;集成学习通过构建并结合多个学习起来完成学习任务。&lt;/p&gt;
+&lt;p&gt;集成学习通过构建并结合多个学习器来完成学习任务。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;如何使得集成学习性能比最好的单一学习器更好？&lt;ul&gt;

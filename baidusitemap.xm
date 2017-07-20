@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
+    <lastmod>2017-07-20T13:54:03.506Z</lastmod>
+    <data>
+        <display>
+        <title>方差、偏差、噪声和期望泛化误差小记</title>
+        <pubTime>2017-07-20T13:52:17.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>方差</tag>
+         
+        <tag>偏差</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
+    <lastmod>2017-07-20T11:45:02.402Z</lastmod>
+    <data>
+        <display>
+        <title>模型集成小记</title>
+        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>ensemble</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/01/parameter-hyperparameter/</loc>
     <lastmod>2017-07-20T07:17:34.466Z</lastmod>
     <data>
@@ -328,27 +372,6 @@
         <tag>LR</tag>
          
         <tag>机器学习</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
-    <lastmod>2017-07-03T12:42:10.778Z</lastmod>
-    <data>
-        <display>
-        <title>模型集成小记</title>
-        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>ensemble</tag>
          
          
            
