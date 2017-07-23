@@ -3,15 +3,55 @@
   
     
     <entry>
+      <title><![CDATA[栈与队列小记]]></title>
+      <url>/2017/07/22/stack-queue/</url>
+      <content type="html"><![CDATA[<h2 id="栈与队列的转换"><a href="#栈与队列的转换" class="headerlink" title="栈与队列的转换"></a>栈与队列的转换</h2><h3 id="用两个栈实现队列的基本操作"><a href="#用两个栈实现队列的基本操作" class="headerlink" title="用两个栈实现队列的基本操作"></a>用两个栈实现队列的基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; in=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	Stack&lt;Integer&gt; out=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> e)</span></span>&#123;</div><div class="line">		in.push(e);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!out.isEmpty())&#123;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(in.isEmpty())&#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"empty"</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span>(!in.isEmpty())&#123;</div><div class="line">				out.push(in.pop());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> in.isEmpty()&amp;&amp;out.isEmpty();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>附：<a href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&amp;tqId=11158&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">练习链接</a></p>
+<h2 id="特殊的栈"><a href="#特殊的栈" class="headerlink" title="特殊的栈"></a>特殊的栈</h2><h3 id="O-1-时间取得最大-最小值的栈"><a href="#O-1-时间取得最大-最小值的栈" class="headerlink" title="O(1)时间取得最大/最小值的栈"></a>O(1)时间取得最大/最小值的栈</h3><p>以最小值为例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; stack1=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//实现栈的常规功能</span></div><div class="line">	Stack&lt;Integer&gt; stack2=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//辅助栈，栈顶保存当前最小元素</span></div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">        stack1.push(node);</div><div class="line">        <span class="keyword">if</span>(!stack2.isEmpty())&#123;        	</div><div class="line">        	stack2.push((min()&lt;=node?min():node));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">        	stack2.push(node);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack1.pop();</div><div class="line">        stack2.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack1.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack2.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>附：<a href="https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&amp;tqId=11173&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking" target="_blank" rel="external">练习链接</a></p>
+<h4 id="拓展应用"><a href="#拓展应用" class="headerlink" title="拓展应用"></a>拓展应用</h4><p>股票的最大利润<br>附：<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/#/description" target="_blank" rel="external">练习链接</a><br>一种解法是，先用一个能快速获取最大值能力的栈倒着获取一遍所有的当前元素的最大元素，然后顺序遍历，不断的加入元素到一个TreeSet并从栈中弹出元素，这样一来，set里保留的就是前面部分的最小值，而stack保留剩余部分的最大值，所以，两相作差，我们可以从中取出最大的差值即最大利润，当然针对这个问题这个方法并不好，时间上对于大型数组会超时，而且还用了额外空间；比较好的方法应该使用动态规划</p>
+<ul>
+<li><p>使用特殊栈与TreeSet的解法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Stack;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="comment">/**剑指offer第二版面试题63：股票的最大利润*/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxStock</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span>[] prices=&#123;<span class="number">7</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">4</span>&#125;;</div><div class="line">		System.out.println(maxProfit(prices));</div><div class="line">		<span class="keyword">int</span>[] prices2=&#123;<span class="number">9</span>,<span class="number">11</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">14</span>&#125;;</div><div class="line">		System.out.println(maxProfit(prices2));</div><div class="line">		<span class="keyword">int</span>[] prices3=&#123;<span class="number">7</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>&#125;;</div><div class="line">		System.out.println(maxProfit(prices3));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//基本思路：用两个特殊的数据结构，先用一个能快速得到最大值的栈逆序遍历数据得到各序列当前最大值，然后逐个遍历数组，</span></div><div class="line">	<span class="comment">//左侧添加到一个TreeSet中保留当前最小值，右侧则不停的出栈，表示剩余的最大值，两项做差表示当前的利润，用一个max变量比较保存最大利润</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(prices==<span class="keyword">null</span> || prices.length==<span class="number">0</span>)&#123;</div><div class="line">    		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="comment">//use stack with max to reverse collect the current max prices </span></div><div class="line">        MaxStack stack=<span class="keyword">new</span> MaxStack();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=prices.length-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)&#123;</div><div class="line">        	stack.push(prices[i]);</div><div class="line">        &#125;</div><div class="line">        TreeSet&lt;Integer&gt; set=<span class="keyword">new</span> TreeSet&lt;&gt;();</div><div class="line">        <span class="keyword">int</span> maxProfit=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;prices.length-<span class="number">1</span>;i++)&#123;</div><div class="line">        	set.add(prices[i]);</div><div class="line">        	<span class="keyword">int</span> maxLeft=stack.max();</div><div class="line">        	stack.pop();</div><div class="line">        	<span class="keyword">int</span> diff=maxLeft-set.first();</div><div class="line">        	maxProfit=maxProfit&gt;diff?maxProfit:diff;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> maxProfit;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxStack</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; stack1=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//实现栈的常规功能</span></div><div class="line">	Stack&lt;Integer&gt; stack2=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//辅助栈，栈顶保存当前最小元素</span></div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">        stack1.push(node);</div><div class="line">        <span class="keyword">if</span>(!stack2.isEmpty())&#123;        	</div><div class="line">        	stack2.push((max()&gt;=node?max():node));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">        	stack2.push(node);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack1.pop();</div><div class="line">        stack2.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack1.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack2.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用动态规划的解法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(prices.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> soFarMin=prices[<span class="number">0</span>];</div><div class="line">	<span class="keyword">int</span> maxDiff=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;prices.length;i++)&#123;</div><div class="line">		<span class="keyword">if</span>(prices[i]&gt;soFarMin)&#123;</div><div class="line">			maxDiff=maxDiff&gt;(prices[i]-soFarMin)?maxDiff:(prices[i]-soFarMin);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			soFarMin=prices[i];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> maxDiff;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="特殊的队列"><a href="#特殊的队列" class="headerlink" title="特殊的队列"></a>特殊的队列</h2>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Note </tag>
+            
+            <tag> algorithm </tag>
+            
+            <tag> 校招 </tag>
+            
+            <tag> 面试 </tag>
+            
+            <tag> Coding </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[方差、偏差、噪声和期望泛化误差小记]]></title>
       <url>/2017/07/20/bias-variance/</url>
-      <content type="html"><![CDATA[<p>一般我们希望最小化的模型的期望泛化误差可以分解为偏差、方差、噪声的加和</p>
+      <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="概念辨析"><a href="#概念辨析" class="headerlink" title="概念辨析"></a>概念辨析</h2><p>一般我们希望最小化的模型的期望泛化误差可以分解为偏差、方差、噪声的加和，比较宽泛的表示为$$期望泛化误差=偏差+方差+噪声$$，引用《数据挖掘导论》上的一幅比较形象的类比为迫击炮的图来看看<br><a id="more"></a><br><img src="/materials/img/bias_variance/gunpowder.png" alt="gunpowder"></p>
 <table>
 <thead>
 <tr>
 <th>名词</th>
 <th>定义</th>
 <th>理解</th>
+<th>类比</th>
 </tr>
 </thead>
 <tbody>
@@ -19,27 +59,34 @@
 <td>偏差</td>
 <td>算法的期望预测与真实结果的偏离程度</td>
 <td>学习算法本身的拟合能力</td>
+<td>炮弹落地点的平均位置距离到目标点的距离，受到迫击炮的角度影响</td>
 </tr>
 <tr>
 <td>方差</td>
 <td>同样大小的训练集的变动所导致的学习性能的变化</td>
 <td>数据扰动所造成的影响</td>
+<td>任意一次炮击落地点与炮弹落地点的平均位置之间的差距，受到每次对迫击炮的施加的力度影响</td>
 </tr>
 <tr>
 <td>噪声</td>
 <td>（给定）样本数据的标记与真实结果的差别（自身的错误）</td>
 <td>学习问题本身的难度（期望泛化误差的下界）</td>
+<td>目标本身的不稳定性，比如在一定范围内活动的目标</td>
 </tr>
 </tbody>
 </table>
+<p>再附一张经典的打靶图<br><img src="/materials/img/bias_variance/bias-and-variance.jpg" alt="bias-and-variance"></p>
 <blockquote>
 <p>一般而言，噪声不可避免，属于数据集以及所需解决问题本身的限制；所以我们只能从偏差和方差的角度来尽可能的减小期望泛化误差的值，而偏差和方差本身存在冲突，表现为：给定一个学习任务，假定我们能控制学习算法的训练程度，则在训练不足时，学习器的拟和能力不强，<strong>训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率</strong>；而随着训练程度的加深，学习器的拟合能力也逐渐加强，训练数据发生的扰动渐渐能被学习器学到，方差逐渐主导了泛化错误率，在训练程度充足后，学习器的拟合能力已经非常强了，<strong>训练数据发生的轻微扰动都会导致学习器发生显著变化，若训练数据自身的、非全局的特性被学习器学到，则将发生过拟合</strong></p>
 </blockquote>
-<p>对此理解bagging、boosting;对于bagging而言，通过不同训练子集来训练基分类器，这样首先就有较大的数据扰动，然后由于针对每一个基分类器都是“尽力地”去拟合各子训练集的（比如随机森林不剪枝生成完整的决策树的做法），所以对每一个子训练集而言，对应学得的基分类器拟合程度相当高，甚至可以认为对子训练集都是过拟合了的，所以针对bagging而言它的起点就是一个偏差小、方差大的集成，而他接下来的目的就是为了降低方差，减小由数据扰动带来的影响；而反观boosting，他的每一个基分类器是比较简单的弱分类器，而数据集其实一直都是整个样本全集，只是每一轮迭代修改了部分样本的权重（使整体的样本分布变化），所以初始的基分类器的拟合效果自然不好，也就是起始的时候偏差大、方差相对小，而接下来每一个学习器都是针对前一个学习器的错误进行修正，也就是修正预测结果与真实结果的偏离，所以目的是在减小偏差；</p>
+<h2 id="训练过程的方差-偏差矛盾"><a href="#训练过程的方差-偏差矛盾" class="headerlink" title="训练过程的方差-偏差矛盾"></a>训练过程的方差-偏差矛盾</h2><p><img src="/materials/img/bias_variance/curve.png" alt="curve"><br>对此理解bagging、boosting;对于bagging而言，通过不同训练子集来训练基分类器，这样首先就有较大的数据扰动，然后由于针对每一个基分类器都是“尽力地”去拟合各子训练集的（比如随机森林不剪枝生成完整的决策树的做法），所以对每一个子训练集而言，对应学得的基分类器拟合程度相当高，甚至可以认为对子训练集都是过拟合了的，所以针对bagging而言它的起点就是一个偏差小、方差大的集成，而他接下来的目的就是为了降低方差，减小由数据扰动带来的影响；而反观boosting，他的每一个基分类器是比较简单的弱分类器，而数据集其实一直都是整个样本全集，只是每一轮迭代修改了部分样本的权重（使整体的样本分布变化），所以初始的基分类器的拟合效果自然不好，也就是起始的时候偏差大、方差相对小，而接下来每一个学习器都是针对前一个学习器的错误进行修正，也就是修正预测结果与真实结果的偏离，所以目的是在减小偏差；</p>
+<h2 id="交叉验证与偏差、方差"><a href="#交叉验证与偏差、方差" class="headerlink" title="交叉验证与偏差、方差"></a>交叉验证与偏差、方差</h2><p>对应到交叉验证上来分析的话，首先我们知道每组用于训练的样本大小为$N\frac{k-1}{k}$,而对应的每组测试集大小为$\frac{N}{k}$如果我们选的k值比较小，比如极端情况下令$k=2$，此时共进行两次测试，每次都是取一半样本进行训练模型，一半样本用来测试，这样一来的话可以看到用于训练的样本数相对就比较少了，可能造成的结果是模型并不能学到所有样本的真实规律，也就是产生了欠拟和的问题，此时偏差应该主导了主要的期望泛化误差；另一面假设另一个极端我们令$k=N$，此时每一次验证的训练样本数为$\frac{N-1}{N}$，而测试集大小为$\frac{1}{N}$,此时用来训练的样本是足够了，而且基本接近于用所有样本来训练，所以模型的拟合效果应该是过犹不及的，所以此时偏差应该是比较小的，但是可能每一组训练出来的模型反而学到了样本中的一些噪声数据，也就是过拟合了该组样本，而测试集却又太少，所以测试集上的结果可能不够稳定准确，因此方差就比较大了；但是回过头来看我觉得cv里的偏差、方差和k值的选择似乎不能单纯的说大、小导致两者的就绝对的好或者差，譬如知乎那里<a href="https://zhihu.com/question/27068705/answer/99541217" target="_blank" rel="external">大象的解答</a>首先把问题分开来还讲的挺好的，包括cv里的那个式子，但是在cv部分的偏差和方差我感觉还是有点疑惑</p>
 <p>参考</p>
 <ul>
-<li>周志华《机器学习》2.5</li>
+<li>周志华《机器学习》2.2以及2.5</li>
 <li>《数据挖掘导论》5.6.3</li>
+<li><a href="https://zhihu.com/question/27068705/answer/99541217" target="_blank" rel="external">知乎问答</a></li>
+<li>图片来自上述图书或者网络</li>
 </ul>
 ]]></content>
       
@@ -73,9 +120,9 @@
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> SVM </tag>
             
@@ -174,9 +221,9 @@
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> 最优化问题 </tag>
             
@@ -716,9 +763,9 @@
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> LR </tag>
             
@@ -1218,11 +1265,11 @@
             
             <tag> ML </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
         </tags>
         
@@ -2898,11 +2945,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
         </tags>
         
@@ -2976,9 +3023,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> k-NN </tag>
             
@@ -3319,9 +3366,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> k-NN </tag>
             
@@ -3451,9 +3498,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
             <tag> Perceptron </tag>
             
@@ -3657,9 +3704,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> 统计学习方法 </tag>
-            
             <tag> Note </tag>
+            
+            <tag> 统计学习方法 </tag>
             
         </tags>
         

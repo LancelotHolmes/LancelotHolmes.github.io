@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
-    <lastmod>2017-07-20T13:54:03.506Z</lastmod>
+    <lastmod>2017-07-23T03:18:42.504Z</lastmod>
     <data>
         <display>
         <title>方差、偏差、噪声和期望泛化误差小记</title>
@@ -18,6 +18,54 @@
         <tag>方差</tag>
          
         <tag>偏差</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/06/knn/</loc>
+    <lastmod>2017-07-23T01:10:31.434Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(三) —— K近邻</title>
+        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
+    <lastmod>2017-07-22T08:42:54.638Z</lastmod>
+    <data>
+        <display>
+        <title>栈与队列小记</title>
+        <pubTime>2017-07-22T07:39:22.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
          
          
            
@@ -120,11 +168,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -143,11 +191,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -254,9 +302,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>SVM</tag>
          
@@ -277,9 +325,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>Perceptron</tag>
          
@@ -300,9 +348,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -323,9 +371,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
          
@@ -346,9 +394,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            
@@ -456,32 +504,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
          
-        <tag>k-NN</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    <lastmod>2017-06-08T08:32:56.996Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(三) —— K近邻</title>
-        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
         <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
