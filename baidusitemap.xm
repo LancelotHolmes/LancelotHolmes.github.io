@@ -4,6 +4,77 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-07-24T10:55:47.024Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
+    <lastmod>2017-07-24T05:43:25.694Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(二) —— 感知机</title>
+        <pubTime>2017-06-03T08:53:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Perceptron</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
+    <lastmod>2017-07-23T03:23:25.803Z</lastmod>
+    <data>
+        <display>
+        <title>栈与队列小记</title>
+        <pubTime>2017-07-22T07:39:22.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
     <lastmod>2017-07-23T03:18:42.504Z</lastmod>
     <data>
@@ -41,31 +112,6 @@
         <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
-    <lastmod>2017-07-22T08:42:54.638Z</lastmod>
-    <data>
-        <display>
-        <title>栈与队列小记</title>
-        <pubTime>2017-07-22T07:39:22.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
          
          
            
@@ -284,52 +330,6 @@
         <tag>面试</tag>
          
         <tag>Coding</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    <lastmod>2017-07-12T09:14:17.955Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(七) —— 支持向量机</title>
-        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>SVM</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    <lastmod>2017-07-12T06:23:47.860Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(二) —— 感知机</title>
-        <pubTime>2017-06-03T08:53:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Perceptron</tag>
          
          
            

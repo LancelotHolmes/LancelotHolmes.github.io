@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>栈与队列小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="栈与队列的转换用两个栈实现队列的基本操作123456789101112131415161718192021222324252627class MyQueue&amp;#123;	Stack&amp;lt;Integer&amp;gt; in=new Stack&amp;lt;&amp;gt;();	Stack&amp;lt;Integer&amp;gt; out=new Stack&amp;lt;&amp;gt;();		public void enQueue(int">
+  <meta name="description" content="主要记录一些关于栈、队列的变体和特殊操作的算法题">
 <meta name="keywords" content="Note,algorithm,校招,面试,Coding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="栈与队列小记">
 <meta property="og:url" content="http://yoursite.com/2017/07/22/stack-queue/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="栈与队列的转换用两个栈实现队列的基本操作123456789101112131415161718192021222324252627class MyQueue&amp;#123;	Stack&amp;lt;Integer&amp;gt; in=new Stack&amp;lt;&amp;gt;();	Stack&amp;lt;Integer&amp;gt; out=new Stack&amp;lt;&amp;gt;();		public void enQueue(int">
-<meta property="og:updated_time" content="2017-07-22T08:42:54.638Z">
+<meta property="og:description" content="主要记录一些关于栈、队列的变体和特殊操作的算法题">
+<meta property="og:updated_time" content="2017-07-23T03:23:25.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="栈与队列小记">
-<meta name="twitter:description" content="栈与队列的转换用两个栈实现队列的基本操作123456789101112131415161718192021222324252627class MyQueue&amp;#123;	Stack&amp;lt;Integer&amp;gt; in=new Stack&amp;lt;&amp;gt;();	Stack&amp;lt;Integer&amp;gt; out=new Stack&amp;lt;&amp;gt;();		public void enQueue(int">
+<meta name="twitter:description" content="主要记录一些关于栈、队列的变体和特殊操作的算法题">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -234,7 +234,8 @@ ga('send', 'pageview');
            
          
 
-        <h2 id="栈与队列的转换"><a href="#栈与队列的转换" class="headerlink" title="栈与队列的转换"></a>栈与队列的转换</h2><h3 id="用两个栈实现队列的基本操作"><a href="#用两个栈实现队列的基本操作" class="headerlink" title="用两个栈实现队列的基本操作"></a>用两个栈实现队列的基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; in=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	Stack&lt;Integer&gt; out=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> e)</span></span>&#123;</div><div class="line">		in.push(e);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!out.isEmpty())&#123;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(in.isEmpty())&#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"empty"</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span>(!in.isEmpty())&#123;</div><div class="line">				out.push(in.pop());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> in.isEmpty()&amp;&amp;out.isEmpty();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>主要记录一些关于栈、队列的变体和特殊操作的算法题<br><a id="more"></a></p>
+<h2 id="栈与队列的转换"><a href="#栈与队列的转换" class="headerlink" title="栈与队列的转换"></a>栈与队列的转换</h2><h3 id="用两个栈实现队列的基本操作"><a href="#用两个栈实现队列的基本操作" class="headerlink" title="用两个栈实现队列的基本操作"></a>用两个栈实现队列的基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; in=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	Stack&lt;Integer&gt; out=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> e)</span></span>&#123;</div><div class="line">		in.push(e);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!out.isEmpty())&#123;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(in.isEmpty())&#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"empty"</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span>(!in.isEmpty())&#123;</div><div class="line">				out.push(in.pop());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> in.isEmpty()&amp;&amp;out.isEmpty();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>附：<a href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&amp;tqId=11158&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">练习链接</a></p>
 <h2 id="特殊的栈"><a href="#特殊的栈" class="headerlink" title="特殊的栈"></a>特殊的栈</h2><h3 id="O-1-时间取得最大-最小值的栈"><a href="#O-1-时间取得最大-最小值的栈" class="headerlink" title="O(1)时间取得最大/最小值的栈"></a>O(1)时间取得最大/最小值的栈</h3><p>以最小值为例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; stack1=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//实现栈的常规功能</span></div><div class="line">	Stack&lt;Integer&gt; stack2=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//辅助栈，栈顶保存当前最小元素</span></div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">        stack1.push(node);</div><div class="line">        <span class="keyword">if</span>(!stack2.isEmpty())&#123;        	</div><div class="line">        	stack2.push((min()&lt;=node?min():node));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">        	stack2.push(node);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack1.pop();</div><div class="line">        stack2.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack1.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack2.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -509,6 +510,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
@@ -517,11 +522,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,35 +558,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,15 +574,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,6 +610,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -622,10 +627,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">

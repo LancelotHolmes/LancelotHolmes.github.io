@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    
+    <lastmod>2017-07-24T10:55:47.024Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
+    
+    <lastmod>2017-07-24T05:43:25.694Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
+    
+    <lastmod>2017-07-23T03:23:25.803Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
     
     <lastmod>2017-07-23T03:18:42.504Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://yoursite.com/2017/06/06/knn/</loc>
     
     <lastmod>2017-07-23T01:10:31.434Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
-    
-    <lastmod>2017-07-22T08:42:54.638Z</lastmod>
     
   </url>
   
@@ -89,20 +103,6 @@
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
     
     <lastmod>2017-07-14T01:38:56.785Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    
-    <lastmod>2017-07-12T09:14:17.955Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    
-    <lastmod>2017-07-12T06:23:47.860Z</lastmod>
     
   </url>
   
