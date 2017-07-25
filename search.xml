@@ -239,16 +239,59 @@
 </ul>
 <h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><p>类似线性可分支持向量机中做法，引入拉格朗日乘子并构建拉格朗日函数，利用拉格朗日对偶性，问题转化为求解对偶问题<br>$$min_{\alpha}  \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)- \sum_{i=1}^{N}\alpha_i$$<br>$$s.t.  \sum_{i=1}^{N}\alpha_iy_i = 0;　 0 \leq \alpha_i \leq C, i=1,2,…,N$$</p>
 <p>_Notes:可以对比线性可分支持向量机，主要区别在于约束条件$\alpha_i$多了上界$C$_</p>
-<h3 id="合页损失函数"><a href="#合页损失函数" class="headerlink" title="合页损失函数"></a>合页损失函数</h3><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2>]]></content>
+<h3 id="合页损失函数"><a href="#合页损失函数" class="headerlink" title="合页损失函数"></a>合页损失函数</h3><p>软间隔/线性支持向量机的原始问题可以等价于添加了正则化项的合页损失函数，即最小化以下目标函数<br>$$min_{w,b}  \sum_{i=1}^{N}[1-y_i(w\cdot x_i+b)]_++\lambda ||w||^2$$</p>
+<ul>
+<li>第一项为合页损失函数$L(y(w\cdot x+b))=[1-y_i(w\cdot x_i+b)]_+$,一般对于函数$[z]_+$有：<br>$$[z]_+=z  if z&gt;0$$<br>$$[z]_+=0  if z\leq 0$$<br>所以原始表明当样本点$x_i,y_i$被正确分类且<strong>函数间隔(确信度)</strong>$y_i(w\cdot x_i+b)$大于1时损失为0，否则损失是$1-y_i(w\cdot x_i+b)$</li>
+<li>第二项为正则化项，是系数为$\lambda$的$w$的$L_2$范数</li>
+</ul>
+<p><strong>线性支持向量机的原始最优化问题与上述目标函数的最优化问题是等价的</strong></p>
+<p><em>那么为什么要使用合页损失函数？</em><br><img src="/materials/img/svm/loss.png" alt="loss function"><br>如图所示为常用的一些损失函数，可以看到，各个图中损失函数的曲线基本位于0-1损失函数的上方，所以可以作为0-1损失函数的上界；</p>
+<ul>
+<li>由于0-1损失函数不是连续可导的，直接优化由其构成的目标损失函数比较困难，所以对于svm而言，可以认为是在优化由0-1损失函数的上界(合页损失函数)构成的目标函数，又称为<strong>代理损失函数</strong></li>
+<li>合页损失函数对学习有更高的要求</li>
+</ul>
+<h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h3 id="非线性分类问题"><a href="#非线性分类问题" class="headerlink" title="非线性分类问题"></a>非线性分类问题</h3><ul>
+<li>非线性分类问题是指通过利用非线性模型才能很好的进行分类的问题</li>
+<li>用线性分类方法求解非线性分类问题分为两步：<ul>
+<li>首先使用一个变换将原空间的数据映射到新空间；</li>
+<li>在新空间里用现行分类学习方法从训练数据中学习分类模型；核技巧就属于这样的方法<h3 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h3><blockquote>
+<ul>
+<li>核技巧应用到支持向量机，其基本想法是通过一个非线性变换将输入空间（欧式空间或离散集合）对应于一个特征空间（希尔伯特空间），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型(支持向量机)；这样分类问题的学习任务通过在特征空间中求解线性支持向量机就可以完成了</li>
+<li>核技巧：在核函数给定的条件下，可利用解线性分类问题的方法求解非线性分类问题的支持向量机；学习是隐式地在特征空间进行的，不需要显式地定义特征空间和映射函数</li>
+<li>实际应用中，常依赖于领域知识直接选择核函数，其有效性通过实验验证</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><ul>
+<li>正定核<br>通常所述的核函数就是正定核函数，证明一个函数为正定核函数的充要条件为证明该函数对应的Gram矩阵为半正定矩阵</li>
+<li>常用核函数<ul>
+<li>多项式核函数–p次多项式分类器</li>
+<li>高斯核函数–高斯径向基函数分类器</li>
+<li>字符串核函数–定义在离散数据的集合上(字符串集合)–余弦相似度</li>
+</ul>
+</li>
+</ul>
+<h3 id="求解问题"><a href="#求解问题" class="headerlink" title="求解问题"></a>求解问题</h3><ul>
+<li>选取适当的核函数$K(x,z)$和适当的参数$C$,构造并求解最优化问题：<br>$$min_{\alpha}  \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_jK(x_i,x_j)- \sum_{i=1}^{N}\alpha_i$$<br>$$s.t. 　\sum_{i=1}^{N}\alpha_iy_i = 0$$<br>$$0 \leq \alpha_i \leq C 　i=1,2,…,N$$</li>
+<li>构造决策函数<br>$$f(x)=sign(\sum_{i=1}^{N}\alpha_i^*y_iK(x\cdot x_i)+b^*)$$</li>
+</ul>
+<p><em>Notes:可以对比软间隔最大化的对偶学习问题，区别在于用核函数$K(x,z)$代替了原始目标函数中的内积</em></p>
+<h2 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h2><blockquote>
+<p>SMO算法是支持向量机学习的一种快速算法，其特点是不断的将原二次规划问题分解为只有两个变量的二次规划问题，并对子问题进行解析求解，直到所有变量满足KKT条件为止，这样通过启发式的方法得到原二次规划问题的最优解，<strong>因为子问题有解析解，所以每次计算子问题都很快，虽然计算子问题次数很多，但在总体上还是高效的</strong></p>
+</blockquote>
+]]></content>
       
         
         <tags>
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> SVM </tag>
             
@@ -347,9 +390,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> 最优化问题 </tag>
             
@@ -889,9 +932,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> LR </tag>
             
@@ -1391,11 +1434,11 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -3071,11 +3114,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -3149,9 +3192,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3492,9 +3535,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3624,9 +3667,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> Perceptron </tag>
             
@@ -3830,9 +3873,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
         </tags>
         
