@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-23T03:23:25.803Z</updated>
+  <updated>2017-07-25T13:29:49.173Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,82 @@
     <link href="http://yoursite.com/2017/07/22/stack-queue/"/>
     <id>http://yoursite.com/2017/07/22/stack-queue/</id>
     <published>2017-07-22T07:39:22.000Z</published>
-    <updated>2017-07-23T03:23:25.803Z</updated>
+    <updated>2017-07-25T13:29:49.173Z</updated>
     
     <content type="html"><![CDATA[<p>主要记录一些关于栈、队列的变体和特殊操作的算法题<br><a id="more"></a></p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>Queue</p>
+<blockquote>
+<p>队列允许重复元素，因为队列的基本特征是保持元素的插入顺序，重复的元素在队列中被认为是不同的元素，任意两个元素的顺序是不一样的。</p>
+</blockquote>
+<h3 id="Java接口"><a href="#Java接口" class="headerlink" title="Java接口"></a>Java接口</h3><table>
+<thead>
+<tr>
+<th>接口</th>
+<th>包</th>
+<th>实现</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deque</td>
+<td>java.util</td>
+<td>LinkedList</td>
+<td>double ended queue，允许两端增删元素</td>
+</tr>
+<tr>
+<td>BlockingDeque</td>
+<td>java.util.concurrent</td>
+<td>-</td>
+<td>同BlockingQueue</td>
+</tr>
+<tr>
+<td>BlockingQueue</td>
+<td>java.util.concurrent</td>
+<td>-</td>
+<td>BlockingQueue只有在队列不空时才查找元素，只有在队列有空余空间时才插入元素、此外还支持延时插入删除操作</td>
+</tr>
+<tr>
+<td>TransferQueue</td>
+<td>java.util.concurrent</td>
+<td>-</td>
+<td>特殊的BlockingQueue，会等候其他的线程在队列中查询元素</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://www.codejava.net/java-core/collections/java-queue-collection-tutorial-and-examples" target="_blank" rel="external">参考</a></p>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><ul>
+<li>继承了Collection的核心操作比如<code>add(), contains(), remove(), clear(), isEmpty()</code></li>
+<li>对于队列而言，在头部的操作更快比如<code>offer()</code>和<code>remove()</code>而对中间元素的操作就相对较慢比如：<code>contains(e)</code>和<code>remove(e)</code></li>
+<li>单元素操作: add(e),contains(e), iterator(), clear(), isEmpty(), size() 和 toArray().</li>
+<li>批量操作: addAll(), containsAll(), removeAll() 和 retainAll().</li>
+</ul>
+<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
+<li>尾部添加元素</li>
+<li>头部删除元素</li>
+<li>从头部取元素（但不删除）</li>
+</ul>
+<p>按操作失败时输出划分<br><img src="/materials/img/queue_stack/queue_oper.png" alt="queue operation"></p>
+<ul>
+<li>其中插入操作，针对限制容量的一些实现会有所不同，包括ArrayBlockingQueue, LinkedBlockingQueue 和 LinkedBlockingDeque classes</li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
+<li>常规<ul>
+<li>LinkedList:List+Deque，适用于需要快速增删两端的元素，以及通过下标访问元素</li>
+<li>PriorityQueue::通过自然顺序或者根据Comparator的规则对元素排序，适用于需要对元素自然排序以及快速在尾端插入元素或在头部删除元素</li>
+<li>ArrayDeque:Deque的简单实现，当只需要双端队列的特性而不需要列表的特性时</li>
+</ul>
+</li>
+</ul>
+<p><em>Notes:</em><br>对上述实现，如果想使用同步，则使用如下代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List list = Collections.synchronizedList(<span class="keyword">new</span> LinkedList&lt;&gt;());</div></pre></td></tr></table></figure></p>
+<ul>
+<li>多线程<ul>
+<li>ArrayBlockingQueue:用数组实现的blocking queue,容量有限的简单的blocking queue实现</li>
+<li>PriorityBlockingQueue:PriorityQueue+BlockingQueue</li>
+<li>DelayQueue:基于时间调度的blocking queue,需要实现Delayed接口，意味着只有当一个元素的delay到期了才能被从队列头部删除</li>
+</ul>
+</li>
+</ul>
 <h2 id="栈与队列的转换"><a href="#栈与队列的转换" class="headerlink" title="栈与队列的转换"></a>栈与队列的转换</h2><h3 id="用两个栈实现队列的基本操作"><a href="#用两个栈实现队列的基本操作" class="headerlink" title="用两个栈实现队列的基本操作"></a>用两个栈实现队列的基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; in=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	Stack&lt;Integer&gt; out=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> e)</span></span>&#123;</div><div class="line">		in.push(e);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!out.isEmpty())&#123;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(in.isEmpty())&#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"empty"</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span>(!in.isEmpty())&#123;</div><div class="line">				out.push(in.pop());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> in.isEmpty()&amp;&amp;out.isEmpty();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>附：<a href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&amp;tqId=11158&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">练习链接</a></p>
 <h2 id="特殊的栈"><a href="#特殊的栈" class="headerlink" title="特殊的栈"></a>特殊的栈</h2><h3 id="O-1-时间取得最大-最小值的栈"><a href="#O-1-时间取得最大-最小值的栈" class="headerlink" title="O(1)时间取得最大/最小值的栈"></a>O(1)时间取得最大/最小值的栈</h3><p>以最小值为例</p>
@@ -326,9 +399,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="SVM" scheme="http://yoursite.com/tags/SVM/"/>
     
@@ -443,9 +516,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -1031,9 +1104,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1592,11 +1665,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
   </entry>
   
@@ -3316,11 +3389,11 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
   </entry>
   
@@ -3406,9 +3479,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3769,9 +3842,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3911,9 +3984,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
@@ -3924,7 +3997,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/02/Note-StatisticalML/"/>
     <id>http://yoursite.com/2017/06/02/Note-StatisticalML/</id>
     <published>2017-06-02T06:42:52.000Z</published>
-    <updated>2017-07-11T08:26:27.641Z</updated>
+    <updated>2017-07-26T07:54:42.561Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -3982,8 +4055,12 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <ul>
 <li>损失函数（代价函数）：一次预测的好坏的度量，常用的包括0-1损失函数、平方损失函数、绝对损失函数、对数(似然)损失函数</li>
 <li>风险函数（期望损失）：度量平均意义下模型预测的好坏<ul>
-<li>经验风险</li>
-<li>结构风险</li>
+<li>经验风险，用来描述模型与训练数据的契合程度，</li>
+<li>结构风险，用来描述模型的某些性质，表示了我们希望获得具有何种性质的模型（比如复杂度较小的模型）<ul>
+<li>为引入领域知识和用户意图提供了途径</li>
+<li>有助于削减假设空间，从而降低了最小化训练误差的过拟和风险，所以可以被视为<strong>正则化项</strong>，从贝叶斯的角度来看，可认为是提供了模型的<strong>先验概率</strong>，常用的正则化项为$L_p$范数</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -3992,6 +4069,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <ul>
 <li>在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</li>
 <li>最大似然（MLE），最大后验（MAP）都是构造目标函数的方法</li>
+<li>在软间隔SVM中，表示最大间隔的部分对应结构风险，而罚项、松弛变量的部分则对应经验风险，参见周志华《机器学习》6.4</li>
 </ul>
 <h3 id="算法（求解-amp-优化）"><a href="#算法（求解-amp-优化）" class="headerlink" title="算法（求解&amp;优化）"></a>算法（求解&amp;优化）</h3><p>模型学习的算法，即学习模型的具体计算方法</p>
 <ul>
@@ -4129,9 +4207,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   

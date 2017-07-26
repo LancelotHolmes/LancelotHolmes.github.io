@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    <lastmod>2017-07-26T07:54:42.561Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(一)</title>
+        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
+    <lastmod>2017-07-25T13:29:49.173Z</lastmod>
+    <data>
+        <display>
+        <title>栈与队列小记</title>
+        <pubTime>2017-07-22T07:39:22.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/12/svm/</loc>
     <lastmod>2017-07-25T07:57:54.364Z</lastmod>
     <data>
@@ -13,9 +59,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>SVM</tag>
          
@@ -36,36 +82,11 @@
         
         <tag>ML</tag>
          
+        <tag>Note</tag>
+         
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
-         
         <tag>Perceptron</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
-    <lastmod>2017-07-23T03:23:25.803Z</lastmod>
-    <data>
-        <display>
-        <title>栈与队列小记</title>
-        <pubTime>2017-07-22T07:39:22.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
          
          
            
@@ -107,9 +128,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -214,11 +235,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -237,11 +258,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
          
            
@@ -348,9 +369,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -371,32 +392,11 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-07-11T08:26:27.641Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(一)</title>
-        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            
@@ -504,9 +504,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
