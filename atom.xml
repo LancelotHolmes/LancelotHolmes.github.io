@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T13:29:49.173Z</updated>
+  <updated>2017-07-27T04:41:13.031Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>懒死骆驼的代码小黑本</title>
+    <link href="http://yoursite.com/2017/07/27/tricks/"/>
+    <id>http://yoursite.com/2017/07/27/tricks/</id>
+    <published>2017-07-27T03:24:59.000Z</published>
+    <updated>2017-07-27T04:41:13.031Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="浮点树类型的精度问题"><a href="#浮点树类型的精度问题" class="headerlink" title="浮点树类型的精度问题"></a>浮点树类型的精度问题</h2><ul>
+<li>精度问题及控制</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;<span class="comment">//坏代码  </span></div><div class="line"><span class="comment">// 方法一  </span></div><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;  </div><div class="line">NumberFormat nf = NumberFormat.getInstance();<span class="comment">// 根据自己的需求格式化  </span></div><div class="line">String resultStr = nf.format(result);  </div><div class="line"><span class="comment">//方法二</span></div><div class="line"><span class="keyword">int</span> resultInt = <span class="number">10</span> - <span class="number">9</span>;  </div><div class="line"><span class="keyword">double</span> result = (<span class="keyword">double</span>) resultInt / <span class="number">100</span>;<span class="comment">//最终时候自己控制小数点 </span></div><div class="line"><span class="comment">//方法三</span></div><div class="line">String result = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">"0.9"</span>)) .toString();</div></pre></td></tr></table></figure>
+<ul>
+<li>浮点类型的比较，不可直接用<code>==</code>来判断</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> d1 = <span class="number">0.1</span>, d2 = <span class="number">0.1</span>;  </div><div class="line"><span class="keyword">if</span> (d1 == d2) &#123;&#125;<span class="comment">// 坏代码  </span></div><div class="line"><span class="keyword">if</span> (Double.compare(d1, d2) == <span class="number">0</span>) &#123;&#125;<span class="comment">// 好代码  </span></div><div class="line"><span class="keyword">if</span> (Double.doubleToLongBits(d1) == Double.doubleToLongBits(d2)) &#123;&#125;<span class="comment">// 好代码  </span></div><div class="line"><span class="keyword">if</span> (Double.valueOf(d1).equals(d2)) &#123;&#125;<span class="comment">// 好代码，1.5以上</span></div></pre></td></tr></table></figure>
+<p>此外，如果是考虑在一定精度范围内，一般也可以判断两数差值绝对值是否在某一范围内</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">bool <span class="title">Equal</span><span class="params">(<span class="keyword">double</span> num1,<span class="keyword">double</span> num2)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>((num1-num2&gt;-<span class="number">0.0000001</span>) &amp;&amp; (num1-num2&lt;<span class="number">0.0000001</span>))&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>Notes:普通的计算最好使用BigDecimal类，这个类可以非常精确的计算出结果，而且你可以完全控制精度，不用额外其他操作，而且与基本类型转换都非常方便。</em></p>
+<p>参考</p>
+<ul>
+<li><a href="http://161650095-163-com.iteye.com/blog/1521130" target="_blank" rel="external">double类型的精度问题</a></li>
+<li>《剑指offer》P151</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;浮点树类型的精度问题&quot;&gt;&lt;a href=&quot;#浮点树类型的精度问题&quot; class=&quot;headerlink&quot; title=&quot;浮点树类型的精度问题&quot;&gt;&lt;/a&gt;浮点树类型的精度问题&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;精度问题及控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>栈与队列小记</title>
@@ -399,9 +436,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="SVM" scheme="http://yoursite.com/tags/SVM/"/>
     
@@ -516,9 +553,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -1028,7 +1065,7 @@
     <link href="http://yoursite.com/2017/07/08/lr/"/>
     <id>http://yoursite.com/2017/07/08/lr/</id>
     <published>2017-07-08T05:49:08.000Z</published>
-    <updated>2017-07-11T08:30:40.990Z</updated>
+    <updated>2017-07-27T08:22:33.163Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1063,7 +1100,7 @@
 <ul>
 <li>对于二分类任务：其输出标记$y \in \lbrace 0,1 \rbrace$,而线性回归模型产生的预测值$f(x)=w\cdot x+b$是实值</li>
 <li>而根据广义线性模型的思想，可以通过寻找一个联系函数来将分类任务的真实标记与线性回归模型的预测值联系起来</li>
-<li>最直接的想法是使用单位阶跃函数，即<br><img src="/materials/img/LR/jieyue.png" alt="jieyue"><br>即若预测值$z$大于0就判为正例，小于0则判为反例</li>
+<li>最直接的想法是使用单位阶跃函数，即<br><img src="/materials/img/LR/jieyue.png" alt="step function"><br>即若预测值$z$大于0就判为正例，小于0则判为反例<br><img src="/materials/img/LR/step_curve.png" alt="step curve"></li>
 <li>但是单位阶跃函数不连续，所以我们希望找到一个替代函数来在一定程度上近似单位阶跃函数，并希望该函数单调可微，于是就引入了对数几率函数$$y=\frac{1}{1+e^{-z}}$$</li>
 <li>将对数几率函数作为$g^-(\cdot)$带入广义线性模型则有$$y=\frac{1}{1+e^{-(w \cdot x+b)}}$$</li>
 <li>其变形形式为$$ln\frac{y}{1-y}=w\cdot x+b$$,若将$y$视作样本$x$作为正例的可能性，则$1-y$是其作为反例的可能性，两者的比值$\frac{y}{1-y}$称为几率（联系角度二），反映了$x$作为正例的<strong>相对可能性</strong></li>
@@ -1081,13 +1118,15 @@
 <ul>
 <li>答案是模型的损失函数由各自的响应变量$y$的概率分布决定，比如对于线性回归模型，针对的问题是预测某个结果，属于回归问题，其输出是连续值，所以我们对于该问题假设$y$服从正态分布；相对的，LR模型一般用来解决二分类问题，所以其输出是0/1，故而我们假设其输出服从伯努利分布；而进一步地，两者的损失函数都是通过极大似然估计推导的来的，所以模型的损失函数并非随意确定。</li>
 <li>另外，对于线性回归问题，它的模型是 $p(y|x) = N(w^Tx, \sigma^2)$,我们采用最大似然来构造一个目标函数，最后用梯度下降来找到目标函数的最值。当然，对于这个问题，我们也可以不用梯度下降，直接用向量的投影来直接算出最优解的表达式,即“最小二乘法”；而LR模型是$p(y|x)=Ber(y|sigmoid(w^Tx))$，Ber是伯努利分布，sigmoid是logistic sigmoid函数，我们采用最大似然来构造一个目标函数，与之前的问题不同，这个目标函数比较复杂，是无法像线性回归那样一步直接算出最终的解的，但是，这个目标函数是凸的，所以我们依然能用梯度下降或者牛顿法来来找到它的最优解。</li>
+<li>在LR中，<a href="https://tech.meituan.com/intro_to_logistic_regression.html" target="_blank" rel="external">最大似然函数与最小化对数损失函数等价</a></li>
 </ul>
 <h2 id="多项LR模型——多分类"><a href="#多项LR模型——多分类" class="headerlink" title="多项LR模型——多分类"></a>多项LR模型——多分类</h2><p>假设离散型随机变量$Y$的取值集合为$\lbrace 1,2,…,K \rbrace$，则多项LR模型是<br>$$P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>$$P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>注意$k=1,2,…,K-1$,其中$x\in R^{n+1}, w_k \in R^{n+1}$</p>
-<p>参考资料</p>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a><em>TODO:</em></h2><h2 id="LR与朴素贝叶斯"><a href="#LR与朴素贝叶斯" class="headerlink" title="LR与朴素贝叶斯"></a>LR与朴素贝叶斯</h2><h2 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h2><p>参考资料</p>
 <ul>
 <li>李航《统计学习方法》</li>
 <li>周志华《机器学习》</li>
 <li><a href="https://www.zhihu.com/question/24900876" target="_blank" rel="external">知乎-最小二乘、极大似然、梯度下降有何区别？</a></li>
+<li><a href="https://tech.meituan.com/intro_to_logistic_regression.html" target="_blank" rel="external">美团点评技术团队</a></li>
 </ul>
 ]]></content>
     
@@ -1104,9 +1143,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1665,9 +1704,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
@@ -3389,9 +3428,9 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
@@ -3479,9 +3518,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3842,9 +3881,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3984,11 +4023,11 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -3997,7 +4036,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/02/Note-StatisticalML/"/>
     <id>http://yoursite.com/2017/06/02/Note-StatisticalML/</id>
     <published>2017-06-02T06:42:52.000Z</published>
-    <updated>2017-07-26T07:54:42.561Z</updated>
+    <updated>2017-07-27T06:32:20.009Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -4064,7 +4103,8 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 </ul>
 </li>
 </ul>
-<p><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></p>
+<p><del><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></del></p>
+<p><em>《统计学习方法》与《机器学习》上对于结构风险似乎有点区别</em></p>
 <p><em>Note:</em></p>
 <ul>
 <li>在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</li>
@@ -4207,9 +4247,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   

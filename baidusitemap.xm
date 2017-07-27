@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    <lastmod>2017-07-27T08:22:33.163Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记（六）——Logistic Regression</title>
+        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-07-26T07:54:42.561Z</lastmod>
+    <lastmod>2017-07-27T06:32:20.009Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(一)</title>
@@ -13,10 +36,25 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
          
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
+    <lastmod>2017-07-27T04:41:13.031Z</lastmod>
+    <data>
+        <display>
+        <title>懒死骆驼的代码小黑本</title>
+        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
+        
          
            
         </display>
@@ -59,9 +97,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>SVM</tag>
          
@@ -82,11 +120,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>Perceptron</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Perceptron</tag>
+        <tag>Note</tag>
          
          
            
@@ -128,9 +166,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -235,9 +273,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>decision tree</tag>
          
@@ -258,9 +296,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>decision tree</tag>
          
@@ -369,34 +407,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>最优化问题</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-07-11T08:30:40.990Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记（六）——Logistic Regression</title>
-        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>LR</tag>
          
          
            
@@ -504,9 +519,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          

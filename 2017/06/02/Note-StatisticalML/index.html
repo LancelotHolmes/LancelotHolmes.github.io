@@ -9,7 +9,7 @@
   <title>统计学习方法笔记(一) | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
-<meta name="keywords" content="ML,Note,统计学习方法">
+<meta name="keywords" content="ML,统计学习方法,Note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(一)">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/Note-StatisticalML/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
 <meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/overview.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/loss.jpg">
-<meta property="og:updated_time" content="2017-07-26T07:54:42.561Z">
+<meta property="og:updated_time" content="2017-07-27T06:32:20.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(一)">
 <meta name="twitter:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
@@ -302,7 +302,8 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<p><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></p>
+<p><del><strong>将监督学习的问题转化为经验风险或结构风险函数的最优化问题（结构风险最小的模型即最优模型）</strong></del></p>
+<p><em>《统计学习方法》与《机器学习》上对于结构风险似乎有点区别</em></p>
 <p><em>Note:</em></p>
 <ul>
 <li>在模型选择中，理论上应该使用<code>期望风险</code>函数作为标准，但是由于输入，输出的基本假设$P(X, Y)$联合分布未知（若已知则可直接求解P(Y|X)，不用学习），所以试图使用<code>经验风险</code>（平均损失）来替代，但又由于现实中限于样本容量不会很大，所以要对<code>经验风险</code>进行矫正，于是有了<code>结构风险</code>，在<code>经验风险</code>的基础上添加<code>正则化项</code>来防止过拟合。</li>
@@ -445,11 +446,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		
 		</ul>
@@ -690,7 +691,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,7 +699,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,15 +723,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -743,6 +744,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -759,14 +768,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,6 +799,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -807,10 +812,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">

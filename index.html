@@ -194,6 +194,77 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tricks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/27/tricks/">懒死骆驼的代码小黑本</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/27/tricks/" class="archive-article-date">
+  	<time datetime="2017-07-27T03:24:59.000Z" itemprop="datePublished">2017-07-27</time>
+  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
+      view <span id="busuanzi_value_page_pv"></span> times
+    </span>
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+
+        <h2 id="浮点树类型的精度问题"><a href="#浮点树类型的精度问题" class="headerlink" title="浮点树类型的精度问题"></a>浮点树类型的精度问题</h2><ul>
+<li>精度问题及控制</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;<span class="comment">//坏代码  </span></div><div class="line"><span class="comment">// 方法一  </span></div><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;  </div><div class="line">NumberFormat nf = NumberFormat.getInstance();<span class="comment">// 根据自己的需求格式化  </span></div><div class="line">String resultStr = nf.format(result);  </div><div class="line"><span class="comment">//方法二</span></div><div class="line"><span class="keyword">int</span> resultInt = <span class="number">10</span> - <span class="number">9</span>;  </div><div class="line"><span class="keyword">double</span> result = (<span class="keyword">double</span>) resultInt / <span class="number">100</span>;<span class="comment">//最终时候自己控制小数点 </span></div><div class="line"><span class="comment">//方法三</span></div><div class="line">String result = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">"0.9"</span>)) .toString();</div></pre></td></tr></table></figure>
+<ul>
+<li>浮点类型的比较，不可直接用<code>==</code>来判断</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> d1 = <span class="number">0.1</span>, d2 = <span class="number">0.1</span>;  </div><div class="line"><span class="keyword">if</span> (d1 == d2) &#123;&#125;<span class="comment">// 坏代码  </span></div><div class="line"><span class="keyword">if</span> (Double.compare(d1, d2) == <span class="number">0</span>) &#123;&#125;<span class="comment">// 好代码  </span></div><div class="line"><span class="keyword">if</span> (Double.doubleToLongBits(d1) == Double.doubleToLongBits(d2)) &#123;&#125;<span class="comment">// 好代码  </span></div><div class="line"><span class="keyword">if</span> (Double.valueOf(d1).equals(d2)) &#123;&#125;<span class="comment">// 好代码，1.5以上</span></div></pre></td></tr></table></figure>
+<p>此外，如果是考虑在一定精度范围内，一般也可以判断两数差值绝对值是否在某一范围内</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">bool <span class="title">Equal</span><span class="params">(<span class="keyword">double</span> num1,<span class="keyword">double</span> num2)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>((num1-num2&gt;-<span class="number">0.0000001</span>) &amp;&amp; (num1-num2&lt;<span class="number">0.0000001</span>))&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>Notes:普通的计算最好使用BigDecimal类，这个类可以非常精确的计算出结果，而且你可以完全控制精度，不用额外其他操作，而且与基本类型转换都非常方便。</em></p>
+<p>参考</p>
+<ul>
+<li><a href="http://161650095-163-com.iteye.com/blog/1521130" target="_blank" rel="external">double类型的精度问题</a></li>
+<li>《剑指offer》P151</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/27/tricks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-stack-queue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -403,11 +474,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -491,11 +562,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -510,92 +581,6 @@ ga('send', 'pageview');
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/07/11/optimization/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-linear-model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/09/linear-model/">机器学习笔记之线性模型</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/09/linear-model/" class="archive-article-date">
-  	<time datetime="2017-07-09T07:09:53.000Z" itemprop="datePublished">2017-07-09</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-<h2 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h2><blockquote>
-<p>线性模型试图学得一个通过属性的线性组合来进行预测的函数，即$$f(x)=w_1x_1+w_2x_2+…w_dx_d+b$$</p>
-</blockquote>
-<ul>
-<li>线性模型形式简单、易于建模，具有很好的可解释性</li>
-<li>很多功能强大的非线性模型可在线性模型的基础上通过引入层级结构或高维映射而得
-        
-          <a class="article-more-a" href="/2017/07/09/linear-model/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">LR</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/09/linear-model/">展开全文 >></a>
         </p>
       
 
@@ -739,7 +724,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -747,7 +732,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -771,15 +756,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -792,6 +777,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -808,14 +801,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -847,6 +832,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -856,10 +845,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
