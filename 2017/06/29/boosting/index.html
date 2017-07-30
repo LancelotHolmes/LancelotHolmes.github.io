@@ -9,7 +9,7 @@
   <title>统计学习方法笔记(八) —— 提升方法 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
-<meta name="keywords" content="ML,decision tree,统计学习方法,Note">
+<meta name="keywords" content="ML,统计学习方法,Note,decision tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(八) —— 提升方法">
 <meta property="og:url" content="http://yoursite.com/2017/06/29/boosting/index.html">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg1.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg2.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg3.jpg">
-<meta property="og:updated_time" content="2017-07-30T06:17:30.549Z">
+<meta property="og:updated_time" content="2017-07-30T09:01:37.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(八) —— 提升方法">
 <meta name="twitter:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
@@ -287,12 +287,12 @@ ga('send', 'pageview');
 <li>在每一轮训练中，如何改变训练数据的权值/概率分布？</li>
 <li>在得到一系列弱分类器后，如何将弱分类器组合成一个强分类器？</li>
 </ul>
-<h2 id="AdaBoost——Adaptive-Boosting"><a href="#AdaBoost——Adaptive-Boosting" class="headerlink" title="AdaBoost——Adaptive Boosting"></a>AdaBoost——Adaptive Boosting</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>针对提升方法要解决的两个问题，AdaBoost的做法是这样的（两个‘权值’）</p>
+<h2 id="AdaBoost——Adaptive-Boosting"><a href="#AdaBoost——Adaptive-Boosting" class="headerlink" title="AdaBoost——Adaptive Boosting"></a>AdaBoost——Adaptive Boosting</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>针对提升方法要解决的两个问题，AdaBoost的做法是这样的:（两个‘权值’）</p>
 <ul>
 <li>提高那些被前一轮弱分类器错误分类样本的权值，而降低那些被正确分类样本的权值。（让被错误分类的样本得到当前弱分类器更多的‘关注’）</li>
 <li>AdaBoost采取加权多数表决的方法来组合弱分类器：加大分类误差率小的弱分类器的权值</li>
 </ul>
-<p><em>Notes:由上述基本思路可以发现，对于AdaBoost算法而言，其中最核心的部分是<strong>两个权值</strong>的求解，一个是每一轮用于训练基分类器的训练数据的样本的权值分布，而另一个则是最终组合各个基分类器时代表各个基分类器的‘话语权’的分类器的权重，而这两者都跟每一轮的基分类器的分类错误、训练误差相关，样本的权值分布根据前一轮基分类器的错误来进行调整，是一种‘弥补前人错误’的体现，而基分类器的权重则是受到每一轮训练的基分类器在该轮的分类误差影响，分类误差越小的基分类器自然可信度越高，所以最终我们组合基分类器时给它赋予的‘话语权’越大。</em></p>
+<p><em>Notes:由上述基本思路可以发现，对于AdaBoost算法而言，其中最核心的部分是<strong>两个权值</strong>的求解，一个是每一轮用于训练基分类器的训练数据的样本的权值分布，而另一个则是最终组合各个基分类器时代表各个基分类器的‘话语权’的分类器的权重，而这两者都跟每一轮的基分类器的分类错误、训练误差相关；样本的权值分布根据前一轮基分类器的错误来进行调整，是一种‘弥补前人错误’的体现，而基分类器的权重则是受到每一轮训练的基分类器在该轮的分类误差影响，分类误差越小的基分类器自然可信度越高，所以最终我们组合基分类器时给它赋予的‘话语权’越大。</em></p>
 <h3 id="算法-AdaBoost"><a href="#算法-AdaBoost" class="headerlink" title="算法-AdaBoost"></a>算法-AdaBoost</h3><blockquote>
 <ul>
 <li>输入：<ul>
@@ -301,16 +301,16 @@ ga('send', 'pageview');
 </ul>
 </li>
 <li>输出：最终分类器$G(x)$</li>
-<li>(1) 初始化训练样本的权值分布为<br>$$D_1=(w_{11}, w_{12},…,w_{1N}), w_{1i}=\frac{1}{N}, i=1,2,…,N$$<br>即各个训练样本的权重均等</li>
+<li>(1) 初始化训练样本的权值分布为<br>$$D_1=(w_{11},     w_{12},…,w_{1N}),         w_{1i}=\frac{1}{N}, i=1,2,…,N$$<br>即各个训练样本的权重均等</li>
 <li>(2) 对$m=1,2,…,M,  m$表示训练轮数(亦即基分类器个数，因为每一轮产生一个基分类器)：<ul>
 <li>使用具有权值分布$D_m$的训练数据集学习，得到基本分类器$G_m(x)$</li>
-<li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即分类错误的样本$\times$该样本的权重之和</li>
+<li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即(分类错误的样本$\times$该样本的权重)之和</li>
 <li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导</li>
 <li>更新训练数据集的权值分布<br>$$D_{m+1}=(w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N})$$<br>如果$G_m(x_i)=y_i$那么$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{-\alpha_m}$$否则$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{\alpha_m}$$</li>
 </ul>
 </li>
 </ul>
-<p>如果将权重更新简化表示就是<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>其中$Z_m$是规范化因子，用来使权重分布成为一个概率分布<br>$$Z_m=\sum_{i=1}^Nw_{m,i}exp(-\alpha_my_iG_m(x_i))$$</p>
+<p>如果将权重更新简化表示就是(因为$y_i,G_m(x_i) \in \lbrace -1, +1 \rbrace$,根据其异同可以决定指数部分的符号)<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>其中$Z_m$是规范化因子，用来使权重分布成为一个概率分布(这里就可以看到错分样本的权重被调大)<br>$$Z_m=\sum_{i=1}^Nw_{m,i}exp(-\alpha_my_iG_m(x_i))$$</p>
 <ul>
 <li>(3) 构建基本分类器的线性组合<br>$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$<br>得到最终分类器<br>$$G(x)=sign(f(x))=sign(\sum_{m=1}^M\alpha_mG_m(x))$$</li>
 </ul>
@@ -372,7 +372,7 @@ ga('send', 'pageview');
 <li>(3) 得到加法模型<br>$$f(x)=f_M(x)=\sum_{m=1}^M\beta_mb(x;\gamma_m)$$</li>
 </ul>
 </blockquote>
-<p><em>Notes:由上述算法的第(2)部分可以看到，前向分布算法每次在上一个基函数得到的累加模型基础上通过极小化当前基函数与累加模型之和的值从而得到当前基函数及其参数，然后累加到前面得到的加法模型上，这样一步一步地逼近想要优化的目标函数，最终会得到一个近似的加法模型</em></p>
+<p><em>Notes:由上述算法的第(2)部分可以看到，前向分布算法每次在上一个基函数得到的累加模型基础上通过极小化当前基函数与累加模型之和的损失函数值从而得到当前基函数及其参数，然后累加到前面得到的加法模型上，这样一步一步地逼近想要优化的目标函数，最终会得到一个近似的加法模型</em></p>
 <h4 id="前向分步算法与AdaBoost"><a href="#前向分步算法与AdaBoost" class="headerlink" title="前向分步算法与AdaBoost"></a>前向分步算法与AdaBoost</h4><p><img src="/materials/img/AdaBoost/forward_step_alg1.jpg" alt="forward_step_alg1"><br><img src="/materials/img/AdaBoost/forward_step_alg2.jpg" alt="forward_step_alg2"><br><img src="/materials/img/AdaBoost/forward_step_alg3.jpg" alt="forward_step_alg3"><br>最后，来看一下每一轮样本权值的更新<br>$$f_m(x)=f_{m-1}(x)+\alpha_mG_m(x)$$<br>因为$\overline{w_{mi}}=exp(-y_if_{m-1}(x_i))$，对两边乘上$-y_i$并取指数得到<br>$$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$$<br>对比AdaBoost中的权值更新步骤<br>$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}exp(-\alpha_my_iG_m(x_i))$$<br>仅相差规范化因子，因而等价</p>
 <p><em>Notes:</em></p>
 <ul>
@@ -480,15 +480,15 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
         		</li>
       		
 		</ul>
@@ -721,18 +721,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
@@ -745,11 +733,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,35 +785,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -810,6 +802,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,10 +833,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -849,11 +849,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">

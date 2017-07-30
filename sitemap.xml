@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/30/error/</loc>
+    
+    <lastmod>2017-07-30T13:20:20.172Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    
+    <lastmod>2017-07-30T09:01:37.680Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/12/svm/</loc>
     
     <lastmod>2017-07-30T07:18:24.482Z</lastmod>
@@ -121,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/07/30/error/</loc>
-    
-    <lastmod>2017-07-30T06:19:21.461Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     
     <lastmod>2017-07-30T06:17:58.765Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
     
     <lastmod>2017-07-30T06:17:50.854Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    
-    <lastmod>2017-07-30T06:17:30.549Z</lastmod>
     
   </url>
   

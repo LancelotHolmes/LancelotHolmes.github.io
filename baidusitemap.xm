@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/30/error/</loc>
+    <lastmod>2017-07-30T13:20:20.172Z</lastmod>
+    <data>
+        <display>
+        <title>个人错题难题仓库</title>
+        <pubTime>2017-07-30T01:29:10.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-07-30T09:01:37.680Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>decision tree</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/12/svm/</loc>
     <lastmod>2017-07-30T07:18:24.482Z</lastmod>
     <data>
@@ -61,11 +109,11 @@
         
         <tag>ML</tag>
          
+        <tag>Perceptron</tag>
+         
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
-         
-        <tag>Perceptron</tag>
          
          
            
@@ -389,31 +437,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/30/error/</loc>
-    <lastmod>2017-07-30T06:19:21.461Z</lastmod>
-    <data>
-        <display>
-        <title>个人错题难题仓库</title>
-        <pubTime>2017-07-30T01:29:10.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     <lastmod>2017-07-30T06:17:58.765Z</lastmod>
     <data>
@@ -444,34 +467,11 @@
         
         <tag>ML</tag>
          
-        <tag>decision tree</tag>
-         
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-07-30T06:17:30.549Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
         <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            
