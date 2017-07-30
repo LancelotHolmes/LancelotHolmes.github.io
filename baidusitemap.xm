@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-07-30T07:18:24.482Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
     <lastmod>2017-07-30T06:23:40.045Z</lastmod>
     <data>
@@ -382,29 +405,6 @@
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    <lastmod>2017-07-30T06:18:45.294Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(七) —— 支持向量机</title>
-        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>SVM</tag>
          
          
            
