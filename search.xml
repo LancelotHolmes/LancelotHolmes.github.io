@@ -5,7 +5,9 @@
     <entry>
       <title><![CDATA[个人错题难题仓库]]></title>
       <url>/2017/07/30/error/</url>
-      <content type="html"><![CDATA[<h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
+      <content type="html"><![CDATA[<p><em>记录个人的一些疑难杂症</em></p>
+<a id="more"></a>
+<h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
 <ul>
 <li>排列<br>$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$</li>
 <li>组合<br>$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算阶乘数，即n! = n * (n-1) * ... * 2 * 1 </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt; <span class="number">1</span>) ? n * factorial(n - <span class="number">1</span>) : <span class="number">1</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算排列数，即A(n, m) = n!/(n-m)! </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">arrangement</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) : <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算组合数，即C(n, m) = n!/((n-m)! * m!) </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">combination</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) / factorial(m) : <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -39,6 +41,7 @@
       <title><![CDATA[java_concepts]]></title>
       <url>/2017/07/29/java-concepts/</url>
       <content type="html"><![CDATA[<p><em>记录一些容易出现错误、混淆的点</em></p>
+<a id="more"></a>
 <h2 id="Java函数间的参数传递问题"><a href="#Java函数间的参数传递问题" class="headerlink" title="Java函数间的参数传递问题"></a>Java函数间的参数传递问题</h2><p>踩过的坑<br>剑指offer的一道题</p>
 <blockquote>
 <p>二叉搜索树与双向链表:输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
@@ -81,7 +84,8 @@
     <entry>
       <title><![CDATA[懒死骆驼的代码小黑本]]></title>
       <url>/2017/07/27/tricks/</url>
-      <content type="html"><![CDATA[<h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
+      <content type="html"><![CDATA[<p><em>记录一些容易忽略问题以及奇技淫巧</em><br><a id="more"></a></p>
+<h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
 <li>精度问题及控制</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;<span class="comment">//坏代码  </span></div><div class="line"><span class="comment">// 方法一  </span></div><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;  </div><div class="line">NumberFormat nf = NumberFormat.getInstance();<span class="comment">// 根据自己的需求格式化  </span></div><div class="line">String resultStr = nf.format(result);  </div><div class="line"><span class="comment">//方法二</span></div><div class="line"><span class="keyword">int</span> resultInt = <span class="number">10</span> - <span class="number">9</span>;  </div><div class="line"><span class="keyword">double</span> result = (<span class="keyword">double</span>) resultInt / <span class="number">100</span>;<span class="comment">//最终时候自己控制小数点 </span></div><div class="line"><span class="comment">//方法三</span></div><div class="line">String result = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">"0.9"</span>)) .toString();</div></pre></td></tr></table></figure>
@@ -303,10 +307,8 @@
 <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
 <li>支持向量机是一种二类分类模型</li>
 <li>基本模型：定义在特征空间上的间隔最大的线性分类器</li>
-<li>+核函数$\to$ 非线性分类器</li>
-</ul>
-<h3 id="学习策略"><a href="#学习策略" class="headerlink" title="学习策略"></a>学习策略</h3><p>间隔最大化：最大化实例点到分类超平面的最小距离，或者说最大化数据集到分离超平面的距离</p>
-<ul>
+<li>+核函数$\to$ 非线性分类器<!-- more -->
+<h3 id="学习策略"><a href="#学习策略" class="headerlink" title="学习策略"></a>学习策略</h3>间隔最大化：最大化实例点到分类超平面的最小距离，或者说最大化数据集到分离超平面的距离</li>
 <li>对偶问题：求解凸二次规划问题</li>
 <li>等价损失函数：正则化的合页(hinge)损失函数的最小化问题</li>
 </ul>
@@ -485,9 +487,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> SVM </tag>
             
@@ -586,9 +588,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> 最优化问题 </tag>
             
@@ -1130,9 +1132,9 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> LR </tag>
             
@@ -1632,11 +1634,11 @@
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -3312,11 +3314,11 @@ No. of dup:  0
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
+            <tag> decision tree </tag>
             
             <tag> 统计学习方法 </tag>
             
-            <tag> decision tree </tag>
+            <tag> Note </tag>
             
         </tags>
         
@@ -3390,9 +3392,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3733,9 +3735,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> k-NN </tag>
             
@@ -3865,9 +3867,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
             <tag> Perceptron </tag>
             
@@ -4077,9 +4079,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
             
             <tag> ML </tag>
             
-            <tag> Note </tag>
-            
             <tag> 统计学习方法 </tag>
+            
+            <tag> Note </tag>
             
         </tags>
         

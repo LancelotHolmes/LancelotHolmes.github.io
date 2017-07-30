@@ -4,150 +4,8 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/30/error/</loc>
-    <lastmod>2017-07-30T05:50:23.139Z</lastmod>
-    <data>
-        <display>
-        <title>个人错题难题仓库</title>
-        <pubTime>2017-07-30T01:29:10.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    <lastmod>2017-07-29T08:27:58.090Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(七) —— 支持向量机</title>
-        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>SVM</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/29/java-concepts/</loc>
-    <lastmod>2017-07-29T03:41:04.474Z</lastmod>
-    <data>
-        <display>
-        <title>java_concepts</title>
-        <pubTime>2017-07-29T02:01:55.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
-    <lastmod>2017-07-29T02:03:01.975Z</lastmod>
-    <data>
-        <display>
-        <title>懒死骆驼的代码小黑本</title>
-        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-07-27T08:22:33.163Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记（六）——Logistic Regression</title>
-        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>LR</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-07-27T06:32:20.009Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(一)</title>
-        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
-    <lastmod>2017-07-25T13:29:49.173Z</lastmod>
+    <lastmod>2017-07-30T06:23:40.045Z</lastmod>
     <data>
         <display>
         <title>栈与队列小记</title>
@@ -172,7 +30,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
-    <lastmod>2017-07-24T05:43:25.694Z</lastmod>
+    <lastmod>2017-07-30T06:23:31.852Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(二) —— 感知机</title>
@@ -180,9 +38,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>Perceptron</tag>
          
@@ -194,8 +52,437 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/11/optimization/</loc>
+    <lastmod>2017-07-30T06:23:13.300Z</lastmod>
+    <data>
+        <display>
+        <title>最优化算法小记</title>
+        <pubTime>2017-07-11T06:14:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>最优化问题</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/09/offer/</loc>
+    <lastmod>2017-07-30T06:23:08.389Z</lastmod>
+    <data>
+        <display>
+        <title>剑指offer阅读笔记</title>
+        <pubTime>2017-06-09T02:33:40.000Z</pubTime>
+        
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    <lastmod>2017-07-30T06:23:01.708Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(一)</title>
+        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
+    <lastmod>2017-07-30T06:22:55.485Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
+        <pubTime>2017-06-09T11:59:44.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
+    <lastmod>2017-07-30T06:22:50.277Z</lastmod>
+    <data>
+        <display>
+        <title>来来来，我教你搭个博客好不好哇</title>
+        <pubTime>2017-05-30T10:40:58.000Z</pubTime>
+        
+        <tag>Coding</tag>
+         
+        <tag>blog</tag>
+         
+        <tag>hexo</tag>
+         
+        <tag>yilia</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-07-30T06:22:44.205Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    <lastmod>2017-07-30T06:22:38.412Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记（六）——Logistic Regression</title>
+        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
+    <lastmod>2017-07-30T06:22:33.557Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习笔记之线性模型</title>
+        <pubTime>2017-07-09T07:09:53.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>LR</tag>
+         
+        <tag>机器学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/06/knn/</loc>
+    <lastmod>2017-07-30T06:22:27.581Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(三) —— K近邻</title>
+        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/25/JData/</loc>
+    <lastmod>2017-07-30T06:22:21.999Z</lastmod>
+    <data>
+        <display>
+        <title>京东JData算法大赛</title>
+        <pubTime>2017-06-25T06:04:31.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>JData</tag>
+         
+        <tag>比赛</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
+    <lastmod>2017-07-30T06:22:12.349Z</lastmod>
+    <data>
+        <display>
+        <title>使用机器学习识别出拍卖场中作弊的机器人用户(二)</title>
+        <pubTime>2017-05-29T12:52:19.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Kaggle</tag>
+         
+        <tag>Python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
+    <lastmod>2017-07-30T06:21:58.037Z</lastmod>
+    <data>
+        <display>
+        <title>懒死骆驼的代码小黑本</title>
+        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
+    <lastmod>2017-07-30T06:20:33.473Z</lastmod>
+    <data>
+        <display>
+        <title>GBDT</title>
+        <pubTime>2017-07-07T06:50:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>GBDT</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/29/java-concepts/</loc>
+    <lastmod>2017-07-30T06:20:18.549Z</lastmod>
+    <data>
+        <display>
+        <title>java_concepts</title>
+        <pubTime>2017-07-29T02:01:55.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/30/error/</loc>
+    <lastmod>2017-07-30T06:19:21.461Z</lastmod>
+    <data>
+        <display>
+        <title>个人错题难题仓库</title>
+        <pubTime>2017-07-30T01:29:10.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-07-30T06:18:45.294Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
+    <lastmod>2017-07-30T06:17:58.765Z</lastmod>
+    <data>
+        <display>
+        <title>模型集成小记</title>
+        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>ensemble</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
+    <lastmod>2017-07-30T06:17:50.854Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(五) —— 决策树</title>
+        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-07-30T06:17:30.549Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
-    <lastmod>2017-07-23T03:18:42.504Z</lastmod>
+    <lastmod>2017-07-30T06:17:16.429Z</lastmod>
     <data>
         <display>
         <title>方差、偏差、噪声和期望泛化误差小记</title>
@@ -217,41 +504,22 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    <lastmod>2017-07-23T01:10:31.434Z</lastmod>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-07-30T06:17:07.086Z</lastmod>
     <data>
         <display>
-        <title>统计学习方法笔记(三) —— K近邻</title>
-        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
         
-        <tag>ML</tag>
-         
         <tag>Note</tag>
          
-        <tag>统计学习方法</tag>
+        <tag>algorithm</tag>
          
-        <tag>k-NN</tag>
+        <tag>校招</tag>
          
+        <tag>面试</tag>
          
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
-    <lastmod>2017-07-20T11:45:02.402Z</lastmod>
-    <data>
-        <display>
-        <title>模型集成小记</title>
-        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>ensemble</tag>
+        <tag>Coding</tag>
          
          
            
@@ -305,113 +573,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/07/GBDT/</loc>
-    <lastmod>2017-07-19T09:02:23.605Z</lastmod>
-    <data>
-        <display>
-        <title>GBDT</title>
-        <pubTime>2017-07-07T06:50:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>GBDT</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-07-19T08:48:45.118Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>decision tree</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
-    <lastmod>2017-07-19T07:48:24.949Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(五) —— 决策树</title>
-        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>decision tree</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-07-17T12:32:39.002Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/25/JData/</loc>
-    <lastmod>2017-07-16T13:04:56.329Z</lastmod>
-    <data>
-        <display>
-        <title>京东JData算法大赛</title>
-        <pubTime>2017-06-25T06:04:31.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>JData</tag>
-         
-        <tag>比赛</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/05/29/HumenOrRobot/</loc>
     <lastmod>2017-07-14T08:09:04.547Z</lastmod>
     <data>
@@ -432,121 +593,6 @@
     </url>
 
     
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-14T01:38:56.785Z</lastmod>
-    <data>
-        <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/11/optimization/</loc>
-    <lastmod>2017-07-12T03:17:39.451Z</lastmod>
-    <data>
-        <display>
-        <title>最优化算法小记</title>
-        <pubTime>2017-07-11T06:14:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>最优化问题</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
-    <lastmod>2017-07-10T07:01:28.274Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习笔记之线性模型</title>
-        <pubTime>2017-07-09T07:09:53.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>LR</tag>
-         
-        <tag>机器学习</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/09/offer/</loc>
-    <lastmod>2017-07-02T01:21:29.471Z</lastmod>
-    <data>
-        <display>
-        <title>剑指offer阅读笔记</title>
-        <pubTime>2017-06-09T02:33:40.000Z</pubTime>
-        
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://yoursite.com/2017/05/29/HumenOrRobot2/</loc>
-    <lastmod>2017-06-24T11:52:43.995Z</lastmod>
-    <data>
-        <display>
-        <title>使用机器学习识别出拍卖场中作弊的机器人用户(二)</title>
-        <pubTime>2017-05-29T12:52:19.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Kaggle</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://yoursite.com/2017/06/22/Statistics/</loc>
@@ -561,52 +607,6 @@
         <tag>Note</tag>
          
         <tag>统计学</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
-    <lastmod>2017-06-12T13:50:08.975Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
-        <pubTime>2017-06-09T11:59:44.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>k-NN</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
-    <lastmod>2017-05-31T01:21:37.987Z</lastmod>
-    <data>
-        <display>
-        <title>来来来，我教你搭个博客好不好哇</title>
-        <pubTime>2017-05-30T10:40:58.000Z</pubTime>
-        
-        <tag>Coding</tag>
-         
-        <tag>blog</tag>
-         
-        <tag>hexo</tag>
-         
-        <tag>yilia</tag>
          
          
            

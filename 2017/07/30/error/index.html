@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>个人错题难题仓库 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="排列组合计算排列组合数根据相应的排列组合公式计算  排列$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$ 组合$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$12345678910111213141516171819202122232425262728/**  * 计算阶乘数，即n">
+  <meta name="description" content="记录个人的一些疑难杂症">
 <meta name="keywords" content="Note,校招,面试,Coding,剑指offer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人错题难题仓库">
 <meta property="og:url" content="http://yoursite.com/2017/07/30/error/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="排列组合计算排列组合数根据相应的排列组合公式计算  排列$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$ 组合$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$12345678910111213141516171819202122232425262728/**  * 计算阶乘数，即n">
-<meta property="og:updated_time" content="2017-07-30T05:50:23.139Z">
+<meta property="og:description" content="记录个人的一些疑难杂症">
+<meta property="og:updated_time" content="2017-07-30T06:19:21.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人错题难题仓库">
-<meta name="twitter:description" content="排列组合计算排列组合数根据相应的排列组合公式计算  排列$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$ 组合$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$12345678910111213141516171819202122232425262728/**  * 计算阶乘数，即n">
+<meta name="twitter:description" content="记录个人的一些疑难杂症">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -219,6 +219,30 @@ ga('send', 'pageview');
     
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排列组合"><span class="toc-number">1.</span> <span class="toc-text">排列组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算排列组合数"><span class="toc-number">1.1.</span> <span class="toc-text">计算排列组合数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排列"><span class="toc-number">1.2.</span> <span class="toc-text">排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合"><span class="toc-number">1.3.</span> <span class="toc-text">组合</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
@@ -239,7 +263,9 @@ ga('send', 'pageview');
            
          
 
-        <h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
+        <p><em>记录个人的一些疑难杂症</em></p>
+<a id="more"></a>
+<h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
 <ul>
 <li>排列<br>$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$</li>
 <li>组合<br>$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算阶乘数，即n! = n * (n-1) * ... * 2 * 1 </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt; <span class="number">1</span>) ? n * factorial(n - <span class="number">1</span>) : <span class="number">1</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算排列数，即A(n, m) = n!/(n-m)! </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">arrangement</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) : <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算组合数，即C(n, m) = n!/((n-m)! * m!) </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">combination</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) / factorial(m) : <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -503,11 +529,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,7 +541,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,11 +585,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,31 +613,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,10 +634,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,6 +650,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

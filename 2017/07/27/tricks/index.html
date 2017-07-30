@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>懒死骆驼的代码小黑本 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="浮点数类型的精度问题 精度问题及控制  12345678910double result = 1.0 - 0.9;//坏代码  // 方法一  double result = 1.0 - 0.9;  NumberFormat nf = NumberFormat.getInstance();// 根据自己的需求格式化  String resultStr = nf.format(result);  /">
+  <meta name="description" content="记录一些容易忽略问题以及奇技淫巧">
 <meta name="keywords" content="Note,校招,面试,Coding,剑指offer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="懒死骆驼的代码小黑本">
 <meta property="og:url" content="http://yoursite.com/2017/07/27/tricks/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="浮点数类型的精度问题 精度问题及控制  12345678910double result = 1.0 - 0.9;//坏代码  // 方法一  double result = 1.0 - 0.9;  NumberFormat nf = NumberFormat.getInstance();// 根据自己的需求格式化  String resultStr = nf.format(result);  /">
-<meta property="og:updated_time" content="2017-07-29T02:03:01.975Z">
+<meta property="og:description" content="记录一些容易忽略问题以及奇技淫巧">
+<meta property="og:updated_time" content="2017-07-30T06:21:58.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="懒死骆驼的代码小黑本">
-<meta name="twitter:description" content="浮点数类型的精度问题 精度问题及控制  12345678910double result = 1.0 - 0.9;//坏代码  // 方法一  double result = 1.0 - 0.9;  NumberFormat nf = NumberFormat.getInstance();// 根据自己的需求格式化  String resultStr = nf.format(result);  /">
+<meta name="twitter:description" content="记录一些容易忽略问题以及奇技淫巧">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -219,6 +219,30 @@ ga('send', 'pageview');
     
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数类型的精度问题"><span class="toc-number">1.</span> <span class="toc-text">浮点数类型的精度问题</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
@@ -239,7 +263,8 @@ ga('send', 'pageview');
            
          
 
-        <h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
+        <p><em>记录一些容易忽略问题以及奇技淫巧</em><br><a id="more"></a></p>
+<h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
 <li>精度问题及控制</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;<span class="comment">//坏代码  </span></div><div class="line"><span class="comment">// 方法一  </span></div><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;  </div><div class="line">NumberFormat nf = NumberFormat.getInstance();<span class="comment">// 根据自己的需求格式化  </span></div><div class="line">String resultStr = nf.format(result);  </div><div class="line"><span class="comment">//方法二</span></div><div class="line"><span class="keyword">int</span> resultInt = <span class="number">10</span> - <span class="number">9</span>;  </div><div class="line"><span class="keyword">double</span> result = (<span class="keyword">double</span>) resultInt / <span class="number">100</span>;<span class="comment">//最终时候自己控制小数点 </span></div><div class="line"><span class="comment">//方法三</span></div><div class="line">String result = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">"0.9"</span>)) .toString();</div></pre></td></tr></table></figure>
@@ -517,11 +542,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,7 +554,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,11 +598,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,31 +626,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,10 +647,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,6 +663,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

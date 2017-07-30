@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-30T05:50:23.139Z</updated>
+  <updated>2017-07-30T06:19:21.461Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,11 @@
     <link href="http://yoursite.com/2017/07/30/error/"/>
     <id>http://yoursite.com/2017/07/30/error/</id>
     <published>2017-07-30T01:29:10.000Z</published>
-    <updated>2017-07-30T05:50:23.139Z</updated>
+    <updated>2017-07-30T06:19:21.461Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
+    <content type="html"><![CDATA[<p><em>记录个人的一些疑难杂症</em></p>
+<a id="more"></a>
+<h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
 <ul>
 <li>排列<br>$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$</li>
 <li>组合<br>$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算阶乘数，即n! = n * (n-1) * ... * 2 * 1 </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt; <span class="number">1</span>) ? n * factorial(n - <span class="number">1</span>) : <span class="number">1</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算排列数，即A(n, m) = n!/(n-m)! </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">arrangement</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) : <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算组合数，即C(n, m) = n!/((n-m)! * m!) </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">combination</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) / factorial(m) : <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -37,7 +39,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;排列组合&quot;&gt;&lt;a href=&quot;#排列组合&quot; class=&quot;headerlink&quot; title=&quot;排列组合&quot;&gt;&lt;/a&gt;排列组合&lt;/h2&gt;&lt;h3 id=&quot;计算排列组合数&quot;&gt;&lt;a href=&quot;#计算排列组合数&quot; class=&quot;headerlink&quot; title=&quot;计算排
+      &lt;p&gt;&lt;em&gt;记录个人的一些疑难杂症&lt;/em&gt;&lt;/p&gt;
     
     </summary>
     
@@ -59,9 +61,10 @@
     <link href="http://yoursite.com/2017/07/29/java-concepts/"/>
     <id>http://yoursite.com/2017/07/29/java-concepts/</id>
     <published>2017-07-29T02:01:55.000Z</published>
-    <updated>2017-07-29T03:41:04.474Z</updated>
+    <updated>2017-07-30T06:20:18.549Z</updated>
     
     <content type="html"><![CDATA[<p><em>记录一些容易出现错误、混淆的点</em></p>
+<a id="more"></a>
 <h2 id="Java函数间的参数传递问题"><a href="#Java函数间的参数传递问题" class="headerlink" title="Java函数间的参数传递问题"></a>Java函数间的参数传递问题</h2><p>踩过的坑<br>剑指offer的一道题</p>
 <blockquote>
 <p>二叉搜索树与双向链表:输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
@@ -87,7 +90,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;em&gt;记录一些容易出现错误、混淆的点&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Java函数间的参数传递问题&quot;&gt;&lt;a href=&quot;#Java函数间的参数传递问题&quot; class=&quot;headerlink&quot; title=&quot;Java函数间的参数传递问题&quot;&gt;&lt;/a&gt;Java函数间的参数传递
     
     </summary>
     
@@ -109,9 +111,10 @@
     <link href="http://yoursite.com/2017/07/27/tricks/"/>
     <id>http://yoursite.com/2017/07/27/tricks/</id>
     <published>2017-07-27T03:24:59.000Z</published>
-    <updated>2017-07-29T02:03:01.975Z</updated>
+    <updated>2017-07-30T06:21:58.037Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
+    <content type="html"><![CDATA[<p><em>记录一些容易忽略问题以及奇技淫巧</em><br><a id="more"></a></p>
+<h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
 <li>精度问题及控制</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;<span class="comment">//坏代码  </span></div><div class="line"><span class="comment">// 方法一  </span></div><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;  </div><div class="line">NumberFormat nf = NumberFormat.getInstance();<span class="comment">// 根据自己的需求格式化  </span></div><div class="line">String resultStr = nf.format(result);  </div><div class="line"><span class="comment">//方法二</span></div><div class="line"><span class="keyword">int</span> resultInt = <span class="number">10</span> - <span class="number">9</span>;  </div><div class="line"><span class="keyword">double</span> result = (<span class="keyword">double</span>) resultInt / <span class="number">100</span>;<span class="comment">//最终时候自己控制小数点 </span></div><div class="line"><span class="comment">//方法三</span></div><div class="line">String result = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">"0.9"</span>)) .toString();</div></pre></td></tr></table></figure>
@@ -131,10 +134,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;浮点数类型的精度问题&quot;&gt;&lt;a href=&quot;#浮点数类型的精度问题&quot; class=&quot;headerlink&quot; title=&quot;浮点数类型的精度问题&quot;&gt;&lt;/a&gt;浮点数类型的精度问题&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;精度问题及控制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class
+      &lt;p&gt;&lt;em&gt;记录一些容易忽略问题以及奇技淫巧&lt;/em&gt;&lt;br&gt;
     
     </summary>
     
@@ -156,7 +156,7 @@
     <link href="http://yoursite.com/2017/07/22/stack-queue/"/>
     <id>http://yoursite.com/2017/07/22/stack-queue/</id>
     <published>2017-07-22T07:39:22.000Z</published>
-    <updated>2017-07-25T13:29:49.173Z</updated>
+    <updated>2017-07-30T06:23:40.045Z</updated>
     
     <content type="html"><![CDATA[<p>主要记录一些关于栈、队列的变体和特殊操作的算法题<br><a id="more"></a></p>
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>Queue</p>
@@ -272,7 +272,7 @@
     <link href="http://yoursite.com/2017/07/20/bias-variance/"/>
     <id>http://yoursite.com/2017/07/20/bias-variance/</id>
     <published>2017-07-20T13:52:17.000Z</published>
-    <updated>2017-07-23T03:18:42.504Z</updated>
+    <updated>2017-07-30T06:17:16.429Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -348,7 +348,7 @@
     <link href="http://yoursite.com/2017/07/12/svm/"/>
     <id>http://yoursite.com/2017/07/12/svm/</id>
     <published>2017-07-12T09:11:48.000Z</published>
-    <updated>2017-07-29T08:27:58.090Z</updated>
+    <updated>2017-07-30T06:18:45.294Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -357,10 +357,8 @@
 <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
 <li>支持向量机是一种二类分类模型</li>
 <li>基本模型：定义在特征空间上的间隔最大的线性分类器</li>
-<li>+核函数$\to$ 非线性分类器</li>
-</ul>
-<h3 id="学习策略"><a href="#学习策略" class="headerlink" title="学习策略"></a>学习策略</h3><p>间隔最大化：最大化实例点到分类超平面的最小距离，或者说最大化数据集到分离超平面的距离</p>
-<ul>
+<li>+核函数$\to$ 非线性分类器<!-- more -->
+<h3 id="学习策略"><a href="#学习策略" class="headerlink" title="学习策略"></a>学习策略</h3>间隔最大化：最大化实例点到分类超平面的最小距离，或者说最大化数据集到分离超平面的距离</li>
 <li>对偶问题：求解凸二次规划问题</li>
 <li>等价损失函数：正则化的合页(hinge)损失函数的最小化问题</li>
 </ul>
@@ -544,9 +542,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="SVM" scheme="http://yoursite.com/tags/SVM/"/>
     
@@ -557,7 +555,7 @@
     <link href="http://yoursite.com/2017/07/11/optimization/"/>
     <id>http://yoursite.com/2017/07/11/optimization/</id>
     <published>2017-07-11T06:14:02.000Z</published>
-    <updated>2017-07-12T03:17:39.451Z</updated>
+    <updated>2017-07-30T06:23:13.300Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -661,9 +659,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="最优化问题" scheme="http://yoursite.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/"/>
     
@@ -674,7 +672,7 @@
     <link href="http://yoursite.com/2017/07/09/linear-model/"/>
     <id>http://yoursite.com/2017/07/09/linear-model/</id>
     <published>2017-07-09T07:09:53.000Z</published>
-    <updated>2017-07-10T07:01:28.274Z</updated>
+    <updated>2017-07-30T06:22:33.557Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -739,7 +737,7 @@
     <link href="http://yoursite.com/2017/07/08/ml-job/"/>
     <id>http://yoursite.com/2017/07/08/ml-job/</id>
     <published>2017-07-08T10:47:00.000Z</published>
-    <updated>2017-07-17T12:32:39.002Z</updated>
+    <updated>2017-07-30T06:22:44.205Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1173,7 +1171,7 @@
     <link href="http://yoursite.com/2017/07/08/lr/"/>
     <id>http://yoursite.com/2017/07/08/lr/</id>
     <published>2017-07-08T05:49:08.000Z</published>
-    <updated>2017-07-27T08:22:33.163Z</updated>
+    <updated>2017-07-30T06:22:38.412Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1251,9 +1249,9 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
@@ -1264,7 +1262,7 @@
     <link href="http://yoursite.com/2017/07/07/GBDT/"/>
     <id>http://yoursite.com/2017/07/07/GBDT/</id>
     <published>2017-07-07T06:50:00.000Z</published>
-    <updated>2017-07-19T09:02:23.605Z</updated>
+    <updated>2017-07-30T06:20:33.473Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1380,7 +1378,7 @@
     <link href="http://yoursite.com/2017/07/03/ensemble/"/>
     <id>http://yoursite.com/2017/07/03/ensemble/</id>
     <published>2017-07-03T12:08:51.000Z</published>
-    <updated>2017-07-20T11:45:02.402Z</updated>
+    <updated>2017-07-30T06:17:58.765Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。</em></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
@@ -1598,7 +1596,7 @@
     <link href="http://yoursite.com/2017/06/29/boosting/"/>
     <id>http://yoursite.com/2017/06/29/boosting/</id>
     <published>2017-06-29T05:45:11.000Z</published>
-    <updated>2017-07-19T08:48:45.118Z</updated>
+    <updated>2017-07-30T06:17:30.549Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1812,11 +1810,11 @@
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -1825,7 +1823,7 @@
     <link href="http://yoursite.com/2017/06/27/basic-algorithm/"/>
     <id>http://yoursite.com/2017/06/27/basic-algorithm/</id>
     <published>2017-06-27T02:56:11.000Z</published>
-    <updated>2017-07-14T01:38:56.785Z</updated>
+    <updated>2017-07-30T06:17:07.086Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍</em></p>
 <h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
@@ -2303,7 +2301,7 @@
     <link href="http://yoursite.com/2017/06/25/JData/"/>
     <id>http://yoursite.com/2017/06/25/JData/</id>
     <published>2017-06-25T06:04:31.000Z</published>
-    <updated>2017-07-16T13:04:56.329Z</updated>
+    <updated>2017-07-30T06:22:21.999Z</updated>
     
     <content type="html"><![CDATA[<h2 id="比赛简介"><a href="#比赛简介" class="headerlink" title="比赛简介"></a>比赛简介</h2><blockquote>
 <p>本次大赛以京东商城真实的用户、商品和行为数据（脱敏后）为基础，参赛队伍需要通过数据挖掘的技术和机器学习的算法，构建用户购买商品的预测模型，输出高潜用户和目标商品的匹配结果，为精准营销提供高质量的目标群体。同时，希望参赛队伍能通过本次比赛，挖掘数据背后潜在的意义，为电商用户提供更简单、快捷、省心的购物体验。<br><a id="more"></a></p>
@@ -3278,7 +3276,7 @@ No. of dup:  0
     <link href="http://yoursite.com/2017/06/19/Decision-Tree/"/>
     <id>http://yoursite.com/2017/06/19/Decision-Tree/</id>
     <published>2017-06-19T08:41:25.000Z</published>
-    <updated>2017-07-19T07:48:24.949Z</updated>
+    <updated>2017-07-30T06:17:50.854Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -3536,11 +3534,11 @@ No. of dup:  0
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
     
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
-      <category term="decision tree" scheme="http://yoursite.com/tags/decision-tree/"/>
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -3549,7 +3547,7 @@ No. of dup:  0
     <link href="http://yoursite.com/2017/06/09/naive-bayes/"/>
     <id>http://yoursite.com/2017/06/09/naive-bayes/</id>
     <published>2017-06-09T11:59:44.000Z</published>
-    <updated>2017-06-12T13:50:08.975Z</updated>
+    <updated>2017-07-30T06:22:55.485Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -3626,9 +3624,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -3639,7 +3637,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/09/offer/"/>
     <id>http://yoursite.com/2017/06/09/offer/</id>
     <published>2017-06-09T02:33:40.000Z</published>
-    <updated>2017-07-02T01:21:29.471Z</updated>
+    <updated>2017-07-30T06:23:08.389Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文主要是个人针对《剑指offer》一书的一些笔记，并不涉及具体的题目或者方法，只是作为一个整体的知识点框架梳理，便于查缺补漏。</em></p>
 <h2 id="辅助网站"><a href="#辅助网站" class="headerlink" title="辅助网站"></a>辅助网站</h2><ul>
@@ -3833,7 +3831,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/06/knn/"/>
     <id>http://yoursite.com/2017/06/06/knn/</id>
     <published>2017-06-06T12:12:28.000Z</published>
-    <updated>2017-07-23T01:10:31.434Z</updated>
+    <updated>2017-07-30T06:22:27.581Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -3989,9 +3987,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="k-NN" scheme="http://yoursite.com/tags/k-NN/"/>
     
@@ -4002,7 +4000,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/03/Perceptron/"/>
     <id>http://yoursite.com/2017/06/03/Perceptron/</id>
     <published>2017-06-03T08:53:02.000Z</published>
-    <updated>2017-07-24T05:43:25.694Z</updated>
+    <updated>2017-07-30T06:23:31.852Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -4131,9 +4129,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
       <category term="Perceptron" scheme="http://yoursite.com/tags/Perceptron/"/>
     
@@ -4144,7 +4142,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/02/Note-StatisticalML/"/>
     <id>http://yoursite.com/2017/06/02/Note-StatisticalML/</id>
     <published>2017-06-02T06:42:52.000Z</published>
-    <updated>2017-07-27T06:32:20.009Z</updated>
+    <updated>2017-07-30T06:23:01.708Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -4355,9 +4353,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     
       <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
     
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
       <category term="统计学习方法" scheme="http://yoursite.com/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -4465,7 +4463,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/05/30/my-blog/"/>
     <id>http://yoursite.com/2017/05/30/my-blog/</id>
     <published>2017-05-30T10:40:58.000Z</published>
-    <updated>2017-05-31T01:21:37.987Z</updated>
+    <updated>2017-07-30T06:22:50.277Z</updated>
     
     <content type="html"><![CDATA[<p>先把我的博客贴一下<a href="izhaoyi.top">Lancelot’s Desert</a></p>
 <p>端午节两天时间宅实验室把自己搭建一个博客这么个‘历史遗留问题’解决了下，其实之前也用Hugo搭建过，最后给弄崩了，这次尝试下<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo</a>，发现倒是异常的顺利，一方面Hexo的整体生态比较完备，另一方面网上找到的教程也很靠谱，下面就把我搭建过程中的一些步骤和踩过的坑记录下。<br><a id="more"></a></p>
@@ -4590,7 +4588,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/05/29/HumenOrRobot2/"/>
     <id>http://yoursite.com/2017/05/29/HumenOrRobot2/</id>
     <published>2017-05-29T12:52:19.000Z</published>
-    <updated>2017-06-24T11:52:43.995Z</updated>
+    <updated>2017-07-30T06:22:12.349Z</updated>
     
     <content type="html"><![CDATA[<p><em>原创文章，首发于<a href="https://segmentfault.com/a/1190000009101577#articleHeader12" target="_blank" rel="external">SegmentFault</a></em><br><!-- 本文承接上一篇文章:[使用机器学习识别出拍卖场中作弊的机器人用户](../HumenOrRobot) --></p>
 <p>本文承接上一篇文章:<a href="/2017/05/29/HumenOrRobot/" title="使用机器学习识别出拍卖场中作弊的机器人用户">使用机器学习识别出拍卖场中作弊的机器人用户</a></p>

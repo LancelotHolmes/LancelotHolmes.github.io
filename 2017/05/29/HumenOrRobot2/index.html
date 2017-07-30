@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot2/roc_voting.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot2/final_result.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/HumenOrRobot2/point.png">
-<meta property="og:updated_time" content="2017-06-24T11:52:43.995Z">
+<meta property="og:updated_time" content="2017-07-30T06:22:12.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用机器学习识别出拍卖场中作弊的机器人用户(二)">
 <meta name="twitter:description" content="原创文章，首发于SegmentFault 本文承接上一篇文章:使用机器学习识别出拍卖场中作弊的机器人用户 本项目为kaggle上Facebook举行的一次比赛，地址见数据来源，完整代码见我的github,欢迎来玩~ 代码 数据探索——Data_Exploration.ipynb 数据预处理&amp;amp;特征工程——Feature_Engineering.ipynb &amp;amp; Feature_Engi">
@@ -232,6 +232,30 @@ ga('send', 'pageview');
     
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目数据来源"><span class="toc-number">2.</span> <span class="toc-text">项目数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目所需额外工具包"><span class="toc-number">3.</span> <span class="toc-text">项目所需额外工具包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特征工程-续"><span class="toc-number">4.</span> <span class="toc-text">特征工程(续)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#针对国家、商品单一特征多类别转换为多个独立特征进行统计"><span class="toc-number">4.1.</span> <span class="toc-text">针对国家、商品单一特征多类别转换为多个独立特征进行统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按照用户-拍卖场分组进一步分析"><span class="toc-number">4.2.</span> <span class="toc-text">按照用户-拍卖场分组进一步分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型设计与参数评估"><span class="toc-number">5.</span> <span class="toc-text">模型设计与参数评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#合并特征"><span class="toc-number">5.1.</span> <span class="toc-text">合并特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计交叉验证"><span class="toc-number">5.2.</span> <span class="toc-text">设计交叉验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型选择"><span class="toc-number">5.3.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RandomForestClassifier"><span class="toc-number">5.3.1.</span> <span class="toc-text">RandomForestClassifier</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型比较"><span class="toc-number">5.4.</span> <span class="toc-text">模型比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚合模型"><span class="toc-number">5.5.</span> <span class="toc-text">聚合模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#综合模型，对测试文件进行最终预测"><span class="toc-number">5.6.</span> <span class="toc-text">综合模型，对测试文件进行最终预测</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
@@ -963,11 +987,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -975,7 +999,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1011,11 +1043,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1031,31 +1071,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1068,10 +1092,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1088,6 +1108,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
