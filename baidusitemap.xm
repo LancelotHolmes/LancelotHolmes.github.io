@@ -4,6 +4,104 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/30/error/</loc>
+    <lastmod>2017-07-30T05:50:23.139Z</lastmod>
+    <data>
+        <display>
+        <title>个人错题难题仓库</title>
+        <pubTime>2017-07-30T01:29:10.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-07-29T08:27:58.090Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/29/java-concepts/</loc>
+    <lastmod>2017-07-29T03:41:04.474Z</lastmod>
+    <data>
+        <display>
+        <title>java_concepts</title>
+        <pubTime>2017-07-29T02:01:55.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
+    <lastmod>2017-07-29T02:03:01.975Z</lastmod>
+    <data>
+        <display>
+        <title>懒死骆驼的代码小黑本</title>
+        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
     <lastmod>2017-07-27T08:22:33.163Z</lastmod>
     <data>
@@ -13,9 +111,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
          
@@ -36,25 +134,10 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
          
+        <tag>统计学习方法</tag>
          
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
-    <lastmod>2017-07-27T04:41:13.031Z</lastmod>
-    <data>
-        <display>
-        <title>懒死骆驼的代码小黑本</title>
-        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
-        
          
            
         </display>
@@ -88,29 +171,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    <lastmod>2017-07-25T07:57:54.364Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(七) —— 支持向量机</title>
-        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>SVM</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/06/03/Perceptron/</loc>
     <lastmod>2017-07-24T05:43:25.694Z</lastmod>
     <data>
@@ -120,11 +180,11 @@
         
         <tag>ML</tag>
          
-        <tag>Perceptron</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>Perceptron</tag>
          
          
            
@@ -166,9 +226,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -273,9 +333,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>decision tree</tag>
          
@@ -296,9 +356,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>decision tree</tag>
          
@@ -407,9 +467,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -519,9 +579,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          

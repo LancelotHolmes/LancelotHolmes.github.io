@@ -194,6 +194,212 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/30/error/">个人错题难题仓库</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/30/error/" class="archive-article-date">
+  	<time datetime="2017-07-30T01:29:10.000Z" itemprop="datePublished">2017-07-30</time>
+  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
+      view <span id="busuanzi_value_page_pv"></span> times
+    </span>
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+      </header>
+    
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+
+        <h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><h3 id="计算排列组合数"><a href="#计算排列组合数" class="headerlink" title="计算排列组合数"></a>计算排列组合数</h3><p>根据相应的排列组合公式计算</p>
+<ul>
+<li>排列<br>$$A_n^m=n(n-1)(n-2)\cdot\cdot\cdot(n-m+1)=\frac{n!}{(n-m)!}$$</li>
+<li>组合<br>$$C_n^m=\frac{A_n^m}{m!}=\frac{n!}{m!(n-m)!}$$<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算阶乘数，即n! = n * (n-1) * ... * 2 * 1 </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt; <span class="number">1</span>) ? n * factorial(n - <span class="number">1</span>) : <span class="number">1</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算排列数，即A(n, m) = n!/(n-m)! </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">arrangement</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) : <span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 计算组合数，即C(n, m) = n!/((n-m)! * m!) </div><div class="line"> * <span class="doctag">@param</span> n </div><div class="line"> * <span class="doctag">@param</span> m </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">combination</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;  </div><div class="line">    <span class="keyword">return</span> (n &gt;= m) ? factorial(n) / factorial(n - m) / factorial(m) : <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://cgs1999.iteye.com/blog/2327664" target="_blank" rel="external">计算排列组合</a></p>
+<h3 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h3><blockquote>
+<p>基本思路：递归的思想，将问题分解成小问题，假设我们现在写的一个函数的功能是返回传入的字符串的所有排列情况，而对于一个字符串而言，若固定第一个字符，则后续字符的所有排列情况就是当前以该字符为首的字符串的所有排列状况，而接下来一面是递归的求解余下字符串的排列状况，另一面则是将首字符与后续不等字符交换来重复上述求排列的过程，递归的终止条件是需要排列的子串只有一个元素时，则直接返回该情形下的字符串，而此题需要用<code>ArrayList</code>来收集字符串，所以还需要一个额外的<code>ArrayList</code>来传递并收集字符串,但是注意这种写法无法处理一种重复元素的情形，对于只是判断首元素与后续元素是否相同可以处理，但是对于不同字符多次出现的状况不能处理，比如<strong>aabb</strong>,此外一般要求是按顺序输出，所以综合这两点要求，将<code>ArrayList</code>改为<code>TreeSet</code>最为合适<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="comment">/**27、字符串的排列</span></div><div class="line"> * 输入一个字符串,按字典序打印出该字符串中字符的所有排列。</div><div class="line"> * 例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。*/</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Permutation</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		String s=<span class="string">"abc"</span>;</div><div class="line">		System.out.println(Permutation(s));</div><div class="line">		String s2=<span class="string">"aa"</span>;</div><div class="line">		System.out.println(Permutation(s2));</div><div class="line">		String s3=<span class="string">"aabb"</span>;</div><div class="line">		System.out.println(Permutation(s3));</div><div class="line">	&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;String&gt; <span class="title">Permutation</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">    	ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    	<span class="keyword">if</span>(str==<span class="keyword">null</span> || str.length()==<span class="number">0</span>)&#123;</div><div class="line">    		<span class="keyword">return</span> list;</div><div class="line">    	&#125;</div><div class="line">        <span class="keyword">char</span>[] chr=str.toCharArray();</div><div class="line">        TreeSet&lt;String&gt; set=<span class="keyword">new</span> TreeSet&lt;&gt;();</div><div class="line">        permutation(chr,<span class="number">0</span>,set);</div><div class="line">        list.addAll(set);</div><div class="line">        <span class="keyword">return</span> list;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">permutation</span><span class="params">(<span class="keyword">char</span>[] chr, <span class="keyword">int</span> index, TreeSet&lt;String&gt; set)</span></span>&#123;</div><div class="line">    	<span class="keyword">if</span>(index&gt;chr.length-<span class="number">1</span>)&#123;</div><div class="line">    		<span class="keyword">return</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="comment">//当指针移到最后一个元素时即排列只有当前一种情形，为终止条件</span></div><div class="line">    	<span class="keyword">if</span>(index==chr.length-<span class="number">1</span>)&#123;</div><div class="line">    		set.add(String.valueOf(chr));</div><div class="line">    	&#125;</div><div class="line">    	permutation(chr,index+<span class="number">1</span>,set);</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=index+<span class="number">1</span>;i&lt;chr.length;i++)&#123;</div><div class="line">    		<span class="keyword">if</span>(chr[i]!=chr[index])&#123;</div><div class="line">    			exchange(chr,i,index);</div><div class="line">    			permutation(chr,index+<span class="number">1</span>,set);</div><div class="line">    			exchange(chr,i,index);</div><div class="line">    		&#125;</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">char</span>[] chr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">		<span class="keyword">char</span> temp=chr[i];</div><div class="line">		chr[i]=chr[j];</div><div class="line">		chr[j]=temp;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><a href="http://blog.csdn.net/zmazon/article/details/8351611" target="_blank" rel="external">排列</a></p>
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">剑指offer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/30/error/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-java-concepts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/29/java-concepts/">java_concepts</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/29/java-concepts/" class="archive-article-date">
+  	<time datetime="2017-07-29T02:01:55.000Z" itemprop="datePublished">2017-07-29</time>
+  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
+      view <span id="busuanzi_value_page_pv"></span> times
+    </span>
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+      </header>
+    
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+
+        <p><em>记录一些容易出现错误、混淆的点</em></p>
+<h2 id="Java函数间的参数传递问题"><a href="#Java函数间的参数传递问题" class="headerlink" title="Java函数间的参数传递问题"></a>Java函数间的参数传递问题</h2><p>踩过的坑<br>剑指offer的一道题</p>
+<blockquote>
+<p>二叉搜索树与双向链表:输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</p>
+</blockquote>
+<ul>
+<li>调用部分</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">Convert2</span><span class="params">(TreeNode pRootOfTree)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(pRootOfTree==<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	TreeNode[] curLast=<span class="keyword">new</span> TreeNode[<span class="number">1</span>];</div><div class="line">	lastOrder(pRootOfTree,curLast);</div><div class="line">	<span class="comment">//由于是当前最后一位，所以需要向左寻找到首位</span></div><div class="line">	TreeNode head=curLast[<span class="number">0</span>];</div><div class="line">	<span class="keyword">while</span>(head!=<span class="keyword">null</span> &amp;&amp; head.left!=<span class="keyword">null</span>)&#123;</div><div class="line">		head=head.left;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> head;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>错误代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">lastOrder</span><span class="params">(TreeNode pRootOfTree, TreeNode curLast)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(pRootOfTree==<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	TreeNode cur=pRootOfTree;</div><div class="line">	<span class="comment">//获得左子树的最后一位(最大值)</span></div><div class="line">	<span class="keyword">if</span>(cur.left!=<span class="keyword">null</span>)&#123;</div><div class="line">		lastOrder(cur.left,curLast);</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//修改当前节点的左指针</span></div><div class="line">	cur.left=curLast;</div><div class="line">	<span class="keyword">if</span>(curLast!=<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="comment">//修改左子树最后一位的右指针</span></div><div class="line">		curLast.right=cur;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//更新当前最后一位指针</span></div><div class="line">	curLast=cur;	<span class="comment">//无效，因为相当于在递归函数中创建的了一个局部变量指向了curLast，</span></div><div class="line">					<span class="comment">//所以这里修改也只是将局部变量的引用替换为一个新的地址，而原始的值并未改变，所以返回上一层并没有用</span></div><div class="line">					<span class="comment">//一种替代的方法是使用一个大小为1的数组来传参</span></div><div class="line">	<span class="comment">//继续处理右子树</span></div><div class="line">	<span class="keyword">if</span>(cur.right!=<span class="keyword">null</span>)&#123;</div><div class="line">		lastOrder(cur.right,curLast);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>修改方案</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">lastOrder</span><span class="params">(TreeNode pRootOfTree, TreeNode[] curLast)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(pRootOfTree==<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	TreeNode cur=pRootOfTree;</div><div class="line">	<span class="comment">//获得左子树的最后一位(最大值)</span></div><div class="line">	<span class="keyword">if</span>(cur.left!=<span class="keyword">null</span>)&#123;</div><div class="line">		lastOrder(cur.left,curLast);</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//修改当前节点的左指针</span></div><div class="line">	cur.left=curLast[<span class="number">0</span>];</div><div class="line">	<span class="keyword">if</span>(curLast[<span class="number">0</span>]!=<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="comment">//修改左子树最后一位的右指针</span></div><div class="line">		curLast[<span class="number">0</span>].right=cur;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//更新当前最后一位指针</span></div><div class="line">	curLast[<span class="number">0</span>]=cur;	</div><div class="line">	<span class="comment">//继续处理右子树</span></div><div class="line">	<span class="keyword">if</span>(cur.right!=<span class="keyword">null</span>)&#123;</div><div class="line">		lastOrder(cur.right,curLast);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://blog.sina.com.cn/s/blog_4b622a8e0100c1bo.html" target="_blank" rel="external">Java参数传递(超经典)</a></li>
+<li><a href="https://zhihu.com/question/31203609/answer/50992895" target="_blank" rel="external">知乎</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">剑指offer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/29/java-concepts/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-tricks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -217,12 +423,17 @@ ga('send', 'pageview');
         
       </header>
     
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
 
         
 
-        <h2 id="浮点树类型的精度问题"><a href="#浮点树类型的精度问题" class="headerlink" title="浮点树类型的精度问题"></a>浮点树类型的精度问题</h2><ul>
+        <h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
 <li>精度问题及控制</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;<span class="comment">//坏代码  </span></div><div class="line"><span class="comment">// 方法一  </span></div><div class="line"><span class="keyword">double</span> result = <span class="number">1.0</span> - <span class="number">0.9</span>;  </div><div class="line">NumberFormat nf = NumberFormat.getInstance();<span class="comment">// 根据自己的需求格式化  </span></div><div class="line">String resultStr = nf.format(result);  </div><div class="line"><span class="comment">//方法二</span></div><div class="line"><span class="keyword">int</span> resultInt = <span class="number">10</span> - <span class="number">9</span>;  </div><div class="line"><span class="keyword">double</span> result = (<span class="keyword">double</span>) resultInt / <span class="number">100</span>;<span class="comment">//最终时候自己控制小数点 </span></div><div class="line"><span class="comment">//方法三</span></div><div class="line">String result = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>).subtract(<span class="keyword">new</span> BigDecimal(<span class="string">"0.9"</span>)) .toString();</div></pre></td></tr></table></figure>
@@ -246,6 +457,33 @@ ga('send', 'pageview');
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">剑指offer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -288,6 +526,11 @@ ga('send', 'pageview');
         
       </header>
     
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>主要记录一些关于栈、队列的变体和特殊操作的算法题<br>
@@ -370,6 +613,11 @@ ga('send', 'pageview');
         
       </header>
     
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -428,176 +676,9 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-svm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/svm/">统计学习方法笔记(七) —— 支持向量机</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/12/svm/" class="archive-article-date">
-  	<time datetime="2017-07-12T09:11:48.000Z" itemprop="datePublished">2017-07-12</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-        
-          <a class="article-more-a" href="/2017/07/12/svm/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/svm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-optimization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/11/optimization/">最优化算法小记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/11/optimization/" class="archive-article-date">
-  	<time datetime="2017-07-11T06:14:02.000Z" itemprop="datePublished">2017-07-11</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-<blockquote>
-<p>最优化：</p>
-<ul>
-<li>构造一个合适的目标函数（策略），使得这个目标函数取到极值的解就是你所要求的东西；</li>
-<li>找到一个能让这个目标函数取到极值的方法（算法）</li>
-</ul>
-</blockquote>
-<p>这里主要讨论几种常用的求解最优化问题的算法<br>
-        
-          <a class="article-more-a" href="/2017/07/11/optimization/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">最优化问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/11/optimization/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -724,7 +805,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,7 +813,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -756,15 +837,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -776,23 +857,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,15 +873,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -828,11 +905,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -845,6 +922,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">

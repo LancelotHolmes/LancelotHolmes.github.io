@@ -8,7 +8,7 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>统计学习方法笔记(七) —— 支持向量机 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="ML,统计学习方法,Note,SVM">
+  <meta name="keywords" content="ML,Note,统计学习方法,SVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(七) —— 支持向量机">
 <meta property="og:url" content="http://yoursite.com/2017/07/12/svm/index.html">
@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/svm/convex.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/svm/sv.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/svm/loss.png">
-<meta property="og:updated_time" content="2017-07-25T07:57:54.364Z">
+<meta property="og:updated_time" content="2017-07-29T08:27:58.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(七) —— 支持向量机">
 <meta name="twitter:image" content="http://yoursite.com/materials/img/svm/convex.jpg">
@@ -217,6 +217,11 @@ ga('send', 'pageview');
         
       </header>
     
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
 
@@ -224,7 +229,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概览"><span class="toc-number">1.</span> <span class="toc-text">概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习策略"><span class="toc-number">1.2.</span> <span class="toc-text">学习策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习算法"><span class="toc-number">1.3.</span> <span class="toc-text">学习算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型分类"><span class="toc-number">1.4.</span> <span class="toc-text">模型分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性可分支持向量机"><span class="toc-number">2.</span> <span class="toc-text">线性可分支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数间隔-amp-几何间隔"><span class="toc-number">2.2.</span> <span class="toc-text">函数间隔&几何间隔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#间隔最大化"><span class="toc-number">2.3.</span> <span class="toc-text">间隔最大化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-最大间隔法-线性可分支持向量机学习算法"><span class="toc-number">2.4.</span> <span class="toc-text">算法-最大间隔法(线性可分支持向量机学习算法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持向量与间隔边界"><span class="toc-number">2.5.</span> <span class="toc-text">支持向量与间隔边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的对偶算法"><span class="toc-number">2.6.</span> <span class="toc-text">学习的对偶算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#推导过程"><span class="toc-number">2.6.1.</span> <span class="toc-text">推导过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法——对偶学习算法"><span class="toc-number">2.6.2.</span> <span class="toc-text">算法——对偶学习算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性支持向量机"><span class="toc-number">3.</span> <span class="toc-text">线性支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-1"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原始问题"><span class="toc-number">3.2.</span> <span class="toc-text">原始问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对偶问题"><span class="toc-number">3.3.</span> <span class="toc-text">对偶问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合页损失函数"><span class="toc-number">3.4.</span> <span class="toc-text">合页损失函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非线性支持向量机"><span class="toc-number">4.</span> <span class="toc-text">非线性支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#非线性分类问题"><span class="toc-number">4.1.</span> <span class="toc-text">非线性分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核技巧"><span class="toc-number">4.2.</span> <span class="toc-text">核技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核函数"><span class="toc-number">4.3.</span> <span class="toc-text">核函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求解问题"><span class="toc-number">4.4.</span> <span class="toc-text">求解问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SMO算法"><span class="toc-number">5.</span> <span class="toc-text">SMO算法</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概览"><span class="toc-number">1.</span> <span class="toc-text">概览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习策略"><span class="toc-number">1.2.</span> <span class="toc-text">学习策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习算法"><span class="toc-number">1.3.</span> <span class="toc-text">学习算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型分类"><span class="toc-number">1.4.</span> <span class="toc-text">模型分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性可分支持向量机"><span class="toc-number">2.</span> <span class="toc-text">线性可分支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数间隔-amp-几何间隔"><span class="toc-number">2.2.</span> <span class="toc-text">函数间隔&几何间隔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#间隔最大化"><span class="toc-number">2.3.</span> <span class="toc-text">间隔最大化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-最大间隔法-线性可分支持向量机学习算法"><span class="toc-number">2.4.</span> <span class="toc-text">算法-最大间隔法(线性可分支持向量机学习算法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持向量与间隔边界"><span class="toc-number">2.5.</span> <span class="toc-text">支持向量与间隔边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的对偶算法"><span class="toc-number">2.6.</span> <span class="toc-text">学习的对偶算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#推导过程"><span class="toc-number">2.6.1.</span> <span class="toc-text">推导过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法——对偶学习算法"><span class="toc-number">2.6.2.</span> <span class="toc-text">算法——对偶学习算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性支持向量机"><span class="toc-number">3.</span> <span class="toc-text">线性支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-1"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原始问题"><span class="toc-number">3.2.</span> <span class="toc-text">原始问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对偶问题"><span class="toc-number">3.3.</span> <span class="toc-text">对偶问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合页损失函数"><span class="toc-number">3.4.</span> <span class="toc-text">合页损失函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非线性支持向量机"><span class="toc-number">4.</span> <span class="toc-text">非线性支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#非线性分类问题"><span class="toc-number">4.1.</span> <span class="toc-text">非线性分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核技巧"><span class="toc-number">4.2.</span> <span class="toc-text">核技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核函数"><span class="toc-number">4.3.</span> <span class="toc-text">核函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求解问题"><span class="toc-number">4.4.</span> <span class="toc-text">求解问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SMO算法"><span class="toc-number">5.</span> <span class="toc-text">SMO算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他资料"><span class="toc-number">6.</span> <span class="toc-text">其他资料</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -346,6 +351,10 @@ ga('send', 'pageview');
 <li>选择变量的启发式方法</li>
 </ul>
 </li>
+<li><a href="http://www.cnblogs.com/jerrylead/archive/2011/03/13/1982684.html" target="_blank" rel="external">为什么说对偶算法更易求解？效率更高</a><blockquote>
+<p>以前新来的要分类的样本首先根据$w$和$b$做一次线性运算，然后看求的结果是大于0还是小于0,来判断正例还是负例。现在有了$\alpha_i$，我们不需要求出$w$，只需将新来的样本和训练数据中的所有样本做内积和即可。那有人会说，与前面所有的样本都做运算是不是太耗时了？其实不然，我们从KKT条件中得到，只有支持向量的$\alpha_i&gt;0$，其他情况$\alpha_i=0$。因此，我们只需求新来的样本和支持向量的内积，然后运算即可。这种写法为下面要提到的核函数（kernel）做了很好的铺垫。</p>
+</blockquote>
+</li>
 </ul>
 <h4 id="算法——对偶学习算法"><a href="#算法——对偶学习算法" class="headerlink" title="算法——对偶学习算法"></a>算法——对偶学习算法</h4><blockquote>
 <p>输入：线性可分训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace, x_i\in R^n,y_i \in \lbrace -1,+1 \rbrace, i=1,2,…,N$<br>输出：分离超平面和分类决策函数</p>
@@ -408,6 +417,11 @@ ga('send', 'pageview');
 <h2 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h2><blockquote>
 <p>SMO算法是支持向量机学习的一种快速算法，其特点是不断的将原二次规划问题分解为只有两个变量的二次规划问题，并对子问题进行解析求解，直到所有变量满足KKT条件为止，这样通过启发式的方法得到原二次规划问题的最优解，<strong>因为子问题有解析解，所以每次计算子问题都很快，虽然计算子问题次数很多，但在总体上还是高效的</strong></p>
 </blockquote>
+<h2 id="其他资料"><a href="#其他资料" class="headerlink" title="其他资料"></a>其他资料</h2><p>关于SVM的讲解有不少优秀资料，小结如下</p>
+<ul>
+<li><a href="https://www.cnblogs.com/jerrylead/archive/2011/03/13/1982639.html" target="_blank" rel="external">从LR过渡到SVM的讲解方式</a></li>
+<li><a href="http://www.cnblogs.com/jerrylead/archive/2011/03/13/1982684.html" target="_blank" rel="external">串讲拉格朗日对偶性与SVM对偶算法的推导</a></li>
+</ul>
 
       
 
@@ -425,11 +439,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -674,7 +688,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,7 +696,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,15 +720,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,23 +740,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,15 +756,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -778,11 +788,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,6 +805,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
