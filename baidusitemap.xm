@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-07-31T07:34:10.057Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/30/error/</loc>
     <lastmod>2017-07-30T13:23:11.155Z</lastmod>
     <data>
@@ -29,29 +52,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-07-30T09:01:37.680Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>decision tree</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/12/svm/</loc>
     <lastmod>2017-07-30T07:18:24.482Z</lastmod>
     <data>
@@ -61,9 +61,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>SVM</tag>
          
@@ -109,9 +109,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>Perceptron</tag>
          
@@ -132,9 +132,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>最优化问题</tag>
          
@@ -178,9 +178,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
@@ -199,9 +199,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -266,9 +266,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>LR</tag>
          
@@ -312,9 +312,9 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
-         
         <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
         <tag>k-NN</tag>
          
@@ -467,11 +467,11 @@
         
         <tag>ML</tag>
          
-        <tag>Note</tag>
+        <tag>decision tree</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>decision tree</tag>
+        <tag>Note</tag>
          
          
            

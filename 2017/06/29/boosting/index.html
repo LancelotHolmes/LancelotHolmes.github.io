@@ -9,7 +9,7 @@
   <title>统计学习方法笔记(八) —— 提升方法 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
-<meta name="keywords" content="ML,Note,统计学习方法,decision tree">
+<meta name="keywords" content="ML,decision tree,统计学习方法,Note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(八) —— 提升方法">
 <meta property="og:url" content="http://yoursite.com/2017/06/29/boosting/index.html">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg1.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg2.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg3.jpg">
-<meta property="og:updated_time" content="2017-07-30T09:01:37.680Z">
+<meta property="og:updated_time" content="2017-07-31T07:34:10.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(八) —— 提升方法">
 <meta name="twitter:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
@@ -233,7 +233,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost——Adaptive-Boosting"><span class="toc-number">1.</span> <span class="toc-text">AdaBoost——Adaptive Boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-AdaBoost"><span class="toc-number">1.2.</span> <span class="toc-text">算法-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练误差分析"><span class="toc-number">1.3.</span> <span class="toc-text">训练误差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分步算法"><span class="toc-number">1.4.</span> <span class="toc-text">前向分步算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-加法模型-前向分步算法"><span class="toc-number">1.4.2.</span> <span class="toc-text">算法-加法模型+前向分步算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前向分步算法与AdaBoost"><span class="toc-number">1.4.3.</span> <span class="toc-text">前向分步算法与AdaBoost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升树"><span class="toc-number">2.</span> <span class="toc-text">提升树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升"><span class="toc-number">2.3.</span> <span class="toc-text">梯度提升</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#由来"><span class="toc-number">2.3.1.</span> <span class="toc-text">由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法（回归树）"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法（回归树）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost——Adaptive-Boosting"><span class="toc-number">1.</span> <span class="toc-text">AdaBoost——Adaptive Boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-AdaBoost"><span class="toc-number">1.2.</span> <span class="toc-text">算法-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练误差分析"><span class="toc-number">1.3.</span> <span class="toc-text">训练误差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分步算法"><span class="toc-number">1.4.</span> <span class="toc-text">前向分步算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-加法模型-前向分步算法"><span class="toc-number">1.4.2.</span> <span class="toc-text">算法-加法模型+前向分步算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前向分步算法与AdaBoost"><span class="toc-number">1.4.3.</span> <span class="toc-text">前向分步算法与AdaBoost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升树"><span class="toc-number">2.</span> <span class="toc-text">提升树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升"><span class="toc-number">2.3.</span> <span class="toc-text">梯度提升</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#由来"><span class="toc-number">2.3.1.</span> <span class="toc-text">由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法（回归树）"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法（回归树）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -259,7 +259,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost——Adaptive-Boosting"><span class="toc-number">1.</span> <span class="toc-text">AdaBoost——Adaptive Boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-AdaBoost"><span class="toc-number">1.2.</span> <span class="toc-text">算法-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练误差分析"><span class="toc-number">1.3.</span> <span class="toc-text">训练误差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分步算法"><span class="toc-number">1.4.</span> <span class="toc-text">前向分步算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-加法模型-前向分步算法"><span class="toc-number">1.4.2.</span> <span class="toc-text">算法-加法模型+前向分步算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前向分步算法与AdaBoost"><span class="toc-number">1.4.3.</span> <span class="toc-text">前向分步算法与AdaBoost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升树"><span class="toc-number">2.</span> <span class="toc-text">提升树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升"><span class="toc-number">2.3.</span> <span class="toc-text">梯度提升</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#由来"><span class="toc-number">2.3.1.</span> <span class="toc-text">由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法（回归树）"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法（回归树）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost——Adaptive-Boosting"><span class="toc-number">1.</span> <span class="toc-text">AdaBoost——Adaptive Boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">1.1.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法-AdaBoost"><span class="toc-number">1.2.</span> <span class="toc-text">算法-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练误差分析"><span class="toc-number">1.3.</span> <span class="toc-text">训练误差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前向分步算法"><span class="toc-number">1.4.</span> <span class="toc-text">前向分步算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">1.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法-加法模型-前向分步算法"><span class="toc-number">1.4.2.</span> <span class="toc-text">算法-加法模型+前向分步算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前向分步算法与AdaBoost"><span class="toc-number">1.4.3.</span> <span class="toc-text">前向分步算法与AdaBoost</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提升树"><span class="toc-number">2.</span> <span class="toc-text">提升树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">2.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-number">2.2.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度提升"><span class="toc-number">2.3.</span> <span class="toc-text">梯度提升</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#由来"><span class="toc-number">2.3.1.</span> <span class="toc-text">由来</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法（回归树）"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法（回归树）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -305,7 +305,7 @@ ga('send', 'pageview');
 <li>(2) 对$m=1,2,…,M,  m$表示训练轮数(亦即基分类器个数，因为每一轮产生一个基分类器)：<ul>
 <li>使用具有权值分布$D_m$的训练数据集学习，得到基本分类器$G_m(x)$</li>
 <li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即(分类错误的样本$\times$该样本的权重)之和</li>
-<li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导</li>
+<li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导，也可以参考<a href="https://en.wikipedia.org/wiki/AdaBoost#Derivation" target="_blank" rel="external">维基百科的推导部分</a></li>
 <li>更新训练数据集的权值分布<br>$$D_{m+1}=(w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N})$$<br>如果$G_m(x_i)=y_i$那么$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{-\alpha_m}$$否则$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{\alpha_m}$$</li>
 </ul>
 </li>
@@ -326,7 +326,12 @@ ga('send', 'pageview');
 </li>
 <li>$f(x)$的符号决定实例的类别，其绝对值表示分类的确信度</li>
 <li>关于上述算法流程的熟悉，可以通过书上P140简单的例子或者《机器学习实战》一书中对应AdaBoost实现的部分来感受一下</li>
+<li>从整个算法的流程结合维基百科的推导可以看出算法的核心部分，即一再强调的两个权重$\alpha_m,w_m$，引用维基百科的话来说<blockquote>
+<p>每一轮，我们通过最小化权重损失和$\sum_{y_i\neq G_m(x_i)}w_{m,i}$来选择最佳的基分类器$G_m$,并得到该基分类器对应的错误率$e_m=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$，用计算得到的错误率可以计算基分类器在最终的模型里的权重$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m}$,最后根据该权重改善当前模型并更新下一轮的基分类器的权重分布$w_m$</p>
+</blockquote>
+</li>
 </ul>
+<p>简而言之就是每轮一方面通过最小化基分类器的权重损失和来选择该轮的基分类器以及最终的权重，另一方面据该轮表现来为修正当前模型的错误而更新样本权重分布</p>
 <h3 id="训练误差分析"><a href="#训练误差分析" class="headerlink" title="训练误差分析"></a>训练误差分析</h3><p>即证明</p>
 <blockquote>
 <ul>
@@ -378,18 +383,19 @@ ga('send', 'pageview');
 <ul>
 <li>对于原书中证明求$\alpha_m^*$的最后$$e_m=\frac{\sum_{i=1}^N\overline{w_{mi}}I(y_i \neq G_m(x_i))}{\sum_{i=1}^N\overline{w_{mi}}}=\sum_{i=1}^Nw_{mi}I(y_i \neq G_m(x_i))$$中的后半部分是怎么来的实在理解不了，猜测可能跟AdaBoost训练误差界中的定理以及后面的$\overline{w_{m+1,i}}=\overline{w_{mi}}exp(-y_i\alpha_mG_m(x))$有关</li>
 <li>推导的核心还是基分类器在最终分类器中的权重$\alpha_m$以及样本权重分布这两项的推导</li>
-<li>为什么是指数损失函数？<em>参考周志华《机器学习》一书P174</em><ul>
+<li>为什么是指数损失函数？<em>参考周志华《机器学习》一书P174</em>(不过这里也只是逆向从如果是指数损失函数的角度来分析为什么可以用指数损失函数，并没有说明起源，比如为什么不用合页损失函数？)<ul>
 <li>由最终得到的基分类器的线性组合$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$</li>
 <li>若$f(x)$能令指数损失函数最小化，即最小化$L(y,f(x))=e^{-yf(x)}$</li>
 <li>对其求偏导得$$\frac{d(L(y,f(x)))}{df(x)}=-e^{f(x)}P(y=1|x)+e^{f(x)}P(y=-1|x)$$</li>
 <li>令其为0得到$$f(x)=\frac{1}{2}ln\frac{P(y=1|x)}{P(y=-1|x)}$$</li>
 <li>于是最终分类器$$sign(f(x))=sign(\frac{1}{2}ln\frac{P(y=1|x)}{P(y=-1|x)})$$</li>
 <li>即$$sign(f(x))=1，如果P(y=1|x)&gt;P(y=-1|x)$$,而$$sign(f(x))=-1，如果P(y=-1|x)&gt;P(y=1|x)$$</li>
-<li>也就表示，$sign(f(x))$达到了贝叶斯最优错误率，即<strong>若指数损失函数最小化则分类错误率也将最小化</strong>，这说明<ul>
+<li>也就表示，$sign(f(x))$达到了<em>贝叶斯最优错误率</em>，即<strong>若指数损失函数最小化则分类错误率也将最小化</strong>，这说明<ul>
 <li>指数损失函数是分类任务原本0/1损失函数的一致的替代损失函数；</li>
 <li>由于该替代函数有更好的数学性质（比如连续可微），因此我们用其替代0/1损失函数作为优化目标（类似的这种情况在SVM里用合页损失函数代替0-1损失函数也出现过）</li>
 </ul>
 </li>
+<li>更多讨论也可以看看<a href="https://www.zhihu.com/question/48558534?q=%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95AdaBoost%E8%A6%81%E4%BD%BF%E7%94%A8%E6%8C%87%E6%95%B0%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BD%9C%E4%B8%BA%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9F" target="_blank" rel="external">知乎</a>，似乎大部分观点认为AdaBoost=boosting+指数损失函数</li>
 </ul>
 </li>
 </ul>
@@ -463,6 +469,13 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>《统计学习方法》</li>
+<li>《机器学习》</li>
+<li>《机器学习实战》</li>
+<li><a href="https://en.wikipedia.org/wiki/AdaBoost#Derivation" target="_blank" rel="external">维基百科</a></li>
+<li><a href="">知乎</a></li>
+</ul>
 
       
 
@@ -480,7 +493,7 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -488,7 +501,7 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">decision tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		
 		</ul>
@@ -721,6 +734,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
@@ -733,23 +758,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">统计学习方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,14 +782,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
@@ -785,11 +790,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,6 +803,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -822,10 +839,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
