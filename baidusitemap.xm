@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/30/error/</loc>
-    <lastmod>2017-07-30T13:20:20.172Z</lastmod>
+    <lastmod>2017-07-30T13:23:11.155Z</lastmod>
     <data>
         <display>
         <title>个人错题难题仓库</title>
@@ -38,9 +38,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>decision tree</tag>
          
@@ -61,9 +61,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>SVM</tag>
          
@@ -109,11 +109,11 @@
         
         <tag>ML</tag>
          
-        <tag>Perceptron</tag>
+        <tag>Note</tag>
          
         <tag>统计学习方法</tag>
          
-        <tag>Note</tag>
+        <tag>Perceptron</tag>
          
          
            
@@ -132,9 +132,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>最优化问题</tag>
          
@@ -178,9 +178,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
          
            
@@ -199,9 +199,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -266,9 +266,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>LR</tag>
          
@@ -312,9 +312,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>k-NN</tag>
          
@@ -467,9 +467,9 @@
         
         <tag>ML</tag>
          
-        <tag>统计学习方法</tag>
-         
         <tag>Note</tag>
+         
+        <tag>统计学习方法</tag>
          
         <tag>decision tree</tag>
          
