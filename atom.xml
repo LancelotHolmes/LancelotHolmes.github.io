@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-30T13:23:11.155Z</updated>
+  <updated>2017-08-01T07:31:16.884Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/07/30/error/"/>
     <id>http://yoursite.com/2017/07/30/error/</id>
     <published>2017-07-30T01:29:10.000Z</published>
-    <updated>2017-07-30T13:23:11.155Z</updated>
+    <updated>2017-08-01T07:31:16.884Z</updated>
     
     <content type="html"><![CDATA[<p><em>记录个人的一些疑难杂症</em></p>
 <a id="more"></a>
@@ -58,7 +58,33 @@
 <li><a href="http://shukuiyan.iteye.com/blog/1095637" target="_blank" rel="external">http://shukuiyan.iteye.com/blog/1095637</a></li>
 <li><a href="http://www.cnblogs.com/lifegoesonitself/p/3225803.html" target="_blank" rel="external">http://www.cnblogs.com/lifegoesonitself/p/3225803.html</a></li>
 </ul>
-]]></content>
+<h2 id="整数中1出现的次数"><a href="#整数中1出现的次数" class="headerlink" title="整数中1出现的次数"></a>整数中1出现的次数</h2><p>来源：<a href="https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6?tpId=13&amp;tqId=11184&amp;tPage=2&amp;rp=2&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking" target="_blank" rel="external">牛客</a></p>
+<h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>从1到n的整数中1出现的次数，例如：求出1~13的整数中1出现的次数，其中包含1的数字有1、10、11、12、13因此共出现6次（11表示两次）</p>
+</blockquote>
+<h3 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h3><p>阅读了一些书籍和博客的解析，感觉比较繁琐，反而是<a href="https://leetcode.com/discuss/44281/4-lines-o-log-n-c-java-python" target="_blank" rel="external">leetcode的高票答案</a>简洁明了的解释了，现转述如下:</p>
+<ul>
+<li>本题的暴力解法是对每一个数逐一遍历数位统计1的个数，然后又注意统计1~n的每个数的1的个数并最后加和</li>
+<li>高效率解法<blockquote>
+<p>第i位为1的可能情形由第i位前后的数值范围共同决定</p>
+</blockquote>
+</li>
+</ul>
+<p>首先这道题若是从数值大小的方向找规律的话比较繁琐，虽然也有方法，但个人觉得不是很好用，比较好的一种方法是通过数位的角度来看数，因为本身这道题就是统计所有1出现的数目，像11这种数就表示1出现了两次，若执迷于按照数值大小统计很容易陷入数值范围与数位范围的混沌；下面就通过逐个数位的统计来说明，首先我们定义几个变量</p>
+<ul>
+<li>原始传入数据n</li>
+<li>m用来统计当前的数位，从每次以10倍倍增，也就是说$m=1,10,100,…$</li>
+<li>当前数位划分的高位数据a=n/m,以及对应的剩余数据b=n%m</li>
+</ul>
+<p>接下来对每一数位i，我们将该数位的可能取值范围0~9划分为3种情况并分a,b两部分统计该位为1时的a,b变化范围即对应的1的数目</p>
+<ul>
+<li>i&gt;1时，因为此时i可以取1，所以a,b都能在自己的取值范围任意取值，举个例子，比如12345，假设我们现在统计百位上为1的情形即m=100</li>
+<li>对应的a=123,b=45;假设置百位为1则简化表示为a1b，而对于a而言它的取值范围是0~12共有13种可能，而由于我们此刻是在统计百位为1的情形，所以一共就有13<em>100种可能，细化下来分别为100~199,1100~1199,2100~2199,…,12100~12199,用一个一般性的式子表示就是$$(a/10+1)</em>m$$</li>
+<li>i=1时，当a取最大值时,对于b而言，有一部分值是取不到的，仍然举个例子比如12145，仍然统计百位，于是a=121,b=45,对于而对于a而言它的取值范围是0~12共有13种可能，但是这里需要注意当a=12时会受到b的允许取值的影响，具体说来对于121b而言，此时b的取值范围为0~45也就是12100~12145，对于12146~12199就超出了原始值n的范围了，而对于a其他取值依然是能够满足的，细化为100~199,1100~1199,2100~2199,…,11100~11199,12100~12145,用一个式子表示就是$$(a/10)*m+b+1$$;</li>
+<li>i=0时，这个时候a就不能取最大值了，其余情形都可以取得，比如12045，a=120,b=45,此时a的取值范围是0~11，而对于a的任一取值，b的取值不受限制，细化为100~199,1100~1199,2100~2199,…,11100~11199，用式子表示就是$$(a/10)*m$$</li>
+<li>最后只需要逐位统计该数位为1时的取值范围情况就能保证每个数位的1不被漏掉，因为我们是按照数位独立统计1的数目，所以也不会出现重复的情形，比如对于111而言，我们在统计个位时，是不考虑前面数位是否为1的，只考虑前面数位的取值范围，因为只要个位为1我们才会对前面的有效值进行1次记录，比如说111我们分别在个位、十位、百位都会对这个数进行统计，但是每次统计只是记录该数位的情况，所以对于这个数而言虽然是重复出现了，但是对于1的统计而言没有重复统计；</li>
+</ul>
+<h3 id="Java代码-2"><a href="#Java代码-2" class="headerlink" title="Java代码"></a>Java代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">NumberOf1Between1AndN</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> m=<span class="number">1</span>;m&lt;=n;m*=<span class="number">10</span>)&#123;</div><div class="line">        <span class="keyword">int</span> a=n/m,b=n%m;</div><div class="line">        <span class="keyword">int</span> i=a%<span class="number">10</span>;</div><div class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</div><div class="line">            sum+=(a/<span class="number">10</span>*m);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">1</span>)&#123;</div><div class="line">            sum+=(a/<span class="number">10</span>*m+b+<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            sum+=((a/<span class="number">10</span>+<span class="number">1</span>)*m);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     

@@ -4,31 +4,8 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-07-31T07:34:10.057Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/30/error/</loc>
-    <lastmod>2017-07-30T13:23:11.155Z</lastmod>
+    <lastmod>2017-08-01T07:31:16.884Z</lastmod>
     <data>
         <display>
         <title>个人错题难题仓库</title>
@@ -43,6 +20,29 @@
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-07-31T07:34:10.057Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
          
          
            
