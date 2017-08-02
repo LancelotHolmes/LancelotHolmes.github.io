@@ -4,6 +4,73 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
+    <lastmod>2017-08-02T10:35:42.607Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(五) —— 决策树</title>
+        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-08-02T07:56:28.906Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
+    <lastmod>2017-08-02T07:07:43.035Z</lastmod>
+    <data>
+        <display>
+        <title>模型比较小记</title>
+        <pubTime>2017-08-02T07:06:18.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>机器学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/30/error/</loc>
     <lastmod>2017-08-01T07:31:16.884Z</lastmod>
     <data>
@@ -20,29 +87,6 @@
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-07-31T07:34:10.057Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            
@@ -449,29 +493,6 @@
         <tag>Note</tag>
          
         <tag>ensemble</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
-    <lastmod>2017-07-30T06:17:50.854Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(五) —— 决策树</title>
-        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            

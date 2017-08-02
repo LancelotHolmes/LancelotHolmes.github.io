@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>栈与队列小记 | Lancelot&#39;s Desert</title>
+  <title>模型比较小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主要记录一些关于栈、队列的变体和特殊操作的算法题">
-<meta name="keywords" content="Note,algorithm,校招,面试,Coding">
+  <meta name="description" content="RandomForest vs. GBDT vs. AdaBoost">
+<meta name="keywords" content="ML,Note,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="栈与队列小记">
-<meta property="og:url" content="http://yoursite.com/2017/07/22/stack-queue/index.html">
+<meta property="og:title" content="模型比较小记">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/model-cmp/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="主要记录一些关于栈、队列的变体和特殊操作的算法题">
-<meta property="og:image" content="http://yoursite.com/materials/img/queue_stack/queue_oper.png">
-<meta property="og:updated_time" content="2017-07-30T06:23:40.045Z">
+<meta property="og:description" content="RandomForest vs. GBDT vs. AdaBoost">
+<meta property="og:updated_time" content="2017-08-02T07:07:43.035Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="栈与队列小记">
-<meta name="twitter:description" content="主要记录一些关于栈、队列的变体和特殊操作的算法题">
-<meta name="twitter:image" content="http://yoursite.com/materials/img/queue_stack/queue_oper.png">
+<meta name="twitter:title" content="模型比较小记">
+<meta name="twitter:description" content="RandomForest vs. GBDT vs. AdaBoost">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -195,20 +193,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-stack-queue" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-model-cmp" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      栈与队列小记
+      模型比较小记
     </h1>
   
 
         
-        <a href="/2017/07/22/stack-queue/" class="archive-article-date">
-  	<time datetime="2017-07-22T07:39:22.000Z" itemprop="datePublished">2017-07-22</time>
+        <a href="/2017/08/02/model-cmp/" class="archive-article-date">
+  	<time datetime="2017-08-02T07:06:18.000Z" itemprop="datePublished">2017-08-02</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
@@ -228,7 +226,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#队列"><span class="toc-number">1.</span> <span class="toc-text">队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java接口"><span class="toc-number">1.1.</span> <span class="toc-text">Java接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作"><span class="toc-number">1.2.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用操作"><span class="toc-number">1.2.1.</span> <span class="toc-text">常用操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本操作"><span class="toc-number">1.2.2.</span> <span class="toc-text">基本操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">1.3.</span> <span class="toc-text">实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈与队列的转换"><span class="toc-number">2.</span> <span class="toc-text">栈与队列的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用两个栈实现队列的基本操作"><span class="toc-number">2.1.</span> <span class="toc-text">用两个栈实现队列的基本操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊的栈"><span class="toc-number">3.</span> <span class="toc-text">特殊的栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O-1-时间取得最大-最小值的栈"><span class="toc-number">3.1.</span> <span class="toc-text">O(1)时间取得最大/最小值的栈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展应用"><span class="toc-number">3.1.1.</span> <span class="toc-text">拓展应用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊的队列"><span class="toc-number">4.</span> <span class="toc-text">特殊的队列</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomForest-vs-GBDT-vs-AdaBoost"><span class="toc-number">1.</span> <span class="toc-text">RandomForest vs. GBDT vs. AdaBoost</span></a></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -254,7 +252,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#队列"><span class="toc-number">1.</span> <span class="toc-text">队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java接口"><span class="toc-number">1.1.</span> <span class="toc-text">Java接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作"><span class="toc-number">1.2.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用操作"><span class="toc-number">1.2.1.</span> <span class="toc-text">常用操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本操作"><span class="toc-number">1.2.2.</span> <span class="toc-text">基本操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">1.3.</span> <span class="toc-text">实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈与队列的转换"><span class="toc-number">2.</span> <span class="toc-text">栈与队列的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用两个栈实现队列的基本操作"><span class="toc-number">2.1.</span> <span class="toc-text">用两个栈实现队列的基本操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊的栈"><span class="toc-number">3.</span> <span class="toc-text">特殊的栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O-1-时间取得最大-最小值的栈"><span class="toc-number">3.1.</span> <span class="toc-text">O(1)时间取得最大/最小值的栈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展应用"><span class="toc-number">3.1.1.</span> <span class="toc-text">拓展应用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特殊的队列"><span class="toc-number">4.</span> <span class="toc-text">特殊的队列</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomForest-vs-GBDT-vs-AdaBoost"><span class="toc-number">1.</span> <span class="toc-text">RandomForest vs. GBDT vs. AdaBoost</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -265,95 +263,7 @@ ga('send', 'pageview');
            
          
 
-        <p>主要记录一些关于栈、队列的变体和特殊操作的算法题<br><a id="more"></a></p>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>Queue</p>
-<blockquote>
-<p>队列允许重复元素，因为队列的基本特征是保持元素的插入顺序，重复的元素在队列中被认为是不同的元素，任意两个元素的顺序是不一样的。</p>
-</blockquote>
-<h3 id="Java接口"><a href="#Java接口" class="headerlink" title="Java接口"></a>Java接口</h3><table>
-<thead>
-<tr>
-<th>接口</th>
-<th>包</th>
-<th>实现</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Deque</td>
-<td>java.util</td>
-<td>LinkedList</td>
-<td>double ended queue，允许两端增删元素</td>
-</tr>
-<tr>
-<td>BlockingDeque</td>
-<td>java.util.concurrent</td>
-<td>-</td>
-<td>同BlockingQueue</td>
-</tr>
-<tr>
-<td>BlockingQueue</td>
-<td>java.util.concurrent</td>
-<td>-</td>
-<td>BlockingQueue只有在队列不空时才查找元素，只有在队列有空余空间时才插入元素、此外还支持延时插入删除操作</td>
-</tr>
-<tr>
-<td>TransferQueue</td>
-<td>java.util.concurrent</td>
-<td>-</td>
-<td>特殊的BlockingQueue，会等候其他的线程在队列中查询元素</td>
-</tr>
-</tbody>
-</table>
-<p><a href="http://www.codejava.net/java-core/collections/java-queue-collection-tutorial-and-examples" target="_blank" rel="external">参考</a></p>
-<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><ul>
-<li>继承了Collection的核心操作比如<code>add(), contains(), remove(), clear(), isEmpty()</code></li>
-<li>对于队列而言，在头部的操作更快比如<code>offer()</code>和<code>remove()</code>而对中间元素的操作就相对较慢比如：<code>contains(e)</code>和<code>remove(e)</code></li>
-<li>单元素操作: add(e),contains(e), iterator(), clear(), isEmpty(), size() 和 toArray().</li>
-<li>批量操作: addAll(), containsAll(), removeAll() 和 retainAll().</li>
-</ul>
-<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
-<li>尾部添加元素</li>
-<li>头部删除元素</li>
-<li>从头部取元素（但不删除）</li>
-</ul>
-<p>按操作失败时输出划分<br><img src="/materials/img/queue_stack/queue_oper.png" alt="queue operation"></p>
-<ul>
-<li>其中插入操作，针对限制容量的一些实现会有所不同，包括ArrayBlockingQueue, LinkedBlockingQueue 和 LinkedBlockingDeque classes</li>
-</ul>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
-<li>常规<ul>
-<li>LinkedList:List+Deque，适用于需要快速增删两端的元素，以及通过下标访问元素</li>
-<li>PriorityQueue::通过自然顺序或者根据Comparator的规则对元素排序，适用于需要对元素自然排序以及快速在尾端插入元素或在头部删除元素</li>
-<li>ArrayDeque:Deque的简单实现，当只需要双端队列的特性而不需要列表的特性时</li>
-</ul>
-</li>
-</ul>
-<p><em>Notes:</em><br>对上述实现，如果想使用同步，则使用如下代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List list = Collections.synchronizedList(<span class="keyword">new</span> LinkedList&lt;&gt;());</div></pre></td></tr></table></figure></p>
-<ul>
-<li>多线程<ul>
-<li>ArrayBlockingQueue:用数组实现的blocking queue,容量有限的简单的blocking queue实现</li>
-<li>PriorityBlockingQueue:PriorityQueue+BlockingQueue</li>
-<li>DelayQueue:基于时间调度的blocking queue,需要实现Delayed接口，意味着只有当一个元素的delay到期了才能被从队列头部删除</li>
-</ul>
-</li>
-</ul>
-<h2 id="栈与队列的转换"><a href="#栈与队列的转换" class="headerlink" title="栈与队列的转换"></a>栈与队列的转换</h2><h3 id="用两个栈实现队列的基本操作"><a href="#用两个栈实现队列的基本操作" class="headerlink" title="用两个栈实现队列的基本操作"></a>用两个栈实现队列的基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; in=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	Stack&lt;Integer&gt; out=<span class="keyword">new</span> Stack&lt;&gt;();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(<span class="keyword">int</span> e)</span></span>&#123;</div><div class="line">		in.push(e);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!out.isEmpty())&#123;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			<span class="keyword">if</span>(in.isEmpty())&#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"empty"</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">while</span>(!in.isEmpty())&#123;</div><div class="line">				out.push(in.pop());</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> out.pop();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> in.isEmpty()&amp;&amp;out.isEmpty();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>附：<a href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&amp;tqId=11158&amp;tPage=1&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="external">练习链接</a></p>
-<h2 id="特殊的栈"><a href="#特殊的栈" class="headerlink" title="特殊的栈"></a>特殊的栈</h2><h3 id="O-1-时间取得最大-最小值的栈"><a href="#O-1-时间取得最大-最小值的栈" class="headerlink" title="O(1)时间取得最大/最小值的栈"></a>O(1)时间取得最大/最小值的栈</h3><p>以最小值为例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; stack1=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//实现栈的常规功能</span></div><div class="line">	Stack&lt;Integer&gt; stack2=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//辅助栈，栈顶保存当前最小元素</span></div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">        stack1.push(node);</div><div class="line">        <span class="keyword">if</span>(!stack2.isEmpty())&#123;        	</div><div class="line">        	stack2.push((min()&lt;=node?min():node));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">        	stack2.push(node);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack1.pop();</div><div class="line">        stack2.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack1.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack2.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>附：<a href="https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&amp;tqId=11173&amp;tPage=1&amp;rp=1&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking" target="_blank" rel="external">练习链接</a></p>
-<h4 id="拓展应用"><a href="#拓展应用" class="headerlink" title="拓展应用"></a>拓展应用</h4><p>股票的最大利润<br>附：<a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/#/description" target="_blank" rel="external">练习链接</a><br>一种解法是，先用一个能快速获取最大值能力的栈倒着获取一遍所有的当前元素的最大元素，然后顺序遍历，不断的加入元素到一个TreeSet并从栈中弹出元素，这样一来，set里保留的就是前面部分的最小值，而stack保留剩余部分的最大值，所以，两相作差，我们可以从中取出最大的差值即最大利润，当然针对这个问题这个方法并不好，时间上对于大型数组会超时，而且还用了额外空间；比较好的方法应该使用动态规划</p>
-<ul>
-<li><p>使用特殊栈与TreeSet的解法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Stack;</div><div class="line"><span class="keyword">import</span> java.util.TreeSet;</div><div class="line"></div><div class="line"><span class="comment">/**剑指offer第二版面试题63：股票的最大利润*/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxStock</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span>[] prices=&#123;<span class="number">7</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">4</span>&#125;;</div><div class="line">		System.out.println(maxProfit(prices));</div><div class="line">		<span class="keyword">int</span>[] prices2=&#123;<span class="number">9</span>,<span class="number">11</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">16</span>,<span class="number">14</span>&#125;;</div><div class="line">		System.out.println(maxProfit(prices2));</div><div class="line">		<span class="keyword">int</span>[] prices3=&#123;<span class="number">7</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>&#125;;</div><div class="line">		System.out.println(maxProfit(prices3));</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">//基本思路：用两个特殊的数据结构，先用一个能快速得到最大值的栈逆序遍历数据得到各序列当前最大值，然后逐个遍历数组，</span></div><div class="line">	<span class="comment">//左侧添加到一个TreeSet中保留当前最小值，右侧则不停的出栈，表示剩余的最大值，两项做差表示当前的利润，用一个max变量比较保存最大利润</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(prices==<span class="keyword">null</span> || prices.length==<span class="number">0</span>)&#123;</div><div class="line">    		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="comment">//use stack with max to reverse collect the current max prices </span></div><div class="line">        MaxStack stack=<span class="keyword">new</span> MaxStack();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=prices.length-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)&#123;</div><div class="line">        	stack.push(prices[i]);</div><div class="line">        &#125;</div><div class="line">        TreeSet&lt;Integer&gt; set=<span class="keyword">new</span> TreeSet&lt;&gt;();</div><div class="line">        <span class="keyword">int</span> maxProfit=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;prices.length-<span class="number">1</span>;i++)&#123;</div><div class="line">        	set.add(prices[i]);</div><div class="line">        	<span class="keyword">int</span> maxLeft=stack.max();</div><div class="line">        	stack.pop();</div><div class="line">        	<span class="keyword">int</span> diff=maxLeft-set.first();</div><div class="line">        	maxProfit=maxProfit&gt;diff?maxProfit:diff;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> maxProfit;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxStack</span></span>&#123;</div><div class="line">	Stack&lt;Integer&gt; stack1=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//实现栈的常规功能</span></div><div class="line">	Stack&lt;Integer&gt; stack2=<span class="keyword">new</span> Stack&lt;&gt;();	<span class="comment">//辅助栈，栈顶保存当前最小元素</span></div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</div><div class="line">        stack1.push(node);</div><div class="line">        <span class="keyword">if</span>(!stack2.isEmpty())&#123;        	</div><div class="line">        	stack2.push((max()&gt;=node?max():node));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">        	stack2.push(node);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        stack1.pop();</div><div class="line">        stack2.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack1.peek();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> stack2.peek();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用动态规划的解法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(prices.length&lt;=<span class="number">0</span>)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> soFarMin=prices[<span class="number">0</span>];</div><div class="line">	<span class="keyword">int</span> maxDiff=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;prices.length;i++)&#123;</div><div class="line">		<span class="keyword">if</span>(prices[i]&gt;soFarMin)&#123;</div><div class="line">			maxDiff=maxDiff&gt;(prices[i]-soFarMin)?maxDiff:(prices[i]-soFarMin);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			soFarMin=prices[i];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> maxDiff;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="特殊的队列"><a href="#特殊的队列" class="headerlink" title="特殊的队列"></a>特殊的队列</h2>
+        <h2 id="RandomForest-vs-GBDT-vs-AdaBoost"><a href="#RandomForest-vs-GBDT-vs-AdaBoost" class="headerlink" title="RandomForest vs. GBDT vs. AdaBoost"></a>RandomForest vs. GBDT vs. AdaBoost</h2>
       
 
       
@@ -366,23 +276,15 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
@@ -438,7 +340,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://izhaoyi.top/2017/07/22/stack-queue/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://izhaoyi.top/2017/08/02/model-cmp/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -452,18 +354,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2017/07/27/tricks/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          懒死骆驼的代码小黑本
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/20/bias-variance/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">方差、偏差、噪声和期望泛化误差小记</div>
+    <a href="/2017/07/30/error/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">个人错题难题仓库</div>
       <i class="icon-circle-right"></i>
     </a>
   

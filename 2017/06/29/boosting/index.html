@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>统计学习方法笔记(八) —— 提升方法 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
+  <meta name="description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮” 关于boosting，机器学习技法一课中开头举的一个小学生认苹果的例子比较传神，假设给定一堆水果，让一群小学生来识别其中的苹果，逐个的询问小学生根据什么样的规则来认为一个水果是苹果，比如学生A认为形状为圆的是苹果，第二个学生认为颜色为红的为水果等等">
 <meta name="keywords" content="ML,decision tree,统计学习方法,Note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统计学习方法笔记(八) —— 提升方法">
 <meta property="og:url" content="http://yoursite.com/2017/06/29/boosting/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
+<meta property="og:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮” 关于boosting，机器学习技法一课中开头举的一个小学生认苹果的例子比较传神，假设给定一堆水果，让一群小学生来识别其中的苹果，逐个的询问小学生根据什么样的规则来认为一个水果是苹果，比如学生A认为形状为圆的是苹果，第二个学生认为颜色为红的为水果等等">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis1.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis2.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis3.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg1.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg2.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/AdaBoost/forward_step_alg3.jpg">
-<meta property="og:updated_time" content="2017-07-31T07:34:10.057Z">
+<meta property="og:updated_time" content="2017-08-02T07:56:28.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(八) —— 提升方法">
-<meta name="twitter:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮”  关键词：强可学习、弱可学习、PAC(probably approximately correct) 由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算">
+<meta name="twitter:description" content="在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。 “三个臭皮匠，顶个诸葛亮” 关于boosting，机器学习技法一课中开头举的一个小学生认苹果的例子比较传神，假设给定一堆水果，让一群小学生来识别其中的苹果，逐个的询问小学生根据什么样的规则来认为一个水果是苹果，比如学生A认为形状为圆的是苹果，第二个学生认为颜色为红的为水果等等">
 <meta name="twitter:image" content="http://yoursite.com/materials/img/AdaBoost/error_analysis1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
@@ -276,6 +276,7 @@ ga('send', 'pageview');
 <blockquote>
 <p>在分类问题中，Boosting通过改变训练样本的权重，学习多个分类器，并将这些分类器进行线性组合，提高分类的性能。</p>
 <p>“三个臭皮匠，顶个诸葛亮”</p>
+<p>关于boosting，<strong>机器学习技法</strong>一课中开头举的一个小学生认苹果的例子比较传神，假设给定一堆水果，让一群小学生来识别其中的苹果，逐个的询问小学生根据什么样的规则来认为一个水果是苹果，比如学生A认为形状为圆的是苹果，第二个学生认为颜色为红的为水果等等，逐一询问学生的过程中，每问一个学生之后，按照他的规则对当前水果分类，记录其中的错分的水果然后让下一个同学重点根据这些被错分的水果来找找规则，这样一步一步的最后全班同学得到一个较为完备的规则来判定出苹果，这个过程中单个学生扮演的较色就是基分类器，比如常用的决策树桩，类似某一维的的感知机，在该维度将空间一分为二的划分样本，而教师的角色则是在这一过程中不断引导学生关注被上一个学生错分的样本来做出判定规则，并最终得出一个较为完备的输出结果</p>
 </blockquote>
 <p><strong>关键词：强可学习、弱可学习、PAC(probably approximately correct)</strong></p>
 <p>由于发现弱学习算法通常比发现强学习算法容易，所以Boosting试图解决这么一个问题：“如果已经发现了‘弱学习算法’，那么能否将它提升为‘强学习算法’？”<br><a id="more"></a></p>
@@ -330,6 +331,8 @@ ga('send', 'pageview');
 <p>每一轮，我们通过最小化权重损失和$\sum_{y_i\neq G_m(x_i)}w_{m,i}$来选择最佳的基分类器$G_m$,并得到该基分类器对应的错误率$e_m=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$，用计算得到的错误率可以计算基分类器在最终的模型里的权重$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m}$,最后根据该权重改善当前模型并更新下一轮的基分类器的权重分布$w_m$</p>
 </blockquote>
 </li>
+<li>更行权重分布的计算过程也可以从样本的正反例比的角度来看，第$t+1$次调整权重分布的目的是为了学的一个与第$t$次不一样的模型，避免犯同样的错误，所以需要根据第$t$次的分类错误来重新调整样本分布，使正负样本权重和均衡(一般而言第$t$次训练后的分类错误的样本数要少于正确的样本数，其实这个过程也就是加大分错样本的权重)，具体而言就是按照正负样本比例调整，比如分类错误样本数为$p$,分类正确样本数为$q$错误率为$e_m=\frac{p}{p+q}$，则在第$t+1$轮需要将负样本权重调整为$w_t\times q$对应的正确样本权重调整为$w_t\times p$使两者平衡，也就等价于对错误样本$w_{t+1}=w_t\times (1-e_m)$,对正确样本$w_{t+1}=w_t\times (e_m)$,进一步可以定义变量$\lambda=\sqrt{\frac{1-e_m}{e_m}}$,于是对错误样本$w_{t+1}=w_t\times \lambda$,对正确样本$w_{t+1}=w_t \div \lambda$,(加根号的做法还是在机器学习技法上看到，另外的《统计学习方法》、《机器学习》上面都没有加根号)这么做使其具有更好的物理意义，具体的，如果分类错误率不超过$\frac{1}{2}$则$\lambda&gt;1$也就表明更加关足上一轮被错分样本，而减小正确分类的样本的关注度，同时也表明基分类器应该优于随机猜测</li>
+<li>进一步地，对于$\alpha$即各个基分类器最终在加和模型里的权重而言，其创作者对取值设置为$\alpha_t=ln(\lambda)$，其物理意义就是在极限情况下随机猜测的话，分类错误率为0.5而对应的$\lambda=1$所以$\alpha=0$也就表明对于乱猜的分类器的分类结果最后不计入整体分类器，而另外对于分类错误率为0的情形，对应的$\alpha=\infty$也就是说如果一个单一的分类器就足以分类了，那么就用这一个就够了；此外，按照林轩田的说法，算法中基分类器和$\alpha_t$的计算是<strong>on the fly</strong>的做法，也就是每计算一个基分类器也就可以计算对应的$\alpha_t$，最后就得到一系列基分类器和对应的权重值</li>
 </ul>
 <p>简而言之就是每轮一方面通过最小化基分类器的权重损失和来选择该轮的基分类器以及最终的权重，另一方面据该轮表现来为修正当前模型的错误而更新样本权重分布</p>
 <h3 id="训练误差分析"><a href="#训练误差分析" class="headerlink" title="训练误差分析"></a>训练误差分析</h3><p>即证明</p>
@@ -474,7 +477,8 @@ ga('send', 'pageview');
 <li>《机器学习》</li>
 <li>《机器学习实战》</li>
 <li><a href="https://en.wikipedia.org/wiki/AdaBoost#Derivation" target="_blank" rel="external">维基百科</a></li>
-<li><a href="">知乎</a></li>
+<li><a href="https://www.zhihu.com/question/48558534?q=%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95AdaBoost%E8%A6%81%E4%BD%BF%E7%94%A8%E6%8C%87%E6%95%B0%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BD%9C%E4%B8%BA%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9F" target="_blank" rel="external">知乎</a></li>
+<li>林轩田《机器学习技法》</li>
 </ul>
 
       
@@ -734,10 +738,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -750,7 +750,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -778,30 +786,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
@@ -810,11 +794,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -834,15 +838,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -850,11 +850,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -867,6 +867,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
              
               <li class="article-tag-list-item">
