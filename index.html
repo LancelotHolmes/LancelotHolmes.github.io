@@ -224,72 +224,19 @@ ga('send', 'pageview');
 
     <div class="article-entry" itemprop="articleBody">
       
-
-        
-
         <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p><strong>bagging+decision tree+randomness</strong><br>简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型</p>
 <ul>
-<li>bagging从bias-variance分解的角度来看倾向于减少模型的方差</li>
+<li>bagging从bias-variance分解的角度来看倾向于减少模型的方差<ul>
+<li>随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能</li>
+<li>随机森林改善模型的方差的方法主要是减小基学习器之间的相关性，通过特征扰动来实现</li>
+</ul>
+</li>
 <li>决策树模型往往方差较大(特别对于完全生长的决策树)</li>
 <li>随机森林中的基分类器$g_t$就是决策树模型，最终以bagging的方式组合在一起(voting/averaging)</li>
 </ul>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p><img src="/materials/img/RF/alg.png" alt="alg"><br><em>图片来源于“机器学习技法”课件</em></p>
-<ul>
-<li>由于每棵树可以独立训练，所以随机森林模型的训练过程是一个并行的过程，相对高效</li>
-<li>随机森林模型继承了决策树的优点并克服了完全生长的决策树的缺点</li>
-</ul>
-<h3 id="特征随机性"><a href="#特征随机性" class="headerlink" title="特征随机性"></a>特征随机性</h3><p>随机森林的随机性除了使用bagging中的bootstrap方法采样训练出不同决策树以外，进一步地针对每棵决策树是随机的选择部分特征作为一个子特征集合来让该决策树进行学习，从而增强各个决策树的多样性</p>
-<ul>
-<li>一般随机抽取的特征子集是极小于原始特征空间的，这样训练模型的效率更高</li>
-<li>特征扰动的方式增强了基分类器之间的多样性，从而使得在最终bagging集成时使用voting或者averaging方法时更易于减小模型本身的方差</li>
-<li>可以看作是一个将原始特征空间随机投影到不同的低维特征空间上进行模型训练，对于每棵树中的分支而言类似于一个感知机分类的过程(原始输入样本按照某一个随机选取的特征空间映射后根据某个阈值进行分类)</li>
-</ul>
-<h2 id="out-of-bag-example"><a href="#out-of-bag-example" class="headerlink" title="out of bag example"></a>out of bag example</h2><p>与bagging的过程相关<br><img src="/materials/img/RF/oob.png" alt="oob"><br><em>图片来源于“机器学习技法”课件</em><br>由图可知，经过N次bootstrap采样后，某一样本不被选中的概率为$(1-\frac{1}{N})^N$，当$N$足够大时，取极限则该概率近似为$\frac{1}{e}$，换句话说最后大约有$\frac{1}{e}$的样本是没有被使用过的，于是我们可以利用这些样本进行模型的性能评估</p>
-<p>对比设置验证集，out of bag(OOB)有以下特点</p>
-<ul>
-<li>对于每一个基分类器我们都有部分样本是没有被选中的，所以我们可以是用这些样本来衡量基分类器的表现，但是实际中一般不这么做，因为我们往往不是很关心基分类器的表现，而只在乎最终集成模型的表现</li>
-<li>对于最终的集成模型而言我们也可以使用OOB的方法进行模型评估，不过需要注意不要误选了被用于训练的样本来进行验证，具体做法可以选取某些未使用特定样本的模型组合起来的模型来对该部分样本进行验证评分，如此选取多次取平均表现即可作为最终集成模型的一个评估</li>
-<li>因此随机森林可以不需要额外设置验证集来进行验证，我们训练好模型后就可以根据OOB的得分来得到对最终模型的一个评估，也就不必像使用验证集那样再次使用所有训练集重新训练模型，实际应用中，OOB往往能准确的评价最终模型</li>
-</ul>
-<h2 id="feature-selection"><a href="#feature-selection" class="headerlink" title="feature selection"></a>feature selection</h2><h3 id="需要筛选的特征"><a href="#需要筛选的特征" class="headerlink" title="需要筛选的特征"></a>需要筛选的特征</h3><ul>
-<li>冗余特征</li>
-<li>不相关特征</li>
-</ul>
-<h3 id="特征筛选的优劣"><a href="#特征筛选的优劣" class="headerlink" title="特征筛选的优劣"></a>特征筛选的优劣</h3><ul>
-<li>优点<ul>
-<li>高效：减少了大量不必要的特征可以减少模型训练和预测的时间</li>
-<li>泛化能力好：一般特征适当少的情况下，模型不易过拟合</li>
-<li>可解释性：较少的特征便于结合业务场景进行解读</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>特征选择的计算量大，就其本身而言，是一个排列组合的数学问题，原始特征越多，可能性越多，直接穷举的话计算量很大</li>
-<li>可能会过拟合：可能选取的特征恰好是使模型过拟合的特征</li>
-<li>解释性不一定合理：承接上一条，若选取的是过拟合的特征，那么得出的结论本身是有问题的</li>
-</ul>
-</li>
-</ul>
-<h3 id="特征选择的方法"><a href="#特征选择的方法" class="headerlink" title="特征选择的方法"></a>特征选择的方法</h3><ul>
-<li>线性模型<br>可以根据线性模型中的权重值大小来判定一个特征的值</li>
-<li>非线性模型<br>本身非线性模型要想评价一个特征是否重要是比较困难的，因为各个特征之间可能存在未知的交叉关系，所以我们一般将问题简化为考虑各个特征各自的重要性，也就是对特征独自的重要性进行一个排序，取较重要的若干特征，一种对特征重要性进行打分的方式是</li>
-</ul>
-<p>random test<br>考虑到测试一个特征是否重要可以通过在原始样本中加入噪声数据进行扰动的方法，来对比前后模型表现的差异，如果差异较大，证明该特征是重要的，具体而言，有三种常用方法</p>
-<ul>
-<li>修改样本特征值的分布状况，比如修改为正态分布</li>
-<li>使用bootstrap对原始特征值进行采样来进行扰动</li>
-<li>最常用的一种方法是permutation test，即将原始特征值重新排列，举例来说比如在特征i下两个样本$x_{1,i},x_{2,i}$原始特征值分别为0,1,现在将两个样本的该特征值进行交换，然后重新投入训练并对模型进行打分，比较前后模型性能就可以判断该特征的重要性；<ul>
-<li>针对permutation test的模型评估，可以不必修改训练样本的特征值，而是重新排列验证集的特征值，这样就避免了重新训练模型的时间消耗，而且效果是类似的</li>
-</ul>
-</li>
-</ul>
-<h2 id="random-forest-vs-decision-tree"><a href="#random-forest-vs-decision-tree" class="headerlink" title="random forest vs. decision tree"></a>random forest vs. decision tree</h2><p>相比较于单棵决策树而言，随机森林往往具有如下优势</p>
-<ul>
-<li>分类后的正反例之间的间隔较大，如图所示(对比第一(决策树)和第三幅(随机森林))<br><img src="/materials/img/RF/dt_rf.png" alt="dt_rf"><br><em>图片来源于“机器学习技法”课件</em></li>
-<li>随机森林的分割边界更平滑</li>
-<li>随机森林更加稳定，相较之下对于噪声点不太敏感，如图(左为决策树，右为随机森林)<br><img src="/materials/img/RF/stable.png" alt="stable"></li>
-</ul>
-<p><em>Notes:实际应用中随机森林的一个缺点是，在模型未达到一个较为稳定的状态时，模型对于随机性较为敏感，比如略微增减树的数目可能会影响模型的性能，这个时候比较建议适当增加树的数目</em></p>
-
+        
+          <a class="article-more-a" href="/2017/08/03/rf/#more">more >></a>
+        
       
 
       
@@ -816,22 +763,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">校招</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
@@ -848,6 +779,46 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
@@ -856,15 +827,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -884,23 +855,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -909,22 +864,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -937,6 +876,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
+    <lastmod>2017-08-03T11:33:54.526Z</lastmod>
+    <data>
+        <display>
+        <title>方差、偏差、噪声和期望泛化误差小记</title>
+        <pubTime>2017-07-20T13:52:17.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>方差</tag>
+         
+        <tag>偏差</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/03/rf/</loc>
-    <lastmod>2017-08-03T08:08:25.753Z</lastmod>
+    <lastmod>2017-08-03T10:46:32.645Z</lastmod>
     <data>
         <display>
         <title>随机森林</title>
@@ -541,29 +564,6 @@
         <tag>Note</tag>
          
         <tag>ensemble</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
-    <lastmod>2017-07-30T06:17:16.429Z</lastmod>
-    <data>
-        <display>
-        <title>方差、偏差、噪声和期望泛化误差小记</title>
-        <pubTime>2017-07-20T13:52:17.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>方差</tag>
-         
-        <tag>偏差</tag>
          
          
            

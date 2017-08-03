@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>随机森林 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 决策树模型往往方差较大(特别对于完全生长的决策树) 随机森林中的基分类器$g_t$就是决策树模型，最终以bagging的方式组合在一起(voting/">
+  <meta name="description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能 随机森林改善模型的方">
 <meta name="keywords" content="ML,Note,Random Forest,机器学习技法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="随机森林">
 <meta property="og:url" content="http://yoursite.com/2017/08/03/rf/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 决策树模型往往方差较大(特别对于完全生长的决策树) 随机森林中的基分类器$g_t$就是决策树模型，最终以bagging的方式组合在一起(voting/">
+<meta property="og:description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能 随机森林改善模型的方">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/alg.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/oob.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/dt_rf.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/stable.png">
-<meta property="og:updated_time" content="2017-08-03T08:08:25.753Z">
+<meta property="og:updated_time" content="2017-08-03T10:46:32.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机森林">
-<meta name="twitter:description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 决策树模型往往方差较大(特别对于完全生长的决策树) 随机森林中的基分类器$g_t$就是决策树模型，最终以bagging的方式组合在一起(voting/">
+<meta name="twitter:description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能 随机森林改善模型的方">
 <meta name="twitter:image" content="http://yoursite.com/materials/img/RF/alg.png">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
@@ -270,10 +270,15 @@ ga('send', 'pageview');
 
         <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p><strong>bagging+decision tree+randomness</strong><br>简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型</p>
 <ul>
-<li>bagging从bias-variance分解的角度来看倾向于减少模型的方差</li>
+<li>bagging从bias-variance分解的角度来看倾向于减少模型的方差<ul>
+<li>随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能</li>
+<li>随机森林改善模型的方差的方法主要是减小基学习器之间的相关性，通过特征扰动来实现</li>
+</ul>
+</li>
 <li>决策树模型往往方差较大(特别对于完全生长的决策树)</li>
 <li>随机森林中的基分类器$g_t$就是决策树模型，最终以bagging的方式组合在一起(voting/averaging)</li>
 </ul>
+<a id="more"></a>
 <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p><img src="/materials/img/RF/alg.png" alt="alg"><br><em>图片来源于“机器学习技法”课件</em></p>
 <ul>
 <li>由于每棵树可以独立训练，所以随机森林模型的训练过程是一个并行的过程，相对高效</li>
@@ -595,22 +600,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">校招</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
@@ -627,6 +616,46 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
@@ -635,15 +664,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,23 +692,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,22 +701,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -716,6 +713,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
