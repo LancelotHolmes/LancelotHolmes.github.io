@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-02T07:07:43.035Z</updated>
+  <updated>2017-08-03T08:08:25.753Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,94 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>随机森林</title>
+    <link href="http://yoursite.com/2017/08/03/rf/"/>
+    <id>http://yoursite.com/2017/08/03/rf/</id>
+    <published>2017-08-03T07:05:02.000Z</published>
+    <updated>2017-08-03T08:08:25.753Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p><strong>bagging+decision tree+randomness</strong><br>简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型</p>
+<ul>
+<li>bagging从bias-variance分解的角度来看倾向于减少模型的方差</li>
+<li>决策树模型往往方差较大(特别对于完全生长的决策树)</li>
+<li>随机森林中的基分类器$g_t$就是决策树模型，最终以bagging的方式组合在一起(voting/averaging)</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p><img src="/materials/img/RF/alg.png" alt="alg"><br><em>图片来源于“机器学习技法”课件</em></p>
+<ul>
+<li>由于每棵树可以独立训练，所以随机森林模型的训练过程是一个并行的过程，相对高效</li>
+<li>随机森林模型继承了决策树的优点并克服了完全生长的决策树的缺点</li>
+</ul>
+<h3 id="特征随机性"><a href="#特征随机性" class="headerlink" title="特征随机性"></a>特征随机性</h3><p>随机森林的随机性除了使用bagging中的bootstrap方法采样训练出不同决策树以外，进一步地针对每棵决策树是随机的选择部分特征作为一个子特征集合来让该决策树进行学习，从而增强各个决策树的多样性</p>
+<ul>
+<li>一般随机抽取的特征子集是极小于原始特征空间的，这样训练模型的效率更高</li>
+<li>特征扰动的方式增强了基分类器之间的多样性，从而使得在最终bagging集成时使用voting或者averaging方法时更易于减小模型本身的方差</li>
+<li>可以看作是一个将原始特征空间随机投影到不同的低维特征空间上进行模型训练，对于每棵树中的分支而言类似于一个感知机分类的过程(原始输入样本按照某一个随机选取的特征空间映射后根据某个阈值进行分类)</li>
+</ul>
+<h2 id="out-of-bag-example"><a href="#out-of-bag-example" class="headerlink" title="out of bag example"></a>out of bag example</h2><p>与bagging的过程相关<br><img src="/materials/img/RF/oob.png" alt="oob"><br><em>图片来源于“机器学习技法”课件</em><br>由图可知，经过N次bootstrap采样后，某一样本不被选中的概率为$(1-\frac{1}{N})^N$，当$N$足够大时，取极限则该概率近似为$\frac{1}{e}$，换句话说最后大约有$\frac{1}{e}$的样本是没有被使用过的，于是我们可以利用这些样本进行模型的性能评估</p>
+<p>对比设置验证集，out of bag(OOB)有以下特点</p>
+<ul>
+<li>对于每一个基分类器我们都有部分样本是没有被选中的，所以我们可以是用这些样本来衡量基分类器的表现，但是实际中一般不这么做，因为我们往往不是很关心基分类器的表现，而只在乎最终集成模型的表现</li>
+<li>对于最终的集成模型而言我们也可以使用OOB的方法进行模型评估，不过需要注意不要误选了被用于训练的样本来进行验证，具体做法可以选取某些未使用特定样本的模型组合起来的模型来对该部分样本进行验证评分，如此选取多次取平均表现即可作为最终集成模型的一个评估</li>
+<li>因此随机森林可以不需要额外设置验证集来进行验证，我们训练好模型后就可以根据OOB的得分来得到对最终模型的一个评估，也就不必像使用验证集那样再次使用所有训练集重新训练模型，实际应用中，OOB往往能准确的评价最终模型</li>
+</ul>
+<h2 id="feature-selection"><a href="#feature-selection" class="headerlink" title="feature selection"></a>feature selection</h2><h3 id="需要筛选的特征"><a href="#需要筛选的特征" class="headerlink" title="需要筛选的特征"></a>需要筛选的特征</h3><ul>
+<li>冗余特征</li>
+<li>不相关特征</li>
+</ul>
+<h3 id="特征筛选的优劣"><a href="#特征筛选的优劣" class="headerlink" title="特征筛选的优劣"></a>特征筛选的优劣</h3><ul>
+<li>优点<ul>
+<li>高效：减少了大量不必要的特征可以减少模型训练和预测的时间</li>
+<li>泛化能力好：一般特征适当少的情况下，模型不易过拟合</li>
+<li>可解释性：较少的特征便于结合业务场景进行解读</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>特征选择的计算量大，就其本身而言，是一个排列组合的数学问题，原始特征越多，可能性越多，直接穷举的话计算量很大</li>
+<li>可能会过拟合：可能选取的特征恰好是使模型过拟合的特征</li>
+<li>解释性不一定合理：承接上一条，若选取的是过拟合的特征，那么得出的结论本身是有问题的</li>
+</ul>
+</li>
+</ul>
+<h3 id="特征选择的方法"><a href="#特征选择的方法" class="headerlink" title="特征选择的方法"></a>特征选择的方法</h3><ul>
+<li>线性模型<br>可以根据线性模型中的权重值大小来判定一个特征的值</li>
+<li>非线性模型<br>本身非线性模型要想评价一个特征是否重要是比较困难的，因为各个特征之间可能存在未知的交叉关系，所以我们一般将问题简化为考虑各个特征各自的重要性，也就是对特征独自的重要性进行一个排序，取较重要的若干特征，一种对特征重要性进行打分的方式是</li>
+</ul>
+<p>random test<br>考虑到测试一个特征是否重要可以通过在原始样本中加入噪声数据进行扰动的方法，来对比前后模型表现的差异，如果差异较大，证明该特征是重要的，具体而言，有三种常用方法</p>
+<ul>
+<li>修改样本特征值的分布状况，比如修改为正态分布</li>
+<li>使用bootstrap对原始特征值进行采样来进行扰动</li>
+<li>最常用的一种方法是permutation test，即将原始特征值重新排列，举例来说比如在特征i下两个样本$x_{1,i},x_{2,i}$原始特征值分别为0,1,现在将两个样本的该特征值进行交换，然后重新投入训练并对模型进行打分，比较前后模型性能就可以判断该特征的重要性；<ul>
+<li>针对permutation test的模型评估，可以不必修改训练样本的特征值，而是重新排列验证集的特征值，这样就避免了重新训练模型的时间消耗，而且效果是类似的</li>
+</ul>
+</li>
+</ul>
+<h2 id="random-forest-vs-decision-tree"><a href="#random-forest-vs-decision-tree" class="headerlink" title="random forest vs. decision tree"></a>random forest vs. decision tree</h2><p>相比较于单棵决策树而言，随机森林往往具有如下优势</p>
+<ul>
+<li>分类后的正反例之间的间隔较大，如图所示(对比第一(决策树)和第三幅(随机森林))<br><img src="/materials/img/RF/dt_rf.png" alt="dt_rf"><br><em>图片来源于“机器学习技法”课件</em></li>
+<li>随机森林的分割边界更平滑</li>
+<li>随机森林更加稳定，相较之下对于噪声点不太敏感，如图(左为决策树，右为随机森林)<br><img src="/materials/img/RF/stable.png" alt="stable"></li>
+</ul>
+<p><em>Notes:实际应用中随机森林的一个缺点是，在模型未达到一个较为稳定的状态时，模型对于随机性较为敏感，比如略微增减树的数目可能会影响模型的性能，这个时候比较建议适当增加树的数目</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;h3 id=&quot;理解&quot;&gt;&lt;a href=&quot;#理解&quot; class=&quot;headerlink&quot; title=&quot;理解&quot;&gt;&lt;/a&gt;理解&lt;/h3&gt;&lt;p&gt;&lt;st
+    
+    </summary>
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="Random Forest" scheme="http://yoursite.com/tags/Random-Forest/"/>
+    
+      <category term="机器学习技法" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>模型比较小记</title>
@@ -1938,7 +2026,7 @@
     <link href="http://yoursite.com/2017/06/27/basic-algorithm/"/>
     <id>http://yoursite.com/2017/06/27/basic-algorithm/</id>
     <published>2017-06-27T02:56:11.000Z</published>
-    <updated>2017-07-30T06:17:07.086Z</updated>
+    <updated>2017-08-02T13:50:59.535Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文大部分内容基于《算法》4th一书内容，部分补充来自于网络或者其他书籍</em></p>
 <h2 id="查找类"><a href="#查找类" class="headerlink" title="查找类"></a>查找类</h2><h3 id="二分查找【重点】"><a href="#二分查找【重点】" class="headerlink" title="二分查找【重点】"></a>二分查找【重点】</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>在查找时，通过比较中位数与所查找值的大小关系，若找到则返回，若查找失败则相应的调整查找数据集的最高位/最低位的位置来使每次缩减查找范围为原始的一半<br><a id="more"></a></p>
@@ -2377,8 +2465,14 @@
 </li>
 <li>一般而言，Java系统程序员选择对原始数据类型使用（三向切分的）快速排序，对引用类型使用归并排序</li>
 </ul>
-<p>_ Notes:关于排序算法稳定性以及其他更多的排序算法，可以参考<a href="https://www.wikiwand.com/en/Sorting_algorithm#/Stability" target="_blank" rel="external">这里</a>_</p>
-<h3 id="排序的应用延伸"><a href="#排序的应用延伸" class="headerlink" title="排序的应用延伸"></a>排序的应用延伸</h3><h4 id="在线性对数时间内计算两组排列之间的Kendall-tau距离"><a href="#在线性对数时间内计算两组排列之间的Kendall-tau距离" class="headerlink" title="在线性对数时间内计算两组排列之间的Kendall tau距离"></a>在线性对数时间内计算两组排列之间的Kendall tau距离</h4><p><em>关键字：逆序对</em></p>
+<p><em>Notes:</em><br>关于排序算法稳定性以及其他更多的排序算法，可以参考<a href="https://www.wikiwand.com/en/Sorting_algorithm#/Stability" target="_blank" rel="external">这里</a></p>
+<h3 id="排序的应用延伸"><a href="#排序的应用延伸" class="headerlink" title="排序的应用延伸"></a>排序的应用延伸</h3><h4 id="在线性对数时间内计算两组排列之间的Kendall-tau距离"><a href="#在线性对数时间内计算两组排列之间的Kendall-tau距离" class="headerlink" title="在线性对数时间内计算两组排列之间的Kendall tau距离"></a>在线性对数时间内计算两组排列之间的Kendall tau距离</h4><p><em>关键字：逆序对、归并排序</em></p>
+<h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><blockquote>
+<p><a href="https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&amp;tqId=11188&amp;tPage=2&amp;rp=2&amp;ru=%2Fta%2Fcoding-interviews&amp;qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking" target="_blank" rel="external">数组中的逆序对</a><br>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。<br>输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007<br>题目保证输入的数组中没有的相同的数字<br>数据范围：<br>对于%50的数据,size&lt;=10^4<br>对于%75的数据,size&lt;=10^5<br>对于%100的数据,size&lt;=2*10^5<br>例如，输入：1,2,3,4,5,6,7,0; 输出：7</p>
+</blockquote>
+<h5 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h5><p>归并排序的变体，主要变化在于修改归并操作的复制数组部分，原始的是顺序比较和复制，而此处需要从末尾开始比较两个子数组元素值，记录逆序情况并复制到原始数组</p>
+<h5 id="Java实现-8"><a href="#Java实现-8" class="headerlink" title="Java实现"></a>Java实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InversePairs</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> <span class="keyword">int</span>[] copy;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span>[] a=&#123;<span class="number">7</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">3</span>&#125;;</div><div class="line">		<span class="keyword">int</span>[] a2=&#123;<span class="number">7</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">4</span>&#125;;</div><div class="line">		<span class="keyword">int</span>[] a3=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">0</span>&#125;;</div><div class="line">		System.out.println(InversePairs(a));</div><div class="line">		System.out.println(InversePairs(a2));</div><div class="line">		System.out.println(InversePairs(a3));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">InversePairs</span><span class="params">(<span class="keyword">int</span> [] array)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(array==<span class="keyword">null</span> || array.length==<span class="number">0</span>)&#123;</div><div class="line">    		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">return</span> mergeSort(array)%<span class="number">1000000007</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</div><div class="line">    	<span class="keyword">if</span>(array==<span class="keyword">null</span> || array.length==<span class="number">0</span>)&#123;</div><div class="line">    		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	&#125;</div><div class="line">    	copy=<span class="keyword">new</span> <span class="keyword">int</span>[array.length];</div><div class="line">    	<span class="keyword">int</span> low=<span class="number">0</span>,high=array.length-<span class="number">1</span>;</div><div class="line">    	<span class="keyword">int</span>[] cnt=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span>];</div><div class="line">    	cnt[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">    	mergeSort(array,low,high,cnt);</div><div class="line">    	<span class="keyword">return</span> cnt[<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span>[] cnt)</span> </span>&#123;</div><div class="line">    	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">    		<span class="keyword">return</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">int</span> mid=low+(high-low)/<span class="number">2</span>;</div><div class="line">    	cnt[<span class="number">0</span>]%=<span class="number">1000000007</span>;</div><div class="line">    	mergeSort(array,low,mid,cnt);</div><div class="line">    	cnt[<span class="number">0</span>]%=<span class="number">1000000007</span>;</div><div class="line">    	mergeSort(array,mid+<span class="number">1</span>,high,cnt);</div><div class="line">    	cnt[<span class="number">0</span>]%=<span class="number">1000000007</span>;</div><div class="line">    	<span class="keyword">if</span>(array[mid]&gt;array[mid+<span class="number">1</span>])&#123;</div><div class="line">    		cnt[<span class="number">0</span>]+=mergeAndCnt(array,low,mid,high);</div><div class="line">    	&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//修改过的merge方法，除了进行归并操作外还会统计范围内的逆序对数目</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mergeAndCnt</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> low,<span class="keyword">int</span> mid,<span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">    	<span class="keyword">if</span>(low&gt;=high)&#123;</div><div class="line">    		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> k=low;k&lt;=high;k++)&#123;</div><div class="line">    		copy[k]=array[k];</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">int</span> i=mid,j=high;</div><div class="line">    	<span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> k=high;k&gt;=low;k--)&#123;</div><div class="line">    		<span class="keyword">if</span>(i&lt;low)&#123;	<span class="comment">//	左子数组耗尽</span></div><div class="line">    			array[k]=copy[j--];</div><div class="line">    		&#125;</div><div class="line">    		<span class="keyword">else</span> <span class="keyword">if</span>(j&lt;mid+<span class="number">1</span>)&#123;	<span class="comment">//若右子数组耗尽</span></div><div class="line">    			array[k]=copy[i--];</div><div class="line">    		&#125;</div><div class="line">    		<span class="keyword">else</span>&#123;</div><div class="line">    			<span class="keyword">if</span>(copy[i]&gt;copy[j])&#123;</div><div class="line">    				cnt+=(j-mid);	<span class="comment">//只有左子数组元素比右子数组元素大时才计算逆序对</span></div><div class="line">    				<span class="keyword">if</span>(cnt&gt;=<span class="number">1000000007</span>)&#123;</div><div class="line">    					cnt%=<span class="number">1000000007</span>;</div><div class="line">    				&#125;</div><div class="line">    				array[k]=copy[i--];</div><div class="line">    			&#125;</div><div class="line">    			<span class="keyword">else</span>&#123;</div><div class="line">    				array[k]=copy[j--];</div><div class="line">    			&#125;</div><div class="line">    		&#125;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">return</span> cnt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>至于为什么是对1000000007取模？<a href="https://www.liuchuo.net/archives/645" target="_blank" rel="external">参考</a></p>
 <h4 id="找出一组元素的中位数"><a href="#找出一组元素的中位数" class="headerlink" title="找出一组元素的中位数"></a>找出一组元素的中位数</h4><p><em>快速排序的partition的进一步应用</em></p>
 <h5 id="基本思想-8"><a href="#基本思想-8" class="headerlink" title="基本思想"></a>基本思想</h5><p>partition+二分查找：由于对原始数组进行一次切分可以得到数组中的一个索引k，而且此时的数组中该位置左边的元素都不超过该元素，右边的都不小于该元素，即k是第k+1大的元素（从1开始计）如果此时k恰为数组大小的一半，那么这个位置的元素就恰好是数组的中位数，如果不是，则采取二分查找的思想，在该索引的某一边进行进一步切分（比如k小于len(array)/2就在k的右侧进行切分），经过有限次切分就可以找到中位数对应的元素。</p>
 <p><em>Notes:本题的变体是寻找数组中出现次数超过一半的数字</em></p>

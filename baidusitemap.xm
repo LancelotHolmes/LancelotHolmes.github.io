@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/03/rf/</loc>
+    <lastmod>2017-08-03T08:08:25.753Z</lastmod>
+    <data>
+        <display>
+        <title>随机森林</title>
+        <pubTime>2017-08-03T07:05:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Random Forest</tag>
+         
+        <tag>机器学习技法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-08-02T13:50:59.535Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
     <lastmod>2017-08-02T10:35:42.607Z</lastmod>
     <data>
@@ -516,31 +564,6 @@
         <tag>方差</tag>
          
         <tag>偏差</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-07-30T06:17:07.086Z</lastmod>
-    <data>
-        <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
          
          
            
