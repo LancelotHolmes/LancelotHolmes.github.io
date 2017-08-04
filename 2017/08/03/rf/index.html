@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/oob.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/dt_rf.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/stable.png">
-<meta property="og:updated_time" content="2017-08-03T10:46:32.645Z">
+<meta property="og:updated_time" content="2017-08-04T11:12:20.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机森林">
 <meta name="twitter:description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能 随机森林改善模型的方">
@@ -273,6 +273,8 @@ ga('send', 'pageview');
 <li>bagging从bias-variance分解的角度来看倾向于减少模型的方差<ul>
 <li>随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能</li>
 <li>随机森林改善模型的方差的方法主要是减小基学习器之间的相关性，通过特征扰动来实现</li>
+<li>关于随机森林中随机选取的特征子集空间大小的取值，直观而言，值越小则基学习器之间的相关性越小(因为特征重合度越低)，所以方差越小</li>
+<li>并非所有的模型都适合作为bagging的基学习器，一般高度非线性模型特别是树模型比较合适</li>
 </ul>
 </li>
 <li>决策树模型往往方差较大(特别对于完全生长的决策树)</li>
@@ -429,6 +431,15 @@ ga('send', 'pageview');
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/08/04/recommand/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          推荐系统小记
+        
+      </div>
+    </a>
   
   
     <a href="/2017/08/02/model-cmp/" id="article-nav-older" class="article-nav-link-wrap">
@@ -588,14 +599,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -605,6 +608,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,15 +659,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,10 +703,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -705,6 +712,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/04/recommand/</loc>
+    
+    <lastmod>2017-08-04T13:53:18.131Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/03/rf/</loc>
+    
+    <lastmod>2017-08-04T11:12:20.855Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     
     <lastmod>2017-08-04T07:55:15.200Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
     
     <lastmod>2017-08-03T11:33:54.526Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/03/rf/</loc>
-    
-    <lastmod>2017-08-03T10:46:32.645Z</lastmod>
     
   </url>
   

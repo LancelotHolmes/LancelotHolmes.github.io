@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/04/recommand/</loc>
+    <lastmod>2017-08-04T13:53:18.131Z</lastmod>
+    <data>
+        <display>
+        <title>推荐系统小记</title>
+        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Recommand System</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/03/rf/</loc>
+    <lastmod>2017-08-04T11:12:20.855Z</lastmod>
+    <data>
+        <display>
+        <title>随机森林</title>
+        <pubTime>2017-08-03T07:05:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Random Forest</tag>
+         
+        <tag>机器学习技法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     <lastmod>2017-08-04T07:55:15.200Z</lastmod>
     <data>
@@ -62,29 +106,6 @@
         <tag>方差</tag>
          
         <tag>偏差</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/03/rf/</loc>
-    <lastmod>2017-08-03T10:46:32.645Z</lastmod>
-    <data>
-        <display>
-        <title>随机森林</title>
-        <pubTime>2017-08-03T07:05:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Random Forest</tag>
-         
-        <tag>机器学习技法</tag>
          
          
            
