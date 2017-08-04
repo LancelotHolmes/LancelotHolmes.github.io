@@ -1588,7 +1588,7 @@
     <link href="http://yoursite.com/2017/07/03/ensemble/"/>
     <id>http://yoursite.com/2017/07/03/ensemble/</id>
     <published>2017-07-03T12:08:51.000Z</published>
-    <updated>2017-07-30T06:17:58.765Z</updated>
+    <updated>2017-08-04T07:55:15.200Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。</em></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
@@ -1610,9 +1610,9 @@
 <h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><blockquote>
 <p>首先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行加权组合。</p>
 </blockquote>
-<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>参见</p>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>参见<a href="/2017/06/29/boosting/" title="提升方法">提升方法</a></p>
 <ul>
-<li>推导方式，基于“加性模型”，即基于基学习器的线性组合，</li>
+<li>推导方式，基于“加性模型”，即基于基学习器的线性组合</li>
 <li>如何在每一轮修改样本分布<ul>
 <li>重赋权法：在每一轮训练中，根据样本分布为每一个训练样本重新赋予一个权重（比如《机器学习实战》一书中就是利用这种方法构建提升树算法，通过修改权重来计算每一轮的损失）</li>
 <li>重采样法：利用重采样的训练集来对基学习器进行训练–&gt;重启动：避免训练过程过早停止</li>
@@ -1676,7 +1676,7 @@
 <li>随机森林的训练效率常优于Bagging，主要是决策树划分属性时，原始baggin需要对属性全集进行考虑，而rf是针对一个子集</li>
 </ul>
 <h2 id="结合策略"><a href="#结合策略" class="headerlink" title="结合策略"></a>结合策略</h2><h3 id="学习器结合的好处"><a href="#学习器结合的好处" class="headerlink" title="学习器结合的好处"></a>学习器结合的好处</h3><ul>
-<li>统计的角度：假设空间很大时，可能存在多个假设在训练集上达到同等性能，但学习其可能误选导致泛化性能不佳，结合多个学习其可以减小该风险</li>
+<li>统计的角度：假设空间很大时，可能存在多个假设在训练集上达到同等性能，但学习其可能误选导致泛化性能不佳，结合多个学习器可以减小该风险</li>
 <li>计算的角度：降低陷入糟糕局部极小点的风险</li>
 <li>表示的角度：结合多个学习器可扩大假设空间，对于真实假设在假设空间之外的情形可能学得更好的近似</li>
 </ul>
@@ -1715,7 +1715,7 @@
 <ul>
 <li>每一折取训练集80%的数据训练一个基模型并对剩下的20%的数据进行预测，同时将该模型对测试集做出预测，保留训练子集的预测结果和测试集的预测结果</li>
 <li>将5折的训练子集预测结果结合起来构成第二层元模型的输入特征进行训练得到元分类器</li>
-<li>将前面每一折在测试机集预测得到的结果<strong>取均值</strong>作为最终元分类器的预测输入(最终的测试数据)，并使用训练好的元分类器在该数据上作出最终预测</li>
+<li>将前面每一折在测试集预测得到的结果<strong>取均值</strong>作为最终元分类器的预测输入(最终的测试数据)，并使用训练好的元分类器在该数据上作出最终预测</li>
 </ul>
 <p>此外<a href="https://zhuanlan.zhihu.com/p/27424282" target="_blank" rel="external">知乎上的一篇文章</a>还提到</p>
 <blockquote>
@@ -1806,7 +1806,7 @@
     <link href="http://yoursite.com/2017/06/29/boosting/"/>
     <id>http://yoursite.com/2017/06/29/boosting/</id>
     <published>2017-06-29T05:45:11.000Z</published>
-    <updated>2017-08-02T07:56:28.906Z</updated>
+    <updated>2017-08-04T07:21:59.728Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -1844,7 +1844,7 @@
 <li>(2) 对$m=1,2,…,M,  m$表示训练轮数(亦即基分类器个数，因为每一轮产生一个基分类器)：<ul>
 <li>使用具有权值分布$D_m$的训练数据集学习，得到基本分类器$G_m(x)$</li>
 <li>计算$G_m(x)$在训练数据集上的分类错误率：<br>$$e_m=P(G_m(x_i) \neq y_i)=\sum_{i=1}^Nw_{mi}I(G_m(x_i) \neq y_i)$$<br>即(分类错误的样本$\times$该样本的权重)之和</li>
-<li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导，也可以参考<a href="https://en.wikipedia.org/wiki/AdaBoost#Derivation" target="_blank" rel="external">维基百科的推导部分</a></li>
+<li>计算最终基分类器在组合分类器中的权重值<br>$$\alpha_m=\frac{1}{2}log\frac{1-e_m}{e_m} $$<br>为什么是这么个值，周志华的西瓜书上有对应推导，也可以参考<a href="https://en.wikipedia.org/wiki/AdaBoost#Derivation" target="_blank" rel="external">维基百科的推导部分</a>(寻找最小化整体误差的基学习器$k_m$&lt;=&gt;寻找最小化权重分类错误率之和的$k_m$=&gt;对于确定的$k_m$在对原式求取对$\alpha_m$的导数并令其为0求得极小值)</li>
 <li>更新训练数据集的权值分布<br>$$D_{m+1}=(w_{m+1,1},…,w_{m+1,i},…,w_{m+1,N})$$<br>如果$G_m(x_i)=y_i$那么$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{-\alpha_m}$$否则$$w_{m+1,i}=\frac{w_{m,i}}{Z_m}e^{\alpha_m}$$</li>
 </ul>
 </li>

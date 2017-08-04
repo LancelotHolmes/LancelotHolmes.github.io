@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
+    
+    <lastmod>2017-08-04T07:55:15.200Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    
+    <lastmod>2017-08-04T07:21:59.728Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
     
     <lastmod>2017-08-03T11:33:54.526Z</lastmod>
@@ -26,13 +40,6 @@
     <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
     
     <lastmod>2017-08-02T10:35:42.607Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    
-    <lastmod>2017-08-02T07:56:28.906Z</lastmod>
     
   </url>
   
@@ -166,13 +173,6 @@
     <loc>http://yoursite.com/2017/07/29/java-concepts/</loc>
     
     <lastmod>2017-07-30T06:20:18.549Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
-    
-    <lastmod>2017-07-30T06:17:58.765Z</lastmod>
     
   </url>
   

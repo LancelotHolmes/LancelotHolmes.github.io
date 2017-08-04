@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
+    <lastmod>2017-08-04T07:55:15.200Z</lastmod>
+    <data>
+        <display>
+        <title>模型集成小记</title>
+        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>ensemble</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-08-04T07:21:59.728Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/20/bias-variance/</loc>
     <lastmod>2017-08-03T11:33:54.526Z</lastmod>
     <data>
@@ -81,29 +125,6 @@
         <display>
         <title>统计学习方法笔记(五) —— 决策树</title>
         <pubTime>2017-06-19T08:41:25.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-08-02T07:56:28.906Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
         
         <tag>ML</tag>
          
@@ -543,27 +564,6 @@
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
-    <lastmod>2017-07-30T06:17:58.765Z</lastmod>
-    <data>
-        <display>
-        <title>模型集成小记</title>
-        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>ensemble</tag>
          
          
            
