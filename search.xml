@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[推荐系统小记]]></title>
       <url>/2017/08/04/recommand/</url>
-      <content type="html"><![CDATA[<p>_本文是基于<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a>系列文章的笔记_</p>
+      <content type="html"><![CDATA[<p><strong>本文是基于<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a>系列文章的笔记</strong></p>
 <h2 id="初探"><a href="#初探" class="headerlink" title="初探"></a>初探</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
 <li>背景<br>人们需要从海量数据中快速获取目标信息</li>
 <li>搜索引擎 vs. 推荐系统<br>主要区别在于用户对于自己的需求是否明确以及该需求能否用简单的关键字概括</li>
@@ -71,7 +71,33 @@
 <li>分区的混合（Mixed Hybridization）：采用多种推荐机制，并将不同的推荐结果分不同的区显示给用户。其实，Amazon，当当网等很多电子商务网站都是采用这样的方式，用户可以得到很全面的推荐，也更容易找到他们想要的东西。</li>
 <li>分层的混合（Meta-Level Hybridization）: 采用多种推荐机制，并将一个推荐机制的结果作为另一个的输入，从而综合各个推荐机制的优缺点，得到更加准确的推荐。</li>
 </ul>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>国内外的两个案例</p>
+<ul>
+<li>电子商务–亚马逊<ul>
+<li>核心是通过数据挖掘算法和比较用户的消费偏好于其他用户进行对比，借以预测用户可能感兴趣的商品。</li>
+<li>分区的混合的机制：将不同的推荐结果分不同的区显示给用户<ul>
+<li>今日推荐 (Today’s Recommendation For You): 通常是根据用户的近期的历史购买或者查看记录，并结合时下流行的物品给出一个折中的推荐。</li>
+<li>新产品的推荐 (New For You): 采用了基于内容的推荐机制 (Content-based Recommendation)，将一些新到物品推荐给用户。在方法选择上由于新物品没有大量的用户喜好信息，所以基于内容的推荐能很好的解决这个“冷启动”的问题。</li>
+<li>捆绑销售 (Frequently Bought Together): 采用数据挖掘技术对用户的购买行为进行分析，找到经常被一起或同一个人购买的物品集，进行捆绑销售，这是一种典型的基于项目的协同过滤推荐机制。</li>
+<li>别人购买 / 浏览的商品 (Customers Who Bought/See This Item Also Bought/See): 这也是一个典型的基于项目的协同过滤推荐的应用，通过社会化机制用户能更快更方便的找到自己感兴趣的物品。</li>
+</ul>
+</li>
+<li>设计和用户体验<ul>
+<li>基于社会化的推荐，Amazon 会给你事实的数据，让用户信服，例如：购买此物品的用户百分之多少也购买了那个物品；</li>
+<li>基于物品本身的推荐，Amazon 也会列出推荐的理由，例如：因为你的购物框中有 <strong><em>，或者因为你购买过 </em></strong>，所以给你推荐类似的 <em>*</em>。</li>
+<li>基于用户的 profile，包括：用户的行为、评分、收藏夹、购物车等，并提供了让用户自主管理自己 profile 的功能，通过这种方式用户可以更明确的告诉推荐引擎他的品味和意图是什么。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>社交网络–豆瓣<ul>
+<li>“豆瓣猜”：基于社会化的协同过滤的推荐，这样用户越多，用户的反馈越多，那么推荐的效果会越来越准确。</li>
+<li>“看过”和“想看”：相较于亚马逊，模型相对简单，更加专注于用户的品味</li>
+<li>“喜欢这个电影的人也喜欢的电影”：基于协同过滤</li>
+</ul>
+</li>
+</ul>
+<h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
 <ul>
 <li><a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a></li>
 </ul>

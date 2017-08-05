@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/08/04/recommand/</loc>
-    <lastmod>2017-08-04T13:53:18.131Z</lastmod>
+    <lastmod>2017-08-05T01:07:40.879Z</lastmod>
     <data>
         <display>
         <title>推荐系统小记</title>
