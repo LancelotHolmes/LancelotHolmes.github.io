@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/08/04/recommand/</loc>
-    <lastmod>2017-08-05T01:07:40.879Z</lastmod>
+    <lastmod>2017-08-05T13:47:49.963Z</lastmod>
     <data>
         <display>
         <title>推荐系统小记</title>
@@ -16,6 +16,31 @@
         <tag>Note</tag>
          
         <tag>Recommand System</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-08-05T01:27:17.587Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
          
          
            
@@ -106,31 +131,6 @@
         <tag>方差</tag>
          
         <tag>偏差</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-08-02T13:50:59.535Z</lastmod>
-    <data>
-        <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
          
          
            

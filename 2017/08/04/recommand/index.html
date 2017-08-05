@@ -8,19 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>推荐系统小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记 初探概述 背景人们需要从海量数据中快速获取目标信息 搜索引擎 vs. 推荐系统主要区别在于用户对于自己的需求是否明确以及该需求能否用简单的关键字概括 工作原理  推荐引擎利用特殊的信息过滤技术，将不同的物品或内容推荐给可能对它们感兴趣的用户。   基本流程：数据源–&amp;gt;推荐系统–&amp;gt;用户  数据源 要推荐的物品/内容的元数据：关键字、基因描述">
+  <meta name="description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记">
 <meta name="keywords" content="ML,Note,Recommand System">
 <meta property="og:type" content="article">
 <meta property="og:title" content="推荐系统小记">
 <meta property="og:url" content="http://yoursite.com/2017/08/04/recommand/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记 初探概述 背景人们需要从海量数据中快速获取目标信息 搜索引擎 vs. 推荐系统主要区别在于用户对于自己的需求是否明确以及该需求能否用简单的关键字概括 工作原理  推荐引擎利用特殊的信息过滤技术，将不同的物品或内容推荐给可能对它们感兴趣的用户。   基本流程：数据源–&amp;gt;推荐系统–&amp;gt;用户  数据源 要推荐的物品/内容的元数据：关键字、基因描述">
+<meta property="og:description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记">
 <meta property="og:image" content="http://yoursite.com/materials/img/recommand/recommand.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/recommand/conclude.png">
-<meta property="og:updated_time" content="2017-08-05T01:07:40.879Z">
+<meta property="og:image" content="http://yoursite.com/materials/img/recommand/neighbor.gif">
+<meta property="og:image" content="http://yoursite.com/materials/img/recommand/cf_user.gif">
+<meta property="og:image" content="http://yoursite.com/materials/img/recommand/cf_item.gif">
+<meta property="og:updated_time" content="2017-08-05T13:47:49.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小记">
-<meta name="twitter:description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记 初探概述 背景人们需要从海量数据中快速获取目标信息 搜索引擎 vs. 推荐系统主要区别在于用户对于自己的需求是否明确以及该需求能否用简单的关键字概括 工作原理  推荐引擎利用特殊的信息过滤技术，将不同的物品或内容推荐给可能对它们感兴趣的用户。   基本流程：数据源–&amp;gt;推荐系统–&amp;gt;用户  数据源 要推荐的物品/内容的元数据：关键字、基因描述">
+<meta name="twitter:description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记">
 <meta name="twitter:image" content="http://yoursite.com/materials/img/recommand/recommand.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
@@ -229,7 +232,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集体智慧"><span class="toc-number">2.1.</span> <span class="toc-text">集体智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤核心-Collaborative-Filtering"><span class="toc-number">2.2.</span> <span class="toc-text">协同过滤核心(Collaborative Filtering)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">2.3.</span> <span class="toc-text">收集用户偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户行为所反映的用户偏好"><span class="toc-number">2.3.1.</span> <span class="toc-text">用户行为所反映的用户偏好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何组合不同的用户行为"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何组合不同的用户行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据与处理"><span class="toc-number">2.3.3.</span> <span class="toc-text">数据与处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相似用户-物品"><span class="toc-number">2.4.</span> <span class="toc-text">寻找相似用户/物品</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相似度计算"><span class="toc-number">2.4.1.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相似邻居计算"><span class="toc-number">2.4.2.</span> <span class="toc-text">相似邻居计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">2.5.</span> <span class="toc-text">计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于用户的CF"><span class="toc-number">2.5.1.</span> <span class="toc-text">基于用户的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于物品的CF"><span class="toc-number">2.5.2.</span> <span class="toc-text">基于物品的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-CF-vs-Item-CF"><span class="toc-number">2.5.3.</span> <span class="toc-text">User CF vs. Item CF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Apache-Mahout实现高效的协同过滤推荐"><span class="toc-number">2.6.</span> <span class="toc-text">基于Apache Mahout实现高效的协同过滤推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -255,7 +258,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集体智慧"><span class="toc-number">2.1.</span> <span class="toc-text">集体智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤核心-Collaborative-Filtering"><span class="toc-number">2.2.</span> <span class="toc-text">协同过滤核心(Collaborative Filtering)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">2.3.</span> <span class="toc-text">收集用户偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户行为所反映的用户偏好"><span class="toc-number">2.3.1.</span> <span class="toc-text">用户行为所反映的用户偏好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何组合不同的用户行为"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何组合不同的用户行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据与处理"><span class="toc-number">2.3.3.</span> <span class="toc-text">数据与处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相似用户-物品"><span class="toc-number">2.4.</span> <span class="toc-text">寻找相似用户/物品</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相似度计算"><span class="toc-number">2.4.1.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相似邻居计算"><span class="toc-number">2.4.2.</span> <span class="toc-text">相似邻居计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">2.5.</span> <span class="toc-text">计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于用户的CF"><span class="toc-number">2.5.1.</span> <span class="toc-text">基于用户的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于物品的CF"><span class="toc-number">2.5.2.</span> <span class="toc-text">基于物品的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-CF-vs-Item-CF"><span class="toc-number">2.5.3.</span> <span class="toc-text">User CF vs. Item CF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Apache-Mahout实现高效的协同过滤推荐"><span class="toc-number">2.6.</span> <span class="toc-text">基于Apache Mahout实现高效的协同过滤推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -266,7 +269,7 @@ ga('send', 'pageview');
            
          
 
-        <p><strong>本文是基于<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a>系列文章的笔记</strong></p>
+        <p><strong>本文是基于<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a>系列文章的笔记</strong><br><a id="more"></a></p>
 <h2 id="初探"><a href="#初探" class="headerlink" title="初探"></a>初探</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
 <li>背景<br>人们需要从海量数据中快速获取目标信息</li>
 <li>搜索引擎 vs. 推荐系统<br>主要区别在于用户对于自己的需求是否明确以及该需求能否用简单的关键字概括</li>
@@ -358,7 +361,98 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
+<h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><p>针对<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy2/index.html?ca=drs-" target="_blank" rel="external">深入推荐引擎相关算法 - 协同过滤</a>的笔记</p>
+<h3 id="集体智慧"><a href="#集体智慧" class="headerlink" title="集体智慧"></a>集体智慧</h3><blockquote>
+<p>集体智慧是指在大量的人群的行为和数据中收集答案，帮助你对整个人群得到统计意义上的结论，这些结论是我们在单个个体上无法得到的，它往往是某种趋势或者人群中共性的部分。</p>
+</blockquote>
+<p>典型应用</p>
+<ul>
+<li>Wikipedia</li>
+<li>Google–PageRank</li>
+</ul>
+<h3 id="协同过滤核心-Collaborative-Filtering"><a href="#协同过滤核心-Collaborative-Filtering" class="headerlink" title="协同过滤核心(Collaborative Filtering)"></a>协同过滤核心(Collaborative Filtering)</h3><blockquote>
+<p>协同过滤一般是在海量的用户中发掘出一小部分和你<strong>品位比较类似</strong>的，在协同过滤中，这些用户成为<strong>邻居</strong>，然后根据他们喜欢的其他东西组织成一个<strong>排序</strong>的目录作为推荐给你。</p>
+</blockquote>
+<p>核心问题</p>
+<ul>
+<li>如何确定一个用户是不是和你有相似的品位？</li>
+<li>如何将邻居们的喜好组织成一个排序的目录？<blockquote>
+<p>协同过滤相对于集体智慧而言，它从一定程度上保留了个体的特征，就是你的品位偏好，所以它更多可以作为个性化推荐的算法思想。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="收集用户偏好"><a href="#收集用户偏好" class="headerlink" title="收集用户偏好"></a>收集用户偏好</h3><p>从用户的行为和偏好中发现规律，并基于此给予推荐</p>
+<h4 id="用户行为所反映的用户偏好"><a href="#用户行为所反映的用户偏好" class="headerlink" title="用户行为所反映的用户偏好"></a>用户行为所反映的用户偏好</h4><ul>
+<li>显式<ul>
+<li>评分</li>
+<li>投票</li>
+<li>转发</li>
+<li>保存书签</li>
+<li>标记标签</li>
+<li>评论</li>
+</ul>
+</li>
+<li>隐式<ul>
+<li>点击</li>
+<li>页面停留时间</li>
+<li>购买</li>
+</ul>
+</li>
+</ul>
+<h4 id="如何组合不同的用户行为"><a href="#如何组合不同的用户行为" class="headerlink" title="如何组合不同的用户行为"></a>如何组合不同的用户行为</h4><ul>
+<li>将不同的行为<strong>分组</strong>：一般可以分为“查看”和“购买”等等，然后基于不同的行为，计算不同的用户/物品相似度。类似于当当网或者 Amazon 给出的“购买了该图书的人还购买了…”，“查看了图书的人还查看了…”</li>
+<li>根据不同行为反映用户喜好的程度将它们进行<strong>加权</strong>，得到用户对于物品的总体喜好。一般来说，显式的用户反馈比隐式的权值大，但比较稀疏，毕竟进行显示反馈的用户是少数；同时相对于“查看”，“购买”行为反映用户喜好的程度更大，但这也因应用而异。</li>
+</ul>
+<h4 id="数据与处理"><a href="#数据与处理" class="headerlink" title="数据与处理"></a>数据与处理</h4><ul>
+<li>减噪</li>
+<li>归一化</li>
+</ul>
+<h3 id="寻找相似用户-物品"><a href="#寻找相似用户-物品" class="headerlink" title="寻找相似用户/物品"></a>寻找相似用户/物品</h3><p>根据用户喜好(用户偏好的二维矩阵)计算相似用户和物品，然后基于相似用户或者物品进行推荐</p>
+<h4 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h4><p>基于向量（Vector），计算两个向量的距离，距离越近相似度越大。在推荐的场景中，在用户-物品偏好的二维矩阵中，我们可以将一个用户对所有物品的偏好作为一个向量来计算用户之间的相似度，或者将所有用户对某个物品的偏好作为一个向量来计算物品之间的相似度。</p>
+<p>常用相似度计算方法</p>
+<ul>
+<li>欧几里得距离<br>假设 x，y 是 n 维空间的两个点，它们之间的欧几里德距离是：$$d(x,y)=sqrt{(\sum(x_i-y_i)^2)}$$,对应的相似度计算表示为$$sim(x,y)=\frac{1}{1+d(x,y)}$$</li>
+<li>皮尔逊相关系数<br>皮尔逊相关系数一般用于计算两个定距变量间联系的紧密程度，它的取值在[-1，+1]之间。<br>$$p(x,y)=\frac{\sumx_iy_i-n\overline{xy}}{(n-1)s_xs_y}$$,其中$s_xs_y$是$x$和$y$的样品标准偏差</li>
+<li>Cosine相似度<br>Cosine相似度被广泛应用于计算文档数据的相似度<br>$$T(x,y)=\frac{x\cdot y}{||x||^2 \times ||y||^2}=\frac{\sumx_iy_i}{\sqrt{\sumx_i^2}\sqrt{\sumy_i^2}}$$</li>
+<li>Tanimoto 系数（Tanimoto Coefficient）<br>Tanimoto系数也称为Jaccard系数，是Cosine相似度的扩展，也多用于计算文档数据的相似度：<br>$$T(x,y)=\frac{x\cdot y}{||x||^2+||y||^2-x\cdot y}=\frac{\sumx_iy_i}{\sqrt{\sumx_i^2}+\sqrt{\sumy_i^2}-\sumx_iy_i}$$</li>
+</ul>
+<h4 id="相似邻居计算"><a href="#相似邻居计算" class="headerlink" title="相似邻居计算"></a>相似邻居计算</h4><p>根据相似度找到用户-物品的邻居</p>
+<p>常用的挑选邻居的原则</p>
+<ul>
+<li>固定数量的邻居：K-neighborhoods 或者 Fix-size neighborhoods:不论邻居的“远近”，只取最近的K个,这种方法对于孤立点的计算效果不好，因为要取固定个数的邻居，当它附近没有足够多比较相似的点，就被迫取一些不太相似的点作为邻居，这样就影响了邻居相似的程度</li>
+<li>基于相似度门槛的邻居：Threshold-based neighborhoods:与计算固定数量的邻居的原则不同，基于相似度门槛的邻居计算是对邻居的远近进行最大值的限制，落在以当前点为中心，距离为K的区域中的所有点都作为当前点的邻居，这种方法计算得到的邻居个数不确定，但相似度不会出现较大的误差。这种方法计算出的邻居的相似度程度比前一种优，尤其是对孤立点的处理。<br><img src="/materials/img/recommand/neighbor.gif" alt="neighbor"></li>
+</ul>
+<h3 id="计算推荐"><a href="#计算推荐" class="headerlink" title="计算推荐"></a>计算推荐</h3><p>在得到了相邻用户和相邻物品后，可以基于这些信息为用户进行推荐</p>
+<h4 id="基于用户的CF"><a href="#基于用户的CF" class="headerlink" title="基于用户的CF"></a>基于用户的CF</h4><p>基于用户对物品的偏好找到相邻邻居用户，然后将邻居用户喜欢的推荐给当前用户。计算上，就是将一个用户对所有物品的偏好作为一个向量来计算用户之间的相似度，找到K邻居后，根据邻居的相似度权重以及他们对物品的偏好，预测当前用户没有偏好的未涉及物品，计算得到一个排序的物品列表作为推荐。<br><img src="/materials/img/recommand/cf_user.gif" alt="cf_user"></p>
+<h4 id="基于物品的CF"><a href="#基于物品的CF" class="headerlink" title="基于物品的CF"></a>基于物品的CF</h4><p>基于用户对物品的偏好找到相似的物品，然后根据用户的历史偏好，推荐相似的物品给他。从计算的角度看，就是将所有用户对某个物品的偏好作为一个向量来计算物品之间的相似度，得到物品的相似物品后，根据用户历史的偏好预测当前用户还没有表示偏好的物品，计算得到一个排序的物品列表作为推荐。<br><img src="/materials/img/recommand/cf_item.gif" alt="cf_item"></p>
+<h4 id="User-CF-vs-Item-CF"><a href="#User-CF-vs-Item-CF" class="headerlink" title="User CF vs. Item CF"></a>User CF vs. Item CF</h4><ul>
+<li>计算复杂度：两个算法在不同的系统中各有优势<ul>
+<li>电子商务网站：Item CF 从性能和复杂度上比 User CF 更优，其中的一个主要原因就是对于一个在线网站，用户的数量往往大大超过物品的数量，同时物品的数据相对稳定，因此计算物品的相似度不但计算量较小，同时也不必频繁更新。</li>
+<li>新闻，博客或者微内容的推荐系统，情况往往是相反的，物品的数量是海量的，同时也是更新频繁的，因而效率角度而言User CF 更优</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>Item CF更适宜非社交网络，在非社交网络的网站中，内容内在的联系是很重要的推荐原则，同时 Item CF 便于为推荐做出解释</li>
+<li>User CF更适宜社交网络，User CF 加上社会网络信息，可以增加用户对推荐解释的信服程度。</li>
+</ul>
+</li>
+<li>推荐多样性与精度<ul>
+<li>推荐多样性的度量方法<ul>
+<li>从单个用户的角度度量，就是说给定一个用户，查看系统给出的推荐列表是否多样，也就是要比较推荐列表中的物品之间两两的相似度，不难想到，对这种度量方法，Item CF的多样性显然不如User CF的好，因为Item CF的推荐就是和以前看的东西最相似的。</li>
+<li>考虑系统的多样性，也被称为<strong>覆盖率 (Coverage)</strong>，它是指一个推荐系统是否能够提供给所有用户丰富的选择。在这种指标下，Item CF的多样性要远远好于User CF, 因为 User CF总是倾向于推荐<strong>热门</strong>的，从另一个侧面看，也就是说，Item CF的推荐有很好的<strong>新颖性</strong>，很擅长推荐<strong>长尾</strong>里的物品。所以，尽管大多数情况，Item CF的精度略小于User CF，如果考虑多样性，Item CF却比 User CF好很多</li>
+</ul>
+</li>
+<li>两种算法具有很好的互补性：结合的基本原则就是当采用 Item CF 导致系统对个人推荐的<strong>多样性</strong>不足时，我们通过加入 User CF 增加个人推荐的多样性，从而提高精度，而当因为采用 User CF 而使系统的整体多样性不足时，我们可以通过加入 Item CF 增加整体的多样性，同样同样可以提高推荐的精度。</li>
+<li>例子：假设每个用户兴趣爱好都是广泛的，喜欢好几个领域的东西，不过每个用户肯定也有一个主要的领域，对这个领域会比其他领域更加关心。给定一个用户，假设他喜欢 3 个领域 A,B,C，A 是他喜欢的主要领域，这个时候我们来看User CF和Item CF倾向于做出什么推荐：如果用User CF,它会将A,B,C三个领域中比较热门的东西推荐给用户；而如果用ItemCF，它会基本上只推荐 A领域的东西给用户。所以我们看到因为User CF只推荐热门的，所以它在推荐长尾里项目方面的能力不足；而Item CF只推荐A领域给用户，这样他有限的推荐列表中就可能包含了一定数量的不热门的长尾物品，同时Item CF的推荐对这个用户而言，显然多样性不足。但是对整个系统而言，因为不同的用户的主要兴趣点不同，所以系统的覆盖率会比较好。</li>
+</ul>
+</li>
+<li>用户对推荐算法的适应度<ul>
+<li>对于 User CF，推荐的原则是假设用户会喜欢那些和他有相同喜好的用户喜欢的东西，但如果一个用户没有相同喜好的朋友，那 User CF 的算法的效果就会很差，所以一个用户对的 CF 算法的适应度是和他有多少<strong>共同喜好用户</strong>成正比的。</li>
+<li>Item CF 算法也有一个基本假设，就是用户会喜欢和他以前喜欢的东西相似的东西，那么我们可以计算一个用户喜欢的物品的<strong>自相似度</strong>。一个用户喜欢物品的自相似度大，就说明他喜欢的东西都是比较相似的，也就是说他比较符合 Item CF 方法的基本假设，那么他对 Item CF 的适应度自然比较好；反之，如果自相似度小，就说明这个用户的喜好习惯并不满足 Item CF 方法的基本假设，那么对于这种用户，用 Item CF 方法做出好的推荐的可能性非常低。</li>
+</ul>
+</li>
+</ul>
+<h3 id="基于Apache-Mahout实现高效的协同过滤推荐"><a href="#基于Apache-Mahout实现高效的协同过滤推荐" class="headerlink" title="基于Apache Mahout实现高效的协同过滤推荐"></a>基于Apache Mahout实现高效的协同过滤推荐</h3><h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
 <ul>
 <li><a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a></li>
 </ul>
@@ -671,11 +765,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,11 +801,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,15 +837,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

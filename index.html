@@ -224,106 +224,10 @@ ga('send', 'pageview');
 
     <div class="article-entry" itemprop="articleBody">
       
-
+        <p><strong>本文是基于<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a>系列文章的笔记</strong><br>
         
-
-        <p><strong>本文是基于<a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a>系列文章的笔记</strong></p>
-<h2 id="初探"><a href="#初探" class="headerlink" title="初探"></a>初探</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
-<li>背景<br>人们需要从海量数据中快速获取目标信息</li>
-<li>搜索引擎 vs. 推荐系统<br>主要区别在于用户对于自己的需求是否明确以及该需求能否用简单的关键字概括</li>
-<li><p>工作原理</p>
-<blockquote>
-<p>推荐引擎利用特殊的信息过滤技术，将不同的物品或内容推荐给可能对它们感兴趣的用户。</p>
-</blockquote>
-</li>
-<li><p>基本流程：数据源–&gt;推荐系统–&gt;用户<br><img src="/materials/img/recommand/recommand.jpg" alt="Recommand"></p>
-</li>
-<li>数据源<ul>
-<li>要推荐的物品/内容的元数据：关键字、基因描述等</li>
-<li>用户的基本信息</li>
-<li>用户对物品/信息的偏好<ul>
-<li>显式的用户反馈：评分、评论等</li>
-<li>隐式的用户反馈：交互记录如购买、浏览等<br><em>Notes:显式的用户反馈 vs. 隐式的用户反馈</em></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>显式的用户反馈能较为准确地反映用户对商品的真实喜好，但是需要用户付出额外的代价(个人理解是获取这部分数据的难度相对较大)</li>
-<li>隐式的用户反馈经分析和处理也能反映用户喜好，但是相对不够精确，存在噪音，而且在不同应用中需要构建不同的行为特征</li>
-</ul>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><h4 id="按用户群体划分"><a href="#按用户群体划分" class="headerlink" title="按用户群体划分"></a>按用户群体划分</h4><ul>
-<li>基于大众行为的推荐引擎：对每个用户给出同样的推荐，一般由系统管理员人为设定或者基于所有用户反馈统计得出：比如当下流行商品</li>
-<li>个性化推荐引擎：对不同用户根据其偏好给出个性化的精准推荐</li>
-</ul>
-<h4 id="按数据源划分"><a href="#按数据源划分" class="headerlink" title="按数据源划分"></a>按数据源划分</h4><p>如何发现数据的相关性</p>
-<ul>
-<li>基于人口统计学的推荐：根据系统<strong>用户的基本信息</strong>发现用户的相关程度</li>
-<li>基于内容的推荐：根据所推荐<strong>物品或内容的元数据</strong></li>
-<li>基于协同过滤的推荐：根据<strong>用户对物品、信息的偏好</strong>发现物品或内容本身的相关性、或发现用户的相关性</li>
-</ul>
-<h4 id="按推荐模型的建立方式划分"><a href="#按推荐模型的建立方式划分" class="headerlink" title="按推荐模型的建立方式划分"></a>按推荐模型的建立方式划分</h4><ul>
-<li>基于物品和用户本身的，这种推荐引擎将每个用户和每个物品都当作独立的实体，预测每个用户对于每个物品的喜好程度，这些信息往往是用一个二维矩阵描述的。由于用户感兴趣的物品远远小于总物品的数目，这样的模型导致大量的数据空置，即我们得到的二维矩阵往往是一个很大的<strong>稀疏矩阵</strong>。同时为了减小计算量，我们可以对物品和用户进行<strong>聚类</strong>，然后记录和计算一类用户对一类物品的喜好程度，但这样的模型又会在推荐的<strong>准确性</strong>上有损失。</li>
-<li>基于关联规则的推荐（Rule-based Recommendation）：<strong>关联规则</strong>的挖掘已经是数据挖掘中的一个经典的问题，主要是挖掘一些<strong>数据的依赖关系</strong>，典型的场景就是“购物篮问题”，通过关联规则的挖掘，我们可以找到哪些物品经常被同时购买，或者用户购买了一些物品后通常会购买哪些其他的物品，当我们挖掘出这些关联规则之后，我们可以基于这些规则给用户进行推荐。</li>
-<li>基于模型的推荐（Model-based Recommendation）：这是一个典型的<strong>机器学习</strong>的问题，可以将已有的用户喜好信息作为训练样本，训练出一个预测用户喜好的<strong>模型</strong>，这样以后用户在进入系统，可以基于此模型计算推荐。这种方法的问题在于如何将用户<strong>实时</strong>或者<strong>近期</strong>的喜好信息反馈给训练好的模型，从而提高推荐的准确度。</li>
-</ul>
-<p><em>Notes:在现在的推荐系统中，很少有只使用了一个推荐策略的推荐引擎，一般都是在不同的场景下使用不同的推荐策略从而达到最好的推荐效果</em></p>
-<h3 id="推荐机制"><a href="#推荐机制" class="headerlink" title="推荐机制"></a>推荐机制</h3><p><em>各个推荐机制的工作原理、优缺点和应用场景</em><br>承接上面按照数据源划分的分类方式</p>
-<ul>
-<li>基于人口统计学的推荐</li>
-<li>基于内容的推荐</li>
-<li>基于协同过滤的推荐：根据用户对物品或者信息的偏好，发现物品或者内容本身的相关性，或者是发现用户的相关性，然后再基于这些关联性进行推荐。<ul>
-<li>基于用户的协同过滤推荐</li>
-<li>基于项目的协同过滤推荐</li>
-<li>基于模型的协同过滤推荐</li>
-</ul>
-</li>
-<li>混合的推荐机制<ul>
-<li>加权混合</li>
-<li>切换的混合</li>
-<li>分区的混合</li>
-<li>分层的混合</li>
-</ul>
-</li>
-</ul>
-<p><img src="/materials/img/recommand/conclude.png" alt="conclude"></p>
-<p>对于混合推荐机制</p>
-<ul>
-<li>加权的混合（Weighted Hybridization）: 用线性公式（linear formula）将几种不同的推荐按照一定权重组合起来，具体权重的值需要在测试数据集上反复实验，从而达到最好的推荐效果。</li>
-<li>切换的混合（Switching Hybridization）：前面也讲到，其实对于不同的情况（数据量，系统运行状况，用户和物品的数目等），推荐策略可能有很大的不同，那么切换的混合方式，就是允许在不同的情况下，选择最为合适的推荐机制计算推荐。</li>
-<li>分区的混合（Mixed Hybridization）：采用多种推荐机制，并将不同的推荐结果分不同的区显示给用户。其实，Amazon，当当网等很多电子商务网站都是采用这样的方式，用户可以得到很全面的推荐，也更容易找到他们想要的东西。</li>
-<li>分层的混合（Meta-Level Hybridization）: 采用多种推荐机制，并将一个推荐机制的结果作为另一个的输入，从而综合各个推荐机制的优缺点，得到更加准确的推荐。</li>
-</ul>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>国内外的两个案例</p>
-<ul>
-<li>电子商务–亚马逊<ul>
-<li>核心是通过数据挖掘算法和比较用户的消费偏好于其他用户进行对比，借以预测用户可能感兴趣的商品。</li>
-<li>分区的混合的机制：将不同的推荐结果分不同的区显示给用户<ul>
-<li>今日推荐 (Today’s Recommendation For You): 通常是根据用户的近期的历史购买或者查看记录，并结合时下流行的物品给出一个折中的推荐。</li>
-<li>新产品的推荐 (New For You): 采用了基于内容的推荐机制 (Content-based Recommendation)，将一些新到物品推荐给用户。在方法选择上由于新物品没有大量的用户喜好信息，所以基于内容的推荐能很好的解决这个“冷启动”的问题。</li>
-<li>捆绑销售 (Frequently Bought Together): 采用数据挖掘技术对用户的购买行为进行分析，找到经常被一起或同一个人购买的物品集，进行捆绑销售，这是一种典型的基于项目的协同过滤推荐机制。</li>
-<li>别人购买 / 浏览的商品 (Customers Who Bought/See This Item Also Bought/See): 这也是一个典型的基于项目的协同过滤推荐的应用，通过社会化机制用户能更快更方便的找到自己感兴趣的物品。</li>
-</ul>
-</li>
-<li>设计和用户体验<ul>
-<li>基于社会化的推荐，Amazon 会给你事实的数据，让用户信服，例如：购买此物品的用户百分之多少也购买了那个物品；</li>
-<li>基于物品本身的推荐，Amazon 也会列出推荐的理由，例如：因为你的购物框中有 <strong><em>，或者因为你购买过 </em></strong>，所以给你推荐类似的 <em>*</em>。</li>
-<li>基于用户的 profile，包括：用户的行为、评分、收藏夹、购物车等，并提供了让用户自主管理自己 profile 的功能，通过这种方式用户可以更明确的告诉推荐引擎他的品味和意图是什么。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>社交网络–豆瓣<ul>
-<li>“豆瓣猜”：基于社会化的协同过滤的推荐，这样用户越多，用户的反馈越多，那么推荐的效果会越来越准确。</li>
-<li>“看过”和“想看”：相较于亚马逊，模型相对简单，更加专注于用户的品味</li>
-<li>“喜欢这个电影的人也喜欢的电影”：基于协同过滤</li>
-</ul>
-</li>
-</ul>
-<h2 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h2><h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a></li>
-</ul>
-
+          <a class="article-more-a" href="/2017/08/04/recommand/#more">more >></a>
+        
       
 
       
@@ -901,11 +805,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -937,11 +841,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -969,15 +877,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
