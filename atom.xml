@@ -1803,7 +1803,7 @@
     <link href="http://yoursite.com/2017/07/03/ensemble/"/>
     <id>http://yoursite.com/2017/07/03/ensemble/</id>
     <published>2017-07-03T12:08:51.000Z</published>
-    <updated>2017-08-04T07:55:15.200Z</updated>
+    <updated>2017-08-06T11:45:14.775Z</updated>
     
     <content type="html"><![CDATA[<p><em>本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。</em></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
@@ -1821,6 +1821,7 @@
 <li>如何产生并结合“好而不同”的个体学习器？<br>集成学习研究的核心<br>当前按照个体学习器的生成方式划分</li>
 <li>bagging（及其变体随机森林）——个体学习器间不存在强依赖关系，可同时生成的并行化方法</li>
 <li>boosting——个体学习器间存在强依赖关系，必须串行生成的序列化方法</li>
+<li>从偏差-方差分解的角度，bagging和boosting分别是关注降低方差和降低偏差的两个代表，也可以按照机器学习技法的两张图来理解<br><img src="/materials/img/ensemble/under_over.png" alt="under_over"><br>第一幅图(对应boosting)可以看作进行了一个特征转换来防止欠拟合，第二幅图(对应bagging)则是为进行了一个正则化来防止过拟合</li>
 </ul>
 <h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><blockquote>
 <p>首先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行加权组合。</p>
@@ -1985,11 +1986,13 @@
 </ul>
 <p>参考</p>
 <ul>
+<li>周志华《机器学习》</li>
 <li><a href="https://mlwave.com/kaggle-ensembling-guide/" target="_blank" rel="external">kaggle-ensembling-guide</a></li>
 <li><a href="https://www.quora.com/What-are-the-differences-between-the-three-commonly-ensemble-learning-techniques-stacking-boosting-and-bagging" target="_blank" rel="external">Bagging, Boosting &amp; Stacking</a></li>
 <li><a href="https://stats.stackexchange.com/a/19053/152084" target="_blank" rel="external">stackexchange</a>及评论区</li>
 <li><a href="https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/" target="_blank" rel="external">如何在 Kaggle 首战中进入前 10%</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/27424282" target="_blank" rel="external">分分钟带你杀入Kaggle Top 1%</a></li>
+<li>机器学习技法</li>
 </ul>
 ]]></content>
     
@@ -2021,7 +2024,7 @@
     <link href="http://yoursite.com/2017/06/29/boosting/"/>
     <id>http://yoursite.com/2017/06/29/boosting/</id>
     <published>2017-06-29T05:45:11.000Z</published>
-    <updated>2017-08-04T07:21:59.728Z</updated>
+    <updated>2017-08-06T11:38:53.667Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -2154,6 +2157,7 @@
 <li>更多讨论也可以看看<a href="https://www.zhihu.com/question/48558534?q=%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95AdaBoost%E8%A6%81%E4%BD%BF%E7%94%A8%E6%8C%87%E6%95%B0%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%9D%A5%E4%BD%9C%E4%B8%BA%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9F" target="_blank" rel="external">知乎</a>，似乎大部分观点认为AdaBoost=boosting+指数损失函数</li>
 </ul>
 </li>
+<li>AdaBoost也可以从优化权值分布之和的角度进行推导，最后看作是“steepest descent with approximate functional gradient”,参见机器学习技法11.4</li>
 </ul>
 <h2 id="提升树"><a href="#提升树" class="headerlink" title="提升树"></a>提升树</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ul>
 <li>提升树是以分类树或回归树为基本分类器的提升方法</li>

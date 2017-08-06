@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
+    <lastmod>2017-08-06T11:45:14.775Z</lastmod>
+    <data>
+        <display>
+        <title>模型集成小记</title>
+        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>ensemble</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-08-06T11:38:53.667Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/04/recommand/</loc>
     <lastmod>2017-08-05T13:47:49.963Z</lastmod>
     <data>
@@ -64,50 +108,6 @@
         <tag>Random Forest</tag>
          
         <tag>机器学习技法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
-    <lastmod>2017-08-04T07:55:15.200Z</lastmod>
-    <data>
-        <display>
-        <title>模型集成小记</title>
-        <pubTime>2017-07-03T12:08:51.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>ensemble</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-08-04T07:21:59.728Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            

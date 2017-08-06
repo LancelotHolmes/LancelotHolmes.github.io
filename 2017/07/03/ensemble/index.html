@@ -15,12 +15,13 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/03/ensemble/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。 概念 集成学习通过构建并结合多个学习器来完成学习任务。   如何使得集成学习性能比最好的单一学习器更好？ 准确性 多样性 好而不同">
+<meta property="og:image" content="http://yoursite.com/materials/img/ensemble/under_over.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/ensemble/stacking.jpg">
-<meta property="og:updated_time" content="2017-08-04T07:55:15.200Z">
+<meta property="og:updated_time" content="2017-08-06T11:45:14.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模型集成小记">
 <meta name="twitter:description" content="本文主要基于周志华《机器学习》一书第八章 集成学习内容做的整理笔记，此外查阅了网上的一些博客和问答网站。 概念 集成学习通过构建并结合多个学习器来完成学习任务。   如何使得集成学习性能比最好的单一学习器更好？ 准确性 多样性 好而不同">
-<meta name="twitter:image" content="http://yoursite.com/materials/img/ensemble/stacking.jpg">
+<meta name="twitter:image" content="http://yoursite.com/materials/img/ensemble/under_over.png">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -281,6 +282,7 @@ ga('send', 'pageview');
 <li>如何产生并结合“好而不同”的个体学习器？<br>集成学习研究的核心<br>当前按照个体学习器的生成方式划分</li>
 <li>bagging（及其变体随机森林）——个体学习器间不存在强依赖关系，可同时生成的并行化方法</li>
 <li>boosting——个体学习器间存在强依赖关系，必须串行生成的序列化方法</li>
+<li>从偏差-方差分解的角度，bagging和boosting分别是关注降低方差和降低偏差的两个代表，也可以按照机器学习技法的两张图来理解<br><img src="/materials/img/ensemble/under_over.png" alt="under_over"><br>第一幅图(对应boosting)可以看作进行了一个特征转换来防止欠拟合，第二幅图(对应bagging)则是为进行了一个正则化来防止过拟合</li>
 </ul>
 <h2 id="boosting"><a href="#boosting" class="headerlink" title="boosting"></a>boosting</h2><h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><blockquote>
 <p>首先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行加权组合。</p>
@@ -445,11 +447,13 @@ ga('send', 'pageview');
 </ul>
 <p>参考</p>
 <ul>
+<li>周志华《机器学习》</li>
 <li><a href="https://mlwave.com/kaggle-ensembling-guide/" target="_blank" rel="external">kaggle-ensembling-guide</a></li>
 <li><a href="https://www.quora.com/What-are-the-differences-between-the-three-commonly-ensemble-learning-techniques-stacking-boosting-and-bagging" target="_blank" rel="external">Bagging, Boosting &amp; Stacking</a></li>
 <li><a href="https://stats.stackexchange.com/a/19053/152084" target="_blank" rel="external">stackexchange</a>及评论区</li>
 <li><a href="https://dnc1994.com/2016/04/rank-10-percent-in-first-kaggle-competition/" target="_blank" rel="external">如何在 Kaggle 首战中进入前 10%</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/27424282" target="_blank" rel="external">分分钟带你杀入Kaggle Top 1%</a></li>
+<li>机器学习技法</li>
 </ul>
 
       
@@ -705,6 +709,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -714,18 +722,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,7 +753,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -765,23 +765,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -790,6 +786,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -813,19 +817,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -841,11 +833,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
