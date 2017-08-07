@@ -21,7 +21,8 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/recommand/cf_user.gif">
 <meta property="og:image" content="http://yoursite.com/materials/img/recommand/cf_item.gif">
 <meta property="og:image" content="http://yoursite.com/materials/img/recommand/mahout.gif">
-<meta property="og:updated_time" content="2017-08-07T07:09:22.450Z">
+<meta property="og:image" content="http://yoursite.com/materials/img/recommand/distance_model.gif">
+<meta property="og:updated_time" content="2017-08-07T13:48:09.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统小记">
 <meta name="twitter:description" content="本文是基于探索推荐引擎内部的秘密系列文章的笔记">
@@ -233,7 +234,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集体智慧"><span class="toc-number">2.1.</span> <span class="toc-text">集体智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤核心-Collaborative-Filtering"><span class="toc-number">2.2.</span> <span class="toc-text">协同过滤核心(Collaborative Filtering)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">2.3.</span> <span class="toc-text">收集用户偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户行为所反映的用户偏好"><span class="toc-number">2.3.1.</span> <span class="toc-text">用户行为所反映的用户偏好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何组合不同的用户行为"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何组合不同的用户行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据与处理"><span class="toc-number">2.3.3.</span> <span class="toc-text">数据与处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相似用户-物品"><span class="toc-number">2.4.</span> <span class="toc-text">寻找相似用户/物品</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相似度计算"><span class="toc-number">2.4.1.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相似邻居计算"><span class="toc-number">2.4.2.</span> <span class="toc-text">相似邻居计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">2.5.</span> <span class="toc-text">计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于用户的CF"><span class="toc-number">2.5.1.</span> <span class="toc-text">基于用户的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于物品的CF"><span class="toc-number">2.5.2.</span> <span class="toc-text">基于物品的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-CF-vs-Item-CF"><span class="toc-number">2.5.3.</span> <span class="toc-text">User CF vs. Item CF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Apache-Mahout实现高效的协同过滤推荐"><span class="toc-number">2.6.</span> <span class="toc-text">基于Apache Mahout实现高效的协同过滤推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集体智慧"><span class="toc-number">2.1.</span> <span class="toc-text">集体智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤核心-Collaborative-Filtering"><span class="toc-number">2.2.</span> <span class="toc-text">协同过滤核心(Collaborative Filtering)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">2.3.</span> <span class="toc-text">收集用户偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户行为所反映的用户偏好"><span class="toc-number">2.3.1.</span> <span class="toc-text">用户行为所反映的用户偏好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何组合不同的用户行为"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何组合不同的用户行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据与处理"><span class="toc-number">2.3.3.</span> <span class="toc-text">数据与处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相似用户-物品"><span class="toc-number">2.4.</span> <span class="toc-text">寻找相似用户/物品</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相似度计算"><span class="toc-number">2.4.1.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相似邻居计算"><span class="toc-number">2.4.2.</span> <span class="toc-text">相似邻居计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">2.5.</span> <span class="toc-text">计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于用户的CF"><span class="toc-number">2.5.1.</span> <span class="toc-text">基于用户的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于物品的CF"><span class="toc-number">2.5.2.</span> <span class="toc-text">基于物品的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-CF-vs-Item-CF"><span class="toc-number">2.5.3.</span> <span class="toc-text">User CF vs. Item CF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Apache-Mahout实现高效的协同过滤推荐"><span class="toc-number">2.6.</span> <span class="toc-text">基于Apache Mahout实现高效的协同过滤推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类分析"><span class="toc-number">3.1.</span> <span class="toc-text">聚类分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类问题分类"><span class="toc-number">3.2.</span> <span class="toc-text">聚类问题分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类算法"><span class="toc-number">3.3.</span> <span class="toc-text">聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于距离的聚类算法"><span class="toc-number">3.3.1.</span> <span class="toc-text">基于距离的聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#K均值聚类算法"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">K均值聚类算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Canopy聚类算法"><span class="toc-number">3.3.1.2.</span> <span class="toc-text">Canopy聚类算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#模糊K均值聚类算法"><span class="toc-number">3.3.1.3.</span> <span class="toc-text">模糊K均值聚类算法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于概率分布模型的聚类算法"><span class="toc-number">3.3.2.</span> <span class="toc-text">基于概率分布模型的聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#狄利克雷聚类算法"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">狄利克雷聚类算法</span></a></li></ol></li></ol></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -259,7 +260,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集体智慧"><span class="toc-number">2.1.</span> <span class="toc-text">集体智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤核心-Collaborative-Filtering"><span class="toc-number">2.2.</span> <span class="toc-text">协同过滤核心(Collaborative Filtering)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">2.3.</span> <span class="toc-text">收集用户偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户行为所反映的用户偏好"><span class="toc-number">2.3.1.</span> <span class="toc-text">用户行为所反映的用户偏好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何组合不同的用户行为"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何组合不同的用户行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据与处理"><span class="toc-number">2.3.3.</span> <span class="toc-text">数据与处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相似用户-物品"><span class="toc-number">2.4.</span> <span class="toc-text">寻找相似用户/物品</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相似度计算"><span class="toc-number">2.4.1.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相似邻居计算"><span class="toc-number">2.4.2.</span> <span class="toc-text">相似邻居计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">2.5.</span> <span class="toc-text">计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于用户的CF"><span class="toc-number">2.5.1.</span> <span class="toc-text">基于用户的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于物品的CF"><span class="toc-number">2.5.2.</span> <span class="toc-text">基于物品的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-CF-vs-Item-CF"><span class="toc-number">2.5.3.</span> <span class="toc-text">User CF vs. Item CF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Apache-Mahout实现高效的协同过滤推荐"><span class="toc-number">2.6.</span> <span class="toc-text">基于Apache Mahout实现高效的协同过滤推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初探"><span class="toc-number">1.</span> <span class="toc-text">初探</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#按用户群体划分"><span class="toc-number">1.2.1.</span> <span class="toc-text">按用户群体划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按数据源划分"><span class="toc-number">1.2.2.</span> <span class="toc-text">按数据源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按推荐模型的建立方式划分"><span class="toc-number">1.2.3.</span> <span class="toc-text">按推荐模型的建立方式划分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐机制"><span class="toc-number">1.3.</span> <span class="toc-text">推荐机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用"><span class="toc-number">1.4.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤"><span class="toc-number">2.</span> <span class="toc-text">协同过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集体智慧"><span class="toc-number">2.1.</span> <span class="toc-text">集体智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤核心-Collaborative-Filtering"><span class="toc-number">2.2.</span> <span class="toc-text">协同过滤核心(Collaborative Filtering)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集用户偏好"><span class="toc-number">2.3.</span> <span class="toc-text">收集用户偏好</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用户行为所反映的用户偏好"><span class="toc-number">2.3.1.</span> <span class="toc-text">用户行为所反映的用户偏好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何组合不同的用户行为"><span class="toc-number">2.3.2.</span> <span class="toc-text">如何组合不同的用户行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据与处理"><span class="toc-number">2.3.3.</span> <span class="toc-text">数据与处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找相似用户-物品"><span class="toc-number">2.4.</span> <span class="toc-text">寻找相似用户/物品</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相似度计算"><span class="toc-number">2.4.1.</span> <span class="toc-text">相似度计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相似邻居计算"><span class="toc-number">2.4.2.</span> <span class="toc-text">相似邻居计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算推荐"><span class="toc-number">2.5.</span> <span class="toc-text">计算推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于用户的CF"><span class="toc-number">2.5.1.</span> <span class="toc-text">基于用户的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于物品的CF"><span class="toc-number">2.5.2.</span> <span class="toc-text">基于物品的CF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-CF-vs-Item-CF"><span class="toc-number">2.5.3.</span> <span class="toc-text">User CF vs. Item CF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Apache-Mahout实现高效的协同过滤推荐"><span class="toc-number">2.6.</span> <span class="toc-text">基于Apache Mahout实现高效的协同过滤推荐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类"><span class="toc-number">3.</span> <span class="toc-text">聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类分析"><span class="toc-number">3.1.</span> <span class="toc-text">聚类分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类问题分类"><span class="toc-number">3.2.</span> <span class="toc-text">聚类问题分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类算法"><span class="toc-number">3.3.</span> <span class="toc-text">聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于距离的聚类算法"><span class="toc-number">3.3.1.</span> <span class="toc-text">基于距离的聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#K均值聚类算法"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">K均值聚类算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Canopy聚类算法"><span class="toc-number">3.3.1.2.</span> <span class="toc-text">Canopy聚类算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#模糊K均值聚类算法"><span class="toc-number">3.3.1.3.</span> <span class="toc-text">模糊K均值聚类算法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于概率分布模型的聚类算法"><span class="toc-number">3.3.2.</span> <span class="toc-text">基于概率分布模型的聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#狄利克雷聚类算法"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">狄利克雷聚类算法</span></a></li></ol></li></ol></li></ol></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -477,7 +478,46 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
+<h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><h3 id="聚类分析"><a href="#聚类分析" class="headerlink" title="聚类分析"></a>聚类分析</h3><blockquote>
+<p>聚类 (Clustering) 就是将数据对象分组成为多个类或者簇 (Cluster)，它的目标是：在同一个簇中的对象之间具有较高的相似度，而不同簇中的对象差别较大。所以，在很多应用中，一个簇中的数据对象可以被作为一个整体来对待，从而减少计算量或者提高计算质量。</p>
+</blockquote>
+<h3 id="聚类问题分类"><a href="#聚类问题分类" class="headerlink" title="聚类问题分类"></a>聚类问题分类</h3><ul>
+<li>聚类结果是排他的还是可重叠的:对于一个元素，他是否可以属于聚类结果中的多个簇中，如果是，则是一个可重叠的聚类问题，如果否，那么是一个排他的聚类问题。</li>
+<li>基于层次还是基于划分<ul>
+<li>基于划分：拿到一组对象，按照一定的原则将它们分成不同的组。</li>
+<li>基于层次：将这些对象分等级，在顶层将对象进行大致的分组，随后每一组再被进一步的细分，也许所有路径最终都要到达一个单独实例，这是一种“自顶向下”的层次聚类解决方法，对应的，也有“自底向上”的。</li>
+</ul>
+</li>
+<li>簇数目固定的还是无限制的聚类：聚类问题是在执行聚类算法前已经确定聚类的结果应该得到多少簇，还是根据数据本身的特征，由聚类算法选择合适的簇的数目。</li>
+<li>基于距离还是基于概率分布模型<ul>
+<li>基于距离的聚类问题：就是将距离近的相似的对象聚在一起。</li>
+<li>基于概率分布模型的聚类问题：在一组对象中，找到能符合特定分布模型的点的集合，他们不一定是距离最近的或者最相似的，而是能完美的呈现出概率分布模型所描述的模型。<br><img src="/materials/img/recommand/distance_model.gif" alt="distance_model"></li>
+</ul>
+</li>
+</ul>
+<h3 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h3><h4 id="基于距离的聚类算法"><a href="#基于距离的聚类算法" class="headerlink" title="基于距离的聚类算法"></a>基于距离的聚类算法</h4><h5 id="K均值聚类算法"><a href="#K均值聚类算法" class="headerlink" title="K均值聚类算法"></a>K均值聚类算法</h5><p>基于距离的排他的划分方法</p>
+<ul>
+<li>基本原理<ul>
+<li>首先创建一个初始划分，随机地选择k个对象，每个对象初始地代表了一个簇中心。对于其他的对象，根据其与各个簇中心的距离，将它们赋给最近的簇。</li>
+<li>然后采用一种迭代的重定位技术，尝试通过对象在划分间移动来改进划分。所谓重定位技术，就是当有新的对象加入簇或者已有对象离开簇的时候，重新计算簇的平均值，然后对对象进行重新分配。这个过程不断重复，直到没有簇中对象的变化。</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>当结果簇是密集的，而且簇和簇之间的区别比较明显时，K均值的效果比较好。</li>
+<li>对于处理大数据集，这个算法是相对可伸缩的和高效的，它的复杂度是 O(nkt)，n是对象的个数，k是簇的数目，t是迭代的次数</li>
+<li>原理简单，实现起来也相对简单</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>必须事先给出k的个数，k的选择一般都基于一些经验值和多次实验结果，对于不同的数据集，k的取值没有可借鉴性。</li>
+<li>K均值对“噪音”和孤立点数据是敏感的，少量这类的数据就能对平均值造成极大的影响。</li>
+</ul>
+</li>
+</ul>
+<h5 id="Canopy聚类算法"><a href="#Canopy聚类算法" class="headerlink" title="Canopy聚类算法"></a>Canopy聚类算法</h5><p>基本原理：首先应用成本低的近似的距离计算方法高效的将数据分为多个组，这里称为一个 Canopy，Canopy之间可以有重叠的部分；然后采用严格的距离计算方式准确的计算在同一Canopy中的点，将他们分配与最合适的簇中。Canopy聚类算法经常用于K均值聚类算法的预处理，用来找合适的k值和簇中心。</p>
+<h5 id="模糊K均值聚类算法"><a href="#模糊K均值聚类算法" class="headerlink" title="模糊K均值聚类算法"></a>模糊K均值聚类算法</h5><p>基本原理：和K均值一样，只是它的聚类结果允许存在对象属于多个簇，也就是说它属于可重叠聚类算法，与K均值聚类原理类似，模糊K均值也是在待聚类对象向量集合上循环，但是它并不是将向量分配给距离最近的簇，而是计算向量与各个簇的相关性（Association）。</p>
+<h4 id="基于概率分布模型的聚类算法"><a href="#基于概率分布模型的聚类算法" class="headerlink" title="基于概率分布模型的聚类算法"></a>基于概率分布模型的聚类算法</h4><h5 id="狄利克雷聚类算法"><a href="#狄利克雷聚类算法" class="headerlink" title="狄利克雷聚类算法"></a>狄利克雷聚类算法</h5><p>基本原理：首先需要定义一个分布模型，简单的例如：圆形，三角形等，复杂的例如正则分布，泊松分布等；然后按照模型对数据进行分类，将不同的对象加入一个模型，模型会增长或者收缩；每一轮过后需要对模型的各个参数进行重新计算，同时估计对象属于这个模型的概率。</p>
+<p>参考资料</p>
 <ul>
 <li><a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a></li>
 </ul>
@@ -726,10 +766,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -739,6 +775,54 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -758,47 +842,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,42 +855,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -862,7 +874,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -871,6 +907,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
