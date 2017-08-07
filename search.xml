@@ -188,7 +188,31 @@
 </ul>
 </li>
 </ul>
-<h3 id="基于Apache-Mahout实现高效的协同过滤推荐"><a href="#基于Apache-Mahout实现高效的协同过滤推荐" class="headerlink" title="基于Apache Mahout实现高效的协同过滤推荐"></a>基于Apache Mahout实现高效的协同过滤推荐</h3><h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
+<h3 id="基于Apache-Mahout实现高效的协同过滤推荐"><a href="#基于Apache-Mahout实现高效的协同过滤推荐" class="headerlink" title="基于Apache Mahout实现高效的协同过滤推荐"></a>基于Apache Mahout实现高效的协同过滤推荐</h3><blockquote>
+<p>Apache Mahout中提供的一个协同过滤算法的高效实现，它是一个基于Java实现的可扩展的，高效的推荐引擎。</p>
+</blockquote>
+<p><img src="/materials/img/recommand/mahout.gif" alt="mahout"><br>原作者简要介绍了使用<code>Apache Mahout</code>搭建推荐系统的输入数据格式，构建的数据对象、数据结构以及分别从User CF、Item CF、Slope One这三种协同过滤的推荐算法介绍了下如何调用</p>
+<ul>
+<li>User CF<ul>
+<li>通过输入数据构建数据模型</li>
+<li>计算用户相似度(各种相似度计算方法)</li>
+<li>计算用户的近邻(两种计算方法：数量/阈值)</li>
+<li>构建推荐系统</li>
+</ul>
+</li>
+<li>Item CF<ul>
+<li>通过输入数据构建数据模型</li>
+<li>计算物品相似度(各种相似度计算方法)    </li>
+<li>构建推荐系统</li>
+</ul>
+</li>
+<li>Slope One<br>主要是针对大数据量提供的一种基于评分的轻量级的协同过滤算法，基本思想是将用户的评分之间的关系看作简单的线性关系<ul>
+<li>根据Data Model创建数据之间线性关系的模型DiffStorage。</li>
+<li>基于Data Model和DiffStorage创建SlopeOneRecommender，实现Slope One推荐策略。</li>
+</ul>
+</li>
+</ul>
+<h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><p>参考资料</p>
 <ul>
 <li><a href="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html" target="_blank" rel="external">探索推荐引擎内部的秘密</a></li>
 </ul>

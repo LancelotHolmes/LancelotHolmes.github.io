@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/04/recommand/</loc>
+    <lastmod>2017-08-07T07:09:22.450Z</lastmod>
+    <data>
+        <display>
+        <title>推荐系统小记</title>
+        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Recommand System</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     <lastmod>2017-08-06T11:45:14.775Z</lastmod>
     <data>
@@ -39,27 +60,6 @@
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/04/recommand/</loc>
-    <lastmod>2017-08-05T13:47:49.963Z</lastmod>
-    <data>
-        <display>
-        <title>推荐系统小记</title>
-        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Recommand System</tag>
          
          
            
