@@ -4,8 +4,54 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/09/neural-network/</loc>
+    <lastmod>2017-08-09T08:50:42.939Z</lastmod>
+    <data>
+        <display>
+        <title>神经网络</title>
+        <pubTime>2017-08-09T05:31:57.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Neural Networks</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    <lastmod>2017-08-08T02:33:07.412Z</lastmod>
+    <data>
+        <display>
+        <title>基础算法小记</title>
+        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>algorithm</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/04/recommand/</loc>
-    <lastmod>2017-08-07T13:48:09.136Z</lastmod>
+    <lastmod>2017-08-07T13:54:03.214Z</lastmod>
     <data>
         <display>
         <title>推荐系统小记</title>
@@ -60,31 +106,6 @@
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-08-05T01:27:17.587Z</lastmod>
-    <data>
-        <display>
-        <title>基础算法小记</title>
-        <pubTime>2017-06-27T02:56:11.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
          
          
            
