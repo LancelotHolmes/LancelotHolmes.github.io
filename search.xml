@@ -1283,8 +1283,20 @@
 <li>和其他基本方法的对比；</li>
 </ul>
 </li>
-<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。<a id="more"></a></li>
-<li>LDA的原理和推导；SVD、LDA</li>
+<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。<a id="more"></a>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>机器学习是什么以及机器学习的分类<ul>
+<li>类比人的学习-人根据观察事物，积累经验，从而习得技能，机器学习就是计算机根据大量数据通过计算获得某种可以被增进的表现（譬如是某种特征规律啥的）。再形式化一点说机器学习就是通过数据，利用学习算法（learning algorithm）从假设集合（hypothesis set）中去挑选一个和实际目标函数最接近的假设的过程。</li>
+<li><a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" rel="external">wiki</a></li>
+</ul>
+</li>
+<li><p>感知机是什么？PLA算法和POCKET算法是什么？</p>
+</li>
+<li><p>LDA的原理和推导；SVD、LDA</p>
+</li>
 <li>无监督和有监督算法的区别？</li>
 <li>多分类怎么处理？（参见《机器学习》P64,通常切分为多个二分类，最后再集成）<ul>
 <li>OVO</li>
@@ -1343,7 +1355,6 @@
 </ul>
 </li>
 </ul>
-</blockquote>
 <h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><blockquote>
 <ul>
 <li>原理、推导、特性、优缺点、调参</li>
@@ -1598,11 +1609,16 @@
 <li><a href="http://www.jianshu.com/p/J4U6rR" target="_blank" rel="external">list是怎样实现的</a></li>
 <li>常用的数据结构及应用场景（list，dict，tuple）</li>
 <li>Python装饰器、yield等</li>
-<li>给定一个文件，包含了data, ciyt, count等信息，写代码实现给定city和date1-date2日期内，count最高的日期</li>
+<li>给定一个文件，包含了data, city, count等信息，写代码实现给定city和date1-date2日期内，count最高的日期</li>
 </ul>
 </li>
 </ul>
 <h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><ul>
+<li>算法的时间复杂度和空间复杂度是什么？<ul>
+<li>时间复杂度：在进行算法分析时，语句总的执行次数T(n)是关于问题规模n的函数，进而分析T(n)随n的变化情况并确定T(n)的数量级。算法的时间复杂度记作T(n)=O(f(n))。</li>
+<li>空间复杂度：算法的空间复杂度通过计算算法所需的存储空间实现，算法空间复杂度的计算公式记作：S(n)=O(f(n))，其中n为问题的规模，n为问题的规模，f(n)为语句关于n所占存储空间的函数</li>
+</ul>
+</li>
 <li>两个数组，求差集</li>
 <li>写程序实现二分查找算法，给出递归和非递归实现，并分析算法的时间复杂度。</li>
 <li>实现单链表的反转</li>
@@ -4582,9 +4598,9 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <h3 id="研究目的"><a href="#研究目的" class="headerlink" title="研究目的"></a>研究目的</h3><p>对数据进行预测和分析：学习什么样的模型和如何学习模型（准确、效率）</p>
 <h3 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h3><p>构建模型并应用模型进行预测和分析（统计学习方法三要素）</p>
 <ul>
-<li>模型：模型的假设空间，即学习模型的集合</li>
-<li>策略：模型选择的准则</li>
-<li>算法：模型学习的算法，求解最优模型的算法</li>
+<li>模型：模型的假设空间，即学习模型的集合(学习什么样的模型)</li>
+<li>策略：模型选择的准则(用什么标准选择模型)</li>
+<li>算法：模型学习的算法，求解最优模型的算法(如何学习模型)</li>
 </ul>
 <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
 <li>监督学习</li>
@@ -4643,6 +4659,15 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <li>最大似然（MLE），最大后验（MAP）都是构造目标函数的方法</li>
 <li>在软间隔SVM中，表示最大间隔的部分对应结构风险，而罚项、松弛变量的部分则对应经验风险，参见周志华《机器学习》6.4</li>
 </ul>
+<p>这里关于结构风险到底是式中的正则化项(《机器学习》)还是经验风险+正则化项(《统计学习方法》)先不做讨论(找了好久也找不到，提问也没人回应)，简单的说一下一般如何来操作结构风险最小化：<a href="http://www.svms.org/srm/" target="_blank" rel="external">参考</a></p>
+<p>结构风险最小化是一种对假设空间的复杂度(似然函数的VC维)与训练误差(经验风险)之间的折中，一般实施步骤如下：</p>
+<ul>
+<li>根据该领域的先验知识选择某一族模型，比如根据函数的次数、神经网络的隐层数目等等；</li>
+<li>将该族模型根据其本身的复杂度递增的顺序划分成一层一层嵌套的集合</li>
+<li>对每一个子集根据经验风险最小化(训练误差最小)选择该子集的最优模型</li>
+<li>得到一系列模型后，综合比较并选择出经验风险和VC置信度综合最小的模型</li>
+</ul>
+<p><img src="/materials/img/Note_StatisticalML_1/srm.png" alt="srm"></p>
 <h3 id="算法（求解-amp-优化）"><a href="#算法（求解-amp-优化）" class="headerlink" title="算法（求解&amp;优化）"></a>算法（求解&amp;优化）</h3><p>模型学习的算法，即学习模型的具体计算方法</p>
 <ul>
 <li>用什么样的计算方法求解最优模型（寻找全局最优解）</li>
@@ -4674,7 +4699,8 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <li>留一交叉验证</li>
 </ul>
 <p><em>Note:关于数据集划分的一点理解理解可以参看<a href="/2017/06/01/cv/" title="交叉验证">交叉验证</a>，而关于模型选择可以进一步了解<a href="/2017/06/01/parameter-hyperparameter/" title="参数与超参数">参数与超参数</a></em></p>
-<h3 id="学习的泛化能力"><a href="#学习的泛化能力" class="headerlink" title="学习的泛化能力"></a>学习的泛化能力</h3><h4 id="定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。"><a href="#定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。" class="headerlink" title="定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。"></a>定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</h4><h4 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h4><ul>
+<h3 id="学习的泛化能力"><a href="#学习的泛化能力" class="headerlink" title="学习的泛化能力"></a>学习的泛化能力</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</p>
+<h4 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h4><ul>
 <li>理论上：泛化误差即期望风险<br>$$ R_{exp}(f)=E_p[L(Y, f(X))]=\int L(y,f(x))P(x,y)dxdy $$</li>
 <li>实际应用中：常常用测试误差衡量</li>
 </ul>

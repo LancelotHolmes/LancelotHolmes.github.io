@@ -16,8 +16,9 @@
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
 <meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/overview.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/srm.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/Note_StatisticalML_1/loss.jpg">
-<meta property="og:updated_time" content="2017-07-30T06:23:01.708Z">
+<meta property="og:updated_time" content="2017-08-11T07:22:00.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(一)">
 <meta name="twitter:description" content="本系列文章是个人根据阅读李航博士的《统计学习方法》一书，辅以《机器学习实战》、scikit-learn官方文档等材料整理出来的笔记。 统计学习相关概念定义 统计学习(statistical learning)是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测和分析的一门学科">
@@ -229,7 +230,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习相关概念"><span class="toc-number">1.</span> <span class="toc-text">统计学习相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究对象"><span class="toc-number">1.2.</span> <span class="toc-text">研究对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究目的"><span class="toc-number">1.3.</span> <span class="toc-text">研究目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究方法"><span class="toc-number">1.4.</span> <span class="toc-text">研究方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.5.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-number">2.</span> <span class="toc-text">监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概览"><span class="toc-number">2.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合概率分布"><span class="toc-number">2.2.</span> <span class="toc-text">联合概率分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习分类"><span class="toc-number">2.3.</span> <span class="toc-text">监督学习分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题形式化"><span class="toc-number">2.4.</span> <span class="toc-text">问题形式化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习方法三要素-针对监督学习"><span class="toc-number">3.</span> <span class="toc-text">统计学习方法三要素(针对监督学习)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">3.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略（评价标准）"><span class="toc-number">3.2.</span> <span class="toc-text">策略（评价标准）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法（求解-amp-优化）"><span class="toc-number">3.3.</span> <span class="toc-text">算法（求解&优化）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型选择"><span class="toc-number">4.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型评估"><span class="toc-number">4.1.</span> <span class="toc-text">模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练误差-amp-测试误差"><span class="toc-number">4.1.1.</span> <span class="toc-text">训练误差&测试误差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则化"><span class="toc-number">4.2.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交叉验证"><span class="toc-number">4.3.</span> <span class="toc-text">交叉验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据集划分"><span class="toc-number">4.3.1.</span> <span class="toc-text">数据集划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">4.3.2.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的泛化能力"><span class="toc-number">4.4.</span> <span class="toc-text">学习的泛化能力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。"><span class="toc-number">4.4.1.</span> <span class="toc-text">定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评价方法"><span class="toc-number">4.4.2.</span> <span class="toc-text">评价方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛化误差上界"><span class="toc-number">4.4.3.</span> <span class="toc-text">泛化误差上界</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成模型与判别模型"><span class="toc-number">5.</span> <span class="toc-text">生成模型与判别模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习模型的一般形式"><span class="toc-number">5.1.</span> <span class="toc-text">监督学习模型的一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习方法"><span class="toc-number">5.2.</span> <span class="toc-text">监督学习方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习方法的应用"><span class="toc-number">6.</span> <span class="toc-text">监督学习方法的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">6.1.</span> <span class="toc-text">分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标注问题"><span class="toc-number">6.2.</span> <span class="toc-text">标注问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回归问题"><span class="toc-number">6.3.</span> <span class="toc-text">回归问题</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习相关概念"><span class="toc-number">1.</span> <span class="toc-text">统计学习相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究对象"><span class="toc-number">1.2.</span> <span class="toc-text">研究对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究目的"><span class="toc-number">1.3.</span> <span class="toc-text">研究目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究方法"><span class="toc-number">1.4.</span> <span class="toc-text">研究方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.5.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-number">2.</span> <span class="toc-text">监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概览"><span class="toc-number">2.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合概率分布"><span class="toc-number">2.2.</span> <span class="toc-text">联合概率分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习分类"><span class="toc-number">2.3.</span> <span class="toc-text">监督学习分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题形式化"><span class="toc-number">2.4.</span> <span class="toc-text">问题形式化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习方法三要素-针对监督学习"><span class="toc-number">3.</span> <span class="toc-text">统计学习方法三要素(针对监督学习)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">3.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略（评价标准）"><span class="toc-number">3.2.</span> <span class="toc-text">策略（评价标准）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法（求解-amp-优化）"><span class="toc-number">3.3.</span> <span class="toc-text">算法（求解&优化）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型选择"><span class="toc-number">4.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型评估"><span class="toc-number">4.1.</span> <span class="toc-text">模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练误差-amp-测试误差"><span class="toc-number">4.1.1.</span> <span class="toc-text">训练误差&测试误差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则化"><span class="toc-number">4.2.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交叉验证"><span class="toc-number">4.3.</span> <span class="toc-text">交叉验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据集划分"><span class="toc-number">4.3.1.</span> <span class="toc-text">数据集划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">4.3.2.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的泛化能力"><span class="toc-number">4.4.</span> <span class="toc-text">学习的泛化能力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义-1"><span class="toc-number">4.4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评价方法"><span class="toc-number">4.4.2.</span> <span class="toc-text">评价方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛化误差上界"><span class="toc-number">4.4.3.</span> <span class="toc-text">泛化误差上界</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成模型与判别模型"><span class="toc-number">5.</span> <span class="toc-text">生成模型与判别模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习模型的一般形式"><span class="toc-number">5.1.</span> <span class="toc-text">监督学习模型的一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习方法"><span class="toc-number">5.2.</span> <span class="toc-text">监督学习方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习方法的应用"><span class="toc-number">6.</span> <span class="toc-text">监督学习方法的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">6.1.</span> <span class="toc-text">分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标注问题"><span class="toc-number">6.2.</span> <span class="toc-text">标注问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回归问题"><span class="toc-number">6.3.</span> <span class="toc-text">回归问题</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -255,7 +256,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习相关概念"><span class="toc-number">1.</span> <span class="toc-text">统计学习相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究对象"><span class="toc-number">1.2.</span> <span class="toc-text">研究对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究目的"><span class="toc-number">1.3.</span> <span class="toc-text">研究目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究方法"><span class="toc-number">1.4.</span> <span class="toc-text">研究方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.5.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-number">2.</span> <span class="toc-text">监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概览"><span class="toc-number">2.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合概率分布"><span class="toc-number">2.2.</span> <span class="toc-text">联合概率分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习分类"><span class="toc-number">2.3.</span> <span class="toc-text">监督学习分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题形式化"><span class="toc-number">2.4.</span> <span class="toc-text">问题形式化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习方法三要素-针对监督学习"><span class="toc-number">3.</span> <span class="toc-text">统计学习方法三要素(针对监督学习)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">3.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略（评价标准）"><span class="toc-number">3.2.</span> <span class="toc-text">策略（评价标准）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法（求解-amp-优化）"><span class="toc-number">3.3.</span> <span class="toc-text">算法（求解&优化）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型选择"><span class="toc-number">4.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型评估"><span class="toc-number">4.1.</span> <span class="toc-text">模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练误差-amp-测试误差"><span class="toc-number">4.1.1.</span> <span class="toc-text">训练误差&测试误差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则化"><span class="toc-number">4.2.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交叉验证"><span class="toc-number">4.3.</span> <span class="toc-text">交叉验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据集划分"><span class="toc-number">4.3.1.</span> <span class="toc-text">数据集划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">4.3.2.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的泛化能力"><span class="toc-number">4.4.</span> <span class="toc-text">学习的泛化能力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。"><span class="toc-number">4.4.1.</span> <span class="toc-text">定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评价方法"><span class="toc-number">4.4.2.</span> <span class="toc-text">评价方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛化误差上界"><span class="toc-number">4.4.3.</span> <span class="toc-text">泛化误差上界</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成模型与判别模型"><span class="toc-number">5.</span> <span class="toc-text">生成模型与判别模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习模型的一般形式"><span class="toc-number">5.1.</span> <span class="toc-text">监督学习模型的一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习方法"><span class="toc-number">5.2.</span> <span class="toc-text">监督学习方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习方法的应用"><span class="toc-number">6.</span> <span class="toc-text">监督学习方法的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">6.1.</span> <span class="toc-text">分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标注问题"><span class="toc-number">6.2.</span> <span class="toc-text">标注问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回归问题"><span class="toc-number">6.3.</span> <span class="toc-text">回归问题</span></a></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习相关概念"><span class="toc-number">1.</span> <span class="toc-text">统计学习相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究对象"><span class="toc-number">1.2.</span> <span class="toc-text">研究对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究目的"><span class="toc-number">1.3.</span> <span class="toc-text">研究目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#研究方法"><span class="toc-number">1.4.</span> <span class="toc-text">研究方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">1.5.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习"><span class="toc-number">2.</span> <span class="toc-text">监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概览"><span class="toc-number">2.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合概率分布"><span class="toc-number">2.2.</span> <span class="toc-text">联合概率分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习分类"><span class="toc-number">2.3.</span> <span class="toc-text">监督学习分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题形式化"><span class="toc-number">2.4.</span> <span class="toc-text">问题形式化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习方法三要素-针对监督学习"><span class="toc-number">3.</span> <span class="toc-text">统计学习方法三要素(针对监督学习)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-number">3.1.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略（评价标准）"><span class="toc-number">3.2.</span> <span class="toc-text">策略（评价标准）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法（求解-amp-优化）"><span class="toc-number">3.3.</span> <span class="toc-text">算法（求解&优化）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型选择"><span class="toc-number">4.</span> <span class="toc-text">模型选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型评估"><span class="toc-number">4.1.</span> <span class="toc-text">模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练误差-amp-测试误差"><span class="toc-number">4.1.1.</span> <span class="toc-text">训练误差&测试误差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正则化"><span class="toc-number">4.2.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交叉验证"><span class="toc-number">4.3.</span> <span class="toc-text">交叉验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据集划分"><span class="toc-number">4.3.1.</span> <span class="toc-text">数据集划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-number">4.3.2.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习的泛化能力"><span class="toc-number">4.4.</span> <span class="toc-text">学习的泛化能力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义-1"><span class="toc-number">4.4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评价方法"><span class="toc-number">4.4.2.</span> <span class="toc-text">评价方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#泛化误差上界"><span class="toc-number">4.4.3.</span> <span class="toc-text">泛化误差上界</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成模型与判别模型"><span class="toc-number">5.</span> <span class="toc-text">生成模型与判别模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习模型的一般形式"><span class="toc-number">5.1.</span> <span class="toc-text">监督学习模型的一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监督学习方法"><span class="toc-number">5.2.</span> <span class="toc-text">监督学习方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监督学习方法的应用"><span class="toc-number">6.</span> <span class="toc-text">监督学习方法的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">6.1.</span> <span class="toc-text">分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标注问题"><span class="toc-number">6.2.</span> <span class="toc-text">标注问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回归问题"><span class="toc-number">6.3.</span> <span class="toc-text">回归问题</span></a></li></ol></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -278,9 +279,9 @@ ga('send', 'pageview');
 <h3 id="研究目的"><a href="#研究目的" class="headerlink" title="研究目的"></a>研究目的</h3><p>对数据进行预测和分析：学习什么样的模型和如何学习模型（准确、效率）</p>
 <h3 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h3><p>构建模型并应用模型进行预测和分析（统计学习方法三要素）</p>
 <ul>
-<li>模型：模型的假设空间，即学习模型的集合</li>
-<li>策略：模型选择的准则</li>
-<li>算法：模型学习的算法，求解最优模型的算法</li>
+<li>模型：模型的假设空间，即学习模型的集合(学习什么样的模型)</li>
+<li>策略：模型选择的准则(用什么标准选择模型)</li>
+<li>算法：模型学习的算法，求解最优模型的算法(如何学习模型)</li>
 </ul>
 <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
 <li>监督学习</li>
@@ -339,6 +340,15 @@ ga('send', 'pageview');
 <li>最大似然（MLE），最大后验（MAP）都是构造目标函数的方法</li>
 <li>在软间隔SVM中，表示最大间隔的部分对应结构风险，而罚项、松弛变量的部分则对应经验风险，参见周志华《机器学习》6.4</li>
 </ul>
+<p>这里关于结构风险到底是式中的正则化项(《机器学习》)还是经验风险+正则化项(《统计学习方法》)先不做讨论(找了好久也找不到，提问也没人回应)，简单的说一下一般如何来操作结构风险最小化：<a href="http://www.svms.org/srm/" target="_blank" rel="external">参考</a></p>
+<p>结构风险最小化是一种对假设空间的复杂度(似然函数的VC维)与训练误差(经验风险)之间的折中，一般实施步骤如下：</p>
+<ul>
+<li>根据该领域的先验知识选择某一族模型，比如根据函数的次数、神经网络的隐层数目等等；</li>
+<li>将该族模型根据其本身的复杂度递增的顺序划分成一层一层嵌套的集合</li>
+<li>对每一个子集根据经验风险最小化(训练误差最小)选择该子集的最优模型</li>
+<li>得到一系列模型后，综合比较并选择出经验风险和VC置信度综合最小的模型</li>
+</ul>
+<p><img src="/materials/img/Note_StatisticalML_1/srm.png" alt="srm"></p>
 <h3 id="算法（求解-amp-优化）"><a href="#算法（求解-amp-优化）" class="headerlink" title="算法（求解&amp;优化）"></a>算法（求解&amp;优化）</h3><p>模型学习的算法，即学习模型的具体计算方法</p>
 <ul>
 <li>用什么样的计算方法求解最优模型（寻找全局最优解）</li>
@@ -370,7 +380,8 @@ ga('send', 'pageview');
 <li>留一交叉验证</li>
 </ul>
 <p><em>Note:关于数据集划分的一点理解理解可以参看<a href="/2017/06/01/cv/" title="交叉验证">交叉验证</a>，而关于模型选择可以进一步了解<a href="/2017/06/01/parameter-hyperparameter/" title="参数与超参数">参数与超参数</a></em></p>
-<h3 id="学习的泛化能力"><a href="#学习的泛化能力" class="headerlink" title="学习的泛化能力"></a>学习的泛化能力</h3><h4 id="定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。"><a href="#定义：学习方法的泛化能力-generalization-ability-是指由该方法学习到的模型对未知数据的预测能力。" class="headerlink" title="定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。"></a>定义：学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</h4><h4 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h4><ul>
+<h3 id="学习的泛化能力"><a href="#学习的泛化能力" class="headerlink" title="学习的泛化能力"></a>学习的泛化能力</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>学习方法的泛化能力(generalization ability)是指由该方法学习到的模型对未知数据的预测能力。</p>
+<h4 id="评价方法"><a href="#评价方法" class="headerlink" title="评价方法"></a>评价方法</h4><ul>
 <li>理论上：泛化误差即期望风险<br>$$ R_{exp}(f)=E_p[L(Y, f(X))]=\int L(y,f(x))P(x,y)dxdy $$</li>
 <li>实际应用中：常常用测试误差衡量</li>
 </ul>
@@ -728,14 +739,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
@@ -768,23 +771,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,7 +795,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,6 +816,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -820,7 +839,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -836,19 +863,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -857,10 +872,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">

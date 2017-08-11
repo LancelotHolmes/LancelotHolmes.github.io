@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    <lastmod>2017-08-11T07:22:00.807Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(一)</title>
+        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-08-11T05:35:06.922Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/09/neural-network/</loc>
     <lastmod>2017-08-09T08:50:42.939Z</lastmod>
     <data>
@@ -347,27 +389,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
-    <lastmod>2017-07-30T06:23:01.708Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(一)</title>
-        <pubTime>2017-06-02T06:42:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
     <lastmod>2017-07-30T06:22:55.485Z</lastmod>
     <data>
@@ -405,27 +426,6 @@
         <tag>hexo</tag>
          
         <tag>yilia</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-07-30T06:22:44.205Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            

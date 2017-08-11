@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/08/ml-job/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
-<meta property="og:updated_time" content="2017-07-30T06:22:44.205Z">
+<meta property="og:updated_time" content="2017-08-11T05:35:06.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习校招常考知识点小记">
 <meta name="twitter:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
@@ -279,8 +279,20 @@ ga('send', 'pageview');
 <li>和其他基本方法的对比；</li>
 </ul>
 </li>
-<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。<a id="more"></a></li>
-<li>LDA的原理和推导；SVD、LDA</li>
+<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。<a id="more"></a>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>机器学习是什么以及机器学习的分类<ul>
+<li>类比人的学习-人根据观察事物，积累经验，从而习得技能，机器学习就是计算机根据大量数据通过计算获得某种可以被增进的表现（譬如是某种特征规律啥的）。再形式化一点说机器学习就是通过数据，利用学习算法（learning algorithm）从假设集合（hypothesis set）中去挑选一个和实际目标函数最接近的假设的过程。</li>
+<li><a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" rel="external">wiki</a></li>
+</ul>
+</li>
+<li><p>感知机是什么？PLA算法和POCKET算法是什么？</p>
+</li>
+<li><p>LDA的原理和推导；SVD、LDA</p>
+</li>
 <li>无监督和有监督算法的区别？</li>
 <li>多分类怎么处理？（参见《机器学习》P64,通常切分为多个二分类，最后再集成）<ul>
 <li>OVO</li>
@@ -339,7 +351,6 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-</blockquote>
 <h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><blockquote>
 <ul>
 <li>原理、推导、特性、优缺点、调参</li>
@@ -594,11 +605,16 @@ ga('send', 'pageview');
 <li><a href="http://www.jianshu.com/p/J4U6rR" target="_blank" rel="external">list是怎样实现的</a></li>
 <li>常用的数据结构及应用场景（list，dict，tuple）</li>
 <li>Python装饰器、yield等</li>
-<li>给定一个文件，包含了data, ciyt, count等信息，写代码实现给定city和date1-date2日期内，count最高的日期</li>
+<li>给定一个文件，包含了data, city, count等信息，写代码实现给定city和date1-date2日期内，count最高的日期</li>
 </ul>
 </li>
 </ul>
 <h2 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h2><ul>
+<li>算法的时间复杂度和空间复杂度是什么？<ul>
+<li>时间复杂度：在进行算法分析时，语句总的执行次数T(n)是关于问题规模n的函数，进而分析T(n)随n的变化情况并确定T(n)的数量级。算法的时间复杂度记作T(n)=O(f(n))。</li>
+<li>空间复杂度：算法的空间复杂度通过计算算法所需的存储空间实现，算法空间复杂度的计算公式记作：S(n)=O(f(n))，其中n为问题的规模，n为问题的规模，f(n)为语句关于n所占存储空间的函数</li>
+</ul>
+</li>
 <li>两个数组，求差集</li>
 <li>写程序实现二分查找算法，给出递归和非递归实现，并分析算法的时间复杂度。</li>
 <li>实现单链表的反转</li>
@@ -927,14 +943,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
@@ -967,23 +975,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -995,7 +999,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1004,6 +1020,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1019,7 +1043,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1035,19 +1067,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1056,10 +1076,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
