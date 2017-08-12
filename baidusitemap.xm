@@ -4,6 +4,73 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-08-12T12:59:42.674Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-08-12T06:07:53.130Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    <lastmod>2017-08-11T08:07:23.256Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记（六）——Logistic Regression</title>
+        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
     <lastmod>2017-08-11T07:22:00.807Z</lastmod>
     <data>
@@ -16,27 +83,6 @@
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-08-11T05:35:06.922Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            
@@ -76,13 +122,13 @@
         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
+        <tag>Coding</tag>
          
         <tag>面试</tag>
          
-        <tag>Coding</tag>
+        <tag>校招</tag>
+         
+        <tag>algorithm</tag>
          
          
            
@@ -256,36 +302,13 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
          
+        <tag>面试</tag>
          
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    <lastmod>2017-07-30T07:18:24.482Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(七) —— 支持向量机</title>
-        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>SVM</tag>
+        <tag>校招</tag>
          
          
            
@@ -304,13 +327,13 @@
         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
-         
-        <tag>校招</tag>
+        <tag>Coding</tag>
          
         <tag>面试</tag>
          
-        <tag>Coding</tag>
+        <tag>校招</tag>
+         
+        <tag>algorithm</tag>
          
          
            
@@ -373,13 +396,13 @@
         <title>剑指offer阅读笔记</title>
         <pubTime>2017-06-09T02:33:40.000Z</pubTime>
         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>校招</tag>
          
          
            
@@ -426,29 +449,6 @@
         <tag>hexo</tag>
          
         <tag>yilia</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-07-30T06:22:38.412Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记（六）——Logistic Regression</title>
-        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>LR</tag>
          
          
            
@@ -555,13 +555,13 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>校招</tag>
          
          
            
@@ -599,13 +599,13 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>校招</tag>
          
          
            

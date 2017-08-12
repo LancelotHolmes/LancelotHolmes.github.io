@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
     
-    <lastmod>2017-08-11T07:22:00.807Z</lastmod>
+    <lastmod>2017-08-12T12:59:42.674Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
     
-    <lastmod>2017-08-11T05:35:06.922Z</lastmod>
+    <lastmod>2017-08-12T06:07:53.130Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    
+    <lastmod>2017-08-11T08:07:23.256Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
+    
+    <lastmod>2017-08-11T07:22:00.807Z</lastmod>
     
   </url>
   
@@ -86,13 +100,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    
-    <lastmod>2017-07-30T07:18:24.482Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2017/07/22/stack-queue/</loc>
     
     <lastmod>2017-07-30T06:23:40.045Z</lastmod>
@@ -131,13 +138,6 @@
     <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
     
     <lastmod>2017-07-30T06:22:50.277Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    
-    <lastmod>2017-07-30T06:22:38.412Z</lastmod>
     
   </url>
   
