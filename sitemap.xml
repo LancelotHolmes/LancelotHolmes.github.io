@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/06/knn/</loc>
+    
+    <lastmod>2017-08-13T03:22:28.872Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
+    
+    <lastmod>2017-08-13T02:59:29.645Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    
+    <lastmod>2017-08-13T01:55:20.484Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/03/rf/</loc>
+    
+    <lastmod>2017-08-13T00:40:39.713Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/12/svm/</loc>
     
     <lastmod>2017-08-12T12:59:42.674Z</lastmod>
@@ -44,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/04/recommand/</loc>
+    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
     
     <lastmod>2017-08-07T13:54:03.214Z</lastmod>
     
@@ -54,20 +82,6 @@
     <loc>http://yoursite.com/2017/07/03/ensemble/</loc>
     
     <lastmod>2017-08-06T11:45:14.775Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    
-    <lastmod>2017-08-06T11:38:53.667Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/03/rf/</loc>
-    
-    <lastmod>2017-08-04T11:12:20.855Z</lastmod>
     
   </url>
   
@@ -128,13 +142,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
-    
-    <lastmod>2017-07-30T06:22:55.485Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2017/05/30/my-blog/</loc>
     
     <lastmod>2017-07-30T06:22:50.277Z</lastmod>
@@ -145,13 +152,6 @@
     <loc>http://yoursite.com/2017/07/09/linear-model/</loc>
     
     <lastmod>2017-07-30T06:22:33.557Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    
-    <lastmod>2017-07-30T06:22:27.581Z</lastmod>
     
   </url>
   

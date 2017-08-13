@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/oob.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/dt_rf.png">
 <meta property="og:image" content="http://yoursite.com/materials/img/RF/stable.png">
-<meta property="og:updated_time" content="2017-08-04T11:12:20.855Z">
+<meta property="og:updated_time" content="2017-08-13T00:40:39.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="随机森林">
 <meta name="twitter:description" content="概述理解bagging+decision tree+randomness简言之，随机森林是将多棵决策树模型以bagging的集成方式组合在一起并引入随机性的一种集成模型  bagging从bias-variance分解的角度来看倾向于减少模型的方差 随机森林的偏差值往往趋向于所有基学习器的偏差的期望值，也就意味着随机森林的偏差难以进一步提高，所以只有从方差的角度来改善模型性能 随机森林改善模型的方">
@@ -295,7 +295,7 @@ ga('send', 'pageview');
 <h2 id="out-of-bag-example"><a href="#out-of-bag-example" class="headerlink" title="out of bag example"></a>out of bag example</h2><p>与bagging的过程相关<br><img src="/materials/img/RF/oob.png" alt="oob"><br><em>图片来源于“机器学习技法”课件</em><br>由图可知，经过N次bootstrap采样后，某一样本不被选中的概率为$(1-\frac{1}{N})^N$，当$N$足够大时，取极限则该概率近似为$\frac{1}{e}$，换句话说最后大约有$\frac{1}{e}$的样本是没有被使用过的，于是我们可以利用这些样本进行模型的性能评估</p>
 <p>对比设置验证集，out of bag(OOB)有以下特点</p>
 <ul>
-<li>对于每一个基分类器我们都有部分样本是没有被选中的，所以我们可以是用这些样本来衡量基分类器的表现，但是实际中一般不这么做，因为我们往往不是很关心基分类器的表现，而只在乎最终集成模型的表现</li>
+<li>对于每一个基分类器我们都有部分样本是没有被选中的，所以我们可以使用这些样本来衡量基分类器的表现，但是实际中一般不这么做，因为我们往往不是很关心基分类器的表现，而只在乎最终集成模型的表现</li>
 <li>对于最终的集成模型而言我们也可以使用OOB的方法进行模型评估，不过需要注意不要误选了被用于训练的样本来进行验证，具体做法可以选取某些未使用特定样本的模型组合起来的模型来对该部分样本进行验证评分，如此选取多次取平均表现即可作为最终集成模型的一个评估</li>
 <li>因此随机森林可以不需要额外设置验证集来进行验证，我们训练好模型后就可以根据OOB的得分来得到对最终模型的一个评估，也就不必像使用验证集那样再次使用所有训练集重新训练模型，实际应用中，OOB往往能准确的评价最终模型</li>
 </ul>
@@ -319,7 +319,7 @@ ga('send', 'pageview');
 </ul>
 <h3 id="特征选择的方法"><a href="#特征选择的方法" class="headerlink" title="特征选择的方法"></a>特征选择的方法</h3><ul>
 <li>线性模型<br>可以根据线性模型中的权重值大小来判定一个特征的值</li>
-<li>非线性模型<br>本身非线性模型要想评价一个特征是否重要是比较困难的，因为各个特征之间可能存在未知的交叉关系，所以我们一般将问题简化为考虑各个特征各自的重要性，也就是对特征独自的重要性进行一个排序，取较重要的若干特征，一种对特征重要性进行打分的方式是</li>
+<li>非线性模型<br>本身非线性模型要想评价一个特征是否重要是比较困难的，因为各个特征之间可能存在未知的交叉关系，所以我们一般将问题简化为考虑各个特征各自的重要性，也就是对特征独自的重要性进行一个排序，取较重要的若干特征，一种对特征重要性进行打分的方式是random test</li>
 </ul>
 <p>random test<br>考虑到测试一个特征是否重要可以通过在原始样本中加入噪声数据进行扰动的方法，来对比前后模型表现的差异，如果差异较大，证明该特征是重要的，具体而言，有三种常用方法</p>
 <ul>
@@ -432,7 +432,7 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2017/08/04/recommand/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/04/recommend/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -611,18 +611,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
@@ -635,6 +623,46 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
@@ -643,47 +671,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">校招</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,6 +695,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
@@ -719,7 +715,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,7 +731,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,11 +739,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,6 +748,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">比赛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
             
             <div class="clearfix"></div>

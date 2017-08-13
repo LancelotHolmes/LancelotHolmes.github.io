@@ -4,6 +4,98 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/06/knn/</loc>
+    <lastmod>2017-08-13T03:22:28.872Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(三) —— K近邻</title>
+        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
+    <lastmod>2017-08-13T02:59:29.645Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
+        <pubTime>2017-06-09T11:59:44.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
+    <lastmod>2017-08-13T01:55:20.484Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(八) —— 提升方法</title>
+        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/03/rf/</loc>
+    <lastmod>2017-08-13T00:40:39.713Z</lastmod>
+    <data>
+        <display>
+        <title>随机森林</title>
+        <pubTime>2017-08-03T07:05:02.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Random Forest</tag>
+         
+        <tag>机器学习技法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/12/svm/</loc>
     <lastmod>2017-08-12T12:59:42.674Z</lastmod>
     <data>
@@ -122,13 +214,13 @@
         
         <tag>Note</tag>
          
-        <tag>Coding</tag>
-         
-        <tag>面试</tag>
+        <tag>algorithm</tag>
          
         <tag>校招</tag>
          
-        <tag>algorithm</tag>
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
          
          
            
@@ -138,7 +230,7 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/04/recommand/</loc>
+    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
     <lastmod>2017-08-07T13:54:03.214Z</lastmod>
     <data>
         <display>
@@ -171,52 +263,6 @@
         <tag>Note</tag>
          
         <tag>ensemble</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/29/boosting/</loc>
-    <lastmod>2017-08-06T11:38:53.667Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(八) —— 提升方法</title>
-        <pubTime>2017-06-29T05:45:11.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/03/rf/</loc>
-    <lastmod>2017-08-04T11:12:20.855Z</lastmod>
-    <data>
-        <display>
-        <title>随机森林</title>
-        <pubTime>2017-08-03T07:05:02.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Random Forest</tag>
-         
-        <tag>机器学习技法</tag>
          
          
            
@@ -302,13 +348,13 @@
         
         <tag>Note</tag>
          
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
+        <tag>校招</tag>
          
         <tag>面试</tag>
          
-        <tag>校招</tag>
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
          
          
            
@@ -327,13 +373,13 @@
         
         <tag>Note</tag>
          
-        <tag>Coding</tag>
-         
-        <tag>面试</tag>
+        <tag>algorithm</tag>
          
         <tag>校招</tag>
          
-        <tag>algorithm</tag>
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
          
          
            
@@ -396,36 +442,13 @@
         <title>剑指offer阅读笔记</title>
         <pubTime>2017-06-09T02:33:40.000Z</pubTime>
         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
+        <tag>校招</tag>
          
         <tag>面试</tag>
          
-        <tag>校招</tag>
+        <tag>Coding</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/09/naive-bayes/</loc>
-    <lastmod>2017-07-30T06:22:55.485Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(四) —— 朴素贝叶斯法</title>
-        <pubTime>2017-06-09T11:59:44.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>k-NN</tag>
+        <tag>剑指offer</tag>
          
          
            
@@ -472,29 +495,6 @@
         <tag>LR</tag>
          
         <tag>机器学习</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    <lastmod>2017-07-30T06:22:27.581Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(三) —— K近邻</title>
-        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>k-NN</tag>
          
          
            
@@ -555,13 +555,13 @@
         
         <tag>Note</tag>
          
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
+        <tag>校招</tag>
          
         <tag>面试</tag>
          
-        <tag>校招</tag>
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
          
          
            
@@ -599,13 +599,13 @@
         
         <tag>Note</tag>
          
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
+        <tag>校招</tag>
          
         <tag>面试</tag>
          
-        <tag>校招</tag>
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
          
          
            

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="朴素贝叶斯法是基于贝叶斯定理和特征条件独立假设的分类方法。对于给定的训练数据集，首先基于特征条件独立假设学习输入/输出的联合概率分布，然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$。  关键词：贝叶斯定理、特征条件独立假设、实现简单、学习预测效率高、生成学习方法">
 <meta property="og:image" content="http://yoursite.com/materials/img/Naive_Bayes/post_prob.jpg">
-<meta property="og:updated_time" content="2017-07-30T06:22:55.485Z">
+<meta property="og:updated_time" content="2017-08-13T02:59:29.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记(四) —— 朴素贝叶斯法">
 <meta name="twitter:description" content="朴素贝叶斯法是基于贝叶斯定理和特征条件独立假设的分类方法。对于给定的训练数据集，首先基于特征条件独立假设学习输入/输出的联合概率分布，然后基于此模型，对给定的输入$x$，利用贝叶斯定理求出后验概率最大的输出$y$。  关键词：贝叶斯定理、特征条件独立假设、实现简单、学习预测效率高、生成学习方法">
@@ -301,7 +301,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <li>(3) 确定实例$x$的类<br>$$y=argmax_{c_k}P(Y=c_k)\prod_{j=1}^{n}P(X^{(j)}=x^{(j)}|Y=c_k)$$</li>
 </ul>
 </blockquote>
-<h3 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h3><p>由于用极大似然估计可能会出现索要估计的概率值为0的情况(条件概率的某种取值的统计量为0)，会影响到后验概率的计算结果，使分类产生偏差，我们可以采取的做法是在随机变量各个取值的<strong>频数</strong>上赋予一个正数$\lambda$，即贝叶斯估计，此时</p>
+<h3 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h3><p>由于用极大似然估计可能会出现所要估计的概率值为0的情况(条件概率的某种取值的统计量为0)，会影响到后验概率的计算结果，使分类产生偏差，我们可以采取的做法是在随机变量各个取值的<strong>频数</strong>上赋予一个正数$\lambda$，即贝叶斯估计，此时</p>
 <ul>
 <li>条件概率的贝叶斯估计为<br>$$P_{\lambda}(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^{N}I(x_i^{(j)}=a_{jl}, y_i=c_k)+ \lambda}{\sum_{i=1}^{N}I(y_i=c_k)+S_j \lambda}$$</li>
 <li>先验概率的贝叶斯估计<br>$$P_{\lambda}(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)+\lambda}{N+K\lambda}$$<br>常取$\lambda=1$称为拉普拉斯平滑</li>
@@ -597,18 +597,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
@@ -621,6 +609,46 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
@@ -629,47 +657,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">校招</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,6 +681,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
@@ -705,7 +701,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,7 +717,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,11 +725,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,6 +734,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">比赛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
             
             <div class="clearfix"></div>
