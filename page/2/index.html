@@ -194,6 +194,93 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/30/error/">个人错题难题仓库</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/30/error/" class="archive-article-date">
+  	<time datetime="2017-07-30T01:29:10.000Z" itemprop="datePublished">2017-07-30</time>
+  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
+      view <span id="busuanzi_value_page_pv"></span> times
+    </span>
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+      </header>
+    
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>记录个人的一些疑难杂症</em></p>
+        
+          <a class="article-more-a" href="/2017/07/30/error/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Coding</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">剑指offer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/30/error/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-java-concepts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -541,293 +628,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-svm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/12/svm/">统计学习方法笔记(七) —— 支持向量机</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/12/svm/" class="archive-article-date">
-  	<time datetime="2017-07-12T09:11:48.000Z" itemprop="datePublished">2017-07-12</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-
-        <a id="more"></a>
-<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
-<li>支持向量机是一种二类分类模型</li>
-<li>基本模型：定义在特征空间上的间隔最大的线性分类器</li>
-<li>+核函数$\to$ 非线性分类器<!-- more -->
-<h3 id="学习策略"><a href="#学习策略" class="headerlink" title="学习策略"></a>学习策略</h3>间隔最大化：最大化实例点到分类超平面的最小距离，或者说最大化数据集到分离超平面的距离</li>
-<li>对偶问题：求解凸二次规划问题</li>
-<li>等价损失函数：正则化的合页(hinge)损失函数的最小化问题</li>
-</ul>
-<h3 id="学习算法"><a href="#学习算法" class="headerlink" title="学习算法"></a>学习算法</h3><p>求解凸二次规划的最优化算法：常用SMO(序列最小最优化问题)</p>
-<h3 id="模型分类"><a href="#模型分类" class="headerlink" title="模型分类"></a>模型分类</h3><table>
-<thead>
-<tr>
-<th>训练数据</th>
-<th>通过</th>
-<th>学习</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>线性可分</td>
-<td>硬间隔最大化</td>
-<td>线性可分支持向量机(硬间隔支持向量机)</td>
-</tr>
-<tr>
-<td>近似线性可分</td>
-<td>软间隔最大化</td>
-<td>线性支持向量机(软间隔支持向量机)</td>
-</tr>
-<tr>
-<td>线性不可分</td>
-<td>软间隔最大化+核技巧</td>
-<td>非线性支持向量机</td>
-</tr>
-</tbody>
-</table>
-<h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
-<li>输入都由输入空间转换到特征空间，支持向量机的学习是在特征空间进行的，而学习的目标是在特征空间中找到一个分离超平面，能将实例分到不同的类</li>
-<li>当训练数据集线性可分时，感知机利用误分类最小的策略，求得无穷多的分离超平面；而线性可分支持向量机利用间隔最大化求最优分离超平面，此时，解是唯一的<blockquote>
-<p>定义：给定线性可分训练数据集，通过间隔最大化或等价地求解相应的凸二次规划问题学习得到的分离超平面为:$$w^*\cdot x+b^*=0$$，以及相应的分类决策函数$$f(x)=sign(w^*\cdot x+b^*)$$，称为线性可分支持向量机。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="函数间隔-amp-几何间隔"><a href="#函数间隔-amp-几何间隔" class="headerlink" title="函数间隔&amp;几何间隔"></a>函数间隔&amp;几何间隔</h3><p>假设给定一个特征空间上的训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace, x_i\in R^n,y_i \in \lbrace -1,+1 \rbrace$</p>
-<ul>
-<li>函数间隔<ul>
-<li>超平面$(w,b)$关于训练数据集$T$的<strong>样本点$(x_i,y_i)$</strong>的函数间隔：$$\widehat{\gamma_i}=y_i(w\cdot x_i+b)$$</li>
-<li>表示分类预测的：<ul>
-<li>确信程度$\to |w\cdot x+b|$:一个点距离分离超平面的远近</li>
-<li>正确性$\to w\cdot x+b$的符号与类标记$y$的符号是否一致</li>
-</ul>
-</li>
-<li>超平面$(w,b)$关于<strong>训练数据集$T$</strong>的函数间隔为：$$\widehat{\gamma}=min_{i=1,…,N}\widehat{\gamma_i}$$,但是选择分离超平面时，仅有函数间隔是不够的，因为$w,b$可以成比例变化使得函数间隔为无穷大而不具备可比性，所以需要对$w$加约束，如规范化，令$||w||=1$，于是得到几何间隔</li>
-</ul>
-</li>
-<li>几何间隔<ul>
-<li>超平面$(w,b)$关于训练数据集$T$的<strong>样本点$(x_i,y_i)$</strong>的几何间隔：$$\gamma_i=y_i(\frac{w}{||w||}\cdot x_i+\frac{b}{||w||})$$</li>
-<li>超平面$(w,b)$关于<strong>训练数据集$T$</strong>的几何间隔为：$$\gamma=min_{i=1,…,N}\gamma_i$$，超平面$(w,b)$关于样本点$(x_i,y_i)$的几何间隔一般是实例点到超平面的带符号的距离。</li>
-</ul>
-</li>
-</ul>
-<h3 id="间隔最大化"><a href="#间隔最大化" class="headerlink" title="间隔最大化"></a>间隔最大化</h3><ul>
-<li>基本想法：求解能够正确划分训练数据集并且几何间隔最大的分离超平面，即以充分大的确信度对训练数据进行分类</li>
-</ul>
-<p><em>Notes:原始问题：求一个几何间隔最大的分离超平面。</em></p>
-<ul>
-<li>数学表达为一个约束最优化问题<br>$$max_{w,b}  \gamma$$<br>$$ s.t. 　y_i(\frac{w}{||w||}\cdot x_i+\frac{b}{||w||}) \geq \gamma 　i=1,2,…,N$$，其中$\gamma$即表示超平面关于数据集的几何间隔，是超平面关于数据集中的样本点的几何间隔$\gamma_i$的最小值，因此有上述约束条件，而我们的目的是得到一个使该值最大的超平面</li>
-<li>由几何间隔与函数间隔之间的转化关系$\gamma_i = \frac{\widehat{\gamma_i}}{||w||},  \gamma = \frac{\widehat{\gamma}}{||w||}$，上述问题可以进一步转化为<br>$$max_{w,b}  \frac{\widehat{\gamma}}{||w||}$$<br>$$ s.t. 　y_i(w\cdot x_i+b) \geq \gamma 　i=1,2,…,N$$</li>
-<li>由于函数间隔$\widehat{\gamma}$并不影响最优化问题的解（将$w,b$按比例改变，函数间隔也随之等比变化），取$\widehat{\gamma}=1$,此外由于在该最优化问题中，最大化$\frac{1}{||w||}$和最小化$\frac{1}{2}||w||^2$等价，所以上述问题进一步转化为<br>$$min_{w,b}  \frac{1}{2}{||w||^2}$$<br>$$ s.t. 　y_i(w\cdot x_i+b) - 1\geq 0 　i=1,2,…,N$$</li>
-</ul>
-<p><em>Notes:</em></p>
-<ul>
-<li>原始问题到这里就结束了，直接使用凸二次规划求解出$w,b$的值就可以得到分离超平面和最终的决策函数，这就是<strong>最大间隔法</strong></li>
-<li>书中例题7.1的凸二次优化的Python解法，参照<a href="https://wizardforcel.gitbooks.io/python-quant-uqer/content/192.html" target="_blank" rel="external">凸优化 · 如何在 Python 中利用 CVXOPT 求解二次规划问题</a>,针对该题可见<a href="https://github.com/LancelotHolmes/MLinAction/blob/master/Convex%20Quadratic.ipynb" target="_blank" rel="external">我的github</a><br><img src="/materials/img/svm/convex.jpg" alt="convex"></li>
-</ul>
-<h3 id="算法-最大间隔法-线性可分支持向量机学习算法"><a href="#算法-最大间隔法-线性可分支持向量机学习算法" class="headerlink" title="算法-最大间隔法(线性可分支持向量机学习算法)"></a>算法-最大间隔法(线性可分支持向量机学习算法)</h3><blockquote>
-<p>输入：线性可分训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace, x_i\in R^n,y_i \in \lbrace -1,+1 \rbrace, i=1,2,…,N$<br>输出：最大间隔分离超平面和分类决策函数</p>
-<ul>
-<li>(1)构造并求解约束最优化问题<br>$$min_{w,b}  \frac{1}{2}{||w||^2}$$<br>$$ s.t. 　y_i(w\cdot x_i+b) - 1\geq 0 　i=1,2,…,N$$，求得最优解$w^*,b^*$</li>
-<li>(2)由此可得分离超平面$$w^*\cdot x+b^*=0$$,以及对应的分类决策函数$$f(x)=sign(w^*\cdot x+b^*)$$</li>
-</ul>
-</blockquote>
-<p><em>Notes:线性可分训练数据集的最大间隔分离超平面是存在且唯一的</em></p>
-<h3 id="支持向量与间隔边界"><a href="#支持向量与间隔边界" class="headerlink" title="支持向量与间隔边界"></a>支持向量与间隔边界</h3><p>在线性可分情况下，训练数据集的样本点中与分离超平面距离最近的样本点的实例称为支持向量(使$y_i(w\cdot x_i+b)-1=0$成立的点)<br><img src="/materials/img/svm/sv.jpg" alt="sv"><br>如图所示，超平面$H_1,H_2$上的点即为支持向量，$H_1$与$H_2$之间的距离即为间隔，依赖于分离超平面的法向量$w=\frac{2}{||w||}$，$H_1,H_2$称为间隔边界；<br><em>Notes:在决定分离超平面时只有支持向量起作用，其他实例点并不起作用</em></p>
-<h3 id="学习的对偶算法"><a href="#学习的对偶算法" class="headerlink" title="学习的对偶算法"></a>学习的对偶算法</h3><p>承接前面的原始问题，引入<strong>拉格朗日对偶性</strong></p>
-<ul>
-<li>对偶问题往往更容易求解</li>
-<li>自然引入核函数$\to$推广到非线性分类问题</li>
-</ul>
-<h4 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h4><ul>
-<li>对原问题引入拉格朗日乘子$\alpha_i \geq 0$,构建拉格朗日函数，得到<br>$$L(w,b,\alpha)=\frac{1}{2}{||w||^2} - \sum_{i=1}^{N}\alpha_iy_i(w\cdot x_i+b)+ \sum_{i=1}^{N}\alpha_i$$<br><em>Notes:个人理解是将原始的约束条件中的不等式、等式以某种形式添加到目标函数中从而转化为新的目标函数求解</em></li>
-<li>这样原始问题就是$$min_{w,b} max_{\alpha_i \geq 0}L(w, b, \alpha)$$,根据拉格朗日对偶性可以转换为广义的拉格朗日的极大极小问题$$max_{\alpha_i \geq 0} min_{w,b}L(w, b, \alpha)$$</li>
-<li>求解$min_{w,b}L(w, b, \alpha)$,即分别对$w,b$求导并令其值为0，得到<br>$$w = \sum_{i=1}^{N}\alpha_iy_ix_i$$<br>$$\sum_{i=1}^N \alpha_iy_i=0$$</li>
-<li>代入原式得$$min_{w,b}L(w,b,\alpha)=-\frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+ \sum_{i=1}^{N}\alpha_i$$,所以求该式对$\alpha$的极大，即求约束最优化问题<br>$$max_{\alpha}  -\frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+ \sum_{i=1}^{N}\alpha_i$$<br>$$s.t.  \sum_{i=1}^N \alpha_iy_i=0, \alpha_i \geq 0, i=1,2,…,N$$</li>
-<li>对偶问题即为<br>$$min_{\alpha}  \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)- \sum_{i=1}^{N}\alpha_i$$<br>$$s.t.  \sum_{i=1}^N \alpha_iy_i=0, \alpha_i \geq 0, i=1,2,…,N$$</li>
-<li>使用SMO算法可以求得最优的$\alpha_j^*&gt;0 \to w^*=\sum_{i=1}^{N}\alpha_i^*y_ix_i \to b^*=y_j - \sum_{i=1}^{N}\alpha_i^*y_i(x_i\cdot x_j) \to$分离超平面<br>$$w^*\cdot x+b^*=0$$,对应的决策函数为<br>$$f(x)=sign(w^*\cdot x+b^*)=sign(\sum_{i=1}^{N}\alpha_i^*y_i(x\cdot x_i)+b^*)$$</li>
-</ul>
-<p><em>Notes:</em></p>
-<ul>
-<li>分类决策函数只依赖于输入$x$与训练样本输入的内积</li>
-<li>至此为线性可分支持向量机的<strong>对偶学习算法</strong></li>
-<li>上述结果体现出支持向量机的一个重要性质：训练完成后，大部分训练样本都不需要保留，最终模型仅与支持向量有关</li>
-<li>SMO算法：分解为子问题求解<ul>
-<li>求解两个变量二次规划的解析方法</li>
-<li>选择变量的启发式方法</li>
-</ul>
-</li>
-<li><a href="http://www.cnblogs.com/jerrylead/archive/2011/03/13/1982684.html" target="_blank" rel="external">为什么说对偶算法更易求解？效率更高</a><blockquote>
-<p>以前新来的要分类的样本首先根据$w$和$b$做一次线性运算，然后看求的结果是大于0还是小于0,来判断正例还是负例。现在有了$\alpha_i$，我们不需要求出$w$，只需将新来的样本和训练数据中的所有样本做内积和即可。那有人会说，与前面所有的样本都做运算是不是太耗时了？其实不然，我们从KKT条件中得到，只有支持向量的$\alpha_i&gt;0$，其他情况$\alpha_i=0$。因此，我们只需求新来的样本和支持向量的内积，然后运算即可。这种写法为下面要提到的核函数（kernel）做了很好的铺垫。</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="算法——对偶学习算法"><a href="#算法——对偶学习算法" class="headerlink" title="算法——对偶学习算法"></a>算法——对偶学习算法</h4><blockquote>
-<p>输入：线性可分训练数据集$T= \lbrace (x_1, y_1), (x_2, y_2),…,(x_N, y_N) \rbrace, x_i\in R^n,y_i \in \lbrace -1,+1 \rbrace, i=1,2,…,N$<br>输出：分离超平面和分类决策函数</p>
-<ul>
-<li>(1)构造并求解约束最优化问题<br>$$min_{\alpha}  \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)- \sum_{i=1}^{N}\alpha_i$$<br>$$s.t.  \sum_{i=1}^{N}\alpha_iy_i = 0　\alpha_i \geq 0, i=1,2,…,N$$求得最优解$\alpha^* = (\alpha_1^* … \alpha_n^*)^T$</li>
-<li>(2)计算$$w^* = \sum_{i=1}^{N}\alpha_i^*y_ix_i$$,并选择$\alpha^*$的一个正分量$\alpha_j^*&gt;0$,计算<br>$$b^* = y_j - \sum_{i=1}^{N}\alpha_i^*y_i(x_i\cdot x_j)$$</li>
-<li>(3)求得分离超平面$$w^*\cdot x+b^*=0$$,对应的决策函数为<br>$$f(x)=sign(w^*\cdot x+b^*)=sign(\sum_{i=1}^{N}\alpha_i^*y_i(x_i\cdot x_j)+b^*)$$</li>
-</ul>
-</blockquote>
-<p><em>Notes:</em>$w^*,b^*$只依赖于训练数据中对应于$\alpha_i^*&gt;0$的样本点$(x_i,y_i)$，这些实例点$x_i$即为支持向量</p>
-<h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>训练样本线性不可分时的线性支持向量机，此处的线性不可分指的是近似线性可分，即训练数据集有一些特异点，去除掉这些特异点后剩下大部分样本点组成的集合是线性可分的</p>
-<h3 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h3><p>软间隔最大化问题：在硬间隔最大化的目标函数中添加<strong>松弛变量</strong>和<strong>惩罚参数</strong>，在约束条件中添加<strong>松弛变量</strong>，即<br>$$min_{w,b,\xi}  \frac{1}{2}{||w||^2}+C\sum_{i=1}^{N}\xi_i$$<br>$$ s.t. 　y_i(w\cdot x_i+b) \geq 1 - \xi_i;　　\xi_i \geq 0 　i=1,2,…,N$$</p>
-<p><em>Notes:</em></p>
-<ul>
-<li>使间隔尽量大$\to \frac{1}{2}||w||^2$尽量小</li>
-<li>误分类点个数尽量少，即松弛变量$\xi_i$尽量小,$C$为调和两者的系数</li>
-</ul>
-<h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><p>类似线性可分支持向量机中做法，引入拉格朗日乘子并构建拉格朗日函数，利用拉格朗日对偶性，问题转化为求解对偶问题<br>$$min_{\alpha}  \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)- \sum_{i=1}^{N}\alpha_i$$<br>$$s.t.  \sum_{i=1}^{N}\alpha_iy_i = 0;　 0 \leq \alpha_i \leq C, i=1,2,…,N$$</p>
-<p>_Notes:可以对比线性可分支持向量机，主要区别在于约束条件$\alpha_i$多了上界$C$_</p>
-<h3 id="合页损失函数"><a href="#合页损失函数" class="headerlink" title="合页损失函数"></a>合页损失函数</h3><p>软间隔/线性支持向量机的原始问题可以等价于添加了正则化项的合页损失函数，即最小化以下目标函数<br>$$min_{w,b}  \sum_{i=1}^{N}[1-y_i(w\cdot x_i+b)]_++\lambda ||w||^2$$</p>
-<ul>
-<li>第一项为合页损失函数$L(y(w\cdot x+b))=[1-y_i(w\cdot x_i+b)]_+$,一般对于函数$[z]_+$有：<br>$$[z]_+=z      if         z&gt;0$$<br>$$[z]_+=0      if         z\leq 0$$<br>所以原式表明当样本点$x_i,y_i$被正确分类且<strong>函数间隔(确信度)</strong>$y_i(w\cdot x_i+b)$大于1时损失为0，否则损失是$1-y_i(w\cdot x_i+b)$</li>
-<li>第二项为正则化项，是系数为$\lambda$的$w$的$L_2$范数</li>
-</ul>
-<p><strong>线性支持向量机的原始最优化问题与上述目标函数的最优化问题是等价的</strong></p>
-<p><em>那么为什么要使用合页损失函数？</em><br><img src="/materials/img/svm/loss.png" alt="loss function"><br>如图所示为常用的一些损失函数，可以看到，各个图中损失函数的曲线基本位于0-1损失函数的上方，所以可以作为0-1损失函数的上界；</p>
-<ul>
-<li>由于0-1损失函数不是连续可导的，直接优化由其构成的目标损失函数比较困难，所以对于svm而言，可以认为是在优化由0-1损失函数的上界(合页损失函数)构成的目标函数，又称为<strong>代理损失函数</strong></li>
-<li>合页损失函数对学习有更高的要求</li>
-<li>附：常用替代损失函数，通常具有较好的数学性质，比如凸的连续函数且是0/1损失函数的上界<ul>
-<li>hinge损失$$l_{hinge}(z)=max(0,1-z)$$</li>
-<li>指数损失$$l_{exp}(z)=exp(-z)$$</li>
-<li>对率损失$$l_{log}(z)=log(1+exp(-z))$$</li>
-</ul>
-</li>
-<li>合页损失函数这里也看得到与前面所述的一些模型的讲解方式的差异，前面大部分模型的策略部分的目标函数是在做一个损失函数的最小化问题求解，而SVM一开始就假设特征空间线性可分，所以这种前提下是不存在损失的，因此目标是找到一个超平面使得将正反例最大区分度的分割开来，于是目标函数就成了求解最大间隔的问题，包括引入核函数也使得本身可能线性并不可分的样本能够在高位空间被划分开来，但是这样存在一点问题就是构成的模型对于噪声点比较敏感，因为理论上而言在无穷维度一定能将样本划分开来，所以假设样本本身存在一些噪声点，这个时候的模型就会出现过拟合的问题，于是就引入了松弛变量和软间隔理论（这里也可以从经验风险-结构风险的角度来理解）；这也是另一种讲解顺序，在周志华的《机器学习》一书以及博客<a href="https://www.cnblogs.com/jerrylead/archive/2011/03/13/1982639.html" target="_blank" rel="external">jerrylead</a>里都是按这种顺序来讲解的</li>
-</ul>
-<h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h3 id="非线性分类问题"><a href="#非线性分类问题" class="headerlink" title="非线性分类问题"></a>非线性分类问题</h3><ul>
-<li>非线性分类问题是指通过利用非线性模型才能很好的进行分类的问题</li>
-<li>用线性分类方法求解非线性分类问题分为两步：<ul>
-<li>首先使用一个变换将原空间的数据映射到新空间；</li>
-<li>在新空间里用线性分类学习方法从训练数据中学习分类模型；核技巧就属于这样的方法<h3 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h3><blockquote>
-<ul>
-<li>核技巧应用到支持向量机，其基本想法是通过一个非线性变换将输入空间（欧式空间或离散集合）对应于一个特征空间（希尔伯特空间），使得在输入空间中的超曲面模型对应于特征空间中的超平面模型(支持向量机)；这样分类问题的学习任务通过在特征空间中求解线性支持向量机就可以完成了</li>
-<li>核技巧：在核函数给定的条件下，可利用解线性分类问题的方法求解非线性分类问题的支持向量机；学习是隐式地在特征空间进行的，不需要显式地定义特征空间和映射函数</li>
-<li>实际应用中，常依赖于领域知识直接选择核函数，其有效性通过实验验证</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<p><em>Notes:若原始空间是有限维的（属性数有限），则一定存在一个高维特征空间使样本可分</em></p>
-<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><ul>
-<li>正定核<br>通常所述的核函数就是正定核函数，证明一个函数为正定核函数的充要条件为证明该函数对应的Gram矩阵为半正定矩阵</li>
-<li>常用核函数<ul>
-<li>多项式核函数–p次多项式分类器</li>
-<li>高斯核函数–高斯径向基函数分类器</li>
-<li>字符串核函数–定义在离散数据的集合上(字符串集合)–余弦相似度</li>
-</ul>
-</li>
-</ul>
-<p><img src="/materials/img/svm/kernel.png" alt="kernel"><br><a href="http://blog.csdn.net/fjssharpsword/article/details/56481358" target="_blank" rel="external">图片来源</a></p>
-<h3 id="求解问题"><a href="#求解问题" class="headerlink" title="求解问题"></a>求解问题</h3><ul>
-<li>选取适当的核函数$K(x,z)$和适当的参数$C$,构造并求解最优化问题：<br>$$min_{\alpha}  \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i\alpha_jy_iy_jK(x_i,x_j)- \sum_{i=1}^{N}\alpha_i$$<br>$$s.t. 　\sum_{i=1}^{N}\alpha_iy_i = 0$$<br>$$0 \leq \alpha_i \leq C 　i=1,2,…,N$$</li>
-<li>构造决策函数<br>$$f(x)=sign(\sum_{i=1}^{N}\alpha_i^*y_iK(x\cdot x_i)+b^*)$$</li>
-</ul>
-<p><em>Notes:可以对比软间隔最大化的对偶学习问题，区别在于用核函数$K(x,z)$代替了原始目标函数中的内积</em></p>
-<h2 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h2><blockquote>
-<p>SMO算法是支持向量机学习的一种快速算法，其特点是不断的将原二次规划问题分解为只有两个变量的二次规划问题，并对子问题进行解析求解，直到所有变量满足KKT条件为止，这样通过启发式的方法得到原二次规划问题的最优解，<strong>因为子问题有解析解，所以每次计算子问题都很快，虽然计算子问题次数很多，但在总体上还是高效的</strong></p>
-</blockquote>
-<ul>
-<li>选取$\alpha_i,\alpha_j$的方法：<ul>
-<li>先选取违背KKT条件程度最大的变量作为第一个变量，然后启发式的选择与第一个变量对应样本间间隔最大的变量作为第二个变量</li>
-</ul>
-</li>
-</ul>
-<h2 id="SVM-vs-Logistic-Regression"><a href="#SVM-vs-Logistic-Regression" class="headerlink" title="SVM vs.Logistic Regression"></a>SVM vs.Logistic Regression</h2><ul>
-<li>同：优化目标相近，通常情形下性能也相当</li>
-<li>异：<ul>
-<li>LR的优势在于其输出具有自然的概率意义，给出预测标记的同时也给出了概率，而SVM要想得到概率输出需特殊处理</li>
-<li>LR能直接用于多分类任务，而SVM则需要进行推广</li>
-<li>SVM的解具有稀疏性（仅依赖于支持向量），LR对应的对率损失则是光滑的单调递减函数，因此LR的解依赖于更多的训练样本，其预测开销更大<br>参考《机器学习》</li>
-</ul>
-</li>
-</ul>
-<h2 id="支持向量回归"><a href="#支持向量回归" class="headerlink" title="支持向量回归"></a>支持向量回归</h2><p><em>TODO</em></p>
-<h2 id="其他资料"><a href="#其他资料" class="headerlink" title="其他资料"></a>其他资料</h2><p>关于SVM的讲解有不少优秀资料，小结如下</p>
-<ul>
-<li><a href="https://www.cnblogs.com/jerrylead/archive/2011/03/13/1982639.html" target="_blank" rel="external">从LR过渡到SVM的讲解方式</a></li>
-<li><a href="http://www.cnblogs.com/jerrylead/archive/2011/03/13/1982684.html" target="_blank" rel="external">串讲拉格朗日对偶性与SVM对偶算法的推导</a></li>
-<li>周志华《机器学习》</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">统计学习方法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/12/svm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -965,15 +765,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -993,27 +793,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1025,11 +813,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1057,6 +873,26 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -1069,31 +905,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,10 +914,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">比赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Economy</a>
               </li>
             
             <div class="clearfix"></div>

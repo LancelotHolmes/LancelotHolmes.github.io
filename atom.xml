@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-09T08:50:42.939Z</updated>
+  <updated>2017-08-14T13:53:59.676Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hadoop小记</title>
+    <link href="http://yoursite.com/2017/08/14/hadoop/"/>
+    <id>http://yoursite.com/2017/08/14/hadoop/</id>
+    <published>2017-08-14T13:00:37.000Z</published>
+    <updated>2017-08-14T13:53:59.676Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Hadoop是一种开源框架，通过这一框架可以在由不同的主机的聚簇所构成的分布式环境上使用简单的编程模型来存储和处理大数据。</p>
+</blockquote>
+<h2 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h2><p>背景：大数据爆发</p>
+<h3 id="何谓大数据？"><a href="#何谓大数据？" class="headerlink" title="何谓大数据？"></a>何谓大数据？</h3><p>大量数据集的集合，难以被传统的计算技术处理，现在已经不单单指数据，而是一个完整的课题，包括相关的各种工具、技术和框架</p>
+<h3 id="常见大数据"><a href="#常见大数据" class="headerlink" title="常见大数据"></a>常见大数据</h3><ul>
+<li>黑盒数据：记录了飞机的信息</li>
+<li>社交网络数据</li>
+<li>股票交易数据</li>
+<li>能源网数据</li>
+<li>交通数据</li>
+<li>搜索引擎数据</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
+<li>结构型数据：关系型数据</li>
+<li>半结构型数据：XML数据</li>
+<li>非结构型数据：文档、日志、文本等</li>
+</ul>
+<h3 id="技术类型"><a href="#技术类型" class="headerlink" title="技术类型"></a>技术类型</h3><ul>
+<li>操纵大数据<ul>
+<li>MongoDB:即时交互</li>
+<li>NoSQL+云计算：高效、降低计算成本、技术成本</li>
+</ul>
+</li>
+<li>分析大数据<ul>
+<li>MPP(Massively Parallel Processing)数据库系统+MapReduce</li>
+</ul>
+</li>
+</ul>
+<h3 id="面临挑战"><a href="#面临挑战" class="headerlink" title="面临挑战"></a>面临挑战</h3><ul>
+<li>获取数据</li>
+<li>策展(Curation)</li>
+<li>存储</li>
+<li>查找</li>
+<li>共享</li>
+<li>传输</li>
+<li>分析</li>
+<li>表示</li>
+</ul>
+<h3 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h3><ul>
+<li>概述：使用关系型数据库诸如Oracle,SQL Server,DB2等来与数据库进行交互和管理，针对目标数据进行操作并展示给用户来做进一步分析</li>
+<li>局限性：数据量少时可以很好的执行，数据量大时会受到执行时间、处理器性能的制约</li>
+</ul>
+<h3 id="Google的解决方案"><a href="#Google的解决方案" class="headerlink" title="Google的解决方案"></a>Google的解决方案</h3><ul>
+<li><p>MapReduce<br>Google提出了MapReduce算法通过将原始任务分解为一个一个的小部分然后分配给多个互联的计算机来并行处理，最终收集各个计算机的结果来组成最终所需的结果</p>
+</li>
+<li><p>Hadoop<br>Hadoop通过MapReduce算法来在多个不同的CPU上处理数据</p>
+</li>
+</ul>
+<h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ul>
+<li>Hadoop Common: 其他模块的基础，提供了文件系统和操作系统的抽象，包含了必要的Java库和脚本来启动Hadoop</li>
+<li>Hadoop YARN: 用来进行任务调度和聚簇资源管理</li>
+<li>Hadoop Distributed File System (HDFS™): 分布式文件系统，提供了对应用数据的高吞吐量访问权限</li>
+<li>Hadoop MapReduce: 基于YARN的系统，用来并行的处理大型数据集<br><img src="/materials/img/hadoop/hadoop_architecture.jpg" alt="hadoop_architecture"></li>
+</ul>
+<p><em>Notes:自2012年起，Hadoop不仅仅指上面提到的基本模块，还有一系列基于这些模块或相当的比如Apache Pig, Apache Hive, Apache HBase, Apache Spark等等</em></p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>Hadoop MapReduce是一种软件框架能够很容易的编写应用来在大型聚簇上并行地处理大数据，具有可靠性、容错性</p>
+<h4 id="基本任务"><a href="#基本任务" class="headerlink" title="基本任务"></a>基本任务</h4><ul>
+<li>Map<br>将原始的数据进行转换，通常将独立元素重构成元组</li>
+<li>Reduce<br>将Map操作生成的数据元素转换成更小的元素集合</li>
+</ul>
+<p>一般而言输入输出都保存在文件系统，这一框架还需要进行任务调度、任务监控以及重新执行失败的任务；MapReduce含有一个JobTracker，针对每一个聚簇节点都有一个TaskTracker</p>
+<ul>
+<li>JobTracker<br>负责资源管理、追踪资源的消耗和权限并调度slaves之间的任务，监控slaves并重新执行失败的任务</li>
+<li>TaskTracker<br>执行master所传达的任务，并间隔性的向master反馈任务状态信息</li>
+</ul>
+<h3 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Hadoop是一种开源框架，通过这一框架可以在由不同的主机的聚簇所构成的分布式环境上使用简单的编程模型来存储和处理大数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;大数据&quot;&gt;&lt;a href=&quot;#大数据&quot; class=&quot;headerlin
+    
+    </summary>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="hadoop" scheme="http://yoursite.com/tags/hadoop/"/>
+    
+      <category term="big data" scheme="http://yoursite.com/tags/big-data/"/>
+    
+  </entry>
   
   <entry>
     <title>神经网络</title>

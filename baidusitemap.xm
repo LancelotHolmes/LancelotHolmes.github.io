@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/14/hadoop/</loc>
+    <lastmod>2017-08-14T13:53:59.676Z</lastmod>
+    <data>
+        <display>
+        <title>hadoop小记</title>
+        <pubTime>2017-08-14T13:00:37.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>hadoop</tag>
+         
+        <tag>big data</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/06/knn/</loc>
     <lastmod>2017-08-13T03:22:28.872Z</lastmod>
     <data>
