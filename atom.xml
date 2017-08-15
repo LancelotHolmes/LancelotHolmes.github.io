@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-15T13:19:48.056Z</updated>
+  <updated>2017-08-15T13:55:03.661Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>推荐系统实践小记</title>
+    <link href="http://yoursite.com/2017/08/15/recommend-in-action/"/>
+    <id>http://yoursite.com/2017/08/15/recommend-in-action/</id>
+    <published>2017-08-15T13:25:09.000Z</published>
+    <updated>2017-08-15T13:55:03.661Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>基于项亮《推荐系统实践》一书的笔记</em></p>
+<a id="more"></a>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="分类信息vs-搜索vs-推荐系统"><a href="#分类信息vs-搜索vs-推荐系统" class="headerlink" title="分类信息vs.搜索vs.推荐系统"></a>分类信息vs.搜索vs.推荐系统</h3><p>以购物为例，若可供选择的商品很少，就像你信步走进一家小便利店，也许你只需要随意浏览就能找到你所需要的商品，但如果数据量较大时。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分类信息</td>
+<td>沃尔玛的分类指示牌</td>
+</tr>
+<tr>
+<td>搜索引擎</td>
+<td>淘宝、当当等电商的搜索引擎</td>
+</tr>
+<tr>
+<td>推荐系统</td>
+<td>淘宝、当当等的诸如“猜你喜欢、喜欢XX的用户也喜欢XX”</td>
+</tr>
+</tbody>
+</table>
+<p>推荐系统与分类信息、搜索引擎的主要区别在于用户是否有明确的需求或者说用户的需求是否能够用言语描述</p>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><blockquote>
+<p>推荐系统的任务就是联系用户和信息，一方面帮助用户发现对自己有价值的信息，另一方面让信息能够展现在对它感兴趣的用户面前，从而实现信息消费者和信息生产者的双赢</p>
+</blockquote>
+<h3 id="长尾"><a href="#长尾" class="headerlink" title="长尾"></a>长尾</h3><p>推荐系统通过发掘用户的行为，找到用户的个性化需求，从而将长尾商品准确地推荐给需要它的用户，帮助用户发现那些他们感兴趣但很难发现的商品。</p>
+<h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><p>推荐算法的本质是通过一定的方式将用户和物品联系起来，而不同的推荐系统利用了不同的方式</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h2 id="评测"><a href="#评测" class="headerlink" title="评测"></a>评测</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;em&gt;基于项亮《推荐系统实践》一书的笔记&lt;/em&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="推荐系统实践" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%B7%B5/"/>
+    
+      <category term="推荐系统" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>hadoop小记</title>

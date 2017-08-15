@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/15/recommend-in-action/</loc>
+    <lastmod>2017-08-15T13:55:03.661Z</lastmod>
+    <data>
+        <display>
+        <title>推荐系统实践小记</title>
+        <pubTime>2017-08-15T13:25:09.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>推荐系统实践</tag>
+         
+        <tag>推荐系统</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/14/hadoop/</loc>
     <lastmod>2017-08-15T13:19:48.056Z</lastmod>
     <data>
