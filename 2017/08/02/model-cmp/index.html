@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>模型比较小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RandomForest vs. GBDT vs. AdaBoost">
+  <meta name="description" content="boosting内战GBDTXGBoostLightGBM RandomForest vs. GBDT vs. AdaBoost">
 <meta name="keywords" content="ML,Note,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模型比较小记">
 <meta property="og:url" content="http://yoursite.com/2017/08/02/model-cmp/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="RandomForest vs. GBDT vs. AdaBoost">
-<meta property="og:updated_time" content="2017-08-02T07:07:43.035Z">
+<meta property="og:description" content="boosting内战GBDTXGBoostLightGBM RandomForest vs. GBDT vs. AdaBoost">
+<meta property="og:updated_time" content="2017-08-14T23:57:08.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模型比较小记">
-<meta name="twitter:description" content="RandomForest vs. GBDT vs. AdaBoost">
+<meta name="twitter:description" content="boosting内战GBDTXGBoostLightGBM RandomForest vs. GBDT vs. AdaBoost">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -226,7 +226,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomForest-vs-GBDT-vs-AdaBoost"><span class="toc-number">1.</span> <span class="toc-text">RandomForest vs. GBDT vs. AdaBoost</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#boosting内战"><span class="toc-number">1.</span> <span class="toc-text">boosting内战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomForest-vs-GBDT-vs-AdaBoost"><span class="toc-number">2.</span> <span class="toc-text">RandomForest vs. GBDT vs. AdaBoost</span></a></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -252,7 +252,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomForest-vs-GBDT-vs-AdaBoost"><span class="toc-number">1.</span> <span class="toc-text">RandomForest vs. GBDT vs. AdaBoost</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#boosting内战"><span class="toc-number">1.</span> <span class="toc-text">boosting内战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomForest-vs-GBDT-vs-AdaBoost"><span class="toc-number">2.</span> <span class="toc-text">RandomForest vs. GBDT vs. AdaBoost</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -263,7 +263,8 @@ ga('send', 'pageview');
            
          
 
-        <h2 id="RandomForest-vs-GBDT-vs-AdaBoost"><a href="#RandomForest-vs-GBDT-vs-AdaBoost" class="headerlink" title="RandomForest vs. GBDT vs. AdaBoost"></a>RandomForest vs. GBDT vs. AdaBoost</h2>
+        <h2 id="boosting内战"><a href="#boosting内战" class="headerlink" title="boosting内战"></a>boosting内战</h2><p>GBDT<br>XGBoost<br>LightGBM</p>
+<h2 id="RandomForest-vs-GBDT-vs-AdaBoost"><a href="#RandomForest-vs-GBDT-vs-AdaBoost" class="headerlink" title="RandomForest vs. GBDT vs. AdaBoost"></a>RandomForest vs. GBDT vs. AdaBoost</h2>
       
 
       
@@ -517,10 +518,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -533,15 +530,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,15 +554,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,14 +582,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
@@ -597,11 +590,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,11 +602,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,7 +634,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">

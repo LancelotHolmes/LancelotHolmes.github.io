@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>hadoop小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hadoop是一种开源框架，通过这一框架可以在由不同的主机的聚簇所构成的分布式环境上使用简单的编程模型来存储和处理大数据。  大数据背景：大数据爆发 何谓大数据？大量数据集的集合，难以被传统的计算技术处理，现在已经不单单指数据，而是一个完整的课题，包括相关的各种工具、技术和框架 常见大数据 黑盒数据：记录了飞机的信息 社交网络数据 股票交易数据 能源网数据 交通数据 搜索引擎数据  数据类型 结">
+  <meta name="description" content="Hadoop是一种开源框架，通过这一框架可以在由不同的主机的集群所构成的分布式环境上使用简单的编程模型来存储和处理大数据。">
 <meta name="keywords" content="Note,hadoop,big data">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop小记">
 <meta property="og:url" content="http://yoursite.com/2017/08/14/hadoop/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="Hadoop是一种开源框架，通过这一框架可以在由不同的主机的聚簇所构成的分布式环境上使用简单的编程模型来存储和处理大数据。  大数据背景：大数据爆发 何谓大数据？大量数据集的集合，难以被传统的计算技术处理，现在已经不单单指数据，而是一个完整的课题，包括相关的各种工具、技术和框架 常见大数据 黑盒数据：记录了飞机的信息 社交网络数据 股票交易数据 能源网数据 交通数据 搜索引擎数据  数据类型 结">
+<meta property="og:description" content="Hadoop是一种开源框架，通过这一框架可以在由不同的主机的集群所构成的分布式环境上使用简单的编程模型来存储和处理大数据。">
 <meta property="og:image" content="http://yoursite.com/materials/img/hadoop/hadoop_architecture.jpg">
-<meta property="og:updated_time" content="2017-08-14T13:53:59.676Z">
+<meta property="og:image" content="http://yoursite.com/materials/img/hadoop/hdfs_architecture.jpg">
+<meta property="og:image" content="http://yoursite.com/materials/img/hadoop/mapreduce_algorithm.jpg">
+<meta property="og:updated_time" content="2017-08-15T13:19:48.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop小记">
-<meta name="twitter:description" content="Hadoop是一种开源框架，通过这一框架可以在由不同的主机的聚簇所构成的分布式环境上使用简单的编程模型来存储和处理大数据。  大数据背景：大数据爆发 何谓大数据？大量数据集的集合，难以被传统的计算技术处理，现在已经不单单指数据，而是一个完整的课题，包括相关的各种工具、技术和框架 常见大数据 黑盒数据：记录了飞机的信息 社交网络数据 股票交易数据 能源网数据 交通数据 搜索引擎数据  数据类型 结">
+<meta name="twitter:description" content="Hadoop是一种开源框架，通过这一框架可以在由不同的主机的集群所构成的分布式环境上使用简单的编程模型来存储和处理大数据。">
 <meta name="twitter:image" content="http://yoursite.com/materials/img/hadoop/hadoop_architecture.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
@@ -228,7 +230,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大数据"><span class="toc-number">1.</span> <span class="toc-text">大数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#何谓大数据？"><span class="toc-number">1.1.</span> <span class="toc-text">何谓大数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见大数据"><span class="toc-number">1.2.</span> <span class="toc-text">常见大数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术类型"><span class="toc-number">1.4.</span> <span class="toc-text">技术类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临挑战"><span class="toc-number">1.5.</span> <span class="toc-text">面临挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传统方法"><span class="toc-number">1.6.</span> <span class="toc-text">传统方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google的解决方案"><span class="toc-number">1.7.</span> <span class="toc-text">Google的解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop"><span class="toc-number">2.</span> <span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#架构"><span class="toc-number">2.1.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce"><span class="toc-number">2.2.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本任务"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS"><span class="toc-number">2.3.</span> <span class="toc-text">HDFS</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大数据"><span class="toc-number">1.</span> <span class="toc-text">大数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#何谓大数据？"><span class="toc-number">1.1.</span> <span class="toc-text">何谓大数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见大数据"><span class="toc-number">1.2.</span> <span class="toc-text">常见大数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术类型"><span class="toc-number">1.4.</span> <span class="toc-text">技术类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临挑战"><span class="toc-number">1.5.</span> <span class="toc-text">面临挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传统方法"><span class="toc-number">1.6.</span> <span class="toc-text">传统方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google的解决方案"><span class="toc-number">1.7.</span> <span class="toc-text">Google的解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop"><span class="toc-number">2.</span> <span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#架构"><span class="toc-number">2.1.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce"><span class="toc-number">2.2.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本任务"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS-Hadoop-Distributed-File-System"><span class="toc-number">2.3.</span> <span class="toc-text">HDFS(Hadoop Distributed File System)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop的优点"><span class="toc-number">2.4.</span> <span class="toc-text">Hadoop的优点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS概述"><span class="toc-number">3.</span> <span class="toc-text">HDFS概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS的特点"><span class="toc-number">3.1.</span> <span class="toc-text">HDFS的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS的架构"><span class="toc-number">3.2.</span> <span class="toc-text">HDFS的架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS的目标"><span class="toc-number">3.3.</span> <span class="toc-text">HDFS的目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce-1"><span class="toc-number">4.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">4.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心思想"><span class="toc-number">4.2.</span> <span class="toc-text">核心思想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Streaming"><span class="toc-number">5.</span> <span class="toc-text">Streaming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -254,7 +256,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大数据"><span class="toc-number">1.</span> <span class="toc-text">大数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#何谓大数据？"><span class="toc-number">1.1.</span> <span class="toc-text">何谓大数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见大数据"><span class="toc-number">1.2.</span> <span class="toc-text">常见大数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术类型"><span class="toc-number">1.4.</span> <span class="toc-text">技术类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临挑战"><span class="toc-number">1.5.</span> <span class="toc-text">面临挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传统方法"><span class="toc-number">1.6.</span> <span class="toc-text">传统方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google的解决方案"><span class="toc-number">1.7.</span> <span class="toc-text">Google的解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop"><span class="toc-number">2.</span> <span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#架构"><span class="toc-number">2.1.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce"><span class="toc-number">2.2.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本任务"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS"><span class="toc-number">2.3.</span> <span class="toc-text">HDFS</span></a></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大数据"><span class="toc-number">1.</span> <span class="toc-text">大数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#何谓大数据？"><span class="toc-number">1.1.</span> <span class="toc-text">何谓大数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见大数据"><span class="toc-number">1.2.</span> <span class="toc-text">常见大数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">1.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术类型"><span class="toc-number">1.4.</span> <span class="toc-text">技术类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临挑战"><span class="toc-number">1.5.</span> <span class="toc-text">面临挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传统方法"><span class="toc-number">1.6.</span> <span class="toc-text">传统方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google的解决方案"><span class="toc-number">1.7.</span> <span class="toc-text">Google的解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop"><span class="toc-number">2.</span> <span class="toc-text">Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#架构"><span class="toc-number">2.1.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MapReduce"><span class="toc-number">2.2.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本任务"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS-Hadoop-Distributed-File-System"><span class="toc-number">2.3.</span> <span class="toc-text">HDFS(Hadoop Distributed File System)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hadoop的优点"><span class="toc-number">2.4.</span> <span class="toc-text">Hadoop的优点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS概述"><span class="toc-number">3.</span> <span class="toc-text">HDFS概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS的特点"><span class="toc-number">3.1.</span> <span class="toc-text">HDFS的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS的架构"><span class="toc-number">3.2.</span> <span class="toc-text">HDFS的架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HDFS的目标"><span class="toc-number">3.3.</span> <span class="toc-text">HDFS的目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce-1"><span class="toc-number">4.</span> <span class="toc-text">MapReduce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">4.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心思想"><span class="toc-number">4.2.</span> <span class="toc-text">核心思想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Streaming"><span class="toc-number">5.</span> <span class="toc-text">Streaming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -266,8 +268,9 @@ ga('send', 'pageview');
          
 
         <blockquote>
-<p>Hadoop是一种开源框架，通过这一框架可以在由不同的主机的聚簇所构成的分布式环境上使用简单的编程模型来存储和处理大数据。</p>
+<p>Hadoop是一种开源框架，通过这一框架可以在由不同的主机的集群所构成的分布式环境上使用简单的编程模型来存储和处理大数据。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h2><p>背景：大数据爆发</p>
 <h3 id="何谓大数据？"><a href="#何谓大数据？" class="headerlink" title="何谓大数据？"></a>何谓大数据？</h3><p>大量数据集的集合，难以被传统的计算技术处理，现在已经不单单指数据，而是一个完整的课题，包括相关的各种工具、技术和框架</p>
 <h3 id="常见大数据"><a href="#常见大数据" class="headerlink" title="常见大数据"></a>常见大数据</h3><ul>
@@ -316,22 +319,84 @@ ga('send', 'pageview');
 </ul>
 <h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ul>
 <li>Hadoop Common: 其他模块的基础，提供了文件系统和操作系统的抽象，包含了必要的Java库和脚本来启动Hadoop</li>
-<li>Hadoop YARN: 用来进行任务调度和聚簇资源管理</li>
+<li>Hadoop YARN: 用来进行任务调度和集群资源管理</li>
 <li>Hadoop Distributed File System (HDFS™): 分布式文件系统，提供了对应用数据的高吞吐量访问权限</li>
 <li>Hadoop MapReduce: 基于YARN的系统，用来并行的处理大型数据集<br><img src="/materials/img/hadoop/hadoop_architecture.jpg" alt="hadoop_architecture"></li>
 </ul>
 <p><em>Notes:自2012年起，Hadoop不仅仅指上面提到的基本模块，还有一系列基于这些模块或相当的比如Apache Pig, Apache Hive, Apache HBase, Apache Spark等等</em></p>
-<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>Hadoop MapReduce是一种软件框架能够很容易的编写应用来在大型聚簇上并行地处理大数据，具有可靠性、容错性</p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>Hadoop MapReduce是一种软件框架能够很容易的编写应用来在大型集群上并行地处理大数据，具有可靠性、容错性</p>
 <h4 id="基本任务"><a href="#基本任务" class="headerlink" title="基本任务"></a>基本任务</h4><ul>
 <li>Map<br>将原始的数据进行转换，通常将独立元素重构成元组</li>
 <li>Reduce<br>将Map操作生成的数据元素转换成更小的元素集合</li>
 </ul>
-<p>一般而言输入输出都保存在文件系统，这一框架还需要进行任务调度、任务监控以及重新执行失败的任务；MapReduce含有一个JobTracker，针对每一个聚簇节点都有一个TaskTracker</p>
+<p>一般而言输入输出都保存在文件系统，这一框架还需要进行任务调度、任务监控以及重新执行失败的任务；MapReduce含有一个JobTracker，针对每一个集群节点都有一个TaskTracker</p>
 <ul>
 <li>JobTracker<br>负责资源管理、追踪资源的消耗和权限并调度slaves之间的任务，监控slaves并重新执行失败的任务</li>
 <li>TaskTracker<br>执行master所传达的任务，并间隔性的向master反馈任务状态信息</li>
 </ul>
-<h3 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h3>
+<p><em>Notes:最初Hadoop的MapReduce服务仅有一个JobTracker，若是该JobTracker出了故障，整个执行任务都会停止</em></p>
+<h3 id="HDFS-Hadoop-Distributed-File-System"><a href="#HDFS-Hadoop-Distributed-File-System" class="headerlink" title="HDFS(Hadoop Distributed File System)"></a>HDFS(Hadoop Distributed File System)</h3><ul>
+<li>Hadoop最常用的一种文件系统</li>
+<li>基于GFS(Google File System)，提供分布式文件系统，保证程序可靠、能容错的运行在有成千上百的计算机构成的大型集群上</li>
+<li>采用master/slave架构，其中的仅含有一个master(<code>NameNode</code>)来管理文件系统中的元数据，此外含有一个或多个slave(<code>DataNodes</code>)来存储真实数据</li>
+<li>HDFS命名空间中的文件被切分为多个区块(block)，而这些区块保存在一系列的DataNodes中<ul>
+<li>NameNode负责将区块映射到各个DataNodes</li>
+<li>DataNodes负责对文件系统的读写操作，以及接收NameNode的指令来对区块进行创建、删除、复制等操作</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hadoop的优点"><a href="#Hadoop的优点" class="headerlink" title="Hadoop的优点"></a>Hadoop的优点</h3><ul>
+<li>Hadoop框架为用户快速编写和测试分布式系统提供了便利，它高效、自动地将数据和任务分配到底层的机器或者并行的处理器上</li>
+<li>Hadoop自己提供了错误检测和处理的库，不依赖于硬件来提供容错性</li>
+<li>可以动态的增删服务器而不会中断Hadoop的运行</li>
+<li>基于Java，兼容几乎所有平台</li>
+<li>开源</li>
+</ul>
+<h2 id="HDFS概述"><a href="#HDFS概述" class="headerlink" title="HDFS概述"></a>HDFS概述</h2><h3 id="HDFS的特点"><a href="#HDFS的特点" class="headerlink" title="HDFS的特点"></a>HDFS的特点</h3><ul>
+<li>高容错性，兼容低成本硬件</li>
+<li>存储大量数据并提供便捷的访问</li>
+<li>文件可存储在不同类别的机器上，并以保留副本的形式来使系统具备错误修复的能力</li>
+<li>使应用能够被并行处理</li>
+<li>便于分布式存储和执行</li>
+<li>Hadoop提供了与HDFS交互的命令接口</li>
+<li>内置的namenode\datanode服务器帮助用户更方便的检查集群的状态</li>
+<li>提供对文件系统数据的流式访问</li>
+<li>提供权限管理功能</li>
+</ul>
+<h3 id="HDFS的架构"><a href="#HDFS的架构" class="headerlink" title="HDFS的架构"></a>HDFS的架构</h3><p><img src="/materials/img/hadoop/hdfs_architecture.jpg" alt="hdfs_architecture"></p>
+<ul>
+<li>Namenode<br>namenode是含有操作系统以及namenode软件的商业性硬件，作为系统的master服务器，主要执行以下任务<ul>
+<li>管理文件系统命名空间</li>
+<li>管制客户端对文件的权限</li>
+<li>对文件系统执行重命名、关闭、打开等操作</li>
+</ul>
+</li>
+<li>Datanode<br>对于集群的每个节点都含有一个datanode(由GNU/Linux操作系统+datanode软件构成的商业性硬件设施)，负责管理他们系统的数据存储<ul>
+<li>针对每一个用户的请求对文件系统执行读写操作</li>
+<li>根据namenode的指令执行终止创建、删除、复制等操作</li>
+</ul>
+</li>
+<li>Block<br>一般用户的数据以文件的形式存储在HDFS中，文件系统中的文件会被切分为一个或多个分段来存储在独立的数据节点上，这些数据分段就被称为区块(block)，也就是HDFS中数据的最小读写单位，默认的区块大小为64MB，可以通过HDFS的配置进行修改。</li>
+</ul>
+<h3 id="HDFS的目标"><a href="#HDFS的目标" class="headerlink" title="HDFS的目标"></a>HDFS的目标</h3><ul>
+<li>错误检测和恢复</li>
+<li>针对大型数据集，HDFS应当具备上百个节点来管理具有大型数据集的应用</li>
+<li>数据分配的硬件，当计算任务发生在数据附近时，请求会被快速执行，特别涉及大量的数据集，可以有效减少网络流量而增加吞吐量</li>
+</ul>
+<h2 id="MapReduce-1"><a href="#MapReduce-1" class="headerlink" title="MapReduce"></a>MapReduce</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>分治的思想<br>最核心的两项操作分别是Map()和Reduce()，Map()通常负责将输入数据映射成字典型数据(键值对)，而Reduce()操作则将Map()转换后的数据组合成一组组的键值对数据并进一步的采取特定的操作；MapReduce的好处在于非常便于将数据分布式的在多个计算机节点上执行；</p>
+<h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>通俗来讲MapReduce就是讲计算机“送往”数据所在的位置<br>MapReduce的执行主要有三个步骤</p>
+<ul>
+<li>Map     {k1:v1} –&gt; [{k2:v2}]<br>处理输入数据，将原始的HDFS文件系统中的数据逐行处理为多个数据块(several chunks of data)</li>
+<li>Shuffle<br>根据键值将经Map处理后的数据分配到各个Reduce处理设备上</li>
+<li>Reduce     {k2:[..v2..]} –&gt; [{k3:v3}]<br>各个处理设备并行处理所分配的数据，并产生对应的结果<br><img src="/materials/img/hadoop/mapreduce_algorithm.jpg" alt="mapreduce_algorithm"></li>
+</ul>
+<p>更细化的操作可以参考<a href="https://en.wikipedia.org/wiki/MapReduce" target="_blank" rel="external">Wikipedia</a></p>
+<h2 id="Streaming"><a href="#Streaming" class="headerlink" title="Streaming"></a>Streaming</h2><p>Hadoop Streaming使得用户可以通过将任意可执行的文件或脚本作为mapper/reducer来创建或者执行Map/Reduce任务</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.tutorialspoint.com/hadoop/hadoop_mapreduce.htm" target="_blank" rel="external">Hadoop Tutorial</a></li>
+<li><a href="https://en.wikipedia.org/wiki/MapReduce" target="_blank" rel="external">Wikipedia</a></li>
+</ul>
+
       
 
       
@@ -576,10 +641,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -592,15 +653,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,15 +677,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,14 +705,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
@@ -656,11 +713,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +725,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,7 +757,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">

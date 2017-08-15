@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/08/14/hadoop/</loc>
-    <lastmod>2017-08-14T13:53:59.676Z</lastmod>
+    <lastmod>2017-08-15T13:19:48.056Z</lastmod>
     <data>
         <display>
         <title>hadoop小记</title>
@@ -16,6 +16,27 @@
         <tag>hadoop</tag>
          
         <tag>big data</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
+    <lastmod>2017-08-14T23:57:08.938Z</lastmod>
+    <data>
+        <display>
+        <title>模型比较小记</title>
+        <pubTime>2017-08-02T07:06:18.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>机器学习</tag>
          
          
            
@@ -330,27 +351,6 @@
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
-    <lastmod>2017-08-02T07:07:43.035Z</lastmod>
-    <data>
-        <display>
-        <title>模型比较小记</title>
-        <pubTime>2017-08-02T07:06:18.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>机器学习</tag>
          
          
            
