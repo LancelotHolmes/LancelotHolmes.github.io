@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/16/spark/</loc>
+    <lastmod>2017-08-16T13:51:48.011Z</lastmod>
+    <data>
+        <display>
+        <title>Spark小记</title>
+        <pubTime>2017-08-16T10:59:23.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>Spark</tag>
+         
+        <tag>Big Data</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
     <lastmod>2017-08-16T08:31:45.563Z</lastmod>
     <data>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-15T13:55:03.661Z</updated>
+  <updated>2017-08-16T13:51:48.011Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,101 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spark小记</title>
+    <link href="http://yoursite.com/2017/08/16/spark/"/>
+    <id>http://yoursite.com/2017/08/16/spark/</id>
+    <published>2017-08-16T10:59:23.000Z</published>
+    <updated>2017-08-16T13:51:48.011Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>Spark是一种开源的分布式计算框架，设计初衷是为了克服MapReduce集群计算模式的一些缺陷(线性数据流结构)，相较之下，它支持循环算法、交互式数据分析、流式处理、批应用等，此外它还降低了保持工具分离的门槛</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>速度快：<strong>in-memory cluster computing</strong>,将马上要处理的数据存储在内存中，减少了对磁盘的读写操作</li>
+<li>支持多种语言，含有内置的针对Java,Scala,Python等语言的接口</li>
+<li>可用于更高级的数据分析：不仅仅支持MapReduce,还支持SQL查询、流式数据、机器学习、图算法等</li>
+</ul>
+<h3 id="Spark与Hadoop"><a href="#Spark与Hadoop" class="headerlink" title="Spark与Hadoop"></a>Spark与Hadoop</h3><p>Spark一般有三种方式来与Hadoop相结合，如图<br><img src="/materials/img/spark/spark_built_on_hadoop.jpg" alt="spark_built_on_hadoop"></p>
+<ul>
+<li>单机(Standalone):Spark位于HDFS之上，分配空间给HDFS,这种方式下Spark和MapReduce在集群上并行执行各自的任务</li>
+<li>Hadoop Yarn:Spark位于Yarn之上，无需任何预安装或者根访问权限，帮助Spark融入Hadoop生态</li>
+<li>Spark in MapReduce(SIMR):用户可以直接运行Spark并使用它的shell而无需任何管理权限</li>
+</ul>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="/materials/img/spark/components_of_spark.jpg" alt="components_of_spark"></p>
+<ul>
+<li>Core<br>Spark框架的基础，是其他所有功能赖以执行的底层引擎，提供了以下功能<ul>
+<li>分布任务</li>
+<li>任务调度</li>
+<li>基本的I/O功能</li>
+<li>内存中的计算和建立外部存储系统上的数据集的索引</li>
+</ul>
+</li>
+<li>SQL<ul>
+<li>引入称之为DataFrame的数据抽象，支持结构型/半结构型数据的处理</li>
+<li>DSL(domain specific languages)支持多语言编写(Java,Scala,Python)以及SQL语言的处理</li>
+</ul>
+</li>
+<li>Streaming<ul>
+<li>利用了Spark核心的快速调度能力来执行流式分析</li>
+<li>通过mini-batches的方式处理数据并对数据进行RDD(Resilient Distributed Datasets)转换</li>
+<li>实现了Lambda结构</li>
+</ul>
+</li>
+<li>MLlib<br>基于Spark的分布式机器学习框架，比Mahout快，比Vowpal Wabbit伸缩性强</li>
+<li>GraphX<br>基于Spark的图处理框架</li>
+</ul>
+<h2 id="RDD-Resilient-Distributed-Datasets"><a href="#RDD-Resilient-Distributed-Datasets" class="headerlink" title="RDD(Resilient Distributed Datasets)"></a>RDD(Resilient Distributed Datasets)</h2><p>RDD是Spark中的基本数据结构，它是一种不可更改的分布式对象的集合，RDD中的每一个数据集都会被逻辑分割从而在集群的不同节点上进行运算；RDD能够包含任意的Python、Java、Scala对象，包括用户自定义类型；它是一种只读的记录切分的集合，具有容错能力，能被并行处理</p>
+<h3 id="创建RDD的方法"><a href="#创建RDD的方法" class="headerlink" title="创建RDD的方法"></a>创建RDD的方法</h3><ul>
+<li>在驱动程序中并行化现有的一个集合</li>
+<li>对外部存储系统上的数据集建立索引，可以是文件共享系统、HDFS、HBase或者任何提供Hadoop输入格式的数据源</li>
+</ul>
+<h2 id="MapReduce-vs-RDD"><a href="#MapReduce-vs-RDD" class="headerlink" title="MapReduce vs. RDD"></a>MapReduce vs. RDD</h2><blockquote>
+<p>Spark通过RDD的概念来实现更快、更高效的MapReduce操作</p>
+</blockquote>
+<p><strong>关键字：disk I/O vs. in-memory computing</strong></p>
+<h3 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h3><ul>
+<li>MapReduce<ul>
+<li>MapReduce上的数据共享较慢。在大多数框架下，各个运算之间重复使用数据的方式通常只有将数据写入一个外部的稳定存储系统中，尽管该框架提供了多种访问集群运算资源的抽象方式，用户们的需求仍然得不到满足。</li>
+<li>循环和交互式应用都需要并行任务之间快速的数据共享，而MapReduce中的数据共享较慢，主要是由于复制、序列化、磁盘读写等操作；考虑存储系统，大多数Hadoop应用90%的时间消耗在对HDFS的读写操作上</li>
+</ul>
+</li>
+<li>RDD<br>支持内存中执行运算，将内存的状态存储为一个对象并在各个任务之间共享，这种方式使得比基于网络、磁盘的方式快10~100倍</li>
+</ul>
+<h3 id="循环操作"><a href="#循环操作" class="headerlink" title="循环操作"></a>循环操作</h3><ul>
+<li>MapReduce<br>在多个阶段的应用中的多个运算中重复使用中间结果<br><img src="/materials/img/spark/iterative_operations_on_mapreduce.jpg" alt="iterative_operations_on_mapreduce"></li>
+<li>RDD<br>将中间结果存储在分布式内存中，而不是存储在磁盘上，从而使系统更快(当然若分布式内存不足时，会被存储到磁盘上)<br><img src="/materials/img/spark/iterative_operations_on_spark_rdd.jpg" alt="iterative_operations_on_spark_rdd"></li>
+</ul>
+<h3 id="交互式操作"><a href="#交互式操作" class="headerlink" title="交互式操作"></a>交互式操作</h3><ul>
+<li>MapReduce<br>用户在数据的同一子集上执行ad-hoc查询，每个查询都会对固定的存储进行磁盘读写操作，而这一操作可能会主导整个应用的执行时间。<br><img src="/materials/img/spark/interactive_operations_on_mapreduce.jpg" alt="interactive_operations_on_mapreduce"></li>
+<li>RDD<br>将经常被查询的数据子集存储在分布式内存上提高访问速度<br><img src="/materials/img/spark/interactive_operations_on_spark_rdd.jpg" alt="interactive_operations_on_spark_rdd"></li>
+</ul>
+<p><em>Notes:默认情况下，每次对RDD的转换都会重新进行一次计算，可以维持一个永久的RDD在内存中，这样Spark就可以为集群上的元素提供更快的访问速度。</em></p>
+<h2 id="共享变量"><a href="#共享变量" class="headerlink" title="共享变量"></a>共享变量</h2><h3 id="Broadcast-variable"><a href="#Broadcast-variable" class="headerlink" title="Broadcast variable"></a>Broadcast variable</h3><ul>
+<li>Broadcast variable允许编程人员在每个机器上维护一个只读的变量，而不必随任务传递它，可以用来以一种高效的方式给每个节点一个大型数据集的副本</li>
+<li>Spark还尝试使用高效的broadcast算法来分布broadcast变量从而减少通信消耗</li>
+</ul>
+<h3 id="Accumulators"><a href="#Accumulators" class="headerlink" title="Accumulators"></a>Accumulators</h3><p>Accumulators变量只被用于协助性的操作，因此支持高效的并行</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Spark是一种开源的分布式计算框架，设计初衷是为了克服MapReduce集群计算模式的一些缺陷(线性数据流结构)，相较之下，它支持循环算法、交互式数据分析、流式处理、批应用等，此外它还降低了保持工具分离的门槛&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="Spark" scheme="http://yoursite.com/tags/Spark/"/>
+    
+      <category term="Big Data" scheme="http://yoursite.com/tags/Big-Data/"/>
+    
+  </entry>
   
   <entry>
     <title>推荐系统实践小记</title>
