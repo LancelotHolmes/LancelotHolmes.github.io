@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/17/deep-learning/</loc>
+    <lastmod>2017-08-17T13:52:42.997Z</lastmod>
+    <data>
+        <display>
+        <title>深度学习小记</title>
+        <pubTime>2017-08-17T11:21:35.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>Deep Learning</tag>
+         
+        <tag>深度学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/16/spark/</loc>
     <lastmod>2017-08-16T13:51:48.011Z</lastmod>
     <data>

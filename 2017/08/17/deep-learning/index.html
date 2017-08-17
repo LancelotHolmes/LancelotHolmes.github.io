@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 机器学习技法 | Lancelot&#39;s Desert</title>
+  <title>深度学习小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/tags/机器学习技法/index.html">
+  <meta name="description" content="基于李宏毅老师的讲义对深度学习做一个简单入门整理">
+<meta name="keywords" content="Note,Deep Learning,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习小记">
+<meta property="og:url" content="http://yoursite.com/2017/08/17/deep-learning/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="基于李宏毅老师的讲义对深度学习做一个简单入门整理">
+<meta property="og:updated_time" content="2017-08-17T13:52:42.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="深度学习小记">
+<meta name="twitter:description" content="基于李宏毅老师的讲义对深度学习做一个简单入门整理">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -192,77 +193,295 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-deep-learning" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      深度学习小记
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/03/rf/" class="archive-article-date">
-  	<time datetime="2017-08-03T07:05:02.000Z" itemprop="datePublished">2017-08-03</time>
+
+        
+        <a href="/2017/08/17/deep-learning/" class="archive-article-date">
+  	<time datetime="2017-08-17T11:21:35.000Z" itemprop="datePublished">2017-08-17</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
 </a>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/03/rf/">随机森林</a>
-    </h1>
-  
+        
+      </header>
+    
+    
+    <!-- 目录内容 -->
 
-        <div class="article-info info-on-right">
-          
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导论"><span class="toc-number">1.</span> <span class="toc-text">导论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从机器学习讲起"><span class="toc-number">1.1.</span> <span class="toc-text">从机器学习讲起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#何为deep"><span class="toc-number">1.2.</span> <span class="toc-text">何为deep?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么是deep"><span class="toc-number">1.2.1.</span> <span class="toc-text">为什么是deep?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块化"><span class="toc-number">1.2.2.</span> <span class="toc-text">模块化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度学习的”hello-world”-程序"><span class="toc-number">1.3.</span> <span class="toc-text">深度学习的”hello world” 程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Keras-vs-TensorFlow-theano"><span class="toc-number">1.3.1.</span> <span class="toc-text">Keras vs. TensorFlow/theano</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#识别手写数字"><span class="toc-number">1.3.2.</span> <span class="toc-text">识别手写数字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练深度神经网络的一些技巧"><span class="toc-number">2.</span> <span class="toc-text">训练深度神经网络的一些技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用训练技巧-调参-优化"><span class="toc-number">2.1.</span> <span class="toc-text">常用训练技巧(调参/优化)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过拟合"><span class="toc-number">2.2.</span> <span class="toc-text">过拟合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络的变体"><span class="toc-number">3.</span> <span class="toc-text">神经网络的变体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-number">3.1.</span> <span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RNN"><span class="toc-number">3.2.</span> <span class="toc-text">RNN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下一个浪潮"><span class="toc-number">4.</span> <span class="toc-text">下一个浪潮</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+      
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导论"><span class="toc-number">1.</span> <span class="toc-text">导论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从机器学习讲起"><span class="toc-number">1.1.</span> <span class="toc-text">从机器学习讲起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#何为deep"><span class="toc-number">1.2.</span> <span class="toc-text">何为deep?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么是deep"><span class="toc-number">1.2.1.</span> <span class="toc-text">为什么是deep?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块化"><span class="toc-number">1.2.2.</span> <span class="toc-text">模块化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度学习的”hello-world”-程序"><span class="toc-number">1.3.</span> <span class="toc-text">深度学习的”hello world” 程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Keras-vs-TensorFlow-theano"><span class="toc-number">1.3.1.</span> <span class="toc-text">Keras vs. TensorFlow/theano</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#识别手写数字"><span class="toc-number">1.3.2.</span> <span class="toc-text">识别手写数字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练深度神经网络的一些技巧"><span class="toc-number">2.</span> <span class="toc-text">训练深度神经网络的一些技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用训练技巧-调参-优化"><span class="toc-number">2.1.</span> <span class="toc-text">常用训练技巧(调参/优化)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过拟合"><span class="toc-number">2.2.</span> <span class="toc-text">过拟合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络的变体"><span class="toc-number">3.</span> <span class="toc-text">神经网络的变体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CNN"><span class="toc-number">3.1.</span> <span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RNN"><span class="toc-number">3.2.</span> <span class="toc-text">RNN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下一个浪潮"><span class="toc-number">4.</span> <span class="toc-text">下一个浪潮</span></a></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <p><em>基于李宏毅老师的讲义对深度学习做一个简单入门整理</em></p>
+<a id="more"></a>
+<h2 id="导论"><a href="#导论" class="headerlink" title="导论"></a>导论</h2><h3 id="从机器学习讲起"><a href="#从机器学习讲起" class="headerlink" title="从机器学习讲起"></a>从机器学习讲起</h3><ul>
+<li>机器学习可视为寻找一个表征输入输出之间的函数关系</li>
+<li>深度学习<ul>
+<li>基础<ul>
+<li>权重&amp;偏置</li>
+<li>神经元</li>
+<li>不同连接方式导致不同的网络结构</li>
+<li>全连接前向反馈神经网络</li>
+</ul>
+</li>
+<li>训练<ul>
+<li>寻找最小化整体损失的函数–&gt;寻找最小化整体损失的函数的参数</li>
+<li>如何选择参数：枚举不可取，一般使用梯度下降法(先设置一个初始值，随机挑选或者RBM预训练，使用梯度下降法迭代更新参数直到收敛)</li>
+<li>BP</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="何为deep"><a href="#何为deep" class="headerlink" title="何为deep?"></a>何为deep?</h3><h4 id="为什么是deep"><a href="#为什么是deep" class="headerlink" title="为什么是deep?"></a>为什么是deep?</h4><p>任何连续函数可以被进一层隐层的神经网络实现，只要有足够多的神经元</p>
+<p>那为何偏爱更深层的神经网络而不是更胖的神经网络呢？</p>
+<ul>
+<li>相同参数数目的前提下，越深/窄的神经网络性能优于越胖/短的神经网络</li>
+<li>类比逻辑电路，使用多层神经元代表一些函数更简单</li>
+</ul>
+<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4><ul>
+<li>前一层的神经元被作为一整个模块共享给下一层神经元，使得每个神经元都有充足的训练样本(相当于每个基分类器都有充足的训练样本)，这样可以用不多的数据来训练模型</li>
+<li>模块化是从数据中自动学习的</li>
+</ul>
+<h3 id="深度学习的”hello-world”-程序"><a href="#深度学习的”hello-world”-程序" class="headerlink" title="深度学习的”hello world” 程序"></a>深度学习的”hello world” 程序</h3><h4 id="Keras-vs-TensorFlow-theano"><a href="#Keras-vs-TensorFlow-theano" class="headerlink" title="Keras vs. TensorFlow/theano"></a>Keras vs. TensorFlow/theano</h4><ul>
+<li>Keras相当于一个封装了TensorFlow/theano的接口</li>
+<li>Keras易于学习和使用，也具有一定的灵活性</li>
+<li>TensorFlow/theano更灵活，但学习的成本较高</li>
+</ul>
+<h4 id="识别手写数字"><a href="#识别手写数字" class="headerlink" title="识别手写数字"></a>识别手写数字</h4><p>使用Keras的步骤</p>
+<ul>
+<li>定义一个模型集合</li>
+<li>评价模型的优劣</li>
+<li>挑选最佳模型</li>
+</ul>
+<h2 id="训练深度神经网络的一些技巧"><a href="#训练深度神经网络的一些技巧" class="headerlink" title="训练深度神经网络的一些技巧"></a>训练深度神经网络的一些技巧</h2><h3 id="常用训练技巧-调参-优化"><a href="#常用训练技巧-调参-优化" class="headerlink" title="常用训练技巧(调参/优化)"></a>常用训练技巧(调参/优化)</h3><ul>
+<li>选择合适的损失函数<ul>
+<li>多分类使用softmax时用交叉熵作为损失函数而不是均方误差</li>
+</ul>
+</li>
+<li>mini-batch<ul>
+<li>batch_size&amp;nb_epoch</li>
+<li>每一轮打乱训练样本</li>
+</ul>
+</li>
+<li>新的激活函数<ul>
+<li>对于Sigmoid激活函数，神经网络层数过多时会出现梯度消失现象(反向传播梯度到前面的神经元时梯度缩小到很小的值导致学习较慢几乎是随机更新参数)</li>
+<li>以前人们会使用RBM与训练来尝试解决问题，现在人们使用新的激活函数ReLU(Rectified Linear Unit)<ul>
+<li>计算速度快</li>
+<li>解决了梯度消失的问题</li>
+</ul>
+</li>
+<li>Leaky ReLU vs. Parametric ReLU</li>
+<li>Maxout,ReLU是Maxout的一种特例    </li>
+</ul>
+</li>
+<li>适应性学习率<ul>
+<li>设置特殊变量每一轮适当的减小学习率</li>
+<li>对不同的参数设置不同的学习率–Adagrad,由参数的导数决定，导数小则学习率大</li>
+</ul>
+</li>
+<li>Momentum(动量)<br>难以确定最佳的网络参数，引入物理学中动量的思想来尝试跳出局部最小点–Adam</li>
+</ul>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>最佳方法–&gt;获取更多训练数据或者创造更多的训练数据</p>
+<ul>
+<li>Early Stopping</li>
+<li>正则化<ul>
+<li>权重衰减，类比人类大脑会随着年龄增长去掉神经元之间的一些无用的连接</li>
+</ul>
+</li>
+<li>Dropout<ul>
+<li>每次更新参数之前，每个神经元有p%的概率被丢弃，从而变化了网络结构</li>
+<li>可视为一种集成方式</li>
+</ul>
+</li>
+<li>网络结构</li>
+</ul>
+<h2 id="神经网络的变体"><a href="#神经网络的变体" class="headerlink" title="神经网络的变体"></a>神经网络的变体</h2><h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><p>广泛应用于图像处理<br>当使用全连接网络处理图像时，第一层会非常大，能否根据图像识别的特性来简化全连接网络呢？</p>
+<ul>
+<li>一些模式相对整个图像来说非常小，一个神经元不必看到整张图片来发现这一模式，可以使用少量参数，连接到一小块区域</li>
+<li>同一模式可能出现在不同区域，然而对应的神经元所进行的工作基本相同，所以可以让他们共享参数</li>
+<li>降低分辨率不会改变物体，所以可以尝试降低分辨率来使图片变小从而减少网络的参数</li>
+</ul>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><h2 id="下一个浪潮"><a href="#下一个浪潮" class="headerlink" title="下一个浪潮"></a>下一个浪潮</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Random Forest</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">机器学习技法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://izhaoyi.top/2017/08/17/deep-learning/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/16/spark/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark小记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        $
+
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -285,9 +504,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

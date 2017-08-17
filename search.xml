@@ -3,6 +3,114 @@
   
     
     <entry>
+      <title><![CDATA[深度学习小记]]></title>
+      <url>/2017/08/17/deep-learning/</url>
+      <content type="html"><![CDATA[<p><em>基于李宏毅老师的讲义对深度学习做一个简单入门整理</em></p>
+<a id="more"></a>
+<h2 id="导论"><a href="#导论" class="headerlink" title="导论"></a>导论</h2><h3 id="从机器学习讲起"><a href="#从机器学习讲起" class="headerlink" title="从机器学习讲起"></a>从机器学习讲起</h3><ul>
+<li>机器学习可视为寻找一个表征输入输出之间的函数关系</li>
+<li>深度学习<ul>
+<li>基础<ul>
+<li>权重&amp;偏置</li>
+<li>神经元</li>
+<li>不同连接方式导致不同的网络结构</li>
+<li>全连接前向反馈神经网络</li>
+</ul>
+</li>
+<li>训练<ul>
+<li>寻找最小化整体损失的函数–&gt;寻找最小化整体损失的函数的参数</li>
+<li>如何选择参数：枚举不可取，一般使用梯度下降法(先设置一个初始值，随机挑选或者RBM预训练，使用梯度下降法迭代更新参数直到收敛)</li>
+<li>BP</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="何为deep"><a href="#何为deep" class="headerlink" title="何为deep?"></a>何为deep?</h3><h4 id="为什么是deep"><a href="#为什么是deep" class="headerlink" title="为什么是deep?"></a>为什么是deep?</h4><p>任何连续函数可以被进一层隐层的神经网络实现，只要有足够多的神经元</p>
+<p>那为何偏爱更深层的神经网络而不是更胖的神经网络呢？</p>
+<ul>
+<li>相同参数数目的前提下，越深/窄的神经网络性能优于越胖/短的神经网络</li>
+<li>类比逻辑电路，使用多层神经元代表一些函数更简单</li>
+</ul>
+<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4><ul>
+<li>前一层的神经元被作为一整个模块共享给下一层神经元，使得每个神经元都有充足的训练样本(相当于每个基分类器都有充足的训练样本)，这样可以用不多的数据来训练模型</li>
+<li>模块化是从数据中自动学习的</li>
+</ul>
+<h3 id="深度学习的”hello-world”-程序"><a href="#深度学习的”hello-world”-程序" class="headerlink" title="深度学习的”hello world” 程序"></a>深度学习的”hello world” 程序</h3><h4 id="Keras-vs-TensorFlow-theano"><a href="#Keras-vs-TensorFlow-theano" class="headerlink" title="Keras vs. TensorFlow/theano"></a>Keras vs. TensorFlow/theano</h4><ul>
+<li>Keras相当于一个封装了TensorFlow/theano的接口</li>
+<li>Keras易于学习和使用，也具有一定的灵活性</li>
+<li>TensorFlow/theano更灵活，但学习的成本较高</li>
+</ul>
+<h4 id="识别手写数字"><a href="#识别手写数字" class="headerlink" title="识别手写数字"></a>识别手写数字</h4><p>使用Keras的步骤</p>
+<ul>
+<li>定义一个模型集合</li>
+<li>评价模型的优劣</li>
+<li>挑选最佳模型</li>
+</ul>
+<h2 id="训练深度神经网络的一些技巧"><a href="#训练深度神经网络的一些技巧" class="headerlink" title="训练深度神经网络的一些技巧"></a>训练深度神经网络的一些技巧</h2><h3 id="常用训练技巧-调参-优化"><a href="#常用训练技巧-调参-优化" class="headerlink" title="常用训练技巧(调参/优化)"></a>常用训练技巧(调参/优化)</h3><ul>
+<li>选择合适的损失函数<ul>
+<li>多分类使用softmax时用交叉熵作为损失函数而不是均方误差</li>
+</ul>
+</li>
+<li>mini-batch<ul>
+<li>batch_size&amp;nb_epoch</li>
+<li>每一轮打乱训练样本</li>
+</ul>
+</li>
+<li>新的激活函数<ul>
+<li>对于Sigmoid激活函数，神经网络层数过多时会出现梯度消失现象(反向传播梯度到前面的神经元时梯度缩小到很小的值导致学习较慢几乎是随机更新参数)</li>
+<li>以前人们会使用RBM与训练来尝试解决问题，现在人们使用新的激活函数ReLU(Rectified Linear Unit)<ul>
+<li>计算速度快</li>
+<li>解决了梯度消失的问题</li>
+</ul>
+</li>
+<li>Leaky ReLU vs. Parametric ReLU</li>
+<li>Maxout,ReLU是Maxout的一种特例    </li>
+</ul>
+</li>
+<li>适应性学习率<ul>
+<li>设置特殊变量每一轮适当的减小学习率</li>
+<li>对不同的参数设置不同的学习率–Adagrad,由参数的导数决定，导数小则学习率大</li>
+</ul>
+</li>
+<li>Momentum(动量)<br>难以确定最佳的网络参数，引入物理学中动量的思想来尝试跳出局部最小点–Adam</li>
+</ul>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>最佳方法–&gt;获取更多训练数据或者创造更多的训练数据</p>
+<ul>
+<li>Early Stopping</li>
+<li>正则化<ul>
+<li>权重衰减，类比人类大脑会随着年龄增长去掉神经元之间的一些无用的连接</li>
+</ul>
+</li>
+<li>Dropout<ul>
+<li>每次更新参数之前，每个神经元有p%的概率被丢弃，从而变化了网络结构</li>
+<li>可视为一种集成方式</li>
+</ul>
+</li>
+<li>网络结构</li>
+</ul>
+<h2 id="神经网络的变体"><a href="#神经网络的变体" class="headerlink" title="神经网络的变体"></a>神经网络的变体</h2><h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><p>广泛应用于图像处理<br>当使用全连接网络处理图像时，第一层会非常大，能否根据图像识别的特性来简化全连接网络呢？</p>
+<ul>
+<li>一些模式相对整个图像来说非常小，一个神经元不必看到整张图片来发现这一模式，可以使用少量参数，连接到一小块区域</li>
+<li>同一模式可能出现在不同区域，然而对应的神经元所进行的工作基本相同，所以可以让他们共享参数</li>
+<li>降低分辨率不会改变物体，所以可以尝试降低分辨率来使图片变小从而减少网络的参数</li>
+</ul>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><h2 id="下一个浪潮"><a href="#下一个浪潮" class="headerlink" title="下一个浪潮"></a>下一个浪潮</h2>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Note </tag>
+            
+            <tag> Deep Learning </tag>
+            
+            <tag> 深度学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Spark小记]]></title>
       <url>/2017/08/16/spark/</url>
       <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>

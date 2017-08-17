@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/17/deep-learning/</loc>
+    
+    <lastmod>2017-08-17T13:52:42.997Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/16/spark/</loc>
     
     <lastmod>2017-08-16T13:51:48.011Z</lastmod>
