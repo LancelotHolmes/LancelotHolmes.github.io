@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-17T13:52:42.997Z</updated>
+  <updated>2017-08-18T13:41:10.396Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/08/17/deep-learning/"/>
     <id>http://yoursite.com/2017/08/17/deep-learning/</id>
     <published>2017-08-17T11:21:35.000Z</published>
-    <updated>2017-08-17T13:52:42.997Z</updated>
+    <updated>2017-08-18T13:41:10.396Z</updated>
     
     <content type="html"><![CDATA[<p><em>基于李宏毅老师的讲义对深度学习做一个简单入门整理</em></p>
 <a id="more"></a>
@@ -106,13 +106,107 @@
 </li>
 <li>网络结构</li>
 </ul>
-<h2 id="神经网络的变体"><a href="#神经网络的变体" class="headerlink" title="神经网络的变体"></a>神经网络的变体</h2><h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><p>广泛应用于图像处理<br>当使用全连接网络处理图像时，第一层会非常大，能否根据图像识别的特性来简化全连接网络呢？</p>
-<ul>
+<h2 id="神经网络的变体"><a href="#神经网络的变体" class="headerlink" title="神经网络的变体"></a>神经网络的变体</h2><h3 id="CNN-Convolutional-Neural-Network"><a href="#CNN-Convolutional-Neural-Network" class="headerlink" title="CNN(Convolutional Neural Network)"></a>CNN(Convolutional Neural Network)</h3><p>广泛应用于图像处理<br>当使用全连接网络处理图像时，第一层会非常大，能否根据图像识别的特性来简化全连接网络呢？</p>
+<h4 id="结构概述"><a href="#结构概述" class="headerlink" title="结构概述"></a>结构概述</h4><ul>
+<li>卷积<ul>
 <li>一些模式相对整个图像来说非常小，一个神经元不必看到整张图片来发现这一模式，可以使用少量参数，连接到一小块区域</li>
 <li>同一模式可能出现在不同区域，然而对应的神经元所进行的工作基本相同，所以可以让他们共享参数</li>
-<li>降低分辨率不会改变物体，所以可以尝试降低分辨率来使图片变小从而减少网络的参数</li>
+<li>其过程有点类似根据不同的过滤器filter来得到不同的模式，同样一张图像根据模式被“切片”成一层一层的薄片</li>
 </ul>
-<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><h2 id="下一个浪潮"><a href="#下一个浪潮" class="headerlink" title="下一个浪潮"></a>下一个浪潮</h2>]]></content>
+</li>
+<li>池化<ul>
+<li>降低分辨率不会改变物体，所以可以尝试降低分辨率来使图片变小从而减少网络的参数</li>
+<li>每个filter是一个通道(channel)来进行max pooling得到比原始图像小的图像</li>
+</ul>
+</li>
+<li>Flatten<ul>
+<li>将上述操作得到的二维切片展开成一维然后输入到全连接网络</li>
+</ul>
+</li>
+</ul>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><ul>
+<li>模型训练仍然是使用梯度下降的方法</li>
+<li>围棋就可以用CNN来训练，因为棋局具备一些局部的模式，而这些局部的模式在棋盘上会在不同地方多次出现，但是Alpha Go里并没有使用最大池化层</li>
+</ul>
+<h3 id="RNN-Recurrent-Neural-Network"><a href="#RNN-Recurrent-Neural-Network" class="headerlink" title="RNN(Recurrent Neural Network)"></a>RNN(Recurrent Neural Network)</h3><p>Neural Network with Memory</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>隐层的输出被存储在内存中再次作为输入</li>
+</ul>
+<h4 id="LSTM-Long-Short-term-Memory"><a href="#LSTM-Long-Short-term-Memory" class="headerlink" title="LSTM(Long Short-term Memory)"></a>LSTM(Long Short-term Memory)</h4><ul>
+<li>4 inputs,1 output</li>
+<li>input gate,output gate,forget gate</li>
+<li>学习方法：BPTT(Backpropagation through time),实际应用中RNN的学习并不容易</li>
+<li>可以处理梯度消失现象，但不能应对梯度爆炸问题</li>
+<li>GRU(Gated Recurrent Unit)比LSTM简单</li>
+</ul>
+<h4 id="其他的RNN"><a href="#其他的RNN" class="headerlink" title="其他的RNN"></a>其他的RNN</h4><ul>
+<li>Clockwise RNN</li>
+<li>SCRN(Structurally Constrained Recurrent Network)</li>
+<li>Vanilla RNN</li>
+</ul>
+<p>应用案例</p>
+<ul>
+<li>插值填充(Slot Filling)–相同长度的输入输出序列</li>
+<li>电影的评价分类–输入是一个向量的序列(比如一条一条带有感情色彩的评论)，输出则是一个向量(对于电影的评价态度分级)</li>
+<li>语音识别–输入输出都是句子，但是输出较短–&gt;CTC(Connnectionist Temporal Classification)</li>
+<li>机器翻译–输入输出都是句子序列，而且长度没有限制</li>
+<li>输入图像输出一句描述–One to Many</li>
+</ul>
+<h2 id="下一个浪潮"><a href="#下一个浪潮" class="headerlink" title="下一个浪潮"></a>下一个浪潮</h2><ul>
+<li>监督学习<ul>
+<li>超深度学习网络<br>不同深度的神经网络的集成<ul>
+<li>Residual Networks</li>
+<li>FractalNet</li>
+<li>highway network</li>
+</ul>
+</li>
+<li>Attention模型<ul>
+<li>阅读理解</li>
+<li>视觉问答</li>
+<li>语音问答(托福听力阅读测试)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>强化学习<ul>
+<li>执行使奖励最大化的行为</li>
+<li>Alpha GO是监督学习+强化学习的产物</li>
+<li>当前的一些困难<ul>
+<li>短期奖励与长远奖励</li>
+<li>agent的行为会影响他接下来接收的数据–&gt;exploration</li>
+</ul>
+</li>
+<li>深度强化学习</li>
+<li>应用<ul>
+<li>交互式检索</li>
+<li>AI玩电子游戏</li>
+<li>自动驾驶</li>
+<li>Google通过DeepMind-Powered AI削减了巨大的电力支出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>非监督学习<ul>
+<li>图像–感知世界<ul>
+<li>生成新的图像</li>
+<li>deep dream</li>
+<li>auto-encoder</li>
+<li>GAN(Generative Adversarial Network)</li>
+</ul>
+</li>
+<li>文本–理解字词的含义<ul>
+<li>词向量、类比、相似度</li>
+</ul>
+</li>
+<li>语音–非监督式地学习自然语言<ul>
+<li>WaveNet</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AI训练师–口袋妖怪训练师</li>
+</ul>
+]]></content>
     
     <summary type="html">
     

@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/08/17/deep-learning/</loc>
-    <lastmod>2017-08-17T13:52:42.997Z</lastmod>
+    <lastmod>2017-08-18T13:41:10.396Z</lastmod>
     <data>
         <display>
         <title>深度学习小记</title>
