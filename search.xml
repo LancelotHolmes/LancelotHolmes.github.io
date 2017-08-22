@@ -788,10 +788,10 @@
 <h4 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h4><p>基于向量（Vector），计算两个向量的距离，距离越近相似度越大。在推荐的场景中，在用户-物品偏好的二维矩阵中，我们可以将一个用户对所有物品的偏好作为一个向量来计算用户之间的相似度，或者将所有用户对某个物品的偏好作为一个向量来计算物品之间的相似度。</p>
 <p>常用相似度计算方法</p>
 <ul>
-<li>欧几里得距离<br>假设 x，y 是 n 维空间的两个点，它们之间的欧几里德距离是：$$d(x,y)=sqrt{(\sum(x_i-y_i)^2)}$$,对应的相似度计算表示为$$sim(x,y)=\frac{1}{1+d(x,y)}$$</li>
-<li>皮尔逊相关系数<br>皮尔逊相关系数一般用于计算两个定距变量间联系的紧密程度，它的取值在[-1，+1]之间。<br>$$p(x,y)=\frac{\sumx_iy_i-n\overline{xy}}{(n-1)s_xs_y}$$,其中$s_xs_y$是$x$和$y$的样品标准偏差</li>
-<li>Cosine相似度<br>Cosine相似度被广泛应用于计算文档数据的相似度<br>$$T(x,y)=\frac{x\cdot y}{||x||^2 \times ||y||^2}=\frac{\sumx_iy_i}{\sqrt{\sumx_i^2}\sqrt{\sumy_i^2}}$$</li>
-<li>Tanimoto 系数（Tanimoto Coefficient）<br>Tanimoto系数也称为Jaccard系数，是Cosine相似度的扩展，也多用于计算文档数据的相似度：<br>$$T(x,y)=\frac{x\cdot y}{||x||^2+||y||^2-x\cdot y}=\frac{\sumx_iy_i}{\sqrt{\sumx_i^2}+\sqrt{\sumy_i^2}-\sumx_iy_i}$$</li>
+<li>欧几里得距离<br>假设 x，y 是 n 维空间的两个点，它们之间的欧几里德距离是：$$d(x,y)=\sqrt{(\sum(x_i-y_i)^2)}$$,对应的相似度计算表示为$$sim(x,y)=\frac{1}{1+d(x,y)}$$</li>
+<li>皮尔逊相关系数<br>皮尔逊相关系数一般用于计算两个定距变量间联系的紧密程度，它的取值在[-1，+1]之间。<br>$$p(x,y)=\frac{\sum x_iy_i-n\overline{xy}}{(n-1)s_xs_y}$$,其中$s_xs_y$是$x$和$y$的样品标准偏差</li>
+<li>Cosine相似度<br>Cosine相似度被广泛应用于计算文档数据的相似度<br>$$T(x,y)=\frac{x\cdot y}{||x||^2 \times ||y||^2}=\frac{\sum x_iy_i}{\sqrt{\sum x_i^2}\sqrt{\sum y_i^2}}$$</li>
+<li>Tanimoto 系数（Tanimoto Coefficient）<br>Tanimoto系数也称为Jaccard系数，是Cosine相似度的扩展，也多用于计算文档数据的相似度：<br>$$T(x,y)=\frac{x\cdot y}{||x||^2+||y||^2-x\cdot y}=\frac{\sum x_iy_i}{\sqrt{\sum x_i^2}+\sqrt{\sum y_i^2}-\sum x_iy_i}$$</li>
 </ul>
 <h4 id="相似邻居计算"><a href="#相似邻居计算" class="headerlink" title="相似邻居计算"></a>相似邻居计算</h4><p>根据相似度找到用户-物品的邻居</p>
 <p>常用的挑选邻居的原则</p>
@@ -1889,6 +1889,10 @@
 <li>聚类算法中的距离度量有哪些？</li>
 <li>如何进行实体识别？</li>
 <li>聚类和分类有什么区别？分类是事先知道类标的，而聚类事先不知道类标。</li>
+<li>k-means与knn的区别<ul>
+<li><a href="http://nohup.cc/article/167/" target="_blank" rel="external">http://nohup.cc/article/167/</a></li>
+</ul>
+</li>
 <li>L1和L2的区别</li>
 <li>生成与判别模型</li>
 <li>ROC-AUC<ul>

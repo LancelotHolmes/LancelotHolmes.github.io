@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
+    
+    <lastmod>2017-08-22T00:38:25.252Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    
+    <lastmod>2017-08-19T07:33:54.845Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/17/deep-learning/</loc>
     
     <lastmod>2017-08-18T13:41:10.396Z</lastmod>
@@ -72,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    
-    <lastmod>2017-08-12T06:07:53.130Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
     
     <lastmod>2017-08-11T08:07:23.256Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
     
     <lastmod>2017-08-08T02:33:07.412Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
-    
-    <lastmod>2017-08-07T13:54:03.214Z</lastmod>
     
   </url>
   

@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
+    <lastmod>2017-08-22T00:38:25.252Z</lastmod>
+    <data>
+        <display>
+        <title>推荐系统小记</title>
+        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Recommand System</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-08-19T07:33:54.845Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/17/deep-learning/</loc>
     <lastmod>2017-08-18T13:41:10.396Z</lastmod>
     <data>
@@ -224,27 +266,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-08-12T06:07:53.130Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
     <lastmod>2017-08-11T08:07:23.256Z</lastmod>
     <data>
@@ -326,27 +347,6 @@
         <tag>面试</tag>
          
         <tag>Coding</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
-    <lastmod>2017-08-07T13:54:03.214Z</lastmod>
-    <data>
-        <display>
-        <title>推荐系统小记</title>
-        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Recommand System</tag>
          
          
            
