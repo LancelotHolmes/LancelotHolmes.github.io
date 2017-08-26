@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/27/tricks/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="记录一些容易忽略问题以及奇技淫巧">
-<meta property="og:updated_time" content="2017-07-30T06:21:58.037Z">
+<meta property="og:updated_time" content="2017-08-25T06:21:01.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="懒死骆驼的代码小黑本">
 <meta name="twitter:description" content="记录一些容易忽略问题以及奇技淫巧">
@@ -226,7 +226,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数类型的精度问题"><span class="toc-number">1.</span> <span class="toc-text">浮点数类型的精度问题</span></a></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数类型的精度问题"><span class="toc-number">1.</span> <span class="toc-text">浮点数类型的精度问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不调用函数求解平方根-sqrt"><span class="toc-number">2.</span> <span class="toc-text">不调用函数求解平方根(sqrt())</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速判断奇偶性"><span class="toc-number">3.</span> <span class="toc-text">快速判断奇偶性</span></a></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -252,7 +252,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数类型的精度问题"><span class="toc-number">1.</span> <span class="toc-text">浮点数类型的精度问题</span></a></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数类型的精度问题"><span class="toc-number">1.</span> <span class="toc-text">浮点数类型的精度问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不调用函数求解平方根-sqrt"><span class="toc-number">2.</span> <span class="toc-text">不调用函数求解平方根(sqrt())</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速判断奇偶性"><span class="toc-number">3.</span> <span class="toc-text">快速判断奇偶性</span></a></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -275,10 +275,27 @@ ga('send', 'pageview');
 <p>此外，如果是考虑在一定精度范围内，一般也可以判断两数差值绝对值是否在某一范围内</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">bool <span class="title">Equal</span><span class="params">(<span class="keyword">double</span> num1,<span class="keyword">double</span> num2)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>((num1-num2&gt;-<span class="number">0.0000001</span>) &amp;&amp; (num1-num2&lt;<span class="number">0.0000001</span>))&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><em>Notes:普通的计算最好使用BigDecimal类，这个类可以非常精确的计算出结果，而且你可以完全控制精度，不用额外其他操作，而且与基本类型转换都非常方便。</em></p>
+<h2 id="不调用函数求解平方根-sqrt"><a href="#不调用函数求解平方根-sqrt" class="headerlink" title="不调用函数求解平方根(sqrt())"></a>不调用函数求解平方根(sqrt())</h2><ul>
+<li>使用牛顿迭代法求解平方根</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 求平方根 </div><div class="line"> * <span class="doctag">@param</span> d 待开方数 </div><div class="line"> * <span class="doctag">@param</span> precision 算术平方根的精度 </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span> d,<span class="keyword">double</span> precision)</span> </span>&#123;  </div><div class="line">    <span class="keyword">double</span> x1 = d/<span class="number">2</span>, x2 =(x1 + d/x1)/<span class="number">2</span>;  </div><div class="line">    <span class="keyword">while</span>(Math.abs(x2 -x1)&gt;precision) &#123;  </div><div class="line">        x1 = x2;  </div><div class="line">        x2 =(x1 + d/x1)/<span class="number">2</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> x1;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考</p>
+<ul>
+<li><a href="http://www.javashuo.com/content/p-3097973.html" target="_blank" rel="external">http://www.javashuo.com/content/p-3097973.html</a></li>
+<li><p><a href="http://liuqing-2010-07.iteye.com/blog/1396859" target="_blank" rel="external">http://liuqing-2010-07.iteye.com/blog/1396859</a></p>
+</li>
+<li><p>二分查找的方法<br>另一种仅精确到整数的二分查找式的求平方根的算法</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">long</span> left = <span class="number">1</span>;</div><div class="line">    <span class="keyword">long</span> right = x;</div><div class="line">    <span class="keyword">while</span> (left + <span class="number">1</span> &lt; right) &#123;</div><div class="line">        <span class="keyword">long</span> mid = left + (right - left)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (mid * mid &lt; x) &#123;</div><div class="line">            left = mid;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mid * mid &gt; x) &#123;</div><div class="line">            right = mid; </div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (right * right &lt;= x) &#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) right;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) left;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考</p>
+<h2 id="快速判断奇偶性"><a href="#快速判断奇偶性" class="headerlink" title="快速判断奇偶性"></a>快速判断奇偶性</h2><p>判断奇数和偶数的方法，一般是除以2或者对2取模运算，结果为0则是偶数反之则是奇数。在计算机内部数都是用二进制表示的，奇数最低位上一定是1，偶数为0。基于这个特点可以利用按位与运算进行奇偶数判断。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isOdd</span><span class="params">(<span class="keyword">long</span> l)</span> </span>&#123;  </div><div class="line">   <span class="keyword">return</span> ((l &amp; <span class="number">0x01</span>) == <span class="number">1</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>参考</p>
 <ul>
 <li><a href="http://161650095-163-com.iteye.com/blog/1521130" target="_blank" rel="external">double类型的精度问题</a></li>
 <li>《剑指offer》P151</li>
+<li><a href="http://liuqing-2010-07.iteye.com/blog/1396859" target="_blank" rel="external">经典算法的Java实现</a></li>
 </ul>
 
       
@@ -566,6 +583,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
@@ -590,19 +615,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,11 +631,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,11 +647,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color4">big data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,6 +671,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
@@ -662,51 +687,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">推荐系统实践</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,7 +703,43 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">推荐系统实践</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

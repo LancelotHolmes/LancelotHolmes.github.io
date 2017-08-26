@@ -4,6 +4,75 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/08/lr/</loc>
+    <lastmod>2017-08-25T06:21:43.457Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记（六）——Logistic Regression</title>
+        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
+    <lastmod>2017-08-25T06:21:01.624Z</lastmod>
+    <data>
+        <display>
+        <title>懒死骆驼的代码小黑本</title>
+        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>Coding</tag>
+         
+        <tag>剑指offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-08-25T03:50:43.941Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/04/recommend/</loc>
     <lastmod>2017-08-22T00:38:25.252Z</lastmod>
     <data>
@@ -16,27 +85,6 @@
         <tag>Note</tag>
          
         <tag>Recommand System</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-08-19T07:33:54.845Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            
@@ -257,29 +305,6 @@
         <tag>Note</tag>
          
         <tag>SVM</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-08-11T08:07:23.256Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记（六）——Logistic Regression</title>
-        <pubTime>2017-07-08T05:49:08.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>LR</tag>
          
          
            
@@ -621,31 +646,6 @@
         <tag>Kaggle</tag>
          
         <tag>Python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/27/tricks/</loc>
-    <lastmod>2017-07-30T06:21:58.037Z</lastmod>
-    <data>
-        <display>
-        <title>懒死骆驼的代码小黑本</title>
-        <pubTime>2017-07-27T03:24:59.000Z</pubTime>
-        
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-        <tag>Coding</tag>
-         
-        <tag>剑指offer</tag>
          
          
            

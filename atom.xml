@@ -1330,7 +1330,7 @@
     <link href="http://yoursite.com/2017/07/27/tricks/"/>
     <id>http://yoursite.com/2017/07/27/tricks/</id>
     <published>2017-07-27T03:24:59.000Z</published>
-    <updated>2017-07-30T06:21:58.037Z</updated>
+    <updated>2017-08-25T06:21:01.624Z</updated>
     
     <content type="html"><![CDATA[<p><em>记录一些容易忽略问题以及奇技淫巧</em><br><a id="more"></a></p>
 <h2 id="浮点数类型的精度问题"><a href="#浮点数类型的精度问题" class="headerlink" title="浮点数类型的精度问题"></a>浮点数类型的精度问题</h2><ul>
@@ -1344,10 +1344,27 @@
 <p>此外，如果是考虑在一定精度范围内，一般也可以判断两数差值绝对值是否在某一范围内</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">bool <span class="title">Equal</span><span class="params">(<span class="keyword">double</span> num1,<span class="keyword">double</span> num2)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>((num1-num2&gt;-<span class="number">0.0000001</span>) &amp;&amp; (num1-num2&lt;<span class="number">0.0000001</span>))&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><em>Notes:普通的计算最好使用BigDecimal类，这个类可以非常精确的计算出结果，而且你可以完全控制精度，不用额外其他操作，而且与基本类型转换都非常方便。</em></p>
+<h2 id="不调用函数求解平方根-sqrt"><a href="#不调用函数求解平方根-sqrt" class="headerlink" title="不调用函数求解平方根(sqrt())"></a>不调用函数求解平方根(sqrt())</h2><ul>
+<li>使用牛顿迭代法求解平方根</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"> * 求平方根 </div><div class="line"> * <span class="doctag">@param</span> d 待开方数 </div><div class="line"> * <span class="doctag">@param</span> precision 算术平方根的精度 </div><div class="line"> * <span class="doctag">@return</span> </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span> d,<span class="keyword">double</span> precision)</span> </span>&#123;  </div><div class="line">    <span class="keyword">double</span> x1 = d/<span class="number">2</span>, x2 =(x1 + d/x1)/<span class="number">2</span>;  </div><div class="line">    <span class="keyword">while</span>(Math.abs(x2 -x1)&gt;precision) &#123;  </div><div class="line">        x1 = x2;  </div><div class="line">        x2 =(x1 + d/x1)/<span class="number">2</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> x1;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考</p>
+<ul>
+<li><a href="http://www.javashuo.com/content/p-3097973.html" target="_blank" rel="external">http://www.javashuo.com/content/p-3097973.html</a></li>
+<li><p><a href="http://liuqing-2010-07.iteye.com/blog/1396859" target="_blank" rel="external">http://liuqing-2010-07.iteye.com/blog/1396859</a></p>
+</li>
+<li><p>二分查找的方法<br>另一种仅精确到整数的二分查找式的求平方根的算法</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">    <span class="keyword">long</span> left = <span class="number">1</span>;</div><div class="line">    <span class="keyword">long</span> right = x;</div><div class="line">    <span class="keyword">while</span> (left + <span class="number">1</span> &lt; right) &#123;</div><div class="line">        <span class="keyword">long</span> mid = left + (right - left)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (mid * mid &lt; x) &#123;</div><div class="line">            left = mid;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mid * mid &gt; x) &#123;</div><div class="line">            right = mid; </div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> (<span class="keyword">int</span>) mid;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (right * right &lt;= x) &#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) right;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) left;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考</p>
+<h2 id="快速判断奇偶性"><a href="#快速判断奇偶性" class="headerlink" title="快速判断奇偶性"></a>快速判断奇偶性</h2><p>判断奇数和偶数的方法，一般是除以2或者对2取模运算，结果为0则是偶数反之则是奇数。在计算机内部数都是用二进制表示的，奇数最低位上一定是1，偶数为0。基于这个特点可以利用按位与运算进行奇偶数判断。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isOdd</span><span class="params">(<span class="keyword">long</span> l)</span> </span>&#123;  </div><div class="line">   <span class="keyword">return</span> ((l &amp; <span class="number">0x01</span>) == <span class="number">1</span>);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>参考</p>
 <ul>
 <li><a href="http://161650095-163-com.iteye.com/blog/1521130" target="_blank" rel="external">double类型的精度问题</a></li>
 <li>《剑指offer》P151</li>
+<li><a href="http://liuqing-2010-07.iteye.com/blog/1396859" target="_blank" rel="external">经典算法的Java实现</a></li>
 </ul>
 ]]></content>
     
@@ -1991,7 +2008,7 @@
     <link href="http://yoursite.com/2017/07/08/ml-job/"/>
     <id>http://yoursite.com/2017/07/08/ml-job/</id>
     <published>2017-07-08T10:47:00.000Z</published>
-    <updated>2017-08-19T07:33:54.845Z</updated>
+    <updated>2017-08-25T03:50:43.941Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -2372,6 +2389,8 @@
 <li>怎样将二叉排序树变成双向链表，且效率最高</li>
 <li>从栈里找最小的元素，且时间复杂度为常数级</li>
 <li>float转string</li>
+</ul>
+<ul>
 <li>判断一棵树是否是另一棵的子树</li>
 <li>在一个n*n的矩阵中填数的问题，那种转圈填数</li>
 <li>链表存在环问题，环的第一个节点在哪里？</li>
@@ -2401,7 +2420,7 @@
 <li>统计字符串中出现的字符个数，忽略大小写，其中可能有其他字符。</li>
 <li>寻找二叉树的公共父节点</li>
 <li>b+ b-树、红黑树</li>
-<li>判断两条链表是否交叉</li>
+<li>判断两条链表是否交叉(360有问)<br>最简单的方法是遍历到两个链表的尾节点然后判断两个尾节点是否相同即可</li>
 <li>树的广度、深度遍历</li>
 <li>稳定与不稳定排序</li>
 <li>并行计算、压缩算法</li>
@@ -2409,6 +2428,7 @@
 <li>介绍大顶堆和小顶堆</li>
 <li>反转链表</li>
 <li>单链表转二叉树，二叉树转单链表（要求原地）</li>
+<li>手写sqrt()，不调用其它任何函数<br><a href="http://liuqing-2010-07.iteye.com/blog/1396859" target="_blank" rel="external">http://liuqing-2010-07.iteye.com/blog/1396859</a></li>
 </ul>
 <p>参考</p>
 <ul>
@@ -2455,7 +2475,7 @@
     <link href="http://yoursite.com/2017/07/08/lr/"/>
     <id>http://yoursite.com/2017/07/08/lr/</id>
     <published>2017-07-08T05:49:08.000Z</published>
-    <updated>2017-08-11T08:07:23.256Z</updated>
+    <updated>2017-08-25T06:21:43.457Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -2490,7 +2510,7 @@
 <ul>
 <li>对于二分类任务：其输出标记$y \in \lbrace 0,1 \rbrace$,而线性回归模型产生的预测值$f(x)=w\cdot x+b$是实值</li>
 <li>而根据广义线性模型的思想，可以通过寻找一个联系函数来将分类任务的真实标记与线性回归模型的预测值联系起来</li>
-<li>最直接的想法是使用单位阶跃函数，即<br><img src="/materials/img/LR/jieyue.png" alt="step function"><br>即若预测值$z$大于0就判为正例，小于0则判为反例<br><img src="/materials/img/LR/step_curve.png" alt="step curve"></li>
+<li>最直接的想法是使用单位阶跃函数，即<br><img src="/materials/img/LR/step_curve.png" alt="step curve"></li>
 <li>但是单位阶跃函数不连续，所以我们希望找到一个替代函数来在一定程度上近似单位阶跃函数，并希望该函数单调可微，于是就引入了对数几率函数$$y=\frac{1}{1+e^{-z}}$$</li>
 <li>将对数几率函数作为$g^-(\cdot)$带入广义线性模型则有$$y=\frac{1}{1+e^{-(w \cdot x+b)}}$$</li>
 <li>其变形形式为$$ln\frac{y}{1-y}=w\cdot x+b$$,若将$y$视作样本$x$作为正例的可能性，则$1-y$是其作为反例的可能性，两者的比值$\frac{y}{1-y}$称为几率（联系角度二），反映了$x$作为正例的<strong>相对可能性</strong></li>
