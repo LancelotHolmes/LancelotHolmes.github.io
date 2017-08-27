@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-08-25T06:21:43.457Z</lastmod>
+    <lastmod>2017-08-27T13:22:36.041Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记（六）——Logistic Regression</title>
@@ -18,6 +18,27 @@
         <tag>Note</tag>
          
         <tag>LR</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-08-27T08:09:11.233Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
          
          
            
@@ -43,27 +64,6 @@
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-08-25T03:50:43.941Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            
