@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-08-27T13:22:36.041Z</lastmod>
+    <lastmod>2017-08-28T11:33:39.618Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记（六）——Logistic Regression</title>

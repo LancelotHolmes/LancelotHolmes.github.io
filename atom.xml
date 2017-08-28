@@ -2480,7 +2480,7 @@
     <link href="http://yoursite.com/2017/07/08/lr/"/>
     <id>http://yoursite.com/2017/07/08/lr/</id>
     <published>2017-07-08T05:49:08.000Z</published>
-    <updated>2017-08-27T13:22:36.041Z</updated>
+    <updated>2017-08-28T11:33:39.618Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -2536,7 +2536,12 @@
 <li>在LR中，<a href="https://tech.meituan.com/intro_to_logistic_regression.html" target="_blank" rel="external">最大似然函数与最小化对数损失函数等价</a></li>
 </ul>
 <h3 id="梯度下降法推导"><a href="#梯度下降法推导" class="headerlink" title="梯度下降法推导"></a>梯度下降法推导</h3><p><img src="/materials/img/LR/gd.jpg" alt="gradient descent"></p>
-<h3 id="sigmoid由来及推导"><a href="#sigmoid由来及推导" class="headerlink" title="sigmoid由来及推导"></a>sigmoid由来及推导</h3><p><img src="/materials/img/LR/sigmoid_1.jpg" alt="sigmoid_1"><br><img src="/materials/img/LR/sigmoid_2.jpg" alt="sigmoid_2"><br><img src="/materials/img/LR/sigmoid_3.jpg" alt="sigmoid_3"></p>
+<h3 id="sigmoid由来及推导"><a href="#sigmoid由来及推导" class="headerlink" title="sigmoid由来及推导"></a>sigmoid由来及推导</h3><ul>
+<li><p>最大熵的推导方式<br><img src="/materials/img/LR/sigmoid_1.jpg" alt="sigmoid_1"><br><img src="/materials/img/LR/sigmoid_2.jpg" alt="sigmoid_2"><br><img src="/materials/img/LR/sigmoid_3.jpg" alt="sigmoid_3"></p>
+</li>
+<li><p>指数族分布的推导方式<br><img src="/materials/img/LR/sigmoid_4.jpg" alt="sigmoid_4"><br><img src="/materials/img/LR/sigmoid_5.jpg" alt="sigmoid_5"></p>
+</li>
+</ul>
 <h2 id="多项LR模型——多分类"><a href="#多项LR模型——多分类" class="headerlink" title="多项LR模型——多分类"></a>多项LR模型——多分类</h2><p>假设离散型随机变量$Y$的取值集合为$\lbrace 1,2,…,K \rbrace$，则多项LR模型是<br>$$P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>$$P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k \cdot x)}$$<br>注意$k=1,2,…,K-1$,其中$x\in R^{n+1}, w_k \in R^{n+1}$</p>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a><em>TODO:</em></h2><h2 id="LR与朴素贝叶斯"><a href="#LR与朴素贝叶斯" class="headerlink" title="LR与朴素贝叶斯"></a>LR与朴素贝叶斯</h2><h2 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h2><p>参考资料</p>
 <ul>
@@ -2547,6 +2552,7 @@
 <li><a href="https://hyzhan.github.io/2017/05/23/2017-05-23-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92LR%E6%8E%A8%E5%AF%BC%EF%BC%88sigmoid%EF%BC%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%8C%E6%A2%AF%E5%BA%A6%EF%BC%8C%E5%8F%82%E6%95%B0%E6%9B%B4%E6%96%B0%E5%85%AC%E5%BC%8F%EF%BC%89/" target="_blank" rel="external">逻辑回归LR推导</a></li>
 <li><a href="http://www.csuldw.com/2016/09/19/2016-09-19-logistic-regression-theory/" target="_blank" rel="external">Logistic Regression Theory</a></li>
 <li><a href="http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf" target="_blank" rel="external">LR推导原文</a></li>
+<li><a href="http://lib.csdn.net/article/machinelearning/39601" target="_blank" rel="external">LR推导-指数族分布</a></li>
 </ul>
 ]]></content>
     
