@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/08/ml-job/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
-<meta property="og:updated_time" content="2017-08-27T08:09:11.233Z">
+<meta property="og:updated_time" content="2017-08-29T06:47:51.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习校招常考知识点小记">
 <meta name="twitter:description" content="概念&amp;amp;原理  高频话题是 SVM、LR、决策树（决策森林）和聚类算法，要重点准备； 算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结">
@@ -314,6 +314,15 @@ ga('send', 'pageview');
 <li>如何进行实体识别？</li>
 <li>聚类和分类有什么区别？分类是事先知道类标的，而聚类事先不知道类标。</li>
 <li>k-means与knn的区别<ul>
+<li>两种算法之间有多种差异，如下：<ul>
+<li>KNN为分类(也可做回归)，K-means为聚类；</li>
+<li>KNN为监督学习，K-means为无监督学习；</li>
+<li>KNN的输入样本为带label的，K-means的输入样本不带label；</li>
+<li>KNN没有训练过程，K-means有训练过程；</li>
+<li>K的含义不同，KNN中表示选取距离最近的k的样本，而K-Means则表示设置K个聚类中心</li>
+</ul>
+</li>
+<li>两种算法之间有一点相似：都是计算近邻，一般都用欧氏距离。</li>
 <li><a href="http://nohup.cc/article/167/" target="_blank" rel="external">http://nohup.cc/article/167/</a></li>
 </ul>
 </li>
@@ -378,6 +387,11 @@ ga('send', 'pageview');
 </blockquote>
 <ul>
 <li>SVM的原理、推导、特性，SVM里面的核，SVM非线性分类，核函数的作用；SVM详细过程，支持向量，几何间隔概念，拉格朗日函数如何求取超平面，非线性分类；写写SVM的优化形式，用拉格朗日公式推导SVM kernel变换；SVM：中文分词；RBF核与高斯核的区别（没区别，高斯核就是rbf核）;SVM的支持向量的数学表示</li>
+<li>SVM中为什么要选取最大间隔分类器，从数学的角度说明：<ul>
+<li>几何间隔与样本的误分次数间存在关系$误分次数\leq (\frac{2R}{\sigma})^2$,其中$\sigma$为样本集合到分类面的间隔，$R$为所有样本中向量长度最长的值(代表样本分布有多广)，所以上式也就表明误分次数的上界由几何间隔决定</li>
+<li><a href="http://www.blogjava.net/zhenandaci/archive/2009/02/13/254519.html" target="_blank" rel="external">http://www.blogjava.net/zhenandaci/archive/2009/02/13/254519.html</a></li>
+</ul>
+</li>
 <li>LR 的推导，特性？；为什么可以使用logistic回归;logistic regression为什么使用sigmoid函数？;linear regression 如何处理离散值的情况，如特征为：男1，女0</li>
 <li>决策树的特性？;决策树分裂</li>
 <li>用EM算法推导解释 Kmeans；K-means起始点；K-means的具体流程；如何优化K-means</li>
@@ -949,10 +963,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">decision tree</a>
               </li>
              
@@ -965,19 +975,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -997,6 +999,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方差</a>
               </li>
              
@@ -1005,11 +1015,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1021,6 +1027,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
@@ -1029,11 +1043,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1049,10 +1067,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -1061,11 +1075,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1089,15 +1115,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1106,18 +1132,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-08-28T11:33:39.618Z</lastmod>
+    <lastmod>2017-08-29T08:11:46.115Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记（六）——Logistic Regression</title>
@@ -28,7 +28,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-08-27T08:09:11.233Z</lastmod>
+    <lastmod>2017-08-29T06:47:51.148Z</lastmod>
     <data>
         <display>
         <title>机器学习校招常考知识点小记</title>
