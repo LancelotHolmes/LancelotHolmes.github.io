@@ -3,6 +3,105 @@
   
     
     <entry>
+      <title><![CDATA[聚类小记]]></title>
+      <url>/2017/08/30/cluster/</url>
+      <content type="html"><![CDATA[<h2 id="聚类任务"><a href="#聚类任务" class="headerlink" title="聚类任务"></a>聚类任务</h2><h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><p>常见的无监督学习包括</p>
+<ul>
+<li>聚类</li>
+<li>密度估计</li>
+<li>异常检测</li>
+</ul>
+<p><em>NOTE:异常检测常借助聚类或距离计算进行，如将远离所有聚簇中心的样本作为异常点，或将密度极低处的样本作为异常点</em></p>
+<h3 id="聚类定义"><a href="#聚类定义" class="headerlink" title="聚类定义"></a>聚类定义</h3><blockquote>
+<p>聚类试图将数据集中的样本划分为若干个通常是不相交的子集，每个子集称为一个“簇”(cluster).通过这样的划分，每个簇可能对应于一些潜在的概念(类别)，这些概念对聚类算法而言事先是未知的，聚类过程仅能自动形成簇结构，簇所对应的概念语义需由使用者来把握和命名</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="聚类的用途"><a href="#聚类的用途" class="headerlink" title="聚类的用途"></a>聚类的用途</h3><p>聚类既能作为一个单独的过程，用于寻找数据内在的分布结构，也可作为分类等其他学习任务的前驱过程</p>
+<h2 id="聚类算法涉及的两个基本问题"><a href="#聚类算法涉及的两个基本问题" class="headerlink" title="聚类算法涉及的两个基本问题"></a>聚类算法涉及的两个基本问题</h2><h3 id="性能度量——“有效性指标”"><a href="#性能度量——“有效性指标”" class="headerlink" title="性能度量——“有效性指标”"></a>性能度量——“有效性指标”</h3><ul>
+<li>对聚类结果需要通过某种性能度量来评估其好坏</li>
+<li>若明确了最终将要使用的性能度量，则可直接将其作为聚类过程的优化目标，从而更好地得到符合要求的聚类结果</li>
+</ul>
+<blockquote>
+<p>“物以类聚”：同一簇的样本尽可能彼此相似，不同簇的样本尽可能不同，即聚类结果的“簇类相似度高且簇间相似度低”</p>
+</blockquote>
+<h4 id="外部指标"><a href="#外部指标" class="headerlink" title="外部指标"></a>外部指标</h4><p>将聚类结果与某个“参考模型”进行比较</p>
+<h5 id="Jaccard系数-JC"><a href="#Jaccard系数-JC" class="headerlink" title="Jaccard系数(JC)"></a>Jaccard系数(JC)</h5><h5 id="FM系数-FMI"><a href="#FM系数-FMI" class="headerlink" title="FM系数(FMI)"></a>FM系数(FMI)</h5><h5 id="Rand系数-RI"><a href="#Rand系数-RI" class="headerlink" title="Rand系数(RI)"></a>Rand系数(RI)</h5><h4 id="内部指标"><a href="#内部指标" class="headerlink" title="内部指标"></a>内部指标</h4><p>直接考察聚类结果而不利用任何参考模型</p>
+<h5 id="DB指数-DBI"><a href="#DB指数-DBI" class="headerlink" title="DB指数(DBI)"></a>DB指数(DBI)</h5><h5 id="Dunn指数-DI"><a href="#Dunn指数-DI" class="headerlink" title="Dunn指数(DI)"></a>Dunn指数(DI)</h5><p><em>Note:聚类的性能度量还有F值，互信息，平均廓宽等</em></p>
+<h3 id="距离计算"><a href="#距离计算" class="headerlink" title="距离计算"></a>距离计算</h3><ul>
+<li>有序属性——闵可夫斯基距离(此外还有内积距离、余弦距离等)<ul>
+<li>欧氏距离</li>
+<li>曼哈顿距离</li>
+</ul>
+</li>
+<li>无序属性——VDM</li>
+</ul>
+<p>两者可结合处理混合属性</p>
+<ul>
+<li><p>加权距离<br>针对样本空间中不同属性的重要性不同的情形</p>
+</li>
+<li><p>非度量距离<br>距离度量不满足直递性，模式识别、图像检索等涉及复杂语义的应用中常会涉及</p>
+</li>
+</ul>
+<p><em>Notes:</em></p>
+<ul>
+<li>属性即特征</li>
+<li>上述距离计算都是事先定义好的，现实任务中有时需要基于数据样本来确定合适的距离计算式，此时可通过“距离度量学习”来实现</li>
+</ul>
+<h2 id="聚类算法类型"><a href="#聚类算法类型" class="headerlink" title="聚类算法类型"></a>聚类算法类型</h2><h3 id="原型聚类——基于原型的聚类"><a href="#原型聚类——基于原型的聚类" class="headerlink" title="原型聚类——基于原型的聚类"></a>原型聚类——基于原型的聚类</h3><p>假设聚类结构能够通过一组原型刻画，一般算法先对原型进行初始化，然后对原型进行迭代更新求解，采用不同的原型表示，不同的求解方式将产生不同的算法</p>
+<h4 id="基于原型向量"><a href="#基于原型向量" class="headerlink" title="基于原型向量"></a>基于原型向量</h4><h5 id="K均值"><a href="#K均值" class="headerlink" title="K均值"></a>K均值</h5><ul>
+<li>最小均值误差</li>
+<li>贪心策略</li>
+<li>迭代优化</li>
+</ul>
+<p><img src="/materials/img/cluster/kMeans.png" alt="kMeans"></p>
+<p>K均值的变体</p>
+<ul>
+<li>k-medoids算法强制原型向量必为训练样本</li>
+<li>k-modes算法可处理离散属性</li>
+<li>Fuzzy C-means(FCM)则是软聚类算法，允许每个样本以不同程度同时属于多个原型</li>
+<li>采用某种Bregman距离可增强k均值算法对更多类型簇结构的适用性(原本k均值算法仅在凸形簇结构上效果较好)</li>
+<li>引入核技巧可得到核k均值算法，与谱聚类有密切联系，谱聚类可视为在拉普拉斯特征映射降维后执行k均值聚类</li>
+</ul>
+<h5 id="LVQ——学习向量量化"><a href="#LVQ——学习向量量化" class="headerlink" title="LVQ——学习向量量化"></a>LVQ——学习向量量化</h5><p>与k均值算法类似，“学习向量量化”（Learning Vector Quantization，LVQ）也是试图找到一组原型向量来刻画聚类结构，区别在于LVQ假设数据样本带有类别标记，学习过程利用样本的这些监督信息来辅助聚类。<br><img src="/materials/img/cluster/LVQ.png" alt="LVQ"></p>
+<h4 id="基于概率模型"><a href="#基于概率模型" class="headerlink" title="基于概率模型"></a>基于概率模型</h4><h5 id="高斯混合聚类"><a href="#高斯混合聚类" class="headerlink" title="高斯混合聚类"></a>高斯混合聚类</h5><ul>
+<li>使用高斯分布刻画原型，簇划分则由原型对应后验概率确定</li>
+<li>常采用EM算法迭代优化求解</li>
+</ul>
+<p><img src="/materials/img/cluster/guassian.png" alt="guassian"></p>
+<p><em>Notes:</em></p>
+<ul>
+<li>k均值算法可视为高斯混合聚类在混合成分方差相等、且每个样本仅指派给一个混合成分时的特例</li>
+</ul>
+<h3 id="密度聚类"><a href="#密度聚类" class="headerlink" title="密度聚类"></a>密度聚类</h3><p>密度聚类亦称“基于密度的聚类”（density-based clustering），此类算法假设聚类结构能通过样本分布的紧密程度确定。通常情况下，密度聚类算法从样本密度的角度来考察样本之间的可连接性，并基于可连接样本不断扩展聚类簇以获得最终的聚类结果。</p>
+<h4 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h4><p>DBSCAN是一种著名的密度聚类算法，它基于一组“领域”（neighborhood）参数来刻画样本分布的紧密程度</p>
+<p><img src="/materials/img/cluster/DBSCAN.png" alt="DBSCAN"></p>
+<h4 id="其他密度聚类算法"><a href="#其他密度聚类算法" class="headerlink" title="其他密度聚类算法"></a>其他密度聚类算法</h4><ul>
+<li>OPTICS</li>
+<li>DENCLUE</li>
+</ul>
+<h3 id="层次聚类"><a href="#层次聚类" class="headerlink" title="层次聚类"></a>层次聚类</h3><p>层次聚类（hierarchical clustering）试图在不同层次对数据集进行划分，从而形成树形的聚类结构。数据集的划分可采用“自底向上”的聚合策略，也可采用“自顶向下”的分拆策略。</p>
+<h4 id="AGNES"><a href="#AGNES" class="headerlink" title="AGNES"></a>AGNES</h4><p>AGNES是一种采用自底向上聚合策略的层次聚类算法。它先将数据集中的每个样本看作一个初始聚类簇，然后在算法运行的每一步中找出距离最近的两个聚类簇进行合并，该过程不断重复，直至达到预设的聚类簇个数，这里的关键是如何计算聚类簇之间的距离。</p>
+<p><img src="/materials/img/cluster/AGNES.png" alt="AGNES"></p>
+<h4 id="自顶向下"><a href="#自顶向下" class="headerlink" title="自顶向下"></a>自顶向下</h4><ul>
+<li>DIANA</li>
+</ul>
+<p>AGNES与DIANA都不能对已合并或已分拆的聚类簇进行回溯调整，BIRCH则对此进行了调整</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> Note </tag>
+            
+            <tag> 聚类 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[深度学习小记]]></title>
       <url>/2017/08/17/deep-learning/</url>
       <content type="html"><![CDATA[<p><em>基于李宏毅老师的讲义对深度学习做一个简单入门整理</em></p>
@@ -508,7 +607,7 @@
 <h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><h3 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h3><ul>
 <li>感知机由两层神经元组成，输入层接收外界输入信号后传递给输出层，输出层为M-P神经元，亦称为“阈值逻辑单元”<br><img src="/materials/img/neural_network/perceptron.png" alt="perceptron"></li>
 <li>感知机只有输出层神经元进行激活函数处理，即只拥有一层功能神经元，其学习能力非常有限</li>
-<li>学习过程：若将阈值$\theta$看做一个固定输入为-1的<em>哑结点</em>所对应的连接权重$w_n+1$，则可统一为权重的学习，针对训练样例$(x,y)$若当前感知机的输出为$\hat{y}$<br>$$w_i\leftarrow w_i+\Delta w_i$$<br>$$\Delta w_i=\eta(y-\hat{y})x_i$$</li>
+<li>学习过程：若将阈值$\theta$看做一个固定输入为-1的<em>哑结点</em>所对应的连接权重$w_{n+1}$，则可统一为权重的学习，针对训练样例$(x,y)$若当前感知机的输出为$\hat{y}$<br>$$w_i\leftarrow w_i+\Delta w_i$$<br>$$\Delta w_i=\eta(y-\hat{y})x_i$$</li>
 </ul>
 <p>Notes:关于感知机更详细的内容可参照<a href="/2017/06/03/Perceptron/" title="感知机">感知机</a></p>
 <h3 id="多层前馈神经网络"><a href="#多层前馈神经网络" class="headerlink" title="多层前馈神经网络"></a>多层前馈神经网络</h3><ul>
@@ -662,11 +761,14 @@
 <li>用户的基本信息</li>
 <li>用户对物品/信息的偏好<ul>
 <li>显式的用户反馈：评分、评论等</li>
-<li>隐式的用户反馈：交互记录如购买、浏览等<br><em>Notes:显式的用户反馈 vs. 隐式的用户反馈</em></li>
+<li>隐式的用户反馈：交互记录如购买、浏览等</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<p><em>Notes:显式的用户反馈 vs. 隐式的用户反馈</em></p>
+<ul>
 <li>显式的用户反馈能较为准确地反映用户对商品的真实喜好，但是需要用户付出额外的代价(个人理解是获取这部分数据的难度相对较大)</li>
 <li>隐式的用户反馈经分析和处理也能反映用户喜好，但是相对不够精确，存在噪音，而且在不同应用中需要构建不同的行为特征</li>
 </ul>
@@ -2392,7 +2494,19 @@
 <li>二项式分布的最大熵解等价于二项式指数形式(sigmoid)的最大似然； </li>
 <li>多项式分布的最大熵等价于多项式分布指数形式(softmax)的最大似然。</li>
 </ul>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a><em>TODO:</em></h2><h2 id="LR与朴素贝叶斯"><a href="#LR与朴素贝叶斯" class="headerlink" title="LR与朴素贝叶斯"></a>LR与朴素贝叶斯</h2><h2 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h2><p>如果y不是在[0,1]中取值，而是在K个类别中取值，这时问题就变为一个多分类问题。有两种方式可以出处理该类问题：一种是我们对每个类别训练一个二元分类器（One-vs-all），当K个类别不是互斥的时候，比如用户会购买哪种品类，这种方法是合适的。如果K个类别是<strong>互斥</strong>的，即y=i的时候意味着y不能取其他的值，比如用户的年龄段，这种情况下 Softmax 回归更合适一些。Softmax 回归是直接对逻辑回归在多分类的推广，相应的模型也可以叫做多元逻辑回归（Multinomial Logistic Regression）。模型通过 softmax函数来对概率建模，具体形式如下：<br>$$P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}}$$<br>其中决策函数为<br>$$y^* = argmax_i P(y=i|x,\theta)$$<br>损失函数为<br>$$J(\theta)=-\frac{1}{N} \sum_i^N \sum_j^K {1[y_i=j] \log{\frac{e^{\theta_i^T x}}{\sum {e^{\theta_k^T x}}}}}$$</p>
+<h2 id="LR与朴素贝叶斯"><a href="#LR与朴素贝叶斯" class="headerlink" title="LR与朴素贝叶斯"></a>LR与朴素贝叶斯</h2><h2 id="LR与神经网络"><a href="#LR与神经网络" class="headerlink" title="LR与神经网络"></a>LR与神经网络</h2><h2 id="LR与感知机"><a href="#LR与感知机" class="headerlink" title="LR与感知机"></a>LR与感知机</h2><ul>
+<li>相同点<ul>
+<li>都是线性分类模型，原始模型都只能处理二分类问题</li>
+<li>模型的形式相似(都是在线性模型外通过联系函数映射到另外的空间，只不过感知机是符号函数，LR是sigmoid(或者说Logistic)函数)</li>
+<li>训练方法都是使用梯度下降法</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>LR输出为仅是概率的值，而感知机输出为1/-1</li>
+</ul>
+</li>
+</ul>
+<h2 id="LR与SVM"><a href="#LR与SVM" class="headerlink" title="LR与SVM"></a>LR与SVM</h2><h2 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h2><p>如果y不是在[0,1]中取值，而是在K个类别中取值，这时问题就变为一个多分类问题。有两种方式可以出处理该类问题：一种是我们对每个类别训练一个二元分类器（One-vs-all），当K个类别不是互斥的时候，比如用户会购买哪种品类，这种方法是合适的。如果K个类别是<strong>互斥</strong>的，即y=i的时候意味着y不能取其他的值，比如用户的年龄段，这种情况下 Softmax 回归更合适一些。Softmax 回归是直接对逻辑回归在多分类的推广，相应的模型也可以叫做多元逻辑回归（Multinomial Logistic Regression）。模型通过 softmax函数来对概率建模，具体形式如下：<br>$$P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}}$$<br>其中决策函数为<br>$$y^* = argmax_i P(y=i|x,\theta)$$<br>损失函数为<br>$$J(\theta)=-\frac{1}{N} \sum_i^N \sum_j^K {1[y_i=j] \log{\frac{e^{\theta_i^T x}}{\sum {e^{\theta_k^T x}}}}}$$</p>
 <h2 id="LR优缺点"><a href="#LR优缺点" class="headerlink" title="LR优缺点"></a>LR优缺点</h2><ul>
 <li>优点<ul>
 <li>实现简单</li>
@@ -2440,6 +2554,7 @@
 <li><a href="http://lib.csdn.net/article/machinelearning/39601" target="_blank" rel="external">LR推导-指数族分布</a></li>
 <li><a href="http://blog.csdn.net/cyh_24/article/details/50359055" target="_blank" rel="external">Logistic Regression 的前世今生（理论篇）</a></li>
 <li><a href="http://www.52caml.com/head_first_ml/ml-chapter1-regression-family/#LR模型在工业界的应用" target="_blank" rel="external">深入浅出ML之Regression家族</a></li>
+<li><a href="http://xiaosheng.me/2017/04/13/article52/" target="_blank" rel="external">线性回归、Logistic 回归和感知机</a></li>
 </ul>
 ]]></content>
       

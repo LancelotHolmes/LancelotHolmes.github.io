@@ -4,8 +4,71 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/30/cluster/</loc>
+    <lastmod>2017-08-30T11:01:24.832Z</lastmod>
+    <data>
+        <display>
+        <title>聚类小记</title>
+        <pubTime>2017-08-30T08:29:06.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>聚类</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
+    <lastmod>2017-08-30T06:50:00.764Z</lastmod>
+    <data>
+        <display>
+        <title>推荐系统小记</title>
+        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Recommand System</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/09/neural-network/</loc>
+    <lastmod>2017-08-30T02:11:37.886Z</lastmod>
+    <data>
+        <display>
+        <title>神经网络</title>
+        <pubTime>2017-08-09T05:31:57.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>Neural Networks</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/08/lr/</loc>
-    <lastmod>2017-08-29T08:11:46.115Z</lastmod>
+    <lastmod>2017-08-29T09:27:32.915Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记（六）——Logistic Regression</title>
@@ -64,27 +127,6 @@
         <tag>Coding</tag>
          
         <tag>剑指offer</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/04/recommend/</loc>
-    <lastmod>2017-08-22T00:38:25.252Z</lastmod>
-    <data>
-        <display>
-        <title>推荐系统小记</title>
-        <pubTime>2017-08-04T11:11:52.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Recommand System</tag>
          
          
            
@@ -326,27 +368,6 @@
         <tag>统计学习方法</tag>
          
         <tag>Note</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/09/neural-network/</loc>
-    <lastmod>2017-08-09T08:50:42.939Z</lastmod>
-    <data>
-        <display>
-        <title>神经网络</title>
-        <pubTime>2017-08-09T05:31:57.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>Neural Networks</tag>
          
          
            

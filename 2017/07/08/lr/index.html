@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/materials/img/LR/sigmoid_3.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/LR/sigmoid_4.jpg">
 <meta property="og:image" content="http://yoursite.com/materials/img/LR/sigmoid_5.jpg">
-<meta property="og:updated_time" content="2017-08-29T08:11:46.115Z">
+<meta property="og:updated_time" content="2017-08-29T09:27:32.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法笔记（六）——Logistic Regression">
 <meta name="twitter:description" content="Logistic Regression与最大熵模型均属于对数线性模型">
@@ -236,7 +236,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression的理解"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角度一：输入变量-X-服从Logistic分布的模型"><span class="toc-number">1.1.</span> <span class="toc-text">角度一：输入变量$X$服从Logistic分布的模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Logistic分布"><span class="toc-number">1.1.1.</span> <span class="toc-text">Logistic分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二项LR模型"><span class="toc-number">1.1.2.</span> <span class="toc-text">二项LR模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度二：LR模型将线性分类函数转换为（条件）概率"><span class="toc-number">1.2.</span> <span class="toc-text">角度二：LR模型将线性分类函数转换为（条件）概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度三：广义线性模型在分类问题上的推广（参考《机器学习》）"><span class="toc-number">1.3.</span> <span class="toc-text">角度三：广义线性模型在分类问题上的推广（参考《机器学习》）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型的优点"><span class="toc-number">2.</span> <span class="toc-text">LR模型的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型参数估计"><span class="toc-number">3.</span> <span class="toc-text">模型参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数推导"><span class="toc-number">3.1.</span> <span class="toc-text">损失函数推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法推导"><span class="toc-number">3.2.</span> <span class="toc-text">梯度下降法推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sigmoid由来及推导"><span class="toc-number">3.3.</span> <span class="toc-text">sigmoid由来及推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多项LR模型——多分类"><span class="toc-number">4.</span> <span class="toc-text">多项LR模型——多分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试考点"><span class="toc-number">5.</span> <span class="toc-text">面试考点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LR中损失函数的意义是什么？"><span class="toc-number">5.1.</span> <span class="toc-text">LR中损失函数的意义是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与线性回归的联系与区别"><span class="toc-number">5.2.</span> <span class="toc-text">LR与线性回归的联系与区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与最大熵模型"><span class="toc-number">5.3.</span> <span class="toc-text">LR与最大熵模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO"><span class="toc-number">6.</span> <span class="toc-text">TODO:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与朴素贝叶斯"><span class="toc-number">7.</span> <span class="toc-text">LR与朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">8.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR优缺点"><span class="toc-number">9.</span> <span class="toc-text">LR优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">10.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见应用场景"><span class="toc-number">10.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">10.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临的问题"><span class="toc-number">10.3.</span> <span class="toc-text">面临的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可行的解决方法"><span class="toc-number">10.4.</span> <span class="toc-text">可行的解决方法</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression的理解"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角度一：输入变量-X-服从Logistic分布的模型"><span class="toc-number">1.1.</span> <span class="toc-text">角度一：输入变量$X$服从Logistic分布的模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Logistic分布"><span class="toc-number">1.1.1.</span> <span class="toc-text">Logistic分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二项LR模型"><span class="toc-number">1.1.2.</span> <span class="toc-text">二项LR模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度二：LR模型将线性分类函数转换为（条件）概率"><span class="toc-number">1.2.</span> <span class="toc-text">角度二：LR模型将线性分类函数转换为（条件）概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度三：广义线性模型在分类问题上的推广（参考《机器学习》）"><span class="toc-number">1.3.</span> <span class="toc-text">角度三：广义线性模型在分类问题上的推广（参考《机器学习》）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型的优点"><span class="toc-number">2.</span> <span class="toc-text">LR模型的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型参数估计"><span class="toc-number">3.</span> <span class="toc-text">模型参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数推导"><span class="toc-number">3.1.</span> <span class="toc-text">损失函数推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法推导"><span class="toc-number">3.2.</span> <span class="toc-text">梯度下降法推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sigmoid由来及推导"><span class="toc-number">3.3.</span> <span class="toc-text">sigmoid由来及推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多项LR模型——多分类"><span class="toc-number">4.</span> <span class="toc-text">多项LR模型——多分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试考点"><span class="toc-number">5.</span> <span class="toc-text">面试考点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LR中损失函数的意义是什么？"><span class="toc-number">5.1.</span> <span class="toc-text">LR中损失函数的意义是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与线性回归的联系与区别"><span class="toc-number">5.2.</span> <span class="toc-text">LR与线性回归的联系与区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与最大熵模型"><span class="toc-number">5.3.</span> <span class="toc-text">LR与最大熵模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与朴素贝叶斯"><span class="toc-number">6.</span> <span class="toc-text">LR与朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与神经网络"><span class="toc-number">7.</span> <span class="toc-text">LR与神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与感知机"><span class="toc-number">8.</span> <span class="toc-text">LR与感知机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与SVM"><span class="toc-number">9.</span> <span class="toc-text">LR与SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">10.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR优缺点"><span class="toc-number">11.</span> <span class="toc-text">LR优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">12.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见应用场景"><span class="toc-number">12.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">12.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临的问题"><span class="toc-number">12.3.</span> <span class="toc-text">面临的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可行的解决方法"><span class="toc-number">12.4.</span> <span class="toc-text">可行的解决方法</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -262,7 +262,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression的理解"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角度一：输入变量-X-服从Logistic分布的模型"><span class="toc-number">1.1.</span> <span class="toc-text">角度一：输入变量$X$服从Logistic分布的模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Logistic分布"><span class="toc-number">1.1.1.</span> <span class="toc-text">Logistic分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二项LR模型"><span class="toc-number">1.1.2.</span> <span class="toc-text">二项LR模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度二：LR模型将线性分类函数转换为（条件）概率"><span class="toc-number">1.2.</span> <span class="toc-text">角度二：LR模型将线性分类函数转换为（条件）概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度三：广义线性模型在分类问题上的推广（参考《机器学习》）"><span class="toc-number">1.3.</span> <span class="toc-text">角度三：广义线性模型在分类问题上的推广（参考《机器学习》）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型的优点"><span class="toc-number">2.</span> <span class="toc-text">LR模型的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型参数估计"><span class="toc-number">3.</span> <span class="toc-text">模型参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数推导"><span class="toc-number">3.1.</span> <span class="toc-text">损失函数推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法推导"><span class="toc-number">3.2.</span> <span class="toc-text">梯度下降法推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sigmoid由来及推导"><span class="toc-number">3.3.</span> <span class="toc-text">sigmoid由来及推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多项LR模型——多分类"><span class="toc-number">4.</span> <span class="toc-text">多项LR模型——多分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试考点"><span class="toc-number">5.</span> <span class="toc-text">面试考点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LR中损失函数的意义是什么？"><span class="toc-number">5.1.</span> <span class="toc-text">LR中损失函数的意义是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与线性回归的联系与区别"><span class="toc-number">5.2.</span> <span class="toc-text">LR与线性回归的联系与区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与最大熵模型"><span class="toc-number">5.3.</span> <span class="toc-text">LR与最大熵模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO"><span class="toc-number">6.</span> <span class="toc-text">TODO:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与朴素贝叶斯"><span class="toc-number">7.</span> <span class="toc-text">LR与朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">8.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR优缺点"><span class="toc-number">9.</span> <span class="toc-text">LR优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">10.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见应用场景"><span class="toc-number">10.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">10.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临的问题"><span class="toc-number">10.3.</span> <span class="toc-text">面临的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可行的解决方法"><span class="toc-number">10.4.</span> <span class="toc-text">可行的解决方法</span></a></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression的理解"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#角度一：输入变量-X-服从Logistic分布的模型"><span class="toc-number">1.1.</span> <span class="toc-text">角度一：输入变量$X$服从Logistic分布的模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Logistic分布"><span class="toc-number">1.1.1.</span> <span class="toc-text">Logistic分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二项LR模型"><span class="toc-number">1.1.2.</span> <span class="toc-text">二项LR模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度二：LR模型将线性分类函数转换为（条件）概率"><span class="toc-number">1.2.</span> <span class="toc-text">角度二：LR模型将线性分类函数转换为（条件）概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#角度三：广义线性模型在分类问题上的推广（参考《机器学习》）"><span class="toc-number">1.3.</span> <span class="toc-text">角度三：广义线性模型在分类问题上的推广（参考《机器学习》）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型的优点"><span class="toc-number">2.</span> <span class="toc-text">LR模型的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模型参数估计"><span class="toc-number">3.</span> <span class="toc-text">模型参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#损失函数推导"><span class="toc-number">3.1.</span> <span class="toc-text">损失函数推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降法推导"><span class="toc-number">3.2.</span> <span class="toc-text">梯度下降法推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sigmoid由来及推导"><span class="toc-number">3.3.</span> <span class="toc-text">sigmoid由来及推导</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多项LR模型——多分类"><span class="toc-number">4.</span> <span class="toc-text">多项LR模型——多分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面试考点"><span class="toc-number">5.</span> <span class="toc-text">面试考点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LR中损失函数的意义是什么？"><span class="toc-number">5.1.</span> <span class="toc-text">LR中损失函数的意义是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与线性回归的联系与区别"><span class="toc-number">5.2.</span> <span class="toc-text">LR与线性回归的联系与区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR与最大熵模型"><span class="toc-number">5.3.</span> <span class="toc-text">LR与最大熵模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与朴素贝叶斯"><span class="toc-number">6.</span> <span class="toc-text">LR与朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与神经网络"><span class="toc-number">7.</span> <span class="toc-text">LR与神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与感知机"><span class="toc-number">8.</span> <span class="toc-text">LR与感知机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR与SVM"><span class="toc-number">9.</span> <span class="toc-text">LR与SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">10.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR优缺点"><span class="toc-number">11.</span> <span class="toc-text">LR优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">12.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见应用场景"><span class="toc-number">12.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">12.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面临的问题"><span class="toc-number">12.3.</span> <span class="toc-text">面临的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可行的解决方法"><span class="toc-number">12.4.</span> <span class="toc-text">可行的解决方法</span></a></li></ol></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -345,7 +345,19 @@ ga('send', 'pageview');
 <li>二项式分布的最大熵解等价于二项式指数形式(sigmoid)的最大似然； </li>
 <li>多项式分布的最大熵等价于多项式分布指数形式(softmax)的最大似然。</li>
 </ul>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a><em>TODO:</em></h2><h2 id="LR与朴素贝叶斯"><a href="#LR与朴素贝叶斯" class="headerlink" title="LR与朴素贝叶斯"></a>LR与朴素贝叶斯</h2><h2 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h2><p>如果y不是在[0,1]中取值，而是在K个类别中取值，这时问题就变为一个多分类问题。有两种方式可以出处理该类问题：一种是我们对每个类别训练一个二元分类器（One-vs-all），当K个类别不是互斥的时候，比如用户会购买哪种品类，这种方法是合适的。如果K个类别是<strong>互斥</strong>的，即y=i的时候意味着y不能取其他的值，比如用户的年龄段，这种情况下 Softmax 回归更合适一些。Softmax 回归是直接对逻辑回归在多分类的推广，相应的模型也可以叫做多元逻辑回归（Multinomial Logistic Regression）。模型通过 softmax函数来对概率建模，具体形式如下：<br>$$P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}}$$<br>其中决策函数为<br>$$y^* = argmax_i P(y=i|x,\theta)$$<br>损失函数为<br>$$J(\theta)=-\frac{1}{N} \sum_i^N \sum_j^K {1[y_i=j] \log{\frac{e^{\theta_i^T x}}{\sum {e^{\theta_k^T x}}}}}$$</p>
+<h2 id="LR与朴素贝叶斯"><a href="#LR与朴素贝叶斯" class="headerlink" title="LR与朴素贝叶斯"></a>LR与朴素贝叶斯</h2><h2 id="LR与神经网络"><a href="#LR与神经网络" class="headerlink" title="LR与神经网络"></a>LR与神经网络</h2><h2 id="LR与感知机"><a href="#LR与感知机" class="headerlink" title="LR与感知机"></a>LR与感知机</h2><ul>
+<li>相同点<ul>
+<li>都是线性分类模型，原始模型都只能处理二分类问题</li>
+<li>模型的形式相似(都是在线性模型外通过联系函数映射到另外的空间，只不过感知机是符号函数，LR是sigmoid(或者说Logistic)函数)</li>
+<li>训练方法都是使用梯度下降法</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>LR输出为仅是概率的值，而感知机输出为1/-1</li>
+</ul>
+</li>
+</ul>
+<h2 id="LR与SVM"><a href="#LR与SVM" class="headerlink" title="LR与SVM"></a>LR与SVM</h2><h2 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h2><p>如果y不是在[0,1]中取值，而是在K个类别中取值，这时问题就变为一个多分类问题。有两种方式可以出处理该类问题：一种是我们对每个类别训练一个二元分类器（One-vs-all），当K个类别不是互斥的时候，比如用户会购买哪种品类，这种方法是合适的。如果K个类别是<strong>互斥</strong>的，即y=i的时候意味着y不能取其他的值，比如用户的年龄段，这种情况下 Softmax 回归更合适一些。Softmax 回归是直接对逻辑回归在多分类的推广，相应的模型也可以叫做多元逻辑回归（Multinomial Logistic Regression）。模型通过 softmax函数来对概率建模，具体形式如下：<br>$$P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}}$$<br>其中决策函数为<br>$$y^* = argmax_i P(y=i|x,\theta)$$<br>损失函数为<br>$$J(\theta)=-\frac{1}{N} \sum_i^N \sum_j^K {1[y_i=j] \log{\frac{e^{\theta_i^T x}}{\sum {e^{\theta_k^T x}}}}}$$</p>
 <h2 id="LR优缺点"><a href="#LR优缺点" class="headerlink" title="LR优缺点"></a>LR优缺点</h2><ul>
 <li>优点<ul>
 <li>实现简单</li>
@@ -393,6 +405,7 @@ ga('send', 'pageview');
 <li><a href="http://lib.csdn.net/article/machinelearning/39601" target="_blank" rel="external">LR推导-指数族分布</a></li>
 <li><a href="http://blog.csdn.net/cyh_24/article/details/50359055" target="_blank" rel="external">Logistic Regression 的前世今生（理论篇）</a></li>
 <li><a href="http://www.52caml.com/head_first_ml/ml-chapter1-regression-family/#LR模型在工业界的应用" target="_blank" rel="external">深入浅出ML之Regression家族</a></li>
+<li><a href="http://xiaosheng.me/2017/04/13/article52/" target="_blank" rel="external">线性回归、Logistic 回归和感知机</a></li>
 </ul>
 
       
@@ -668,7 +681,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,39 +701,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">聚类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">方差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -732,15 +725,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -796,6 +805,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
               </li>
              
@@ -804,23 +817,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Recommand System</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">推荐系统实践</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -833,6 +842,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Economy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">方差</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">偏差</a>
               </li>
              
               <li class="article-tag-list-item">
