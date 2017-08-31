@@ -5424,7 +5424,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
     <link href="http://yoursite.com/2017/06/06/knn/"/>
     <id>http://yoursite.com/2017/06/06/knn/</id>
     <published>2017-06-06T12:12:28.000Z</published>
-    <updated>2017-08-13T03:22:28.872Z</updated>
+    <updated>2017-08-31T07:04:53.019Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -5551,7 +5551,7 @@ $$P(X=x|Y=c_k) = P(X^{(1)}=x^{(1)},…,X^{(n)}=x^{(n)}|Y=c_k)$$<br>然后根据�
 <li>若实例点随机分布，kd树搜索的平均计算复杂度是<em>O(log N)</em>，<em>N</em>为训练实例数</li>
 <li>kd树更适用于训练实例数远大于空间维数时的k近邻搜索</li>
 </ul>
-<p>关于这个算法的理解最好还是看书上的例子3.3，基本思路是一个重复二分查找和回溯的过程，另外关于kd树的搜索，有一篇很不错的文章，详见<a href="https://zhuanlan.zhihu.com/p/23966698" target="_blank" rel="external">kd树的细致图文讲解</a></p>
+<p>关于这个算法的理解最好还是看书上的例子3.3，基本思路是一个重复二分查找和回溯的过程，另外关于kd树的搜索，有一篇很不错的文章，详见<a href="https://zhuanlan.zhihu.com/p/23966698" target="_blank" rel="external">kd树的细致图文讲解</a>，不同于书上止步于最近邻的搜索，该文章图文并茂的讲解了使用kd树来寻找k近邻的算法，并用一个例子一步一步的解析，大概思想是用一个大顶堆来记录k个近邻，先找到最近邻，然后向上回溯地寻找次近邻，寻找过程中需要判断堆是否已满，当前实例点与输入实例点的距离与堆中最远距离的大小(是否需要更新堆)，以及输入实例点与当前实例点所在的分割超平面的距离与堆中最远距离的大小关系(判断是否需要进一步到另一分支寻找)</p>
 <h2 id="实现——机器学习实战"><a href="#实现——机器学习实战" class="headerlink" title="实现——机器学习实战"></a>实现——机器学习实战</h2><p>按照机器学习实战关于k-NN的章节实现了原始的k-NN分类器，并做了几个小实例：</p>
 <ul>
 <li>首先是一个基础的原理理解，对于二维空间的点按照坐标之间的距离进行分类，意图是理解k-NN的基本原理，即基于实例的学习算法，按照距离分类</li>

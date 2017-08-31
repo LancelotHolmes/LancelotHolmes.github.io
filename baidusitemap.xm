@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/06/knn/</loc>
+    <lastmod>2017-08-31T07:04:53.019Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(三) —— K近邻</title>
+        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>k-NN</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/30/cluster/</loc>
     <lastmod>2017-08-30T11:01:24.832Z</lastmod>
     <data>
@@ -232,29 +255,6 @@
         <tag>hadoop</tag>
          
         <tag>big data</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    <lastmod>2017-08-13T03:22:28.872Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(三) —— K近邻</title>
-        <pubTime>2017-06-06T12:12:28.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>k-NN</tag>
          
          
            
