@@ -4,8 +4,75 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/03/model-pre/</loc>
+    <lastmod>2017-09-03T12:44:23.546Z</lastmod>
+    <data>
+        <display>
+        <title>口述模型整理</title>
+        <pubTime>2017-09-03T06:54:04.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    <lastmod>2017-09-03T12:16:43.935Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(七) —— 支持向量机</title>
+        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>SVM</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
+    <lastmod>2017-09-03T08:33:32.761Z</lastmod>
+    <data>
+        <display>
+        <title>模型比较小记之boosting内战</title>
+        <pubTime>2017-08-02T07:06:18.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>机器学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/06/knn/</loc>
-    <lastmod>2017-08-31T07:04:53.019Z</lastmod>
+    <lastmod>2017-08-31T07:48:10.144Z</lastmod>
     <data>
         <display>
         <title>统计学习方法笔记(三) —— K近邻</title>
@@ -201,27 +268,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
-    <lastmod>2017-08-16T08:31:45.563Z</lastmod>
-    <data>
-        <display>
-        <title>模型比较小记之boosting内战</title>
-        <pubTime>2017-08-02T07:06:18.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>机器学习</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/08/15/recommend-in-action/</loc>
     <lastmod>2017-08-15T13:55:03.661Z</lastmod>
     <data>
@@ -324,29 +370,6 @@
         <tag>Random Forest</tag>
          
         <tag>机器学习技法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    <lastmod>2017-08-12T12:59:42.674Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(七) —— 支持向量机</title>
-        <pubTime>2017-07-12T09:11:48.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>SVM</tag>
          
          
            

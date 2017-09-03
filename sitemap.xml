@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/09/03/model-pre/</loc>
+    
+    <lastmod>2017-09-03T12:44:23.546Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/12/svm/</loc>
+    
+    <lastmod>2017-09-03T12:16:43.935Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
+    
+    <lastmod>2017-09-03T08:33:32.761Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/06/knn/</loc>
     
-    <lastmod>2017-08-31T07:04:53.019Z</lastmod>
+    <lastmod>2017-08-31T07:48:10.144Z</lastmod>
     
   </url>
   
@@ -65,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/02/model-cmp/</loc>
-    
-    <lastmod>2017-08-16T08:31:45.563Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2017/08/15/recommend-in-action/</loc>
     
     <lastmod>2017-08-15T13:55:03.661Z</lastmod>
@@ -103,13 +117,6 @@
     <loc>http://yoursite.com/2017/08/03/rf/</loc>
     
     <lastmod>2017-08-13T00:40:39.713Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/12/svm/</loc>
-    
-    <lastmod>2017-08-12T12:59:42.674Z</lastmod>
     
   </url>
   

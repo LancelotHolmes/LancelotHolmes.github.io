@@ -194,6 +194,243 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-model-pre" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/03/model-pre/">口述模型整理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/03/model-pre/" class="archive-article-date">
+  	<time datetime="2017-09-03T06:54:04.000Z" itemprop="datePublished">2017-09-03</time>
+  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
+      view <span id="busuanzi_value_page_pv"></span> times
+    </span>
+</a>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+      </header>
+    
+    
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+
+        <p><em>尝试整理描述一些模型</em></p>
+<blockquote>
+<ul>
+<li>算法要从以下几个方面来掌握<ul>
+<li>产生背景</li>
+<li>适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）；</li>
+<li>原理推导（最大间隔，软间隔，对偶）；</li>
+<li>求解方法（随机梯度下降、拟牛顿法等优化算法）；</li>
+<li>优缺点，相关改进；</li>
+<li>和其他基本方法的对比；</li>
+</ul>
+</li>
+<li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。</li>
+</ul>
+</blockquote>
+<h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
+<p>用线性回归模型的预测结果去逼近真实标记的对数几率</p>
+</blockquote>
+<ul>
+<li>对于二分类任务：其输出标记$y \in \lbrace 0,1 \rbrace$,而线性回归模型产生的预测值$f(x)=w\cdot x+b$是实值</li>
+<li>而根据广义线性模型的思想，可以通过寻找一个联系函数来将分类任务的真实标记与线性回归模型的预测值联系起来</li>
+<li>最直接的想法是使用单位阶跃函数，即<br>![step curve][3]</li>
+<li>但是单位阶跃函数不连续，所以我们希望找到一个替代函数来在一定程度上近似单位阶跃函数，并希望该函数单调可微，于是就引入了对数几率函数$$y=\frac{1}{1+e^{-z}}$$</li>
+<li>将对数几率函数作为$g^-(\cdot)$带入广义线性模型则有$$y=\frac{1}{1+e^{-(w \cdot x+b)}}$$</li>
+<li>其变形形式为$$ln\frac{y}{1-y}=w\cdot x+b$$,若将$y$视作样本$x$作为正例的可能性，则$1-y$是其作为反例的可能性，两者的比值$\frac{y}{1-y}$称为几率，反映了$x$作为正例的<strong>相对可能性</strong></li>
+</ul>
+<p>关于sigmoid的由来也可已通过推导的方式得到</p>
+<ul>
+<li>其一是假设输入样本的分布服从伯努利分布，而伯努利分布属于指数族分布，所以我们可以通过将用来进行模型参数估计的似然函数调整为服从指数族分布的表现形式就可以推导得到sigmoid函数</li>
+<li>其二则是根据最大熵模型导出，通过对模型的复杂度作出限制，根据模型未知时熵最大的模型最佳，来转化为最大熵的约束条件优化问题，然后通过拉格朗日对偶性求解得到</li>
+</ul>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点<ul>
+<li>判别模型：LR模型直接对分类可能性进行建模，无需事先假设数据分布，这样就避免了假设分布不准确所带来的问题</li>
+<li>预测概率：LR模型不是仅预测出类别，而是可得到近似概率预测，这对于许多需利用概率辅助决策的任务很有用</li>
+<li>凸函数：对数几率函数是任意阶可导的凸函数，有很好的数学性质，现有很多数值优化算法均可直接用于求取最优解</li>
+<li>效率：实现简单，分类时计算量非常小，速度快，存储资源低</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>容易欠拟合，一般准确度不太高</li>
+<li>原始的LR仅能处理二分类问题，且必须线性可分(衍生出的softmax可以用于多分类)    </li>
+</ul>
+</li>
+</ul>
+<h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><ul>
+<li>参数估计：应用<strong>极大似然估计法</strong>估计模型参数，从而将问题转化为以对数似然函数为目标函数的最优化问题，然后采用<strong>梯度下降法或者拟牛顿法</strong>进行求解</li>
+<li>损失函数：$$-\frac{1}{N}\sum_{i=1}^N[y_iln\pi(x_i)+(1-y_i)ln(1-\pi(x_i))]$$,最大对数似然函数与最小对数损失函数是等价的，对数似然函数表示为$$lnL(w)=\sum_{i=1}^N[y_iln\pi(x_i)+(1-y_i)ln(1-\pi(x_i))]$$</li>
+</ul>
+<h3 id="LR模型在工业界的应用"><a href="#LR模型在工业界的应用" class="headerlink" title="LR模型在工业界的应用"></a>LR模型在工业界的应用</h3><h4 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h4><ul>
+<li>预估问题场景（如推荐、广告系统中的点击率预估，转化率预估等）</li>
+<li><p>分类场景（如用户画像中的标签预测，判断内容是否具有商业价值，判断点击作弊等</p>
+<h4 id="LR适用上述场景的原因"><a href="#LR适用上述场景的原因" class="headerlink" title="LR适用上述场景的原因"></a>LR适用上述场景的原因</h4><p>LR模型自身的特点具备了应用广泛性</p>
+</li>
+<li><p>模型易用：LR模型建模思路清晰，容易理解与掌握；</p>
+</li>
+<li>概率结果：输出结果可以用概率解释（二项分布），天然的可用于结果预估问题上；</li>
+<li>强解释性：特征（向量）和标签之间通过线性累加与Sigmoid函数建立关联，参数的取值直接反应特征的强弱，具有强解释性；</li>
+<li>简单易用：有大量的机器学习开源工具包含LR模型，如sklearn、spark-mllib等，使用起来比较方便，能快速的搭建起一个learning task pipeline；</li>
+</ul>
+<h3 id="其他考点"><a href="#其他考点" class="headerlink" title="其他考点"></a>其他考点</h3><h4 id="横向对比与联系"><a href="#横向对比与联系" class="headerlink" title="横向对比与联系"></a>横向对比与联系</h4><ul>
+<li>LR与线性回归的联系与区别<br>逻辑回归和线性回归首先都可看做广义的线性回归，其次经典线性模型的优化目标函数是最小二乘，而逻辑回归则是似然函数，另外线性回归在整个实数域范围内进行预测，敏感度一致，而分类范围，需要在[0,1]。逻辑回归就是一种减小预测范围，将预测值限定为[0,1]间的一种回归模型，因而对于这类问题来说，逻辑回归的鲁棒性比线性回归的要好。</li>
+<li>LR与最大熵模型<br>逻辑回归跟最大熵模型没有本质区别。逻辑回归是最大熵对应类别为二类时的特殊情况，也就是当逻辑回归类别扩展到多类别时，就是最大熵模型。<ul>
+<li>指数簇分布的最大熵等价于其指数形式的最大似然。</li>
+<li>二项式分布的最大熵解等价于二项式指数形式(sigmoid)的最大似然； </li>
+<li>多项式分布的最大熵等价于多项式分布指数形式(softmax)的最大似然。</li>
+</ul>
+</li>
+<li>LR与感知机<ul>
+<li>相同点<ul>
+<li>都是线性分类模型，原始模型都只能处理二分类问题</li>
+<li>模型的形式相似(都是在线性模型外通过联系函数映射到另外的空间，只不过感知机是符号函数，LR是sigmoid(或者说Logistic)函数)</li>
+<li>训练方法都是使用梯度下降法</li>
+</ul>
+</li>
+<li>不同点<ul>
+<li>LR输出为仅是概率的值，而感知机输出为1/-1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="多分类-softmax"><a href="#多分类-softmax" class="headerlink" title="多分类-softmax"></a>多分类-softmax</h4><p>如果y不是在[0,1]中取值，而是在K个类别中取值，这时问题就变为一个多分类问题。有两种方式可以出处理该类问题：一种是我们对每个类别训练一个二元分类器（One-vs-all），当K个类别不是互斥的时候，比如用户会购买哪种品类，这种方法是合适的。如果K个类别是<strong>互斥</strong>的，即y=i的时候意味着y不能取其他的值，比如用户的年龄段，这种情况下 Softmax 回归更合适一些。Softmax 回归是直接对逻辑回归在多分类的推广，相应的模型也可以叫做多元逻辑回归（Multinomial Logistic Regression）。模型通过 softmax函数来对概率建模，具体形式如下：<br>$$P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}}$$<br>其中决策函数为<br>$$y^* = argmax_i P(y=i|x,\theta)$$<br>损失函数为<br>$$J(\theta)=-\frac{1}{N} \sum_i^N \sum_j^K {1[y_i=j] \log{\frac{e^{\theta_i^T x}}{\sum {e^{\theta_k^T x}}}}}$$</p>
+<h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><h4 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h4><h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>从感知机说开：首先SVM也是一种针对分类特别是二分类任务的模型，而关于SVM模型的原理可以先从感知机说起；感知机在处理一项二分类任务时，从几何的角度理解可以认为是试图在输入空间内找到一个可以将样本点按照类别分开的超平面，不过感知机是通过最小化误分类的样本点来完成这样操作，直观上理解就是将划分超平面往被错分的样本点方向移动直到越过误分类点完成正确分类，所以这种方式寻找到的分类超平面往往存在无穷多个(对于线性可分问题)；而支持向量机则不限于此，其目的不仅是找到一个可以将正反样例正确分类的超平面，它还试图将正反样例尽可能地分开，也就是说让样例点到分割超平面的距离尽可能大；所以相对而言，(线性可分)支持向量机可以理解为在感知机的基础上加了一层约束，及间隔最大化约束，使得训练得到的分离超平面是唯一的；<br>可以看看感知机和SVM的模型表达形式是一致的，只是SVM多了更强的约束条件<br>$$f(x)=sign(w^*\cdot x+b^*)$$</li>
+<li>那么如何使得样例点到分割超平面的距离最大化呢？首先我们需要找到距离分离超平面距离最近的点(即支持向量)，然后如果我们能最大化这些点到分离超平面的距离也就间接地最大化了所有数据集到分离超平面的距离；其次这个距离该如何衡量呢？定义函数间隔来衡量这一距离(通过点到平面的距离可以推导得出几何间隔)，$\widehat{\gamma}=min_{i=1,…,N}\widehat{\gamma_i}$，但是选择分离超平面时，仅有函数间隔是不够的，因为$w,b$可以成比例变化使得函数间隔为无穷大而不具备可比性，所以需要对$w$加约束，如规范化，令$||w||=1$，于是得到几何间隔$\gamma_i=y_i(\frac{w}{||w||}\cdot x_i+\frac{b}{||w||})$，因此问题就转化成了最大化样例点到分离超平面的几何间隔的约束最优化问题，也就是SVM的原始问题，可通过凸优化直接求解<br>$$max_{w,b}  \frac{\widehat{\gamma}}{||w||}$$<br>$$ s.t. 　y_i(w\cdot x_i+b) \geq \gamma 　i=1,2,…,N$$,N$$，其中$\widehat{\gamma}$即表示超平面关于数据集的函数间隔，是超平面关于数据集中的样本点的函数间隔$\widehat{\gamma_i}$的最小值<br>因为函数间隔并不会影响最优化问题的解，所以原问题等价于<br>$$min_{w,b}  \frac{1}{2}{||w||^2}$$<br>$$ s.t. 　y_i(w\cdot x_i+b) - 1\geq 0 　i=1,2,…,N$$</li>
+<li><p>对偶算法，但是上述使用间隔最大化方法求解分离超平面的方法计算效率并不高，所以人们通过引入拉格朗日乘子根据拉格朗日对偶性将问题转化为广义的拉格朗日极大极小问题，然后使用SMO等算法求解出模型的参数值</p>
+<blockquote>
+<p>转化为对偶问题的好处</p>
+<ul>
+<li>对偶问题往往更易求解：以前新来的要分类的样本首先根据$w$和$b$做一次线性运算，然后看求的结果是大于0还是小于0,来判断正例还是负例。现在有了$\alpha_i$，我们不需要求出$w$，只需将新来的样本和训练数据中的所有样本做内积和即可。那有人会说，与前面所有的样本都做运算是不是太耗时了？其实不然，我们从KKT条件中得到，只有支持向量的$\alpha_i&gt;0$，其他情况$\alpha_i=0$。因此，我们只需求新来的样本和支持向量的内积，然后运算即可。</li>
+<li>自然地引入了核函数</li>
+</ul>
+</blockquote>
+</li>
+<li><p>进一步的为了使模型能够解决非线性分类问题，人们引入了核函数，那么核函数是什么，为什么能解决非线性问题？<br>首先我们的目的是使用一个线性分类方法来求解非线性分类问题，而用线性分类方法求解非线性分类问题分为两步：</p>
+<ul>
+<li>首先使用一个变换将原空间的数据映射到新空间；</li>
+<li>在新空间里用线性分类学习方法从训练数据中学习分类模型；核技巧就属于这样的方法</li>
+</ul>
+</li>
+<li>核技巧<ul>
+<li>核技巧应用到支持向量机，其基本想法是通过一个非线性变换将输入空间（欧式空间或离散集合）对应于一个特征空间（希尔伯特空间），使得在输入空间中的<strong>超曲面模型</strong>对应于特征空间中的<strong>超平面模型(支持向量机)</strong>；这样分类问题的学习任务通过在特征空间中求解线性支持向量机就可以完成了</li>
+<li>核技巧：在核函数给定的条件下，可利用解线性分类问题的方法求解非线性分类问题的支持向量机；学习是隐式地在特征空间进行的，不需要显式地定义特征空间和映射函数</li>
+<li>实际应用中，常依赖于领域知识直接选择核函数，其有效性通过实验验证</li>
+</ul>
+</li>
+</ul>
+<p>个人理解是对输入数据做了一个映射操作(输入空间–&gt;特征空间)，使得原本线性不可分的样例点现在线性可分了，这样就可以直接使用SVM求解线性可分问题的方法来解决原本线性不可分的问题</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h4 id="拉格朗日对偶性的KKT条件"><a href="#拉格朗日对偶性的KKT条件" class="headerlink" title="拉格朗日对偶性的KKT条件"></a>拉格朗日对偶性的KKT条件</h4><p><a href="https://zhuanlan.zhihu.com/p/26514613" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/26514613</a></p>
+<h2 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h2><ul>
+<li>优点<br>可实现非线性分类、可用于分类与回归，低泛化误差，易解释</li>
+<li>缺点<br>对核函数及参数敏感</li>
+</ul>
+<h2 id="训练方法"><a href="#训练方法" class="headerlink" title="训练方法"></a>训练方法</h2><h3 id="SMO算法-如何理解以及为什么高效？"><a href="#SMO算法-如何理解以及为什么高效？" class="headerlink" title="SMO算法(如何理解以及为什么高效？)"></a>SMO算法(如何理解以及为什么高效？)</h3><blockquote>
+<p>SMO算法是支持向量机学习的一种快速算法，其特点是不断的将原二次规划问题分解为只有两个变量的二次规划问题，并对子问题进行解析求解，直到所有变量满足KKT条件为止，这样通过启发式的方法得到原二次规划问题的最优解，<strong>因为子问题有解析解，所以每次计算子问题都很快，虽然计算子问题次数很多，但在总体上还是高效的</strong></p>
+</blockquote>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>等价于合页损失函数</p>
+<h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>软间隔/线性支持向量机的原始问题可以等价于添加了正则化项的合页损失函数，即最小化以下目标函数<br>$$min_{w,b}  \sum_{i=1}^{N}[1-y_i(w\cdot x_i+b)]_++\lambda ||w||^2$$</p>
+<ul>
+<li>第一项为合页损失函数$L(y(w\cdot x+b))=[1-y_i(w\cdot x_i+b)]_+$,一般对于函数$[z]_+$有：<br>$$[z]_+=z      if         z&gt;0$$<br>$$[z]_+=0      if         z\leq 0$$<br>所以原式表明当样本点$x_i,y_i$被正确分类且<strong>函数间隔(确信度)</strong>$y_i(w\cdot x_i+b)$大于1时损失为0，否则损失是$1-y_i(w\cdot x_i+b)$</li>
+<li>第二项为正则化项，是系数为$\lambda$的$w$的$L_2$范数</li>
+<li>对比线性支持向量机的目标函数可以发现合页损失函数的第一项等价为惩罚项(正则项)，而第二项则等价于“分离超平面的参数项”</li>
+</ul>
+<p><strong>线性支持向量机的原始最优化问题与上述目标函数的最优化问题是等价的</strong></p>
+<h3 id="为什么使用合页损失函数？"><a href="#为什么使用合页损失函数？" class="headerlink" title="为什么使用合页损失函数？"></a>为什么使用合页损失函数？</h3><ul>
+<li>由于0-1损失函数不是连续可导的，直接优化由其构成的目标损失函数比较困难，所以对于svm而言，可以认为是在优化由0-1损失函数的上界(合页损失函数)构成的目标函数，又称为<strong>代理损失函数</strong></li>
+<li>合页损失函数对学习有更高的要求</li>
+<li>常用替代损失函数，通常具有较好的数学性质，比如凸的连续函数且是0/1损失函数的上界</li>
+</ul>
+<h2 id="常见工业应用场景"><a href="#常见工业应用场景" class="headerlink" title="常见工业应用场景"></a>常见工业应用场景</h2><p>将支持向量机改进的聚类算法被称为支持向量聚类，当数据未被标记或者仅一些数据被标记时，支持向量聚类经常在工业应用中用作分类步骤的预处理。</p>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><h3 id="原理及推导"><a href="#原理及推导" class="headerlink" title="原理及推导"></a>原理及推导</h3><p>从三个方面来分解讲解，其一是boosting，其二是梯度上升，其三则是决策树<br>关于这三点，个人感觉从加法模型的前向分步算法来理解比较好，首先前向分步算法提供了一种学习加法模型的普遍性方法，不同形式的基函数、不同形式的损失函数都可以用这种普遍性方法去求出加法模型的最优化参数；而对于boosting而言，基本思想是训练一系列的弱学习器，每一个学习器修正前一个基学习器的错误，最终得到的一个整体的学习器就是我们的集成模型，而我们在每一轮训练一个基学习器并将其累加到当前的集成学习器的过程刚好符合前向分步算法的思想；如果将其形式化为加法模型地表示形式就是一系列基学习器加权和的形式，而我们的目的是要求得最小化训练损失函数的基学习器以及该学习器的权重值；</p>
+<ul>
+<li>这个时候就要用到梯度上升的思想了，我们可以将训练损失函数对当前集成学习函数进行泰勒一阶展开，基学习器的权重值为正，因此当我们假设基学习器的值为损失函数关于当前集成模型的响应(负梯度值)时后面一项为负，即可实现损失函数的降低，而另基学习器为当前集成模型的响应(负梯度值)也恰好给我们学习怎样的基学习器提供了思路，所以基学习器的学习也就转化成一个拟合响应值的<strong>回归问题</strong>(这也就是为什么使用回归树而不是分类树的原因)，而一旦确定了基学习器，对于其权重的确定就是一个线性搜索的过程(而这一过程又体现了机器学习中先局部后整体的思想，即先做局部优化再做整体优化，可类比决策树的生成和剪枝)<br><img src="/materials/img/model_pre/gbdt.jpg" alt="gbdt"></li>
+<li>对于GBDT而言，具体的实现boosting这一思想是通过梯度上升的方法，这里可以稍微和AdaBoost进行一个对比，最开始完成boosting思想的实现的学习器是AdaBoost,而这个分类器的boosting思想是通过调整每一轮用于训练基学习器的训练集样本权重分布，使得上一轮基学习器分类错误的样本在这一轮赋予更高权重使其受到更多关注来实现的；而GBDT则是通过梯度上升的方式来实现这一思想，使得损失函数泛化成更一般的损失函数，具体的做法是每一轮根据预设的损失函数关于当前集成模型的响应来训练基学习器，这里也就用到了梯度上升的思想，因为对于损失函数而言，在梯度方向的变化是最快的；</li>
+<li>然后就是GBDT里面使用的基学习器一般是决策树准确的说是回归树，因为在使用GBDT做分类时，我们每一步拟合响应用来与损失函数作比较的是一个可加的实数值，这样可以将当前学习到的基学习器的输出结果累加到当前的集成模型上，这样一步一步训练降低误差并逼近真实的样本标记</li>
+</ul>
+<h3 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>优点：它的非线性变换比较多，表达能力强，而且不需要做复杂的特征工程和特征变换。</li>
+<li>缺点:Boost是一个串行过程，不好并行化，而且计算复杂度高，同时不太适合高维稀疏特征。</li>
+</ul>
+<h3 id="模型训练-1"><a href="#模型训练-1" class="headerlink" title="模型训练"></a>模型训练</h3><ul>
+<li>每一轮根据响应来训练一棵回归树，所以GBDT的训练实际上是多棵决策树的训练，每一轮先计算设定的损失函数关于当前的集成模型的响应，然后通过拟合响应来训练回归树，这里树的生成过程中，原始的CART回归树是逐个遍历某特征的所有特征值作为切分点选择平方误差最小的切分点作为切分</li>
+<li>得到该轮的回归树后通过线性搜索的方式来进一步最小化集成模型与回归树的加权和与真实标记的误差来确定回归树的权重(步长)，这样就确定了该轮学得的集成模型</li>
+<li>终止条件是基学习器数目达到预设的值</li>
+</ul>
+<h3 id="工业应用"><a href="#工业应用" class="headerlink" title="工业应用"></a>工业应用</h3><ul>
+<li>CTR预估(广告点击率预估)：CTR预估中应用得最多的模型是LR，LR属于线性模型，容易并行化，但是线性模型的学习能力有限，需要大量的特征工程去预先分析出有效的特征、特征组合从而间接的增强LR的非线性学习能力(是不是想到了神经网络的输出层与隐层的关系)，Facebook于2014年的文章介绍通过使用GBDT来解决LR特征组合的问题，而随后Kaggle竞赛也有时间类似思路使用GBDT+FM，主要原因是GBDT可以发现多种有区分性的特征及特征组合，决策树的路径可以直接作为LR的输入特征使用，省去了人工寻找特征、特征组合的步骤</li>
+</ul>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="决策树的损失函数"><a href="#决策树的损失函数" class="headerlink" title="决策树的损失函数"></a>决策树的损失函数</h3><p>对数似然损失</p>
+<p>参考</p>
+<ul>
+<li><a href="https://wenku.baidu.com/view/72a04aa501f69e3142329479.html" target="_blank" rel="external">百度文库</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/03/model-pre/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-cluster" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -521,87 +758,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-hadoop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/hadoop/">hadoop小记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/14/hadoop/" class="archive-article-date">
-  	<time datetime="2017-08-14T13:00:37.000Z" itemprop="datePublished">2017-08-14</time>
-  	<span id="busuanzi_container_page_pv" style="color:DarkGray">
-      view <span id="busuanzi_value_page_pv"></span> times
-    </span>
-</a>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-        
-      </header>
-    
-    
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Hadoop是一种开源框架，通过这一框架可以在由不同的主机的集群所构成的分布式环境上使用简单的编程模型来存储和处理大数据。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/14/hadoop/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">big data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/14/hadoop/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -747,6 +903,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
@@ -771,35 +935,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">聚类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CV</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -811,11 +947,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+                <a href="javascript:void(0)" class="js-tag color3">Reading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">model selection</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -827,7 +983,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">big data</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,18 +1011,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">big data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">memo</a>
               </li>
              
@@ -864,6 +1020,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hyperparameter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">推荐系统实践</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -879,11 +1043,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -892,18 +1060,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Big Data</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">推荐系统实践</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Novel</a>
               </li>
              
               <li class="article-tag-list-item">
