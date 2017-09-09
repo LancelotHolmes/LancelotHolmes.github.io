@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-03T12:44:23.546Z</updated>
+  <updated>2017-09-09T13:54:14.448Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/09/03/model-pre/"/>
     <id>http://yoursite.com/2017/09/03/model-pre/</id>
     <published>2017-09-03T06:54:04.000Z</published>
-    <updated>2017-09-03T12:44:23.546Z</updated>
+    <updated>2017-09-09T13:54:14.448Z</updated>
     
     <content type="html"><![CDATA[<p><em>尝试整理描述一些模型</em></p>
 <blockquote>
@@ -37,6 +37,7 @@
 <li>不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。</li>
 </ul>
 </blockquote>
+<a id="more"></a>
 <h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
 <p>用线性回归模型的预测结果去逼近真实标记的对数几率</p>
 </blockquote>
@@ -186,7 +187,15 @@
 &lt;li&gt;算法要从以下几个方面来掌握&lt;ul&gt;
 &lt;li&gt;产生背景&lt;/li&gt;
 &lt;li&gt;适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）；&lt;/li&gt;
-&lt;li&gt;原理
+&lt;li&gt;原理推导（最大间隔，软间隔，对偶）；&lt;/li&gt;
+&lt;li&gt;求解方法（随机梯度下降、拟牛顿法等优化算法）；&lt;/li&gt;
+&lt;li&gt;优缺点，相关改进；&lt;/li&gt;
+&lt;li&gt;和其他基本方法的对比；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试官输出自己知识的过程，如果仅仅是在面试现场才开始调动知识、组织表达，总还是不如系统的梳理准备；从面试官的角度多问自己一些问题，通过查找资料总结出全面的解答，比如如何预防或克服过拟合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -2311,7 +2320,7 @@
     <link href="http://yoursite.com/2017/07/08/ml-job/"/>
     <id>http://yoursite.com/2017/07/08/ml-job/</id>
     <published>2017-07-08T10:47:00.000Z</published>
-    <updated>2017-08-29T06:47:51.148Z</updated>
+    <updated>2017-09-06T11:21:55.109Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -2380,6 +2389,10 @@
 <li>生成与判别模型</li>
 <li>ROC-AUC<ul>
 <li><a href="http://www.tuicool.com/articles/q6zYrq" target="_blank" rel="external">链接</a></li>
+<li>为什么roc曲线不随正负样例比变化而变化，而类似的precision-recall曲线却会变化？<ul>
+<li>可画出混淆矩阵根据不同值的定义(横纵坐标)，分别对比将负例扩大到K倍或者将正例减小到M倍前后参数是否发生变化推算出来(N=TN+FP,P=TP+FN)</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>深度学习和机器学习的区别</li>
@@ -5023,7 +5036,7 @@ No. of dup:  0
     <link href="http://yoursite.com/2017/06/19/Decision-Tree/"/>
     <id>http://yoursite.com/2017/06/19/Decision-Tree/</id>
     <published>2017-06-19T08:41:25.000Z</published>
-    <updated>2017-08-02T10:35:42.607Z</updated>
+    <updated>2017-09-09T13:53:56.656Z</updated>
     
     <content type="html"><![CDATA[<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
@@ -5248,7 +5261,8 @@ No. of dup:  0
 <h2 id="决策树算法对比"><a href="#决策树算法对比" class="headerlink" title="决策树算法对比"></a>决策树算法对比</h2><p>如果按照特征选择、决策树生成和决策树剪枝三个步骤来比较的话</p>
 <ul>
 <li>在特征选择上，三个决策树算法的选择标准都不一样：ID3(信息增益)、C4.5(信息增益比)、CART(分类：基尼指数，回归：最小二乘法)；此外就分类而言，ID3和C4.5分别是选择是信息增益、信息增益比最大的特征而CART则选择基尼指数最小的特征；</li>
-<li>在决策树生成时：三者的终止条件大致类似（预设阈值、特征集合非空等），但是ID3和C4.5生成过程中是根据每一个特征值来生成一个对应子树，而CART则是根据特征值是否等于选定的特征值来进行二分（回归中则是根据大于小于某选定值划分区域）；也就是说前两者是树，而CART是二叉树（而这也大概决定了为什么原始的CART可以用来做回归，而前两者不行）</li>
+<li>ID3、C4.5每次选择特征并进行分支后便不再使用该特征，而CART则不同，因为CART每次是具体到选择某一特征的某一切分值，所以会存在特征的复用情况(当然是用过的特征值就不再使用了)</li>
+<li>在决策树生成时：三者的终止条件大致类似（预设阈值(叶节点中的样本数的阈值以及信息增益、基尼指数的阈值)、特征集合非空等），但是ID3和C4.5生成过程中是根据每一个特征值来生成一个对应子树，而CART则是根据特征值是否等于选定的特征值来进行二分（回归中则是根据大于小于某选定值划分区域）；也就是说前两者是树，而CART是二叉树（而这也大概决定了为什么原始的CART可以用来做回归，而前两者不行）；</li>
 <li>决策树剪枝方面：标准都是判断决策树整体的损失函数（预测误差+正则化项（模型复杂度））；不同的是，ID3,C4.5是局部的对比叶节点删除前后的损失来决定是否剪枝，而CART则是自下而上从最复杂的完整二叉树一直剪枝到最简单的单节点决策树得到一系列决策树，并最后在验证集上验证选择其中最佳的决策树（每次剪枝为了保证最后得到的决策树序列尽可能完备，每次选择前后损失函数减少最小的一种剪枝策略）</li>
 </ul>
 <h2 id="决策树生成算法ID3的实现"><a href="#决策树生成算法ID3的实现" class="headerlink" title="决策树生成算法ID3的实现"></a>决策树生成算法ID3的实现</h2><p>按照机器学习实战第三章节的内容实现了简单的ID3算法</p>

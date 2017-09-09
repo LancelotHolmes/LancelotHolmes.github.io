@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/09/03/model-pre/</loc>
-    <lastmod>2017-09-03T12:44:23.546Z</lastmod>
+    <lastmod>2017-09-09T13:54:14.448Z</lastmod>
     <data>
         <display>
         <title>口述模型整理</title>
@@ -18,6 +18,50 @@
         <tag>校招</tag>
          
         <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
+    <lastmod>2017-09-09T13:53:56.656Z</lastmod>
+    <data>
+        <display>
+        <title>统计学习方法笔记(五) —— 决策树</title>
+        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>decision tree</tag>
+         
+        <tag>统计学习方法</tag>
+         
+        <tag>Note</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
+    <lastmod>2017-09-06T11:21:55.109Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习校招常考知识点小记</title>
+        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>offer</tag>
          
          
            
@@ -171,27 +215,6 @@
         <tag>Note</tag>
          
         <tag>LR</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/07/08/ml-job/</loc>
-    <lastmod>2017-08-29T06:47:51.148Z</lastmod>
-    <data>
-        <display>
-        <title>机器学习校招常考知识点小记</title>
-        <pubTime>2017-07-08T10:47:00.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>offer</tag>
          
          
            
@@ -460,29 +483,6 @@
         <tag>方差</tag>
          
         <tag>偏差</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/19/Decision-Tree/</loc>
-    <lastmod>2017-08-02T10:35:42.607Z</lastmod>
-    <data>
-        <display>
-        <title>统计学习方法笔记(五) —— 决策树</title>
-        <pubTime>2017-06-19T08:41:25.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>decision tree</tag>
-         
-        <tag>统计学习方法</tag>
-         
-        <tag>Note</tag>
          
          
            
