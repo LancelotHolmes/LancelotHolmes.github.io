@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
+    
+    <lastmod>2017-09-11T04:38:21.247Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/09/03/model-pre/</loc>
     
     <lastmod>2017-09-09T13:54:14.448Z</lastmod>
@@ -131,13 +138,6 @@
     <loc>http://yoursite.com/2017/06/02/Note-StatisticalML/</loc>
     
     <lastmod>2017-08-11T07:22:00.807Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    
-    <lastmod>2017-08-08T02:33:07.412Z</lastmod>
     
   </url>
   
