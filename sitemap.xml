@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/09/12/Note-sklearn/</loc>
+    
+    <lastmod>2017-09-12T09:18:56.637Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
     
-    <lastmod>2017-09-11T04:38:21.247Z</lastmod>
+    <lastmod>2017-09-11T08:05:44.508Z</lastmod>
     
   </url>
   

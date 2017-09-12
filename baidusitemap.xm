@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/12/Note-sklearn/</loc>
+    <lastmod>2017-09-12T09:18:56.637Z</lastmod>
+    <data>
+        <display>
+        <title>sklearn、XGBoost、LightGBM的文档阅读小记</title>
+        <pubTime>2017-09-12T09:15:59.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
-    <lastmod>2017-09-11T04:38:21.247Z</lastmod>
+    <lastmod>2017-09-11T08:05:44.508Z</lastmod>
     <data>
         <display>
         <title>基础算法小记</title>
@@ -13,11 +36,11 @@
         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
-         
         <tag>校招</tag>
          
         <tag>面试</tag>
+         
+        <tag>algorithm</tag>
          
         <tag>Coding</tag>
          
@@ -526,11 +549,11 @@
         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
-         
         <tag>校招</tag>
          
         <tag>面试</tag>
+         
+        <tag>algorithm</tag>
          
         <tag>Coding</tag>
          
