@@ -3,6 +3,87 @@
   
     
     <entry>
+      <title><![CDATA[l1、l2正则化小记]]></title>
+      <url>/2017/09/15/l1-l2/</url>
+      <content type="html"><![CDATA[<h2 id="为什么要进行正则化？"><a href="#为什么要进行正则化？" class="headerlink" title="为什么要进行正则化？"></a>为什么要进行正则化？</h2><ul>
+<li>最小化误差<ul>
+<li>训练误差</li>
+<li>测试误差–&gt;泛化能力</li>
+</ul>
+</li>
+<li>训练误差与正则项<ul>
+<li>最小化训练误差–&gt;使模型能拟合训练数据</li>
+<li>正则化–&gt;防止模型过拟合训练数据，此外规则项的使用可以将人对模型的先验知识融入到模型的学习中</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="理解角度"><a href="#理解角度" class="headerlink" title="理解角度"></a>理解角度</h2><ul>
+<li>奥卡姆剃刀——在所有可能选择的模型中，我们应该选择能够很好的解释已知数据并且十分简单的模型</li>
+<li>贝叶斯估计——规则化项对应于模型的先验概率</li>
+<li>结构风险最小化——规则化项是结构风险最小化策略的实现，即在经验风险上加一个正则化项或惩罚项</li>
+</ul>
+<p>目标函数：$$w^*=argmin_w\sum_iL(y_i,f(x_i;w))+\lambda\Omega(w)$$</p>
+<ul>
+<li>第一项对应模型的训练损失函数<ul>
+<li>平方误差–&gt;最小二乘</li>
+<li>合页损失–&gt;SVM</li>
+<li>指数损失–&gt;AdaBoost</li>
+<li>对数损失–&gt;LR</li>
+</ul>
+</li>
+<li>第二项对应模型的正则化项(一般是模型复杂度的单调递增函数)<ul>
+<li>模型参数向量的范数，不同的选择对参数的约束不同，取得的效果也不同</li>
+</ul>
+</li>
+</ul>
+<h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><h3 id="L0、L1范数"><a href="#L0、L1范数" class="headerlink" title="L0、L1范数"></a>L0、L1范数</h3><ul>
+<li>L0范数：向量中非0的元素的个数，若使用L0范数来规则化一个参数矩阵，就是希望其中大部分元素都是0，即让其稀疏(但实际操作中常常使用L1范数来实现)</li>
+<li>L1范数：向量中各个元素绝对值之和，稀疏规则算子(Lasso regularization)</li>
+</ul>
+<h4 id="为什么L1范数会使权值稀疏？"><a href="#为什么L1范数会使权值稀疏？" class="headerlink" title="为什么L1范数会使权值稀疏？"></a>为什么L1范数会使权值稀疏？</h4><ul>
+<li>L1范数是L0范数的最优凸近似</li>
+<li>任何的规则化算子，若他在参数$w_i=0$的地方不可微，并且可以分解为一个“求和”的形式，那么这个规则化算子就可以实现稀疏</li>
+</ul>
+<h4 id="为什么不用L0而用L1"><a href="#为什么不用L0而用L1" class="headerlink" title="为什么不用L0而用L1?"></a>为什么不用L0而用L1?</h4><p>L0范数难以优化求解，L1范数是L0范数的最优凸近似，且比L0范数更易优化求解</p>
+<h4 id="为什么要对参数进行稀疏处理？"><a href="#为什么要对参数进行稀疏处理？" class="headerlink" title="为什么要对参数进行稀疏处理？"></a>为什么要对参数进行稀疏处理？</h4><ul>
+<li>实现特征的自动选择：大部分特征可能与输出是没有关系的，在训练数据中考虑这些额外特征可能会获得较小的训练误差，但是在实际对未知样本做出预测时，这些学得的无关信息反而会造成干扰，而稀疏规则化算子的引入可以学习地去掉这些实际无关的特征，即将这些特征的权重置为0</li>
+<li>可解释性：特征筛选后，数目下降易于做出解释</li>
+</ul>
+<h3 id="L1-vs-L2范数"><a href="#L1-vs-L2范数" class="headerlink" title="L1 vs. L2范数"></a>L1 vs. L2范数</h3><ul>
+<li>L2范数：对向量各元素求平方和然后取平方根，岭回归(Ridge Regression)、权值衰减(weight decay)，防止过拟合</li>
+</ul>
+<h4 id="为什么L2范数能够防止过拟合？"><a href="#为什么L2范数能够防止过拟合？" class="headerlink" title="为什么L2范数能够防止过拟合？"></a>为什么L2范数能够防止过拟合？</h4><p>通过L2范数的规则项最小来使参数值都较小、甚至趋于0(但不会为0)，模型参数值越小则对应的特征对于模型的影响就比较小，这样相当于对这部分无关特征做了一个惩罚，即使他们的值波动比较大，受限于参数值很小，也不会对模型的输出结果造成太大影响，也就使得模型不会习得这部分特征而发生过拟合</p>
+<h4 id="L2范数的好处"><a href="#L2范数的好处" class="headerlink" title="L2范数的好处"></a>L2范数的好处</h4><ul>
+<li>学习理论的角度：可以防止过拟合，提升模型的泛化能力</li>
+<li>优化、数值计算的角度：L2范数能够让我们的优化求解变得稳定和快速，有助于处理condition number不好的情况下矩阵求逆很困难的问题</li>
+</ul>
+<p>此外关于为什么L1范数相对于L2范数能产生稀疏性可结合图形来体会<br><img src="https://i.loli.net/2017/09/15/59bb79ed301e2.png" alt="l1_l2.png"><br><img src="https://i.loli.net/2017/09/15/59bb79ee12494.jpg" alt="l1_l2_2.jpg"><br>表示特征、参数为2时正则化函数与模型目标函数等高线的图形，两个曲线首次相交的地方就是最优解；而由图可以看到，L1首次相交的位置出现在角的地方的可能性更大，所以产生稀疏解；而L2则不会；</p>
+<p><em>Notes:一句话总结：L1会趋向于产生少量的特征，而其他的特征都是0，而L2会选择更多的特征，这些特征都会接近于0。Lasso在特征选择时候非常有用，而Ridge就只是一种规则化而已。</em></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/24971995" target="_blank" rel="external">http://blog.csdn.net/zouxy09/article/details/24971995</a></li>
+<li><a href="https://davidrosenberg.github.io/ml2015/docs/2b.L1L2-regularization.pdf" target="_blank" rel="external">https://davidrosenberg.github.io/ml2015/docs/2b.L1L2-regularization.pdf</a></li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> ML </tag>
+            
+            <tag> Note </tag>
+            
+            <tag> 面试 </tag>
+            
+            <tag> 正则化 </tag>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[sklearn、XGBoost、LightGBM的文档阅读小记]]></title>
       <url>/2017/09/12/Note-sklearn/</url>
       <content type="html"><![CDATA[<p>本文主要是针对sklearn,XGBoost,LightGBM的官方文档阅读的一些整理，主要针对sklearn的集成方法、以及gbdt族模型的具体实现差异以及各个模型的重要参数、特点做了一个整理<br><a id="more"></a></p>
@@ -2202,11 +2283,11 @@
             
             <tag> Note </tag>
             
+            <tag> algorithm </tag>
+            
             <tag> 校招 </tag>
             
             <tag> 面试 </tag>
-            
-            <tag> algorithm </tag>
             
             <tag> Coding </tag>
             
@@ -2660,9 +2741,9 @@
             
             <tag> Note </tag>
             
-            <tag> LR </tag>
-            
             <tag> 机器学习 </tag>
+            
+            <tag> LR </tag>
             
         </tags>
         
@@ -4316,11 +4397,11 @@
             
             <tag> Note </tag>
             
+            <tag> algorithm </tag>
+            
             <tag> 校招 </tag>
             
             <tag> 面试 </tag>
-            
-            <tag> algorithm </tag>
             
             <tag> Coding </tag>
             

@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/15/l1-l2/</loc>
+    <lastmod>2017-09-15T07:15:40.163Z</lastmod>
+    <data>
+        <display>
+        <title>l1、l2正则化小记</title>
+        <pubTime>2017-09-15T07:09:01.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>正则化</tag>
+         
+        <tag>机器学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/12/Note-sklearn/</loc>
     <lastmod>2017-09-12T09:18:56.637Z</lastmod>
     <data>
@@ -36,11 +61,11 @@
         
         <tag>Note</tag>
          
+        <tag>algorithm</tag>
+         
         <tag>校招</tag>
          
         <tag>面试</tag>
-         
-        <tag>algorithm</tag>
          
         <tag>Coding</tag>
          
@@ -549,11 +574,11 @@
         
         <tag>Note</tag>
          
+        <tag>algorithm</tag>
+         
         <tag>校招</tag>
          
         <tag>面试</tag>
-         
-        <tag>algorithm</tag>
          
         <tag>Coding</tag>
          
@@ -668,9 +693,9 @@
          
         <tag>Note</tag>
          
-        <tag>LR</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>LR</tag>
          
          
            
