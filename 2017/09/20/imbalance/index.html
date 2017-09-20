@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: IT | Lancelot&#39;s Desert</title>
+  <title>不平衡问题小计 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东南大学15级，研究方向为机器学习、数据挖掘">
-<meta name="keywords" content="机器学习，数据挖掘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lancelot&#39;s Desert">
-<meta property="og:url" content="http://yoursite.com/tags/IT/index.html">
+  <meta name="description" content="概述定义 不平衡分类问题，是指训练样本数量在类间分布不平衡的模式分类问题，具体的说就是某些类的样本数量远远少于其他类。">
+<meta name="keywords" content="ML,Note,面试,正则化,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不平衡问题小计">
+<meta property="og:url" content="http://yoursite.com/2017/09/20/imbalance/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta property="og:description" content="概述定义 不平衡分类问题，是指训练样本数量在类间分布不平衡的模式分类问题，具体的说就是某些类的样本数量远远少于其他类。">
+<meta property="og:updated_time" content="2017-09-20T05:47:05.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lancelot&#39;s Desert">
-<meta name="twitter:description" content="东南大学15级，研究方向为机器学习、数据挖掘">
+<meta name="twitter:title" content="不平衡问题小计">
+<meta name="twitter:description" content="概述定义 不平衡分类问题，是指训练样本数量在类间分布不平衡的模式分类问题，具体的说就是某些类的样本数量远远少于其他类。">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -192,69 +193,335 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-imbalance" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      不平衡问题小计
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/30/computer-life/" class="archive-article-date">
-  	<time datetime="2017-05-30T11:57:01.000Z" itemprop="datePublished">2017-05-30</time>
+
+        
+        <a href="/2017/09/20/imbalance/" class="archive-article-date">
+  	<time datetime="2017-09-20T02:12:24.000Z" itemprop="datePublished">2017-09-20</time>
   	<span id="busuanzi_container_page_pv" style="color:DarkGray">
       view <span id="busuanzi_value_page_pv"></span> times
     </span>
 </a>
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/30/computer-life/">计算机与生活</a>
-    </h1>
-  
+        
+      </header>
+    
+    
+    <!-- 目录内容 -->
 
-        <div class="article-info info-on-right">
-          
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传统机器学习算法的挑战"><span class="toc-number">1.2.</span> <span class="toc-text">传统机器学习算法的挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不平衡分类问题产生原因"><span class="toc-number">1.3.</span> <span class="toc-text">不平衡分类问题产生原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不平衡分类问题的特征和挑战"><span class="toc-number">2.</span> <span class="toc-text">不平衡分类问题的特征和挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据稀缺问题"><span class="toc-number">2.1.</span> <span class="toc-text">数据稀缺问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#噪声问题"><span class="toc-number">2.2.</span> <span class="toc-text">噪声问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策面偏移问题"><span class="toc-number">2.3.</span> <span class="toc-text">决策面偏移问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于特征空间决策面进行类别划分的分类器"><span class="toc-number">2.3.1.</span> <span class="toc-text">基于特征空间决策面进行类别划分的分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于概率估计的分类器"><span class="toc-number">2.3.2.</span> <span class="toc-text">基于概率估计的分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于规则的分类器"><span class="toc-number">2.3.3.</span> <span class="toc-text">基于规则的分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评测指标问题"><span class="toc-number">2.3.4.</span> <span class="toc-text">评测指标问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不平衡分类问题的解决方案"><span class="toc-number">3.</span> <span class="toc-text">不平衡分类问题的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#针对训练集"><span class="toc-number">3.1.</span> <span class="toc-text">针对训练集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重采样-re-sampling"><span class="toc-number">3.1.1.</span> <span class="toc-text">重采样(re-sampling)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#上采样"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">上采样</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#下采样"><span class="toc-number">3.1.1.2.</span> <span class="toc-text">下采样</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#上采样-下采样"><span class="toc-number">3.1.1.3.</span> <span class="toc-text">上采样+下采样</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#重采样方法的不足"><span class="toc-number">3.1.1.4.</span> <span class="toc-text">重采样方法的不足</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新划分训练集"><span class="toc-number">3.1.2.</span> <span class="toc-text">重新划分训练集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#划分平衡的子训练集-元学习器集成"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">划分平衡的子训练集+元学习器集成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#最小最大化集成规则"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">最小最大化集成规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#“部分对部分”-part-vs-part-任务分解策略"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">“部分对部分”(part vs.part)任务分解策略.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#针对学习算法"><span class="toc-number">3.2.</span> <span class="toc-text">针对学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分类器集成方法"><span class="toc-number">3.2.1.</span> <span class="toc-text">分类器集成方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#投票法"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">投票法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代价敏感学习方法"><span class="toc-number">3.2.2.</span> <span class="toc-text">代价敏感学习方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择方法-更多的应用于自然语言处理领域"><span class="toc-number">3.2.3.</span> <span class="toc-text">特征选择方法(更多的应用于自然语言处理领域)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方法"><span class="toc-number">3.3.</span> <span class="toc-text">其他方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类器评价指标"><span class="toc-number">4.</span> <span class="toc-text">分类器评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+      
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+                       
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传统机器学习算法的挑战"><span class="toc-number">1.2.</span> <span class="toc-text">传统机器学习算法的挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不平衡分类问题产生原因"><span class="toc-number">1.3.</span> <span class="toc-text">不平衡分类问题产生原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不平衡分类问题的特征和挑战"><span class="toc-number">2.</span> <span class="toc-text">不平衡分类问题的特征和挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据稀缺问题"><span class="toc-number">2.1.</span> <span class="toc-text">数据稀缺问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#噪声问题"><span class="toc-number">2.2.</span> <span class="toc-text">噪声问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策面偏移问题"><span class="toc-number">2.3.</span> <span class="toc-text">决策面偏移问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于特征空间决策面进行类别划分的分类器"><span class="toc-number">2.3.1.</span> <span class="toc-text">基于特征空间决策面进行类别划分的分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于概率估计的分类器"><span class="toc-number">2.3.2.</span> <span class="toc-text">基于概率估计的分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于规则的分类器"><span class="toc-number">2.3.3.</span> <span class="toc-text">基于规则的分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评测指标问题"><span class="toc-number">2.3.4.</span> <span class="toc-text">评测指标问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不平衡分类问题的解决方案"><span class="toc-number">3.</span> <span class="toc-text">不平衡分类问题的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#针对训练集"><span class="toc-number">3.1.</span> <span class="toc-text">针对训练集</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重采样-re-sampling"><span class="toc-number">3.1.1.</span> <span class="toc-text">重采样(re-sampling)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#上采样"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">上采样</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#下采样"><span class="toc-number">3.1.1.2.</span> <span class="toc-text">下采样</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#上采样-下采样"><span class="toc-number">3.1.1.3.</span> <span class="toc-text">上采样+下采样</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#重采样方法的不足"><span class="toc-number">3.1.1.4.</span> <span class="toc-text">重采样方法的不足</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新划分训练集"><span class="toc-number">3.1.2.</span> <span class="toc-text">重新划分训练集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#划分平衡的子训练集-元学习器集成"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">划分平衡的子训练集+元学习器集成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#最小最大化集成规则"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">最小最大化集成规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#“部分对部分”-part-vs-part-任务分解策略"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">“部分对部分”(part vs.part)任务分解策略.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#针对学习算法"><span class="toc-number">3.2.</span> <span class="toc-text">针对学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分类器集成方法"><span class="toc-number">3.2.1.</span> <span class="toc-text">分类器集成方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#投票法"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">投票法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代价敏感学习方法"><span class="toc-number">3.2.2.</span> <span class="toc-text">代价敏感学习方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择方法-更多的应用于自然语言处理领域"><span class="toc-number">3.2.3.</span> <span class="toc-text">特征选择方法(更多的应用于自然语言处理领域)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他方法"><span class="toc-number">3.3.</span> <span class="toc-text">其他方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类器评价指标"><span class="toc-number">4.</span> <span class="toc-text">分类器评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>  
+            </div>
+            <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               <!-- setTimeout("_article.style.marginRight = '211px'",0);  -->
+               setTimeout("_article.className += ' article2'",0); 
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);                
+             </script>
+           
+         
+
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>不平衡分类问题，是指训练样本数量在类间分布不平衡的模式分类问题，具体的说就是某些类的样本数量远远少于其他类。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="传统机器学习算法的挑战"><a href="#传统机器学习算法的挑战" class="headerlink" title="传统机器学习算法的挑战"></a>传统机器学习算法的挑战</h3><p>当传统的机器学习方法用于解决这些不平衡分类问题时,往往出现分类器性能的大幅度下降,得到的分类器具有很大的偏向性.最常见的表现是稀有类的识别率远远低于大类. 因此,本属于稀有类的样本往往被错分到大类。</p>
+<h3 id="不平衡分类问题产生原因"><a href="#不平衡分类问题产生原因" class="headerlink" title="不平衡分类问题产生原因"></a>不平衡分类问题产生原因</h3><ul>
+<li>原始数据的分布不平衡,如通过卫星雷达图片检测海面石油油污、监测信用卡非法交易、发掘基因序列中编码信息以及医学数据分类等</li>
+<li>有些不平衡分类问题源自数据收集过程中人为地造成的不平衡,比如由于个人隐私或者高昂的数据采集代价等因素导致某些类的样本数量过少. </li>
+<li>还有些不平衡问题来自多类(multi-class)问题和多标号(multi-label)问题的分解. 有些分类器如支持向量机(SVM),无法直接解决多类多标号问题,必须将原始问题分解成一系列两类问题解决,这样很容易导致原来平衡的问题变得不平衡,原来不平衡的问题变得更加不平衡.</li>
+</ul>
+<h2 id="不平衡分类问题的特征和挑战"><a href="#不平衡分类问题的特征和挑战" class="headerlink" title="不平衡分类问题的特征和挑战"></a>不平衡分类问题的特征和挑战</h2><h3 id="数据稀缺问题"><a href="#数据稀缺问题" class="headerlink" title="数据稀缺问题"></a>数据稀缺问题</h3><blockquote>
+<p>样本分布的不平衡容易导致稀有类样本的稀缺,具体地说,稀缺包括绝对稀缺和相对稀缺.</p>
+</blockquote>
+<ul>
+<li>绝对稀缺是指稀有类训练样本数量绝对过少,导致该类信息无法通过训练样本充分表示.<ul>
+<li>绝对数据稀缺类的<em>分类错误率</em>要比一般类高出许多.</li>
+<li>当某类数据过于稀缺时,容易在特征空间中形成小的数据区域,从而引发<em>小区块(small disjuncts)问题</em>.分类错误大部分集中在小区块上,小区块之所以有很高的分类错误率,其中很大的原因在于它和<em>噪声数据块</em>难以区分.(小区块数据难以通过统计显著性检测(比如决策树的剪枝、关联规则分类器的规则筛选等))</li>
+</ul>
+</li>
+<li>相对稀缺是指稀有类样本本身数量并不过少,但相对大类,占有的比例过小.<ul>
+<li>使基于启发式的贪心搜索方法效果变差</li>
+</ul>
+</li>
+</ul>
+<p><em>Notes:研究表明，当总样本数量足够多时,相对稀缺并不一定引起分类器性能下降.相反,绝对稀缺导致的稀有样本分布不集中且数量过少才容易引起分类器性能下降.</em></p>
+<h3 id="噪声问题"><a href="#噪声问题" class="headerlink" title="噪声问题"></a>噪声问题</h3><ul>
+<li>只要在稀有类的决策域存在少数的噪声样本,就会影响该稀有类决策面的学习. 也就是说,稀有类的抗噪能力较弱</li>
+<li>分类器难以区分稀有类样本和噪声数据，如果分类器采用一些防止过学习的技术去除噪声,则会将一些稀有类样本信息一并去除. 如果不去除噪声,分类性能也难以提高.</li>
+</ul>
+<h3 id="决策面偏移问题"><a href="#决策面偏移问题" class="headerlink" title="决策面偏移问题"></a>决策面偏移问题</h3><h4 id="基于特征空间决策面进行类别划分的分类器"><a href="#基于特征空间决策面进行类别划分的分类器" class="headerlink" title="基于特征空间决策面进行类别划分的分类器"></a>基于特征空间决策面进行类别划分的分类器</h4><p>在处理类别不均衡的分类问题时，基于特征空间决策面进行类别划分的分类器分类性能往往有不同程度的下降.</p>
+<p>比如支持向量机,目标在于寻找一个最优的决策面. 为了降低噪声数据的影响和防止过学习的产生,最优决策面必须兼顾训练分类准确率( accuracy)和决策面的复杂度,即采用结构风险最小化原则. 然而,如果<strong>训练集不平衡,则支持向量的个数也不平衡</strong>. 在结构风险最小化原则下,支持向量机会忽略稀有类少量支持向量对结构风险的影响,而扩大决策边界,最终导致训练的实际超平面与最优超平面不一致.</p>
+<h4 id="基于概率估计的分类器"><a href="#基于概率估计的分类器" class="headerlink" title="基于概率估计的分类器"></a>基于概率估计的分类器</h4><p>如贝叶斯分类器,分类准确率依赖于概率分布的准确估计. 当稀有类样本过少时,概率估计的准确率将远小于大类,稀有类的识别率也因此下降.</p>
+<h4 id="基于规则的分类器"><a href="#基于规则的分类器" class="headerlink" title="基于规则的分类器"></a>基于规则的分类器</h4><p>如决策树和关联规则分类器,需要对规则进行筛选. 其中,支持度(support)和可信度(confidence)是规则筛选的重要指标.但是,当训练集不平衡时,基于上述指标的筛选变得困难且不合理。</p>
+<h4 id="评测指标问题"><a href="#评测指标问题" class="headerlink" title="评测指标问题"></a>评测指标问题</h4><p>传统的模式分类方法一般以<em>准确率</em>作为分类器评测指标. 但是以准确率为评测指标的分类器倾向于降低稀有类的分类效果.而且准确率不重视稀有类对分类性能评测的影响. 例如,假设有一个训练样本数量为1∶99的两类问题,即使分类器将所有样本分到大类,它仍可以得到99%的训练准确率.</p>
+<h2 id="不平衡分类问题的解决方案"><a href="#不平衡分类问题的解决方案" class="headerlink" title="不平衡分类问题的解决方案"></a>不平衡分类问题的解决方案</h2><h3 id="针对训练集"><a href="#针对训练集" class="headerlink" title="针对训练集"></a>针对训练集</h3><p>从训练集入手,通过改变训练集样本分布,降低不平衡程度.</p>
+<h4 id="重采样-re-sampling"><a href="#重采样-re-sampling" class="headerlink" title="重采样(re-sampling)"></a>重采样(re-sampling)</h4><p>重采样方法是通过增加稀有类训练样本数的上采样(up-sampling)和减少大类样本数的下采样(down-sampling)使不平衡的样本分布变得比较平衡,从而提高分类器对稀有类的识别率.</p>
+<h5 id="上采样"><a href="#上采样" class="headerlink" title="上采样"></a>上采样</h5><ul>
+<li><del>直接复制稀有样本</del>,不可取，容易导致过学习,并且对提高稀有类识别率没有太大帮助</li>
+<li>启发式技巧,有选择地复制稀有类样本,或者生成新的稀有类样本.<ul>
+<li>SMOTE方法：首先为每个稀有类样本随机选出几个邻近样本,并且在该样本与这些邻近的样本的连线上随机取点,生成无重复的新的稀有类样本.</li>
+<li>添加随机噪声：通过为训练集中的稀有类样本加上随机噪声的方式获取新的正类样本.</li>
+<li>将稀有类和大类<strong>交叉分布区域</strong>内的样本重新标定成稀有类样本,以降低不平衡度.</li>
+</ul>
+</li>
+</ul>
+<h5 id="下采样"><a href="#下采样" class="headerlink" title="下采样"></a>下采样</h5><p>下采样通过舍弃部分大类样本的方法,降低不平衡程度.</p>
+<ul>
+<li>单边采样方式,去除大类中的噪音样本、边界样本和冗余样本.</li>
+<li>修剪大类的支持向量,达到平衡支持向量个数的目的,从而提高稀有类的识别率.</li>
+</ul>
+<h5 id="上采样-下采样"><a href="#上采样-下采样" class="headerlink" title="上采样+下采样"></a>上采样+下采样</h5><ul>
+<li>一类学习,即只采用一类的样本作为训练集,因此不存在不平衡分类问题.</li>
+<li>集成方法：同时采用上采样和下采样以及不同的采样率,获得大量的子分类器,并使用混合专家(mixture-of-experts)学习框架将这些子分类器集成.</li>
+</ul>
+<h5 id="重采样方法的不足"><a href="#重采样方法的不足" class="headerlink" title="重采样方法的不足"></a>重采样方法的不足</h5><ul>
+<li>上采样<ul>
+<li>上采样方法并不增加任何新的数据,只是重复一些样本或增加一些人工生成的稀有类样本,增加了训练时间. </li>
+<li>上采样复制某些稀有类样本,或者在它周围生成新的稀有类样本,使得分类器过分注重这些样本,导致过学习</li>
+<li>上采样不能从本质上解决稀有类样本的稀缺性和数据表示的不充分性</li>
+</ul>
+</li>
+<li>下采样<ul>
+<li>下采样在去除大类样本的时候,容易去除重要的样本信息. </li>
+<li>虽然有些启发式的下采样方法,只是去除冗余样本和噪声样本,但是多数情况下这类样本只是小部分,因此这种方法能够调整的不平衡度相当有限.</li>
+</ul>
+</li>
+</ul>
+<h4 id="重新划分训练集"><a href="#重新划分训练集" class="headerlink" title="重新划分训练集"></a>重新划分训练集</h4><h5 id="划分平衡的子训练集-元学习器集成"><a href="#划分平衡的子训练集-元学习器集成" class="headerlink" title="划分平衡的子训练集+元学习器集成"></a>划分平衡的子训练集+元学习器集成</h5><ul>
+<li>首先根据代价敏感学习的需要,学习一个合理的类别样本分布比例. </li>
+<li>然后将大类样本随机划分成一系列不相交子集.这些子集的大小由稀有类样本集的数量和预先学习的样本分布比例决定. </li>
+<li>接下来分别将这些不相交子集跟稀有类样本结合,组成一系列平衡的分类子问题,单独训练成子分类器. </li>
+<li>最后通过元学习(meta learning)将这些子分类器的输出进一步学习成组合分类器.</li>
+<li>这种方法在信用卡非法使用检测问题上大大降低了总代价.但该方法仅考虑了划分后子训练集的规模和分布,没有对划分规则作进一步考虑.</li>
+</ul>
+<h5 id="最小最大化集成规则"><a href="#最小最大化集成规则" class="headerlink" title="最小最大化集成规则"></a>最小最大化集成规则</h5><p>最小最大模块化(min-max modular)神经网络模型,该模型利用最小最大化集成规则,能有效地将子分类器组合,使组合分类器容易地实现并列学习和增量学习.</p>
+<h5 id="“部分对部分”-part-vs-part-任务分解策略"><a href="#“部分对部分”-part-vs-part-任务分解策略" class="headerlink" title="“部分对部分”(part vs.part)任务分解策略."></a>“部分对部分”(part vs.part)任务分解策略.</h5><p>“部分对部分”任务分解策略可对不平衡两类子问题作进一步分解.这种分解策略可以自由地控制每个子问题的规模和平衡度,并且可以根据先验知识和训练集样本的分布特征,制定有效的分解规则.</p>
+<h3 id="针对学习算法"><a href="#针对学习算法" class="headerlink" title="针对学习算法"></a>针对学习算法</h3><p>根据算法在解决不平衡问题时的缺陷,适当地修改算法使之适应不平衡分类问题.</p>
+<h4 id="分类器集成方法"><a href="#分类器集成方法" class="headerlink" title="分类器集成方法"></a>分类器集成方法</h4><h5 id="投票法"><a href="#投票法" class="headerlink" title="投票法"></a>投票法</h5><p>将训练集重采样后用多种学习方法分别训练,然后将得到的分类器采用多数投票方法给出预测类别.</p>
+<ul>
+<li>平衡随机森林：对正类和反类分别进行重采样,重采样多次后采用多数投票的方法进行集成学习.</li>
+<li>SMOTEBoost:SMOTE+boosting:每次迭代使用SMOTE生成新的样本,取代原有AdaBoost算法中对样本权值的调整,使得Boosting算法专注于正类中的难分样本</li>
+<li>基于级联模型的不平衡数据分类方法：该方法通过逐步筛掉反类样本,使得级联结构中后面的结点得到更为平衡的训练集.</li>
+<li>代价敏感神经网络+分类器集成：通过21个UCI标准数据集的实验发现,分类器集成不仅对处理2类不平衡问题有效,而且对多类不平衡问题同样有效.</li>
+</ul>
+<h4 id="代价敏感学习方法"><a href="#代价敏感学习方法" class="headerlink" title="代价敏感学习方法"></a>代价敏感学习方法</h4><p>在大部分不平衡分类问题中,稀有类是分类的重点. 在这种情况下,正确识别出稀有类的样本比识别大类的样本更有<strong>价值</strong>.反过来说,错分稀有类的样本需要付出更大的<strong>代价</strong>. </p>
+<blockquote>
+<p>代价敏感学习赋予各个类别不同的错分代价,它能很好地解决不平衡分类问题. 以两类问题为例,假设正类是稀有类,并具有更高的错分代价,则分类器在训练时,会对错分正类样本做更大的<strong>惩罚</strong>,迫使最终分类器对正类样本有更高的识别率.</p>
+</blockquote>
+<ul>
+<li>Metacost方法,该方法通过估计训练样本的后验概率密度,结合<strong>代价矩阵(costmatrix)</strong>计算每个训练样本的理想类别,然后根据理想类别修改原训练样本的类别,得到新的训练集,最后使用基于错误率的分类器学习这个新的训练集.</li>
+<li>给不同的训练样本赋予不同的权值也能起到代价敏感学习的作用<ul>
+<li>带权随机森林算法,该方法赋予每个类一个权值,训练样本最少的类赋予的权值最大. 在构造决策树的过程中引入权值,每一棵决策树的决策采用带权多数投票. 最后所有的决策树采用带权投票集成. </li>
+<li>通过训练集先验信息的分析,利用支持向量机为不同类的样本设置惩罚系数.</li>
+<li>AdaCost算法,该算法通过在Boosting算法的权值更新规则中引入每个训练样本的错分代价,提高了Boosting算法对稀有类的查全率和查准率. 该算法的权值更新原则是:如果错分代价较大的样本被弱分类器错分,则它对应的权值被“较大”地增加. 如果它被正确分类,则它对应的权值被“较小”程度地减少</li>
+</ul>
+</li>
+</ul>
+<p><em>Notes:代价敏感学习的局限性：</em></p>
+<ul>
+<li>在多数情况下,真实的错分代价很难被准确地估计</li>
+<li>另一方面,虽然许多分类器可以直接引入代价敏感学习机制,如支持向量机和决策树,但是也有一些分类器不能直接使用代价敏感学习,只能通过调整正负样本比例或者决策阈值间接地实现代价敏感学习,这样不能保证代价敏感学习的效果.</li>
+</ul>
+<h4 id="特征选择方法-更多的应用于自然语言处理领域"><a href="#特征选择方法-更多的应用于自然语言处理领域" class="headerlink" title="特征选择方法(更多的应用于自然语言处理领域)"></a>特征选择方法(更多的应用于自然语言处理领域)</h4><p>样本数量分布很不平衡时,特征的分布同样会不平衡. 尤其在文本分类问题中,在大类中经常出现的特征,也许在稀有类中根本不出现.因此,根据不平衡分类问题的特点,选取最具有区分能力的特征,有利于提高稀有类的识别率.</p>
+<ul>
+<li>动态特征加权方法：基于事例学习( case based learning) 的框架,的一种与测试样本相关的动态特征加权方法. 该方法首先利用训练集得到一棵决策树,然后计算每个测试样本在测试路径上的信息收益,并以此计算每个特征的权值,最后,从训练集中<strong>挑选k个与测试样本最接近的样本</strong>,并对他们测试类别进行投票.该方法在提高正类样本准确率的同时确保了总的准确率不下降.</li>
+<li>针对文本分类中存在的不平衡分类问题,按照一个经验性的样本比例,挑选正负两个样本集,分别从中选择最能表示该类样本的特征集,然后将这些特征集合并作为最后挑选的特征.</li>
+</ul>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><ul>
+<li>一种修改支持向量机核函数矩阵( kernelmatrix)方法,该方法通过将核函数矩阵进行保角变换( conformal transformation) , 扩大稀有类特征向量处的边界,从而增加正负类样本的分离度,减少大类的支持向量数目,起到降低不平衡度的效果.</li>
+<li>一种自上而下的基于联合规则的分类器：在处理不平衡分类问题时,传统的支持度和可信度在筛选关联规则时存在缺陷,通过使用补集类支持度( complement class support)作为挑选关联规则的重要指标，可自上而下地将筛选出的最佳关联规则逐一添加到决策树中,形成最终的分类器.</li>
+<li>LOO-AUC(leave-one-out area under curve)：基于AUC指标，LOO2AUC借鉴交叉验证的方法,每次移除一个样本,利用剩余样本训练的分类器预测该样本.(正交前向模型选择)</li>
+<li>一类学习(one-class learning)也被用于处理不平衡问题. 当样本数量不平衡时,并且当特征空间中混杂有大量噪音特征时,基于学习单一稀有类样本的产生式模型,相比于学习两类问题的判别式模型具有更好的性能</li>
+</ul>
+<h2 id="分类器评价指标"><a href="#分类器评价指标" class="headerlink" title="分类器评价指标"></a>分类器评价指标</h2><ul>
+<li>ROC曲线和AUC能够公平地对待稀有类和大类,与查准率和查全率类似, ROC曲线可以在稀有类识别率和大类识别率之间做权衡.然而需要指出的是, ROC和AUC仅适合于两类问题,对多类问题,无法直接应用</li>
+<li>在不平衡度不是很大的情况下, F1和G-means可以作为较好的评测指标. 但当训练样本很不平衡时, F1比G-mean要好.</li>
+<li>当测试集和训练集不是同分布或不同类的错分代价不同时,使用ROC曲线比较不同分类器的性能更合适.</li>
+</ul>
+<p><em>Notes:实验表明，训练集划分结合分类器集成的方法在处理不平衡问题时具有最好的效果.</em></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="http://bcmi.sjtu.edu.cn/~blu/papers/2009/Zhi-FeiYe_CAAI-Transactions-on-Intelligent-Systems_2009.pdf" target="_blank" rel="external">http://bcmi.sjtu.edu.cn/~blu/papers/2009/Zhi-FeiYe_CAAI-Transactions-on-Intelligent-Systems_2009.pdf</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Reading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ML</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IT</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Note</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">正则化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://izhaoyi.top/2017/09/20/imbalance/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/09/15/l1-l2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">l1、l2正则化小记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'LancelotHolmes'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        $
+
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -277,9 +544,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/20/imbalance/</loc>
+    <lastmod>2017-09-20T05:47:05.512Z</lastmod>
+    <data>
+        <display>
+        <title>不平衡问题小计</title>
+        <pubTime>2017-09-20T02:12:24.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>正则化</tag>
+         
+        <tag>机器学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/15/l1-l2/</loc>
     <lastmod>2017-09-15T07:15:40.163Z</lastmod>
     <data>
