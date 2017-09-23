@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
 <meta property="og:description" content="尝试整理描述一些模型   算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试">
 <meta property="og:image" content="http://yoursite.com/materials/img/model_pre/gbdt.jpg">
-<meta property="og:updated_time" content="2017-09-09T13:54:14.448Z">
+<meta property="og:updated_time" content="2017-09-23T11:13:36.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="口述模型整理">
 <meta name="twitter:description" content="尝试整理描述一些模型   算法要从以下几个方面来掌握 产生背景 适用场合（数据规模，特征维度，是否有 Online 算法，离散/连续特征处理等角度）； 原理推导（最大间隔，软间隔，对偶）； 求解方法（随机梯度下降、拟牛顿法等优化算法）； 优缺点，相关改进； 和其他基本方法的对比；   不能停留在能看懂的程度，还要对知识进行结构化整理，比如撰写自己的 cheet sheet，面试是在有限时间内向面试">
@@ -228,7 +228,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练"><span class="toc-number">1.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">1.4.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见应用场景"><span class="toc-number">1.4.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">1.4.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他考点"><span class="toc-number">1.5.</span> <span class="toc-text">其他考点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#横向对比与联系"><span class="toc-number">1.5.1.</span> <span class="toc-text">横向对比与联系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">1.5.2.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.5.3.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#核函数"><span class="toc-number">1.5.4.</span> <span class="toc-text">核函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM"><span class="toc-number">2.</span> <span class="toc-text">SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-1"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">3.2.</span> <span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拉格朗日对偶性的KKT条件"><span class="toc-number">3.2.1.</span> <span class="toc-text">拉格朗日对偶性的KKT条件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优缺点-1"><span class="toc-number">4.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练方法"><span class="toc-number">5.</span> <span class="toc-text">训练方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SMO算法-如何理解以及为什么高效？"><span class="toc-number">5.1.</span> <span class="toc-text">SMO算法(如何理解以及为什么高效？)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#损失函数"><span class="toc-number">6.</span> <span class="toc-text">损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述-1"><span class="toc-number">6.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用合页损失函数？"><span class="toc-number">6.2.</span> <span class="toc-text">为什么使用合页损失函数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见工业应用场景"><span class="toc-number">7.</span> <span class="toc-text">常见工业应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT"><span class="toc-number">8.</span> <span class="toc-text">GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理及推导"><span class="toc-number">8.1.</span> <span class="toc-text">原理及推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点-2"><span class="toc-number">8.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练-1"><span class="toc-number">8.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工业应用"><span class="toc-number">8.4.</span> <span class="toc-text">工业应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树"><span class="toc-number">9.</span> <span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树的损失函数"><span class="toc-number">9.1.</span> <span class="toc-text">决策树的损失函数</span></a></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练"><span class="toc-number">1.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">1.4.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见应用场景"><span class="toc-number">1.4.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">1.4.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他考点"><span class="toc-number">1.5.</span> <span class="toc-text">其他考点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#横向对比与联系"><span class="toc-number">1.5.1.</span> <span class="toc-text">横向对比与联系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">1.5.2.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.5.3.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#核函数"><span class="toc-number">1.5.4.</span> <span class="toc-text">核函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM"><span class="toc-number">2.</span> <span class="toc-text">SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-1"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">3.2.</span> <span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拉格朗日对偶性的KKT条件"><span class="toc-number">3.2.1.</span> <span class="toc-text">拉格朗日对偶性的KKT条件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优缺点-1"><span class="toc-number">4.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练方法"><span class="toc-number">5.</span> <span class="toc-text">训练方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SMO算法-如何理解以及为什么高效？"><span class="toc-number">5.1.</span> <span class="toc-text">SMO算法(如何理解以及为什么高效？)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#损失函数"><span class="toc-number">6.</span> <span class="toc-text">损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述-1"><span class="toc-number">6.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用合页损失函数？"><span class="toc-number">6.2.</span> <span class="toc-text">为什么使用合页损失函数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见工业应用场景"><span class="toc-number">7.</span> <span class="toc-text">常见工业应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT"><span class="toc-number">8.</span> <span class="toc-text">GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理及推导"><span class="toc-number">8.1.</span> <span class="toc-text">原理及推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点-2"><span class="toc-number">8.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练-1"><span class="toc-number">8.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工业应用"><span class="toc-number">8.4.</span> <span class="toc-text">工业应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树"><span class="toc-number">9.</span> <span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三要素"><span class="toc-number">9.1.</span> <span class="toc-text">三要素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择"><span class="toc-number">9.1.1.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树的生成"><span class="toc-number">9.1.2.</span> <span class="toc-text">树的生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树的剪枝"><span class="toc-number">9.1.3.</span> <span class="toc-text">树的剪枝</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树的损失函数"><span class="toc-number">9.2.</span> <span class="toc-text">决策树的损失函数</span></a></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -254,7 +254,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练"><span class="toc-number">1.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">1.4.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见应用场景"><span class="toc-number">1.4.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">1.4.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他考点"><span class="toc-number">1.5.</span> <span class="toc-text">其他考点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#横向对比与联系"><span class="toc-number">1.5.1.</span> <span class="toc-text">横向对比与联系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">1.5.2.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.5.3.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#核函数"><span class="toc-number">1.5.4.</span> <span class="toc-text">核函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM"><span class="toc-number">2.</span> <span class="toc-text">SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-1"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">3.2.</span> <span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拉格朗日对偶性的KKT条件"><span class="toc-number">3.2.1.</span> <span class="toc-text">拉格朗日对偶性的KKT条件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优缺点-1"><span class="toc-number">4.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练方法"><span class="toc-number">5.</span> <span class="toc-text">训练方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SMO算法-如何理解以及为什么高效？"><span class="toc-number">5.1.</span> <span class="toc-text">SMO算法(如何理解以及为什么高效？)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#损失函数"><span class="toc-number">6.</span> <span class="toc-text">损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述-1"><span class="toc-number">6.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用合页损失函数？"><span class="toc-number">6.2.</span> <span class="toc-text">为什么使用合页损失函数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见工业应用场景"><span class="toc-number">7.</span> <span class="toc-text">常见工业应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT"><span class="toc-number">8.</span> <span class="toc-text">GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理及推导"><span class="toc-number">8.1.</span> <span class="toc-text">原理及推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点-2"><span class="toc-number">8.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练-1"><span class="toc-number">8.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工业应用"><span class="toc-number">8.4.</span> <span class="toc-text">工业应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树"><span class="toc-number">9.</span> <span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树的损失函数"><span class="toc-number">9.1.</span> <span class="toc-text">决策树的损失函数</span></a></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-Regression"><span class="toc-number">1.</span> <span class="toc-text">Logistic Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练"><span class="toc-number">1.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR模型在工业界的应用"><span class="toc-number">1.4.</span> <span class="toc-text">LR模型在工业界的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见应用场景"><span class="toc-number">1.4.1.</span> <span class="toc-text">常见应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LR适用上述场景的原因"><span class="toc-number">1.4.2.</span> <span class="toc-text">LR适用上述场景的原因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他考点"><span class="toc-number">1.5.</span> <span class="toc-text">其他考点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#横向对比与联系"><span class="toc-number">1.5.1.</span> <span class="toc-text">横向对比与联系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多分类-softmax"><span class="toc-number">1.5.2.</span> <span class="toc-text">多分类-softmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.5.3.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#核函数"><span class="toc-number">1.5.4.</span> <span class="toc-text">核函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM"><span class="toc-number">2.</span> <span class="toc-text">SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理-1"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">3.2.</span> <span class="toc-text">扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拉格朗日对偶性的KKT条件"><span class="toc-number">3.2.1.</span> <span class="toc-text">拉格朗日对偶性的KKT条件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优缺点-1"><span class="toc-number">4.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练方法"><span class="toc-number">5.</span> <span class="toc-text">训练方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SMO算法-如何理解以及为什么高效？"><span class="toc-number">5.1.</span> <span class="toc-text">SMO算法(如何理解以及为什么高效？)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#损失函数"><span class="toc-number">6.</span> <span class="toc-text">损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述-1"><span class="toc-number">6.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用合页损失函数？"><span class="toc-number">6.2.</span> <span class="toc-text">为什么使用合页损失函数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见工业应用场景"><span class="toc-number">7.</span> <span class="toc-text">常见工业应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT"><span class="toc-number">8.</span> <span class="toc-text">GBDT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理及推导"><span class="toc-number">8.1.</span> <span class="toc-text">原理及推导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优缺点-2"><span class="toc-number">8.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练-1"><span class="toc-number">8.3.</span> <span class="toc-text">模型训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工业应用"><span class="toc-number">8.4.</span> <span class="toc-text">工业应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树"><span class="toc-number">9.</span> <span class="toc-text">决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三要素"><span class="toc-number">9.1.</span> <span class="toc-text">三要素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择"><span class="toc-number">9.1.1.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树的生成"><span class="toc-number">9.1.2.</span> <span class="toc-text">树的生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#树的剪枝"><span class="toc-number">9.1.3.</span> <span class="toc-text">树的剪枝</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树的损失函数"><span class="toc-number">9.2.</span> <span class="toc-text">决策树的损失函数</span></a></li></ol></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -415,7 +415,7 @@ ga('send', 'pageview');
 <h3 id="工业应用"><a href="#工业应用" class="headerlink" title="工业应用"></a>工业应用</h3><ul>
 <li>CTR预估(广告点击率预估)：CTR预估中应用得最多的模型是LR，LR属于线性模型，容易并行化，但是线性模型的学习能力有限，需要大量的特征工程去预先分析出有效的特征、特征组合从而间接的增强LR的非线性学习能力(是不是想到了神经网络的输出层与隐层的关系)，Facebook于2014年的文章介绍通过使用GBDT来解决LR特征组合的问题，而随后Kaggle竞赛也有时间类似思路使用GBDT+FM，主要原因是GBDT可以发现多种有区分性的特征及特征组合，决策树的路径可以直接作为LR的输入特征使用，省去了人工寻找特征、特征组合的步骤</li>
 </ul>
-<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="决策树的损失函数"><a href="#决策树的损失函数" class="headerlink" title="决策树的损失函数"></a>决策树的损失函数</h3><p>对数似然损失</p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h3><h4 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h4><h4 id="树的生成"><a href="#树的生成" class="headerlink" title="树的生成"></a>树的生成</h4><h4 id="树的剪枝"><a href="#树的剪枝" class="headerlink" title="树的剪枝"></a>树的剪枝</h4><h3 id="决策树的损失函数"><a href="#决策树的损失函数" class="headerlink" title="决策树的损失函数"></a>决策树的损失函数</h3><p>对数似然损失</p>
 <p>参考</p>
 <ul>
 <li><a href="https://wenku.baidu.com/view/72a04aa501f69e3142329479.html" target="_blank" rel="external">百度文库</a></li>
@@ -690,6 +690,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
@@ -698,11 +702,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,11 +714,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -730,7 +734,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
+                <a href="javascript:void(0)" class="js-tag color3">聚类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,26 +746,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">聚类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">正则化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
              
@@ -770,11 +754,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,6 +778,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">正则化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
@@ -794,7 +798,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -818,27 +830,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">推荐系统实践</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">推荐系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -851,6 +847,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

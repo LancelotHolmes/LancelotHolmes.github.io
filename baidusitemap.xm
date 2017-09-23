@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/23/sklearn-xgboost/</loc>
+    <lastmod>2017-09-23T11:21:08.664Z</lastmod>
+    <data>
+        <display>
+        <title>sklearn、XGBoost、LightGBM的文档阅读小记</title>
+        <pubTime>2017-09-23T11:14:17.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/09/03/model-pre/</loc>
+    <lastmod>2017-09-23T11:13:36.232Z</lastmod>
+    <data>
+        <display>
+        <title>口述模型整理</title>
+        <pubTime>2017-09-03T06:54:04.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/20/imbalance/</loc>
     <lastmod>2017-09-20T05:47:05.512Z</lastmod>
     <data>
@@ -86,36 +132,13 @@
         
         <tag>Note</tag>
          
+        <tag>校招</tag>
+         
+        <tag>面试</tag>
+         
         <tag>algorithm</tag>
          
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
         <tag>Coding</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/09/03/model-pre/</loc>
-    <lastmod>2017-09-09T13:54:14.448Z</lastmod>
-    <data>
-        <display>
-        <title>口述模型整理</title>
-        <pubTime>2017-09-03T06:54:04.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
          
          
            
@@ -599,11 +622,11 @@
         
         <tag>Note</tag>
          
-        <tag>algorithm</tag>
-         
         <tag>校招</tag>
          
         <tag>面试</tag>
+         
+        <tag>algorithm</tag>
          
         <tag>Coding</tag>
          
