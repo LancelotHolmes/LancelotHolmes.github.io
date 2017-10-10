@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>sklearn、XGBoost、LightGBM的文档阅读小记 | Lancelot&#39;s Desert</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文主要记录下阅读sklearn集成方法、XGBoost、LightGBM等文档发现gbdt实现上的一些差别。 sklearn集成方法集成方法的目的是结合一些基于某些算法训练得到的基学习器来改进其泛化能力和鲁棒性(相对单个的基学习器而言)主流的两种做法分别是： bagging基本思想独立的训练一些基学习器(一般倾向于强大而复杂的模型比如完全生长的决策树)，然后综合他们的预测结果，通常集成模型的效">
-<meta name="keywords" content="ML,Note,校招,面试">
+  <meta name="description" content="本文主要是针对sklearn,XGBoost,LightGBM的官方文档阅读的一些整理，主要针对sklearn的集成方法、以及gbdt族模型的具体实现差异以及各个模型的重要参数、特点做了一个整理">
+<meta name="keywords" content="ML,Note,面试,校招">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sklearn、XGBoost、LightGBM的文档阅读小记">
 <meta property="og:url" content="http://yoursite.com/2017/09/23/sklearn-xgboost/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Desert">
-<meta property="og:description" content="本文主要记录下阅读sklearn集成方法、XGBoost、LightGBM等文档发现gbdt实现上的一些差别。 sklearn集成方法集成方法的目的是结合一些基于某些算法训练得到的基学习器来改进其泛化能力和鲁棒性(相对单个的基学习器而言)主流的两种做法分别是： bagging基本思想独立的训练一些基学习器(一般倾向于强大而复杂的模型比如完全生长的决策树)，然后综合他们的预测结果，通常集成模型的效">
-<meta property="og:updated_time" content="2017-09-23T11:21:08.664Z">
+<meta property="og:description" content="本文主要是针对sklearn,XGBoost,LightGBM的官方文档阅读的一些整理，主要针对sklearn的集成方法、以及gbdt族模型的具体实现差异以及各个模型的重要参数、特点做了一个整理">
+<meta property="og:updated_time" content="2017-10-10T07:51:48.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sklearn、XGBoost、LightGBM的文档阅读小记">
-<meta name="twitter:description" content="本文主要记录下阅读sklearn集成方法、XGBoost、LightGBM等文档发现gbdt实现上的一些差别。 sklearn集成方法集成方法的目的是结合一些基于某些算法训练得到的基学习器来改进其泛化能力和鲁棒性(相对单个的基学习器而言)主流的两种做法分别是： bagging基本思想独立的训练一些基学习器(一般倾向于强大而复杂的模型比如完全生长的决策树)，然后综合他们的预测结果，通常集成模型的效">
+<meta name="twitter:description" content="本文主要是针对sklearn,XGBoost,LightGBM的官方文档阅读的一些整理，主要针对sklearn的集成方法、以及gbdt族模型的具体实现差异以及各个模型的重要参数、特点做了一个整理">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Desert" type="application/atom+xml">
   
@@ -226,7 +226,7 @@ ga('send', 'pageview');
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sklearn集成方法"><span class="toc-number">1.</span> <span class="toc-text">sklearn集成方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#bagging"><span class="toc-number">1.1.</span> <span class="toc-text">bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见变体-按照样本采样方式的不同划分"><span class="toc-number">1.1.2.</span> <span class="toc-text">常见变体(按照样本采样方式的不同划分)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-bagging"><span class="toc-number">1.1.3.</span> <span class="toc-text">sklearn-bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-forests-of-randomized-trees"><span class="toc-number">1.1.4.</span> <span class="toc-text">sklearn-forests of randomized trees</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-1"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调参"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">调参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机森林与KNN"><span class="toc-number">1.1.4.5.</span> <span class="toc-text">随机森林与KNN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boosting"><span class="toc-number">1.2.</span> <span class="toc-text">boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-AdaBoost"><span class="toc-number">1.2.2.</span> <span class="toc-text">sklearn-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-GBRT"><span class="toc-number">1.2.3.</span> <span class="toc-text">sklearn-GBRT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-2"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可解释性"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">可解释性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VotingClassifier"><span class="toc-number">1.3.</span> <span class="toc-text">VotingClassifier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XGBoost"><span class="toc-number">2.</span> <span class="toc-text">XGBoost</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合"><span class="toc-number">2.1.</span> <span class="toc-text">过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类别分布不均"><span class="toc-number">2.2.</span> <span class="toc-text">数据类别分布不均</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-1"><span class="toc-number">2.3.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般参数"><span class="toc-number">2.3.1.</span> <span class="toc-text">一般参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基学习器参数"><span class="toc-number">2.3.2.</span> <span class="toc-text">基学习器参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务参数"><span class="toc-number">2.3.3.</span> <span class="toc-text">任务参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行参数"><span class="toc-number">2.3.4.</span> <span class="toc-text">命令行参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM"><span class="toc-number">3.</span> <span class="toc-text">LightGBM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">3.1.</span> <span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效率和内存上的提升"><span class="toc-number">3.1.1.</span> <span class="toc-text">效率和内存上的提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稀疏特征优化"><span class="toc-number">3.1.2.</span> <span class="toc-text">稀疏特征优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准确率上的优化"><span class="toc-number">3.1.3.</span> <span class="toc-text">准确率上的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise-best-first-树生长策略"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">leaf-wise(best-first)树生长策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别特征"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">直接支持类别特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络通信优化"><span class="toc-number">3.1.4.</span> <span class="toc-text">网络通信优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行学习优化"><span class="toc-number">3.1.5.</span> <span class="toc-text">并行学习优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征并行"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">特征并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据并行"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">数据并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行投票"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">并行投票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他特点"><span class="toc-number">3.1.6.</span> <span class="toc-text">其他特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别-标称-特征"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">直接支持类别(标称)特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#早停止"><span class="toc-number">3.1.6.2.</span> <span class="toc-text">早停止</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实践上"><span class="toc-number">3.1.6.3.</span> <span class="toc-text">实践上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的任务"><span class="toc-number">3.1.6.4.</span> <span class="toc-text">支持的任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的评价指标metric"><span class="toc-number">3.1.6.5.</span> <span class="toc-text">支持的评价指标metric</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-2"><span class="toc-number">3.2.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心参数"><span class="toc-number">3.2.1.</span> <span class="toc-text">核心参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练控制参数"><span class="toc-number">3.2.2.</span> <span class="toc-text">训练控制参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#防止过拟合"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">防止过拟合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO参数"><span class="toc-number">3.2.3.</span> <span class="toc-text">IO参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直方图相关"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">直方图相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征相关"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">特征相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存相关"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">内存相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺失值"><span class="toc-number">3.2.3.4.</span> <span class="toc-text">缺失值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目标参数"><span class="toc-number">3.2.4.</span> <span class="toc-text">目标参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调参小结"><span class="toc-number">3.2.5.</span> <span class="toc-text">调参小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">leaf-wise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效率"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准确率"><span class="toc-number">3.2.5.3.</span> <span class="toc-text">准确率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过拟合-1"><span class="toc-number">3.2.5.4.</span> <span class="toc-text">过拟合</span></a></li></ol></li></ol></li></ol></li></ol>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sklearn集成方法"><span class="toc-number">1.</span> <span class="toc-text">sklearn集成方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#bagging"><span class="toc-number">1.1.</span> <span class="toc-text">bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见变体-按照样本采样方式的不同划分"><span class="toc-number">1.1.2.</span> <span class="toc-text">常见变体(按照样本采样方式的不同划分)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-bagging"><span class="toc-number">1.1.3.</span> <span class="toc-text">sklearn-bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-forests-of-randomized-trees"><span class="toc-number">1.1.4.</span> <span class="toc-text">sklearn-forests of randomized trees</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-1"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调参"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">调参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机森林与KNN"><span class="toc-number">1.1.4.5.</span> <span class="toc-text">随机森林与KNN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boosting"><span class="toc-number">1.2.</span> <span class="toc-text">boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-AdaBoost"><span class="toc-number">1.2.2.</span> <span class="toc-text">sklearn-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-GBRT"><span class="toc-number">1.2.3.</span> <span class="toc-text">sklearn-GBRT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-2"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可解释性"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">可解释性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VotingClassifier"><span class="toc-number">1.3.</span> <span class="toc-text">VotingClassifier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XGBoost"><span class="toc-number">2.</span> <span class="toc-text">XGBoost</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合"><span class="toc-number">2.1.</span> <span class="toc-text">过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类别分布不均"><span class="toc-number">2.2.</span> <span class="toc-text">数据类别分布不均</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-1"><span class="toc-number">2.3.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般参数"><span class="toc-number">2.3.1.</span> <span class="toc-text">一般参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基学习器参数"><span class="toc-number">2.3.2.</span> <span class="toc-text">基学习器参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务参数"><span class="toc-number">2.3.3.</span> <span class="toc-text">任务参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行参数"><span class="toc-number">2.3.4.</span> <span class="toc-text">命令行参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM"><span class="toc-number">3.</span> <span class="toc-text">LightGBM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">3.1.</span> <span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效率和内存上的提升"><span class="toc-number">3.1.1.</span> <span class="toc-text">效率和内存上的提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稀疏特征优化"><span class="toc-number">3.1.2.</span> <span class="toc-text">稀疏特征优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准确率上的优化"><span class="toc-number">3.1.3.</span> <span class="toc-text">准确率上的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise-best-first-树生长策略"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">leaf-wise(best-first)树生长策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别特征"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">直接支持类别特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络通信优化"><span class="toc-number">3.1.4.</span> <span class="toc-text">网络通信优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行学习优化"><span class="toc-number">3.1.5.</span> <span class="toc-text">并行学习优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征并行"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">特征并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据并行"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">数据并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行投票"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">并行投票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他特点"><span class="toc-number">3.1.6.</span> <span class="toc-text">其他特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别-标称-特征"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">直接支持类别(标称)特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#早停止"><span class="toc-number">3.1.6.2.</span> <span class="toc-text">早停止</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实践上"><span class="toc-number">3.1.6.3.</span> <span class="toc-text">实践上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的任务"><span class="toc-number">3.1.6.4.</span> <span class="toc-text">支持的任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的评价指标metric"><span class="toc-number">3.1.6.5.</span> <span class="toc-text">支持的评价指标metric</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-2"><span class="toc-number">3.2.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心参数"><span class="toc-number">3.2.1.</span> <span class="toc-text">核心参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练控制参数"><span class="toc-number">3.2.2.</span> <span class="toc-text">训练控制参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#防止过拟合"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">防止过拟合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO参数"><span class="toc-number">3.2.3.</span> <span class="toc-text">IO参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直方图相关"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">直方图相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征相关"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">特征相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存相关"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">内存相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺失值"><span class="toc-number">3.2.3.4.</span> <span class="toc-text">缺失值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目标参数"><span class="toc-number">3.2.4.</span> <span class="toc-text">目标参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调参小结"><span class="toc-number">3.2.5.</span> <span class="toc-text">调参小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">leaf-wise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效率"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准确率"><span class="toc-number">3.2.5.3.</span> <span class="toc-text">准确率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过拟合-1"><span class="toc-number">3.2.5.4.</span> <span class="toc-text">过拟合</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT-vs-XGBoost-vs-LightGBM-论文层面"><span class="toc-number">4.1.</span> <span class="toc-text">GBDT vs. XGBoost vs. LightGBM(论文层面)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GBDT-vs-XGBoost"><span class="toc-number">4.1.1.</span> <span class="toc-text">GBDT vs. XGBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost-vs-LightGBM"><span class="toc-number">4.1.2.</span> <span class="toc-text">XGBoost vs. LightGBM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sklearn-GBDT-vs-XGBoost-vs-LightGBM-实现层面"><span class="toc-number">4.2.</span> <span class="toc-text">sklearn GBDT vs. XGBoost vs. LightGBM(实现层面)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-GBDT-vs-XGBoost"><span class="toc-number">4.2.1.</span> <span class="toc-text">sklearn GBDT vs. XGBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost-vs-LightGBM-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">XGBoost vs. LightGBM</span></a></li></ol></li></ol></li></ol>
          </div>
    <script type="text/javascript">
   function showToc(){
@@ -252,7 +252,7 @@ ga('send', 'pageview');
                        
              <div id="toc" class="article-toc">
              <h2>目录</h2>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sklearn集成方法"><span class="toc-number">1.</span> <span class="toc-text">sklearn集成方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#bagging"><span class="toc-number">1.1.</span> <span class="toc-text">bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见变体-按照样本采样方式的不同划分"><span class="toc-number">1.1.2.</span> <span class="toc-text">常见变体(按照样本采样方式的不同划分)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-bagging"><span class="toc-number">1.1.3.</span> <span class="toc-text">sklearn-bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-forests-of-randomized-trees"><span class="toc-number">1.1.4.</span> <span class="toc-text">sklearn-forests of randomized trees</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-1"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调参"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">调参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机森林与KNN"><span class="toc-number">1.1.4.5.</span> <span class="toc-text">随机森林与KNN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boosting"><span class="toc-number">1.2.</span> <span class="toc-text">boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-AdaBoost"><span class="toc-number">1.2.2.</span> <span class="toc-text">sklearn-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-GBRT"><span class="toc-number">1.2.3.</span> <span class="toc-text">sklearn-GBRT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-2"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可解释性"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">可解释性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VotingClassifier"><span class="toc-number">1.3.</span> <span class="toc-text">VotingClassifier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XGBoost"><span class="toc-number">2.</span> <span class="toc-text">XGBoost</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合"><span class="toc-number">2.1.</span> <span class="toc-text">过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类别分布不均"><span class="toc-number">2.2.</span> <span class="toc-text">数据类别分布不均</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-1"><span class="toc-number">2.3.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般参数"><span class="toc-number">2.3.1.</span> <span class="toc-text">一般参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基学习器参数"><span class="toc-number">2.3.2.</span> <span class="toc-text">基学习器参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务参数"><span class="toc-number">2.3.3.</span> <span class="toc-text">任务参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行参数"><span class="toc-number">2.3.4.</span> <span class="toc-text">命令行参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM"><span class="toc-number">3.</span> <span class="toc-text">LightGBM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">3.1.</span> <span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效率和内存上的提升"><span class="toc-number">3.1.1.</span> <span class="toc-text">效率和内存上的提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稀疏特征优化"><span class="toc-number">3.1.2.</span> <span class="toc-text">稀疏特征优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准确率上的优化"><span class="toc-number">3.1.3.</span> <span class="toc-text">准确率上的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise-best-first-树生长策略"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">leaf-wise(best-first)树生长策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别特征"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">直接支持类别特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络通信优化"><span class="toc-number">3.1.4.</span> <span class="toc-text">网络通信优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行学习优化"><span class="toc-number">3.1.5.</span> <span class="toc-text">并行学习优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征并行"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">特征并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据并行"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">数据并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行投票"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">并行投票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他特点"><span class="toc-number">3.1.6.</span> <span class="toc-text">其他特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别-标称-特征"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">直接支持类别(标称)特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#早停止"><span class="toc-number">3.1.6.2.</span> <span class="toc-text">早停止</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实践上"><span class="toc-number">3.1.6.3.</span> <span class="toc-text">实践上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的任务"><span class="toc-number">3.1.6.4.</span> <span class="toc-text">支持的任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的评价指标metric"><span class="toc-number">3.1.6.5.</span> <span class="toc-text">支持的评价指标metric</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-2"><span class="toc-number">3.2.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心参数"><span class="toc-number">3.2.1.</span> <span class="toc-text">核心参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练控制参数"><span class="toc-number">3.2.2.</span> <span class="toc-text">训练控制参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#防止过拟合"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">防止过拟合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO参数"><span class="toc-number">3.2.3.</span> <span class="toc-text">IO参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直方图相关"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">直方图相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征相关"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">特征相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存相关"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">内存相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺失值"><span class="toc-number">3.2.3.4.</span> <span class="toc-text">缺失值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目标参数"><span class="toc-number">3.2.4.</span> <span class="toc-text">目标参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调参小结"><span class="toc-number">3.2.5.</span> <span class="toc-text">调参小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">leaf-wise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效率"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准确率"><span class="toc-number">3.2.5.3.</span> <span class="toc-text">准确率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过拟合-1"><span class="toc-number">3.2.5.4.</span> <span class="toc-text">过拟合</span></a></li></ol></li></ol></li></ol></li></ol>  
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sklearn集成方法"><span class="toc-number">1.</span> <span class="toc-text">sklearn集成方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#bagging"><span class="toc-number">1.1.</span> <span class="toc-text">bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见变体-按照样本采样方式的不同划分"><span class="toc-number">1.1.2.</span> <span class="toc-text">常见变体(按照样本采样方式的不同划分)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-bagging"><span class="toc-number">1.1.3.</span> <span class="toc-text">sklearn-bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-forests-of-randomized-trees"><span class="toc-number">1.1.4.</span> <span class="toc-text">sklearn-forests of randomized trees</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-1"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调参"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">调参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征选择"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机森林与KNN"><span class="toc-number">1.1.4.5.</span> <span class="toc-text">随机森林与KNN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boosting"><span class="toc-number">1.2.</span> <span class="toc-text">boosting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-AdaBoost"><span class="toc-number">1.2.2.</span> <span class="toc-text">sklearn-AdaBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-GBRT"><span class="toc-number">1.2.3.</span> <span class="toc-text">sklearn-GBRT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优缺点"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学习器-2"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">学习器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则化"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可解释性"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">可解释性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VotingClassifier"><span class="toc-number">1.3.</span> <span class="toc-text">VotingClassifier</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XGBoost"><span class="toc-number">2.</span> <span class="toc-text">XGBoost</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合"><span class="toc-number">2.1.</span> <span class="toc-text">过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类别分布不均"><span class="toc-number">2.2.</span> <span class="toc-text">数据类别分布不均</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-1"><span class="toc-number">2.3.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一般参数"><span class="toc-number">2.3.1.</span> <span class="toc-text">一般参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基学习器参数"><span class="toc-number">2.3.2.</span> <span class="toc-text">基学习器参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务参数"><span class="toc-number">2.3.3.</span> <span class="toc-text">任务参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行参数"><span class="toc-number">2.3.4.</span> <span class="toc-text">命令行参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM"><span class="toc-number">3.</span> <span class="toc-text">LightGBM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">3.1.</span> <span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#效率和内存上的提升"><span class="toc-number">3.1.1.</span> <span class="toc-text">效率和内存上的提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稀疏特征优化"><span class="toc-number">3.1.2.</span> <span class="toc-text">稀疏特征优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准确率上的优化"><span class="toc-number">3.1.3.</span> <span class="toc-text">准确率上的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise-best-first-树生长策略"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">leaf-wise(best-first)树生长策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别特征"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">直接支持类别特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络通信优化"><span class="toc-number">3.1.4.</span> <span class="toc-text">网络通信优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行学习优化"><span class="toc-number">3.1.5.</span> <span class="toc-text">并行学习优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征并行"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">特征并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据并行"><span class="toc-number">3.1.5.2.</span> <span class="toc-text">数据并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行投票"><span class="toc-number">3.1.5.3.</span> <span class="toc-text">并行投票</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他特点"><span class="toc-number">3.1.6.</span> <span class="toc-text">其他特点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接支持类别-标称-特征"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">直接支持类别(标称)特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#早停止"><span class="toc-number">3.1.6.2.</span> <span class="toc-text">早停止</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实践上"><span class="toc-number">3.1.6.3.</span> <span class="toc-text">实践上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的任务"><span class="toc-number">3.1.6.4.</span> <span class="toc-text">支持的任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的评价指标metric"><span class="toc-number">3.1.6.5.</span> <span class="toc-text">支持的评价指标metric</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调参-2"><span class="toc-number">3.2.</span> <span class="toc-text">调参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核心参数"><span class="toc-number">3.2.1.</span> <span class="toc-text">核心参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练控制参数"><span class="toc-number">3.2.2.</span> <span class="toc-text">训练控制参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#防止过拟合"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">防止过拟合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO参数"><span class="toc-number">3.2.3.</span> <span class="toc-text">IO参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直方图相关"><span class="toc-number">3.2.3.1.</span> <span class="toc-text">直方图相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征相关"><span class="toc-number">3.2.3.2.</span> <span class="toc-text">特征相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存相关"><span class="toc-number">3.2.3.3.</span> <span class="toc-text">内存相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺失值"><span class="toc-number">3.2.3.4.</span> <span class="toc-text">缺失值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目标参数"><span class="toc-number">3.2.4.</span> <span class="toc-text">目标参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调参小结"><span class="toc-number">3.2.5.</span> <span class="toc-text">调参小结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#leaf-wise"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">leaf-wise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#效率"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准确率"><span class="toc-number">3.2.5.3.</span> <span class="toc-text">准确率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过拟合-1"><span class="toc-number">3.2.5.4.</span> <span class="toc-text">过拟合</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT-vs-XGBoost-vs-LightGBM-论文层面"><span class="toc-number">4.1.</span> <span class="toc-text">GBDT vs. XGBoost vs. LightGBM(论文层面)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GBDT-vs-XGBoost"><span class="toc-number">4.1.1.</span> <span class="toc-text">GBDT vs. XGBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost-vs-LightGBM"><span class="toc-number">4.1.2.</span> <span class="toc-text">XGBoost vs. LightGBM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sklearn-GBDT-vs-XGBoost-vs-LightGBM-实现层面"><span class="toc-number">4.2.</span> <span class="toc-text">sklearn GBDT vs. XGBoost vs. LightGBM(实现层面)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sklearn-GBDT-vs-XGBoost"><span class="toc-number">4.2.1.</span> <span class="toc-text">sklearn GBDT vs. XGBoost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost-vs-LightGBM-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">XGBoost vs. LightGBM</span></a></li></ol></li></ol></li></ol>  
             </div>
             <script type="text/javascript">
                var _article = document.getElementsByClassName('article')[0];
@@ -263,8 +263,7 @@ ga('send', 'pageview');
            
          
 
-        <a id="more"></a>
-<p><em>本文主要记录下阅读sklearn集成方法、XGBoost、LightGBM等文档发现gbdt实现上的一些差别。</em></p>
+        <p>本文主要是针对sklearn,XGBoost,LightGBM的官方文档阅读的一些整理，主要针对sklearn的集成方法、以及gbdt族模型的具体实现差异以及各个模型的重要参数、特点做了一个整理<br><a id="more"></a></p>
 <h1 id="sklearn集成方法"><a href="#sklearn集成方法" class="headerlink" title="sklearn集成方法"></a>sklearn集成方法</h1><p>集成方法的目的是结合一些基于某些算法训练得到的基学习器来改进其泛化能力和鲁棒性(相对单个的基学习器而言)<br>主流的两种做法分别是：</p>
 <h2 id="bagging"><a href="#bagging" class="headerlink" title="bagging"></a>bagging</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>独立的训练一些基学习器(一般倾向于强大而复杂的模型比如完全生长的决策树)，然后综合他们的预测结果，通常集成模型的效果会优于基学习器，因为模型的方差有所降低。</p>
 <h3 id="常见变体-按照样本采样方式的不同划分"><a href="#常见变体-按照样本采样方式的不同划分" class="headerlink" title="常见变体(按照样本采样方式的不同划分)"></a>常见变体(按照样本采样方式的不同划分)</h3><ul>
@@ -385,7 +384,7 @@ ga('send', 'pageview');
 </li>
 <li><code>subsample</code>:行采样，对样本采样，即训练每个基学习器时不再使用原始的全部数据集，而是使用一部分，并且使用随机梯度上升法来做集成模型的训练</li>
 <li>列采样：<code>max_features</code>在训练基学习器时使用一个特征子集来训练，类似随机森林的做法</li>
-<li>early stopping:通过参数<code>min_impurity_split</code>(原始)以及<code>min_impurity_decrease</code>来实现，前者的是根据节点的不纯度是否高于阈值，若不是则停止增长树，作为叶节点；后者则根据分裂不纯度下降值是否超过某一阈值来决定是否分裂(此外这里的early stopping似乎与XGBoost里显示设置的early stopping不同，这里是控制树的切分生长，而XGBoost则是控制基学习器的数目)</li>
+<li>early stopping:通过参数<code>min_impurity_split</code>(原始)以及<code>min_impurity_decrease</code>来实现，前者的是根据节点的不纯度是否高于阈值，若不是则停止增长树，作为叶节点；后者则根据分裂不纯度下降值是否超过某一阈值来决定是否分裂(此外这里的early stopping似乎与XGBoost里显示设置的early stopping不同，这里是控制树的切分生长，而XGBoost则是控制基学习器的数目)<br>另外一点，有说这里的early_stopping起到了一种正则化的效果，因为控制了叶节点的切分阈值从而控制了模型的复杂度(可参考李航《统计学习方法》P213底部<strong>提升方法没有显式的正则化项，通常通过早停止的方法达到正则化的效果</strong>)</li>
 <li>基学习器的初始化：<code>init</code>,用来计算初始基学习器的预测，需要具备<code>fit</code>和<code>predict</code>方法，若未设置则默认为<code>loss.init_estimator</code></li>
 <li>模型的重复使用(热启动)：<code>warm_start</code>,若设置为True则可以使用已经训练好的学习器，并且在其上添加更多的基学习器</li>
 <li>预排序：<code>presort</code>,默认设置为自动，对样本按特征值进行预排序从而提高寻找最优切分点的效率，自动模式下对稠密数据会使用预排序，而对稀疏数据则不会</li>
@@ -775,6 +774,81 @@ ga('send', 'pageview');
 </li>
 <li>控制树深<code>max_depth</code></li>
 </ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="GBDT-vs-XGBoost-vs-LightGBM-论文层面"><a href="#GBDT-vs-XGBoost-vs-LightGBM-论文层面" class="headerlink" title="GBDT vs. XGBoost vs. LightGBM(论文层面)"></a>GBDT vs. XGBoost vs. LightGBM(论文层面)</h2><h3 id="GBDT-vs-XGBoost"><a href="#GBDT-vs-XGBoost" class="headerlink" title="GBDT vs. XGBoost"></a>GBDT vs. XGBoost</h3><ul>
+<li>GBDT无显式正则化</li>
+<li>GBDT仅使用了目标函数一阶泰勒展开，而XGBoost使用了二阶的泰勒展开值<ul>
+<li>为什么二阶展开？<ul>
+<li>一说加快收敛速度</li>
+<li>另外有说本身模型训练的学习率shrinkage可以通过二阶导数做一个逼近，而原始的GBDT没有计算这个，所以一般是通过预设的超参数eta人为指定</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XGBoost加入了列采样</li>
+<li>XGBoost对缺失值的处理</li>
+<li>XGBoost通过预排序的方法来实现特征并行，提高模型训练效率</li>
+<li>XGBoost支持分布式计算</li>
+</ul>
+<h3 id="XGBoost-vs-LightGBM"><a href="#XGBoost-vs-LightGBM" class="headerlink" title="XGBoost vs. LightGBM"></a>XGBoost vs. LightGBM</h3><ul>
+<li>树的切分策略不同<ul>
+<li>XGBoost是level-wise而LightGBM是leaf-wise</li>
+</ul>
+</li>
+<li>实现并行的方式不同<ul>
+<li>XGBoost是通过预排序的方式</li>
+<li>LightGBM则是通过直方图算法</li>
+</ul>
+</li>
+<li>LightGBM直接支持类别特征，对类别特征不必进行独热编码处理</li>
+</ul>
+<h2 id="sklearn-GBDT-vs-XGBoost-vs-LightGBM-实现层面"><a href="#sklearn-GBDT-vs-XGBoost-vs-LightGBM-实现层面" class="headerlink" title="sklearn GBDT vs. XGBoost vs. LightGBM(实现层面)"></a>sklearn GBDT vs. XGBoost vs. LightGBM(实现层面)</h2><p>实际在库的实现层面原始论文里的很多区别是不存在的，差异更多在一些工程上的性能优化</p>
+<h3 id="sklearn-GBDT-vs-XGBoost"><a href="#sklearn-GBDT-vs-XGBoost" class="headerlink" title="sklearn GBDT vs. XGBoost"></a>sklearn GBDT vs. XGBoost</h3><ul>
+<li>正则化方式不同<ul>
+<li>sklearn GBDT中仅仅通过学习率来做一个正则化(影响到基学习器的数目)，此外gbdt里的early stopping也达到了一个正则化的效果，对应的主要参数是<code>min_impurity_split</code>即控制了判断叶节点是否进一步切分的不纯度的阈值，若超过该阈值则可以进一步切分，否则不行，故而控制了树的深度即控制了基学习器的复杂度</li>
+<li>XGBoost除了学习率以外还有显示的设置正则化项l1,l2以及对应论文里的叶节点数(对应参数gamma)以及节点权重和(参数min_child_weight)来控制模型复杂度</li>
+</ul>
+</li>
+<li>GBDT仅使用了目标函数一阶泰勒展开，而XGBoost使用了二阶的泰勒展开值</li>
+<li>XGBoost自有一套对缺失值的处理方法</li>
+<li>early-stopping意义不同<ul>
+<li>sklearn GBDT中控制基学习器进一步切分、生长</li>
+<li>XGBoost控制基学习器的数目</li>
+</ul>
+</li>
+<li>特征重要性的判断标准<ul>
+<li>sklearn GBDT是根据树的节点特征对应的深度来判断</li>
+<li>XGBoost则有三种方法(get_score)<ul>
+<li>weight:特征用来作为切分特征的次数</li>
+<li>gain:使用特征进行切分的平均增益</li>
+<li>cover:各个树中该特征平均覆盖情况(根据样本？)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>树的切分算法<ul>
+<li>XGBoost存在三种切分方法，<ul>
+<li>原始的贪心算法(每个特征值切分)</li>
+<li>近似贪心(分位点切分)(使得对于大量的特征取值尤其是连续变量时XGBoost会比sklearn-gbdt快很多)</li>
+<li>直方图算法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XGBoost支持level-wise和leaf-wise两种树的生长方式</li>
+<li>XGBoost支持GPU</li>
+<li>XGBoost支持多种评价标准、支持多种任务(回归、分类、排序)</li>
+</ul>
+<h3 id="XGBoost-vs-LightGBM-1"><a href="#XGBoost-vs-LightGBM-1" class="headerlink" title="XGBoost vs. LightGBM"></a>XGBoost vs. LightGBM</h3><p>XGBoost目前已经实现了LightGBM之前不同的一些方法比如直方图算法，两者的区别更多的在与LightGBM优化通信的的一些处理上</p>
+<ul>
+<li>LightGBM直接支持类别特征，可以不必预先进行独热编码，提高效率(categorical_feature)</li>
+<li>优化通信代价<ul>
+<li>特征并行</li>
+<li>数据并行</li>
+<li>point to point communication–&gt;collective communication</li>
+</ul>
+</li>
+<li>使用多项评价指标同时评价时两者的早停止策略不同，XGBoost是根据评价指标列表中的最后一项来作为停止标准，而LightGBM则受到所有评价指标的影响</li>
+</ul>
 <p>参考资料</p>
 <ul>
 <li>wikipedia</li>
@@ -803,11 +877,11 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">校招</a>
         		</li>
       		
 		</ul>
@@ -876,6 +950,15 @@ ga('send', 'pageview');
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/10/10/Note-offer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Note_offer
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/20/imbalance/" id="article-nav-older" class="article-nav-link-wrap">
@@ -1043,10 +1126,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
@@ -1055,11 +1134,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+                <a href="javascript:void(0)" class="js-tag color5">GBDT</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1067,15 +1142,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">校招</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Perceptron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1087,7 +1158,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">聚类</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">统计学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,6 +1175,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">IT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">聚类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1115,10 +1198,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指offer</a>
               </li>
              
@@ -1131,6 +1210,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ensemble</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">正则化</a>
               </li>
              
@@ -1139,15 +1226,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">k-NN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LR</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">offer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1160,14 +1251,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Neural Networks</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">最优化问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1195,15 +1278,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Random Forest</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">机器学习技法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SVM</a>
               </li>
              
               <li class="article-tag-list-item">

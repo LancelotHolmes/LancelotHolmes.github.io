@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/10/10/Note-offer/</loc>
+    <lastmod>2017-10-10T07:59:32.688Z</lastmod>
+    <data>
+        <display>
+        <title>Note_offer</title>
+        <pubTime>2017-10-10T07:52:49.000Z</pubTime>
+        
+        <tag>ML</tag>
+         
+        <tag>Note</tag>
+         
+        <tag>面试</tag>
+         
+        <tag>校招</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/23/sklearn-xgboost/</loc>
-    <lastmod>2017-09-23T11:21:08.664Z</lastmod>
+    <lastmod>2017-10-10T07:51:48.566Z</lastmod>
     <data>
         <display>
         <title>sklearn、XGBoost、LightGBM的文档阅读小记</title>
@@ -15,9 +38,9 @@
          
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
          
            
@@ -38,9 +61,9 @@
          
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
          
            
@@ -100,29 +123,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/12/Note-sklearn/</loc>
-    <lastmod>2017-09-12T09:18:56.637Z</lastmod>
-    <data>
-        <display>
-        <title>sklearn、XGBoost、LightGBM的文档阅读小记</title>
-        <pubTime>2017-09-12T09:15:59.000Z</pubTime>
-        
-        <tag>ML</tag>
-         
-        <tag>Note</tag>
-         
-        <tag>校招</tag>
-         
-        <tag>面试</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/06/27/basic-algorithm/</loc>
     <lastmod>2017-09-11T08:05:44.508Z</lastmod>
     <data>
@@ -132,9 +132,9 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
         <tag>algorithm</tag>
          
@@ -354,9 +354,9 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
         <tag>Coding</tag>
          
@@ -597,9 +597,9 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
         <tag>Coding</tag>
          
@@ -622,9 +622,9 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
         <tag>algorithm</tag>
          
@@ -691,9 +691,9 @@
         <title>剑指offer阅读笔记</title>
         <pubTime>2017-06-09T02:33:40.000Z</pubTime>
         
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
         <tag>Coding</tag>
          
@@ -823,9 +823,9 @@
         
         <tag>Note</tag>
          
-        <tag>校招</tag>
-         
         <tag>面试</tag>
+         
+        <tag>校招</tag>
          
         <tag>Coding</tag>
          
