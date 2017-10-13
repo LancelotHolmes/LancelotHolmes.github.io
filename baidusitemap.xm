@@ -3,6 +3,7 @@
 
 
     
+    
   <url>
     <loc>http://yoursite.com/2017/10/10/Note-offer/</loc>
     <lastmod>2017-10-10T07:59:32.688Z</lastmod>
@@ -86,9 +87,9 @@
          
         <tag>面试</tag>
          
-        <tag>正则化</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>正则化</tag>
          
          
            
@@ -111,9 +112,9 @@
          
         <tag>面试</tag>
          
-        <tag>正则化</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>正则化</tag>
          
          
            
@@ -741,9 +742,9 @@
          
         <tag>Note</tag>
          
-        <tag>机器学习</tag>
-         
         <tag>LR</tag>
+         
+        <tag>机器学习</tag>
          
          
            
@@ -902,7 +903,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://yoursite.com/2017/06/22/Statistics/</loc>
