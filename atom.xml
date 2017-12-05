@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-10T07:59:32.688Z</updated>
+  <updated>2017-12-05T09:17:16.935Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在NetBeans里使用Gephi-Toolkit来对网络进行分析</title>
+    <link href="http://yoursite.com/2017/12/05/gephi-tool-kit/"/>
+    <id>http://yoursite.com/2017/12/05/gephi-tool-kit/</id>
+    <published>2017-12-05T08:26:49.000Z</published>
+    <updated>2017-12-05T09:17:16.935Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于论文实验需要，要用到Gephi来对网络进行分析和可视化等操作，本来使用Gephi软件是非常方便的，但是由于要批量的对多个网络进行计算和分析，而Python的NetworkX库实在是有点让我失望了，故而辗转发现似乎可以通过Gephi-Toolkit来通过编程实现等同于Gephi对网络展开计算分析，但是网络现有的资料要么时间有点远了，新版本的操作方法还没有比较好的教程，这里就简单的做一个基础的教程作为过渡和记录。</p>
+<a id="more"></a>
+<hr>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><a href="https://netbeans.org/downloads/" target="_blank" rel="external">NetBeans IDE 8.2</a>：因为Gephi-Toolkit本身是基于NetBeans开发的，所以网上查到的资料一般也建议使用这个IDE，倒也不是说其他的不行，只是坑可能更多。</li>
+<li><a href="https://gephi.org/toolkit/" target="_blank" rel="external">gephi-toolkit-0.9.2-all.jar</a>：目前的最新版本，网上之前找到的一些资料大多是0.8.x的，对比api变化还是不少</li>
+</ul>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>这里介绍三种不同的需要下的对应操作</p>
+<h3 id="将gephi-toolkit作为jar包导入库"><a href="#将gephi-toolkit作为jar包导入库" class="headerlink" title="将gephi-toolkit作为jar包导入库"></a>将gephi-toolkit作为jar包导入库</h3><p>个人做实验使用的这种方法，其实就是跟一般的导入jar包作为第三方库一样，具体来说在新建一个Java应用程序后，在库(library)里右键<strong>添加JAR/文件夹</strong>然后找到下载的gephi-toolkit文件的jar包就好<br><img src="/materials/img/gephi-toolkit/lib_gephi_toolit.png" alt="lib-gephi-toolkit"><br>然后使用的时候只需要根据需要查找<a href="https://gephi.org/gephi-toolkit/0.9.2/apidocs/" target="_blank" rel="external">Javadoc</a>在类的头部import对应的包就好</p>
+<h3 id="在源代码上开发-修改插件"><a href="#在源代码上开发-修改插件" class="headerlink" title="在源代码上开发/修改插件"></a>在源代码上开发/修改插件</h3><p>这个的话是直接导入原始文件来做二次开发或者开发插件用，具体的步骤在这篇图文并茂的<a href="https://seinecle.github.io/gephi-tutorials/generated-html/working-from-the-source-en.html" target="_blank" rel="external">教程</a>里写的非常详细，就不赘述了。</p>
+<h3 id="通过git来导入demo进行试验"><a href="#通过git来导入demo进行试验" class="headerlink" title="通过git来导入demo进行试验"></a>通过git来导入demo进行试验</h3><p>这种方法就是将github上目前最新版本的gephi-toolkit的demo导入NetBeans IDE进行阅读和测试，方便在线下测试和参考。<br>图文教程同样有人写过了，参考<a href="https://www.yuanmas.com/info/EkyQYAJDyv.html" target="_blank" rel="external">这里</a></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>大部分情况下我们的数据文件可能是两份csv文件分别记录了节点信息和边的信息，在使用Gephi进行分析时一般就通过Data Labrotory来分别导入节点、边的csv文件构造网络，而在使用gephi-toolkit时则没有对应的教程，在经过一番寻找后，综合多个demo目前是实现了基本的文件导入和构造网络并计算一些基本测度的操作。下面就一步一步的说明一下。</p>
+<h3 id="CSV文件导入"><a href="#CSV文件导入" class="headerlink" title="CSV文件导入"></a>CSV文件导入</h3><p>首先单个的CSV文件导入其实参考”ImportExport”中导入gml文件的方法就行了，开头是一样的一些基本操作，如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Init a project - and therefore a workspace</span></div><div class="line">ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);</div><div class="line">pc.newProject();</div><div class="line">Workspace workspace = pc.getCurrentWorkspace();</div><div class="line"></div><div class="line"><span class="comment">//Get controllers and models</span></div><div class="line">ImportController importController = Lookup.getDefault().lookup(ImportController.class);</div><div class="line"></div><div class="line"><span class="comment">//Get models and controllers for this new workspace - will be useful later</span></div><div class="line">GraphModel graphModel = Lookup.getDefault().lookup(GraphController.class).getGraphModel();</div><div class="line"></div><div class="line"><span class="comment">//Import file</span></div><div class="line">Container container;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    File file_node = <span class="keyword">new</span> File(getClass().getResource(<span class="string">"/resource/season2/club_1_1995.csv"</span>).toURI());</div><div class="line">    container = importController.importFile(file_node);</div><div class="line">    container.getLoader().setEdgeDefault(EdgeDirectionDefault.DIRECTED);   <span class="comment">//Force DIRECTED</span></div><div class="line">    container.getLoader().setAllowAutoNode(<span class="keyword">true</span>);  <span class="comment">//create missing nodes</span></div><div class="line">    container.getLoader().setEdgesMergeStrategy(EdgeMergeStrategy.SUM);</div><div class="line">    container.getLoader().setAutoScale(<span class="keyword">true</span>);</div><div class="line">    </div><div class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">    ex.printStackTrace();</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//Append imported data to GraphAPI</span></div><div class="line">importController.process(container, <span class="keyword">new</span> DefaultProcessor(), workspace);</div></pre></td></tr></table></figure>
+<p>但是我们的目标是要导入两个csv文件分别对应节点信息和边的信息，所以进一步查阅其它的Demo后在GenerateGraph中找到了答案，通过新建的container来追加到原始的workspace中，这个操作与Gephi里实际导入csv文件是类似的，同样这里对于导入文件中一些多边的合并策略等设置也是参考对于Gephi GUI文件的操作设置，所以如果你对于自己操作gephi-toolkit不确定是否正确时不妨一步一步的对照着gephi GUI程序导入数据进行对照，下面是修改后的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Init a project - and therefore a workspace</span></div><div class="line">ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);</div><div class="line">pc.newProject();</div><div class="line">Workspace workspace = pc.getCurrentWorkspace();</div><div class="line"></div><div class="line"><span class="comment">//Get controllers and models</span></div><div class="line">ImportController importController = Lookup.getDefault().lookup(ImportController.class);</div><div class="line"></div><div class="line"><span class="comment">//Get models and controllers for this new workspace - will be useful later</span></div><div class="line">GraphModel graphModel = Lookup.getDefault().lookup(GraphController.class).getGraphModel();</div><div class="line"></div><div class="line"><span class="comment">//Import file</span></div><div class="line">Container container,container2;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    File file_node = <span class="keyword">new</span> File(getClass().getResource(<span class="string">"/resource/season2/club_1_1995.csv"</span>).toURI());</div><div class="line">    container = importController.importFile(file_node);</div><div class="line">    container.getLoader().setEdgeDefault(EdgeDirectionDefault.DIRECTED);   <span class="comment">//Force DIRECTED</span></div><div class="line">    container.getLoader().setAllowAutoNode(<span class="keyword">true</span>);  <span class="comment">//create missing nodes</span></div><div class="line">    container.getLoader().setEdgesMergeStrategy(EdgeMergeStrategy.SUM);</div><div class="line">    container.getLoader().setAutoScale(<span class="keyword">true</span>);</div><div class="line">    </div><div class="line">    File file_edge = <span class="keyword">new</span> File(getClass().getResource(<span class="string">"/resource/season2/transfer_1_1995.csv"</span>).toURI());</div><div class="line">    container2 = importController.importFile(file_edge);</div><div class="line">    container2.getLoader().setEdgeDefault(EdgeDirectionDefault.DIRECTED);   <span class="comment">//Force DIRECTED</span></div><div class="line">    container2.getLoader().setAllowAutoNode(<span class="keyword">true</span>);  <span class="comment">//create missing nodes</span></div><div class="line">    container2.getLoader().setEdgesMergeStrategy(EdgeMergeStrategy.SUM);</div><div class="line">    container2.getLoader().setAutoScale(<span class="keyword">true</span>);</div><div class="line">    </div><div class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">    ex.printStackTrace();</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//Append imported data to GraphAPI</span></div><div class="line">importController.process(container, <span class="keyword">new</span> DefaultProcessor(), workspace);</div><div class="line">importController.process(container2, <span class="keyword">new</span> AppendProcessor(), workspace); <span class="comment">//Use AppendProcessor to append to current workspace</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//See if graph is well imported</span></div><div class="line">DirectedGraph graph = graphModel.getDirectedGraph();</div><div class="line">System.out.println(<span class="string">"Nodes: "</span> + graph.getNodeCount());</div><div class="line">System.out.println(<span class="string">"Edges: "</span> + graph.getEdgeCount());</div></pre></td></tr></table></figure>
+<p>最后是简单的测试了下导入文件后构建的网络的节点数和边的数目，与gephi实测一致。</p>
+<h3 id="基本测度的计算"><a href="#基本测度的计算" class="headerlink" title="基本测度的计算"></a>基本测度的计算</h3><p>主要是对照gephi软件的Statistics窗体的一些基本测度的计算<br><img src="/materials/img/gephi-toolkit/gephi-out.png" alt="gephi-output"><br>参考Javadoc的org.gephi.statistics.plugin包来计算的<br>举个例子，我要计算当前构建的网络的节点的平均度</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Degree degree=<span class="keyword">new</span> Degree();</div><div class="line">degree.execute(graph.getModel());      </div><div class="line">System.out.println(<span class="string">"Average Degree: "</span>+degree.getAverageDegree());</div></pre></td></tr></table></figure>
+<p>而对于其他的测度也是类似的做法，可以参考Javadoc,就不赘述了。实测的结果与Gephi的测试是一致的<br><img src="/materials/img/gephi-toolkit/gephi-toolkit-out.png" alt="gephi-toolkit-output"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://gist.github.com/dustalov/7577229" target="_blank" rel="external">https://gist.github.com/dustalov/7577229</a></li>
+<li><a href="https://gephi.org/gephi-toolkit/0.9.2/apidocs/" target="_blank" rel="external">Javadoc</a></li>
+<li><a href="https://github.com/gephi/gephi-toolkit-demos" target="_blank" rel="external">gephi toolkit demo</a></li>
+<li><a href="http://forum-gephi.org/viewtopic.php?t=6275&amp;p=14575" target="_blank" rel="external">gephi forum</a></li>
+<li><a href="https://seinecle.github.io/gephi-tutorials/generated-html/working-from-the-source-en.html" target="_blank" rel="external">Working from Gephi’s source</a></li>
+<li><a href="http://www.cnblogs.com/bigdataZJ/p/gephiSourceCode.html" target="_blank" rel="external">可视化工具gephi源码探秘(二)—导入netbeans</a></li>
+<li><a href="https://www.yuanmas.com/info/EkyQYAJDyv.html" target="_blank" rel="external">使用NetBeans获取GitHub项目及为其贡献代码</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于论文实验需要，要用到Gephi来对网络进行分析和可视化等操作，本来使用Gephi软件是非常方便的，但是由于要批量的对多个网络进行计算和分析，而Python的NetworkX库实在是有点让我失望了，故而辗转发现似乎可以通过Gephi-Toolkit来通过编程实现等同于Gephi对网络展开计算分析，但是网络现有的资料要么时间有点远了，新版本的操作方法还没有比较好的教程，这里就简单的做一个基础的教程作为过渡和记录。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
+    
+      <category term="复杂网络" scheme="http://yoursite.com/tags/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="Gephi" scheme="http://yoursite.com/tags/Gephi/"/>
+    
+      <category term="NetBeans" scheme="http://yoursite.com/tags/NetBeans/"/>
+    
+  </entry>
   
   <entry>
     <title>Note_offer</title>
@@ -928,9 +983,9 @@
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="正则化" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -1026,9 +1081,9 @@
     
       <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="正则化" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -3326,9 +3381,9 @@
     
       <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
-      <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
-    
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="LR" scheme="http://yoursite.com/tags/LR/"/>
     
   </entry>
   

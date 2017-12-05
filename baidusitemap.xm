@@ -3,6 +3,29 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2017/12/05/gephi-tool-kit/</loc>
+    <lastmod>2017-12-05T09:17:16.935Z</lastmod>
+    <data>
+        <display>
+        <title>在NetBeans里使用Gephi-Toolkit来对网络进行分析</title>
+        <pubTime>2017-12-05T08:26:49.000Z</pubTime>
+        
+        <tag>Note</tag>
+         
+        <tag>复杂网络</tag>
+         
+        <tag>Gephi</tag>
+         
+        <tag>NetBeans</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yoursite.com/2017/10/10/Note-offer/</loc>
@@ -87,9 +110,9 @@
          
         <tag>面试</tag>
          
-        <tag>机器学习</tag>
-         
         <tag>正则化</tag>
+         
+        <tag>机器学习</tag>
          
          
            
@@ -112,9 +135,9 @@
          
         <tag>面试</tag>
          
-        <tag>机器学习</tag>
-         
         <tag>正则化</tag>
+         
+        <tag>机器学习</tag>
          
          
            
@@ -742,9 +765,9 @@
          
         <tag>Note</tag>
          
-        <tag>LR</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>LR</tag>
          
          
            
