@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/01/21/1988/</loc>
+    <lastmod>2018-01-21T08:12:34.392Z</lastmod>
+    <data>
+        <display>
+        <title>1988，收到请回答</title>
+        <pubTime>2018-01-21T07:25:24.000Z</pubTime>
+        
+        <tag>Movie</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/12/05/gephi-tool-kit/</loc>
     <lastmod>2017-12-05T09:17:16.935Z</lastmod>
     <data>
